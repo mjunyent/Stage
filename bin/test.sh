@@ -1,0 +1,1 @@
+./Stage -ast ast.dot -dot samples/HelloWorld.asl && /Applications/Graphviz.app/Contents/MacOS/Graphviz /Users/marc/IdeaProjects/VJ/bin/ast.dot 
