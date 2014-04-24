@@ -1,6 +1,5 @@
 package interp.Semantic;
 
-import Stage.Stage;
 import interp.StageTree;
 import interp.Types.*;
 import parser.StageLexer;
@@ -32,6 +31,14 @@ public class Semantics {
 
 //        this.functions = functions;
 //        this.filters = filters;
+    }
+
+    public StageTree getFiltersRoot() {
+        return filters_root;
+    }
+
+    public StageTree getFunctionsRoot() {
+        return functions_root;
     }
 
     private void fillFunctionsMap() {
@@ -116,6 +123,7 @@ public class Semantics {
                 symbol_table.add(varName, varType);
                 break;
             case StageLexer.ASSIGN:
+                //TODO: check assignability.
                 Types leftType = getExpressionType(inst.getChild(0), symbol_table);
                 Types rightType = getExpressionType(inst.getChild(1), symbol_table);
                 if(!leftType.isCompatibleWith(rightType)) throw new RuntimeException("Types don't match");
@@ -151,11 +159,19 @@ public class Semantics {
                 }
 
                 break;
+            /* THere are no member functions in filters, so any of that will give no result (except funcall)
             case StageLexer.MEMBER:
             case StageLexer.ARRAY:
             case StageLexer.ID:
             case StageLexer.FUNCALL:
                 getExpressionType(inst, symbol_table);
+                break;*/
+            case StageLexer.MEMBER:
+            case StageLexer.ARRAY:
+            case StageLexer.ID:
+                throw new RuntimeException("Instruction does nothing or calls member function which is not allowed in filters.");
+            case StageLexer.FUNCALL:
+                getFunCallReturnType(inst, symbol_table, null);
                 break;
             case StageLexer.TIMECALL:
                 throw new RuntimeException("Functions in filter cannot be called over time.");
@@ -167,7 +183,6 @@ public class Semantics {
                 throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
 
         }
-
     }
 
     private Types getExpressionType(StageTree exp, FilterSymbolTable symbol_table) {
@@ -188,6 +203,15 @@ public class Semantics {
         }
         if(exp.getType() == StageLexer.FUNCALL) {
             return getFunCallReturnType(exp, symbol_table, null);
+        }
+        if(exp.getType() == StageLexer.ARRAY) {
+            String name = exp.getChild(0).getText();
+            Types pos = getExpressionType(exp.getChild(1), symbol_table);
+            Types leftType = symbol_table.getType(name);
+            List<Types> arrayAccess = leftType.getInstance().getMethodArgs("[");
+            if(arrayAccess == null) throw new RuntimeException("Type: " + pos.getName() + " has no array access.");
+            if(arrayAccess.get(1) != pos) throw new RuntimeException("Access in array is type: " + pos.getName() + " expecting " + arrayAccess.get(1).getName());
+            return arrayAccess.get(0);
         }
         if(exp.getType() == StageLexer.MEMBER) {
             return getMemberType(exp, symbol_table);
@@ -224,11 +248,19 @@ public class Semantics {
                 if(ret == null) throw new RuntimeException("Member " + tree.getChild(1).getText() + " not found in type " + leftTypeInstance.getTypeName());
                 return ret;
             case StageLexer.FUNCALL:
-                return getFunCallReturnType(tree.getChild(1), symbol_table, leftType);
+                throw new RuntimeException("Member functions can not be called from filter. Calling " + tree.getChild(1).getText() + " in type " + leftTypeInstance.getTypeName());
+                //return getFunCallReturnType(tree.getChild(1), symbol_table, leftType);
             case StageLexer.ARRAY:
                 String name = tree.getChild(1).getChild(0).getText();
                 Types pos = getExpressionType(tree.getChild(1).getChild(1), symbol_table);
-                List<Types> arrayAccess = leftTypeInstance.getMethodArgs("[");
+
+                //Check member is in array.
+                Types member_arr = leftTypeInstance.getAttributeType(name);
+                if(member_arr == null) throw new RuntimeException("Member " + name + " not found in type " + leftTypeInstance.getTypeName());
+
+                //Check tipes of array and values it returns
+                List<Types> arrayAccess = member_arr.getInstance().getMethodArgs("[");
+                if(arrayAccess == null) throw new RuntimeException("Type: " + member_arr + " in " + name + " has no array access.");
                 //We assume arrayAccess.size() == 2, else the function is wrong, in our code.
                 if(arrayAccess.get(1) != pos) throw new RuntimeException("Access in array is type: " + pos.getName() + " expecting " + arrayAccess.get(1).getName());
                 return arrayAccess.get(0);
@@ -246,7 +278,7 @@ public class Semantics {
 
             if(args.length-1 != tree.getChild(1).getChildCount()) throw new RuntimeException("Argument length doesn't fit for function " + tree.getChild(0).getText());
             for(int i=0; i<tree.getChild(1).getChildCount(); i++) {
-                if(args[i+1] != getExpressionType(tree.getChild(1).getChild(i), symbol_table)) throw new RuntimeException("Method arguments don't have the same type");
+                if(!args[i+1].isCompatibleWith(getExpressionType(tree.getChild(1).getChild(i), symbol_table))) throw new RuntimeException("Method arguments don't have the same type");
             }
             return args[0];
         } else { //method
@@ -266,7 +298,7 @@ public class Semantics {
         if(args == null && methodArgs.size() == 1) return methodArgs.get(0); //No arguments needed.
         if(methodArgs.size()-1 != args.size()) throw new RuntimeException("Argument length doesn't fit for function " + name);
         for(int i=0; i<args.size(); i++) {
-            if(methodArgs.get(i+1) != args.get(i)) throw new RuntimeException("Method arguments don't have the same type");
+            if(!methodArgs.get(i+1).isCompatibleWith(args.get(i))) throw new RuntimeException("Method " + name + " arguments don't have the same type, expecting " + methodArgs.get(i+1).getName() + " found " + args.get(i).getName());
         }
         return methodArgs.get(0);
     }

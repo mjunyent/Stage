@@ -8,7 +8,6 @@ filter testA(float k) {
 	hop.x = hop.y;
 	hop.z = 5.0;
 	vec4(0.0,0.0,0.0,0.0);
-	hop.z;
 
 	while(not t) {
 		float p = hop.w;
@@ -19,6 +18,11 @@ filter testA(float k) {
 		m = m*m;
 	}
 	return vec4(k,k,m-n,n);
+}
+
+filter v1,v2 -> mix(float m) {
+	return v1[UV]*m + v1[UV]*(1.0-m);
+//	return v1[UV]*vec4(m,m,m,m) + v2[UV]*(vec4(1.0,1.0,1.0,1.0)*vec4(m,m,m,m));
 }
 
 function main() {

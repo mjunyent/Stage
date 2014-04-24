@@ -52,11 +52,13 @@ INTERP_SRC =	$(INTERP)/Stack.java \
 				$(INTERP)/Types/FloatType.java \
 				$(INTERP)/Types/Vec4Type.java \
 				$(INTERP)/Types/Vec2Type.java \
+				$(INTERP)/Types/SamplerType.java \
 				$(INTERP)/Types/ArrayType.java \
 				$(INTERP)/Semantic/FilterGlobalVars.java \
 				$(INTERP)/Semantic/FilterGlobalFuncs.java \
 				$(INTERP)/Semantic/FilterSymbolTable.java \
-				$(INTERP)/Semantic/Semantics.java
+				$(INTERP)/Semantic/Semantics.java \
+				$(INTERP)/GLSLTranslator/Translator.java
 				
 
 ALL_SRC =		$(MAIN_SRC) $(PARSER_SRC) $(INTERP_SRC)

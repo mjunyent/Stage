@@ -28,6 +28,7 @@
 package Stage;
 
 // Imports for ANTLR
+import interp.GLSLTranslator.Translator;
 import interp.Semantic.Semantics;
 import interp.Types.IntType;
 import interp.Types.BoolType;
@@ -130,6 +131,10 @@ public class Stage{
         Semantics sem = new Semantics(t, true);
         sem.checkFilters();
 
+        for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
+            Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
+            tr.writeFile("");
+        }
 
         /*
         // Start interpretation (only if execution required)

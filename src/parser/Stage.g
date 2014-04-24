@@ -255,5 +255,3 @@ WS  	: ( ' '
         | '\n'
         ) {$channel=HIDDEN;}
     	;
-
-

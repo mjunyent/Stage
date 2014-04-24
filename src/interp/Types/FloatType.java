@@ -76,6 +76,9 @@ public class FloatType implements TypeInterface {
     public Types getAttributeType(String name) { return null; }
     public TypeInterface getAttribute(String name) { return null; }
 
-    public boolean canCastTo(Types type) { return false; }
+    public boolean canCastTo(Types type) {
+        if(type == Types.VEC2_T || type == Types.VEC4_T) return true;
+        return false;
+    }
     public TypeInterface castTo(Types type) { return null; }
 }

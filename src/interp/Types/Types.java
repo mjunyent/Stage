@@ -7,7 +7,7 @@ public enum Types {
     BOOL_T      ("bool",     BoolType.class,    true,   true ),
     CHAR_T      ("char",     null,              true,   false),
     STRING_T    ("string",   null,              true,   false),
-    SAMPLER_T   ("_sampler", null,              false,  true ),
+    SAMPLER_T   ("_sampler", SamplerType.class, false,  true ),
     ARRAY_T     ("_array",   ArrayType.class,   true,   false),
     VEC4_T      ("vec4",     Vec4Type.class,    true,   true ),
     VEC2_T      ("vec2",     Vec2Type.class,    true,   true );
@@ -57,7 +57,10 @@ public enum Types {
             return true;
         }
         if(this == t) return true;
-//        if(t.getInstance().canCastTo(this)) return true;
+        if(t.getInstance().canCastTo(this)) {
+            System.err.println("Warning, casting from " + t.getName() + " to " + this.getName());
+            return true;
+        }
 
         return false;
     }
