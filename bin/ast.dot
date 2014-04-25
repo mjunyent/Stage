@@ -1,0 +1,42 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label="LIST_FUNCTIONS"];
+  n1 [label="func"];
+  n1 [label="func"];
+  n2 [label="main"];
+  n3 [label="PARAMS"];
+  n4 [label="LIST_INSTR"];
+  n4 [label="LIST_INSTR"];
+  n5 [label="write"];
+  n5 [label="write"];
+  n6 [label="\"Hello world !%n\""];
+  n7 [label="func"];
+  n7 [label="func"];
+  n8 [label="cosa"];
+  n9 [label="PARAMS"];
+  n10 [label="LIST_INSTR"];
+  n10 [label="LIST_INSTR"];
+  n11 [label="write"];
+  n11 [label="write"];
+  n12 [label="\"cosa\""];
+
+  n0 -> n1 // "LIST_FUNCTIONS" -> "func"
+  n1 -> n2 // "func" -> "main"
+  n1 -> n3 // "func" -> "PARAMS"
+  n1 -> n4 // "func" -> "LIST_INSTR"
+  n4 -> n5 // "LIST_INSTR" -> "write"
+  n5 -> n6 // "write" -> "\"Hello world !%n\""
+  n0 -> n7 // "LIST_FUNCTIONS" -> "func"
+  n7 -> n8 // "func" -> "cosa"
+  n7 -> n9 // "func" -> "PARAMS"
+  n7 -> n10 // "func" -> "LIST_INSTR"
+  n10 -> n11 // "LIST_INSTR" -> "write"
+  n11 -> n12 // "write" -> "\"cosa\""
+
+}
