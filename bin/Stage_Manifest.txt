@@ -1,2 +1,0 @@
-Main-Class: Stage.Stage
-Class-Path: /Users/marc/IdeaProjects/VJ/libs/antlr-3.4-complete.jar /Users/marc/IdeaProjects/VJ/libs/commons-cli-1.2.jar

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec java -enableassertions -jar /Users/marc/IdeaProjects/VJ/bin/Stage.jar "$@"
