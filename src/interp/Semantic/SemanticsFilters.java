@@ -6,51 +6,29 @@ import parser.StageLexer;
 
 import java.util.*;
 
-public class Semantics {
-    private HashMap<String, StageTree> functions = null;
+public class SemanticsFilters {
     private HashMap<String, StageTree> filters = null;
-    StageTree functions_root = null;
+    private HashMap<String, FilterSignature> filter_list;
     StageTree filters_root = null;
 
     boolean debug = true;
 
-    public Semantics(StageTree tree, boolean debug) {
+    public SemanticsFilters(StageTree tree, boolean debug) {
         this.debug = debug;
 
-        functions = new HashMap<String, StageTree>();
         filters = new HashMap<String, StageTree>();
+        filter_list = new HashMap<String, FilterSignature>();
 
         for(int i=0; i<Math.max(tree.getChildCount(),2); i++) {
             StageTree node = tree.getChild(i);
-            if(node.getType() == StageLexer.LIST_FUNCTIONS) functions_root = node;
-            else if(node.getType() == StageLexer.LIST_FILTERS) filters_root = node;
+            if(node.getType() == StageLexer.LIST_FILTERS) filters_root = node;
         }
 
-        fillFunctionsMap();
         fillFiltersMap();
-
-//        this.functions = functions;
-//        this.filters = filters;
     }
 
     public StageTree getFiltersRoot() {
         return filters_root;
-    }
-
-    public StageTree getFunctionsRoot() {
-        return functions_root;
-    }
-
-    private void fillFunctionsMap() {
-        if(functions_root == null) return;
-
-        for(int i=0; i<functions_root.getChildCount(); i++) {
-            StageTree node = functions_root.getChild(i);
-
-            String fname = node.getChild(0).getText();
-            if (functions.containsKey(fname)) throw new RuntimeException("Multiple definitions of function " + fname);
-            functions.put(fname, node);
-        }
     }
 
     private void fillFiltersMap() {
@@ -71,8 +49,38 @@ public class Semantics {
         for(int i=0; i<filters_root.getChildCount(); i++) {
             checkFilter(filters_root.getChild(i));
         }
+
+        setFilterList();
     }
 
+    public HashMap<String, FilterSignature> getFilterList() {
+        return filter_list;
+    }
+
+    private void setFilterList() {
+        for(int i=0; i<filters_root.getChildCount(); i++) {
+            StageTree node = filters_root.getChild(i);
+
+            FilterSignature fs = new FilterSignature();
+            fs.name = node.getChild(1).getText();
+            fs.args = new ArrayList<Types>();
+            fs.args_names = new ArrayList<String>();
+            fs.inputs = new ArrayList<String>();
+
+            for(int j=0; j<node.getChild(0).getChildCount(); j++) {
+                fs.inputs.add(node.getChild(0).getChild(j).getText());
+            }
+            for(int j=0; j<node.getChild(2).getChildCount(); j++) {
+                String var_type = node.getChild(2).getChild(j).getChild(0).getText();
+                String var_name = node.getChild(2).getChild(j).getChild(1).getText();
+                fs.args.add( Types.getByNameFilters(var_type) );
+                fs.args_names.add( var_name );
+            }
+            filter_list.put(fs.name, fs);
+        }
+    }
+
+    //TODO check arrays in headers of filters.
     private void checkFilter(StageTree tree) {
         FilterSymbolTable symbol_table = new FilterSymbolTable(debug);
 
@@ -87,8 +95,7 @@ public class Semantics {
         for(int i=0; i<params.getChildCount(); i++) {
             String var_type = params.getChild(i).getChild(0).getText();
             String var_name = params.getChild(i).getChild(1).getText();
-            if(!Types.containsForFilters(var_type)) throw new RuntimeException("Type " + var_type + " not valid for filters");
-            symbol_table.add(var_name, Types.getByName(var_type));
+            symbol_table.add(var_name, Types.getByNameFilters(var_type));
         }
 
         symbol_table.pushScope();
@@ -112,25 +119,24 @@ public class Semantics {
                 throw new RuntimeException("Can't QUIT a filter, perhaps you should use return");
             case StageLexer.DECLARE:
                 if(inst.getChild(0).getType() == StageLexer.ARRAY) throw new RuntimeException("Cannot declare arrays in filter");
-                if(!Types.containsForFilters(inst.getChild(0).getText())) throw new RuntimeException("Type " + inst.getChild(0).getText() + " not valid for filters");
-                Types varType = Types.getByName(inst.getChild(0).getText());
+                Types varType = Types.getByNameFilters(inst.getChild(0).getText());
                 String varName = inst.getChild(1).getText();
                 if(inst.getChildCount() > 2) {
-                   if(!varType.isCompatibleWith(getExpressionType(inst.getChild(2), symbol_table))) {
+                   if(varType != getExpressionType(inst.getChild(2), symbol_table)) {
                        throw new RuntimeException("Types don't match declaring: " + varName + " as " + varType.getName());
                    }
                 }
                 symbol_table.add(varName, varType);
                 break;
             case StageLexer.ASSIGN:
-                //TODO: check assignability.
+                //TODO: check assignability (not all vars are writable).
                 Types leftType = getExpressionType(inst.getChild(0), symbol_table);
                 Types rightType = getExpressionType(inst.getChild(1), symbol_table);
-                if(!leftType.isCompatibleWith(rightType)) throw new RuntimeException("Types don't match");
+                if(leftType != rightType) throw new RuntimeException("Types don't match");
                 break;
             case StageLexer.WHILE:
                 Types w_condition = getExpressionType(inst.getChild(0), symbol_table);
-                if(!Types.BOOL_T.isCompatibleWith(w_condition)) throw new RuntimeException("Condition expression must be boolean");
+                if(Types.BOOL_T != w_condition) throw new RuntimeException("Condition expression must be boolean");
 
                 symbol_table.pushScope();
                 for(int i=0; i<inst.getChild(1).getChildCount(); i++) {
@@ -141,7 +147,7 @@ public class Semantics {
                 break;
             case StageLexer.IF:
                 Types i_condition = getExpressionType(inst.getChild(0), symbol_table);
-                if(!Types.BOOL_T.isCompatibleWith(i_condition)) throw new RuntimeException("Condition expression must be boolean");
+                if(Types.BOOL_T != i_condition) throw new RuntimeException("Condition expression must be boolean");
 
                 symbol_table.pushScope();
                 for(int i=0; i<inst.getChild(1).getChildCount(); i++) {
@@ -171,7 +177,7 @@ public class Semantics {
             case StageLexer.ID:
                 throw new RuntimeException("Instruction does nothing or calls member function which is not allowed in filters.");
             case StageLexer.FUNCALL:
-                getFunCallReturnType(inst, symbol_table, null);
+                getFunCallReturnType(inst, symbol_table);
                 break;
             case StageLexer.TIMECALL:
                 throw new RuntimeException("Functions in filter cannot be called over time.");
@@ -202,7 +208,7 @@ public class Semantics {
             return Types.BOOL_T;
         }
         if(exp.getType() == StageLexer.FUNCALL) {
-            return getFunCallReturnType(exp, symbol_table, null);
+            return getFunCallReturnType(exp, symbol_table);
         }
         if(exp.getType() == StageLexer.ARRAY) {
             String name = exp.getChild(0).getText();
@@ -266,30 +272,21 @@ public class Semantics {
         }
     }
 
-    private Types getFunCallReturnType(StageTree tree, FilterSymbolTable symbol_table, Types leftType) {
-        if(leftType == null) { //direct function.
-            FunctionList funcs = FilterGlobalFuncs.getTable();
+    private Types getFunCallReturnType(StageTree tree, FilterSymbolTable symbol_table) {
+        FunctionList funcs = FilterGlobalFuncs.getTable();
 
-            ArrayList<Types> args = new ArrayList<Types>();
-            for(int i=0; i< tree.getChild(1).getChildCount(); i++) {
-                args.add(getExpressionType(tree.getChild(1).getChild(i), symbol_table));
-            }
-
-            String name = tree.getChild(0).getText();
-
-            if(!funcs.exists(name,args)) {
-                throw new RuntimeException("Function " + name + " doesn't exist or has wrong parameters. Calling with " + args);
-            }
-
-            return funcs.getReturn(name,args);
-        } else { //method //TODO this call is always with null. Let it here until you do the interpreter to copy & paste. IN FACT THIS DOESNT WORK, CHILDS IDS ARE WRONG.
-            ArrayList<Types> args = new ArrayList<Types>();
-            for(int i=0; i< tree.getChild(2).getChildCount(); i++) {
-                args.add(getExpressionType(tree.getChild(2).getChild(i), symbol_table));
-            }
-
-            return getMemberFunctionReturn(tree.getChild(1).getText(), leftType, args);
+        ArrayList<Types> args = new ArrayList<Types>();
+        for(int i=0; i< tree.getChild(1).getChildCount(); i++) {
+            args.add(getExpressionType(tree.getChild(1).getChild(i), symbol_table));
         }
+
+        String name = tree.getChild(0).getText();
+
+        if(!funcs.exists(name,args)) {
+            throw new RuntimeException("Function " + name + " doesn't exist or has wrong parameters. Calling with " + args);
+        }
+
+        return funcs.getFunction(name,args).ret;
     }
 
     private Types getMemberFunctionReturn(String name, Types base, List<Types> args) {

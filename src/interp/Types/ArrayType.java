@@ -1,5 +1,9 @@
 package interp.Types;
 
+import interp.Types.IntType;
+import interp.Types.TypeInterface;
+import interp.Types.Types;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +24,10 @@ public class ArrayType implements TypeInterface {
         for(int i=0; i<size; i++) {
             array.add(t.getInstance());
         }
+    }
+
+    public void setType(Types t) {
+        type = t;
     }
 
     public void setValue(int pos, TypeInterface obj) {

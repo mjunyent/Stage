@@ -29,18 +29,13 @@ package Stage;
 
 // Imports for ANTLR
 import interp.GLSLTranslator.Translator;
-import interp.Semantic.Semantics;
-import interp.Types.IntType;
-import interp.Types.BoolType;
-import interp.Types.TypeInterface;
+import interp.Semantic.SemanticsFilters;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
-import org.antlr.stringtemplate.*;
 
 // Imports from Java
 import org.apache.commons.cli.*; // Command Language Interface
 import java.io.*;
-import java.util.Arrays;
 
 // Parser and Interpreter
 import parser.*;
@@ -115,7 +110,7 @@ public class Stage{
 
         System.out.println("CHECKING THINGS! UEUEUEUE");
 
-        Semantics sem = new Semantics(t, true);
+        SemanticsFilters sem = new SemanticsFilters(t, true);
         sem.checkFilters();
 
         for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
