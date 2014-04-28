@@ -7,5 +7,6 @@ public class FilterSignature {
     public List<Types> args;
     public List<String> args_names;
     public List<String> inputs;
+    //TODO add inputs_names
 }
 

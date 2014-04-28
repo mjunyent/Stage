@@ -6,7 +6,6 @@ import interp.Types.FunctionList;
 import interp.Types.TypeInterface;
 import interp.Types.Types;
 import parser.StageLexer;
-import sun.org.mozilla.javascript.internal.Function;
 
 import java.util.*;
 
@@ -57,11 +56,7 @@ public class SemanticsFunctions {
             func_sig.args_names = new ArrayList<String>();
 
             if(func_sig.root.getChild(1).getType() == StageLexer.ID) {
-                String ret_type_name = func_sig.root.getChild(1).getText();
-                if(Types.containsForFunctions(ret_type_name)) {
-                    func_sig.ret = Types.getByName(ret_type_name);
-                } else throw new RuntimeException("Type " + ret_type_name + " not recognized for functions");
-
+                func_sig.ret = Types.getByNameFunctions(func_sig.root.getChild(1).getText());
                 params = func_sig.root.getChild(2);
             } else {
                 func_sig.ret = Types.VOID_T;
@@ -77,10 +72,8 @@ public class SemanticsFunctions {
 
             for(int j=0; j<params.getChildCount(); j++) {
                 StageTree node = params.getChild(j);
-                if(Types.containsForFunctions(node.getChild(0).getText())) {
-                    func_sig.args.add(Types.getByName(node.getChild(0).getText()));
-                } else throw new RuntimeException("Type " + node.getChild(0).getText() + " not recognized for functions");
-
+                //TODO add array compatibility if(node.getType() != StageLexer.ARRAY)
+                func_sig.args.add(Types.getByNameFunctions(node.getChild(0).getText()));
                 func_sig.args_names.add(node.getChild(1).getText());
             }
             function_list.put(fname, func_sig);
@@ -124,8 +117,29 @@ public class SemanticsFunctions {
 
     private void checkInstruction(StageTree inst, FunctionSymbolTable symbol_table) {
         switch (inst.getType()) {
+            case StageLexer.BYPASSF:
+            case StageLexer.QUIT:
+            case StageLexer.EMPTYFILT:
+                //nothing to be checked.
+                break;
             case StageLexer.FILTCALL:
+                //TODO we don't check nodes names, maybe check they're not overlaping any var.
+                String filter_name = inst.getChild(1).getText();
+                int numInputs = inst.getChild(0).getChildCount();
+                ArrayList<Types> args = new ArrayList<Types>();
 
+                for(int i=0; i<inst.getChild(2).getChildCount(); i++) {
+                    args.add( getExpressionType(inst.getChild(2).getChild(i), symbol_table) );
+                }
+
+                if(filter_list.containsKey(filter_name)) throw new RuntimeException("Filter " + filter_name + " doesn't exist.");
+                FilterSignature f = filter_list.get(filter_name);
+
+                if(f.inputs.size() != numInputs) throw new RuntimeException("Filter call to " + filter_name + " number of inputs don't match");
+                if(!f.args.equals(args)) throw new RuntimeException("Filter call to " + filter_name + " parameter types don't match.");
+                break;
+            case StageLexer.ADDFILT:
+                checkInstruction(inst.getChild(1), symbol_table);
                 break;
 
             case StageLexer.DECLARE:

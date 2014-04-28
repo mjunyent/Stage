@@ -110,6 +110,7 @@ public class SemanticsFilters {
     private void checkFilterInstruction(StageTree inst, FilterSymbolTable symbol_table) {
         switch (inst.getType()) {
             case StageLexer.FILTCALL:
+            case StageLexer.EMPTYFILT:
                 throw new RuntimeException("Can't make a call to a filter from a filter");
             case StageLexer.ADDFILT:
                 throw new RuntimeException("Can't add new filters to pipeline from a filter");

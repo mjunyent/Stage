@@ -1,33 +1,31 @@
 package interp.Types;
 
-import interp.Types.IntType;
-import interp.Types.TypeInterface;
-import interp.Types.Types;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ArrayType implements TypeInterface {
 
-    Types type;
+    Types general_type, array_type;
     ArrayList<TypeInterface> array;
 
     public ArrayType() {
-        type = Types.VOID_T;
+        general_type = array_type = Types.VOID_T;
         array = new ArrayList<TypeInterface>();
     }
 
     public ArrayType(Types t, int size) {
-        type = t;
+        general_type = t;
+        array_type = t.getArrayOf();
+
         array = new ArrayList<TypeInterface>();
         for(int i=0; i<size; i++) {
-            array.add(t.getInstance());
+            array.add(array_type.getInstance());
         }
     }
 
     public void setType(Types t) {
-        type = t;
+        general_type = t;
+        array_type = t.getArrayOf();
     }
 
     public void setValue(int pos, TypeInterface obj) {
@@ -40,16 +38,15 @@ public class ArrayType implements TypeInterface {
         return array.get(pos);
     }
 
-    public Types getTypeName() { return Types.ARRAY_T; }
-    public Types getElementTypeName() { return type; }
+    public Types getTypeName() { return general_type; }
+    public Types getElementTypeName() { return array_type; }
 
     public Types getMethodArgs(String name, List<Types> args) {
         if(args.size() == 1 && args.get(0) == Types.INT_T && name.equals("[")) {
-            return type;
+            return array_type;
         }
 
         //TODO
-
         return null;
     }
 
