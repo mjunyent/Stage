@@ -11,6 +11,27 @@ public class FunctionList {
             this.name = name;
             this.args = args;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof smallSignature)) return false;
+
+            smallSignature that = (smallSignature) o;
+
+            if (args != null ? !args.equals(that.args) : that.args != null) return false;
+            if (name != null ? !name.equals(that.name) : that.name != null) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = name != null ? name.hashCode() : 0;
+            result = 31 * result + (args != null ? args.hashCode() : 0);
+            return result;
+        }
+
     }
 
     HashMap<smallSignature, FunctionSignature> table;
@@ -35,6 +56,15 @@ public class FunctionList {
         return table.containsKey(new smallSignature(name,args));
     }
 
+    public boolean exists(String name) {
+        Iterator it = table.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry<smallSignature, FunctionSignature> pairs = (Map.Entry)it.next();
+            if(pairs.getKey().name.equals(name)) return true;
+        }
+        return false;
+    }
+
     public FunctionSignature getFunction(String name, List<Types> args) {
         return table.get(new smallSignature(name,args));
     }
@@ -49,5 +79,14 @@ public class FunctionList {
         }
 
         return args_s;
+    }
+
+    public void printTable() {
+        Iterator it = table.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry<smallSignature, FunctionSignature> pairs = (Map.Entry)it.next();
+            System.out.println("SIGN: " + pairs.getKey().name + ": " + pairs.getKey().args);
+            System.out.println("DESC: " + pairs.getValue().name + ": " + pairs.getValue().args + "->" + pairs.getValue().ret);
+        }
     }
 }

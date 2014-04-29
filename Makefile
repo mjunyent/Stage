@@ -41,27 +41,10 @@ PARSER_SRC =	$(PARSER)/$(TARGET)Lexer.java \
 				$(PARSER)/$(TARGET)Parser.java
 				
 #				$(INTERP)/Interp.java
-INTERP_SRC =	$(INTERP)/Stack.java \
-				$(INTERP)/Data.java \
-				$(INTERP)/$(TARGET)Tree.java \
-				$(INTERP)/StageTreeAdaptor.java \
-				$(INTERP)/Types/TypeInterface.java \
-				$(INTERP)/Types/Types.java \
-				$(INTERP)/Types/IntType.java \
-				$(INTERP)/Types/BoolType.java \
-				$(INTERP)/Types/FloatType.java \
-				$(INTERP)/Types/Vec4Type.java \
-				$(INTERP)/Types/Vec2Type.java \
-				$(INTERP)/Types/SamplerType.java \
-				$(INTERP)/Types/ArrayType.java \
-				$(INTERP)/Types/FunctionDescriptor.java \
-				$(INTERP)/Types/FunctionList.java \
-				$(INTERP)/Semantic/FilterGlobalVars.java \
-				$(INTERP)/Semantic/FilterGlobalFuncs.java \
-				$(INTERP)/Semantic/FilterSymbolTable.java \
-				$(INTERP)/Semantic/Semantics.java \
-				$(INTERP)/GLSLTranslator/Translator.java
-				
+INTERP_SRC =	$(INTERP)/*.java \
+				$(INTERP)/GLSLTranslator/*.java \
+				$(INTERP)/Semantic/*.java \
+				$(INTERP)/Types/*.java
 
 ALL_SRC =		$(MAIN_SRC) $(PARSER_SRC) $(INTERP_SRC)
 				

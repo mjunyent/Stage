@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/marc/IdeaProjects/VJ/src/parser/Stage.g 2014-04-25 13:03:29
+// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-04-29 16:14:42
 
 package parser;
 import interp.StageTree;
@@ -114,7 +114,7 @@ public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
     public String[] getTokenNames() { return StageParser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/marc/IdeaProjects/VJ/src/parser/Stage.g"; }
+    public String getGrammarFileName() { return "/Users/marc/IdeaProjects/Stage/src/parser/Stage.g"; }
 
 
     public static class prog_return extends ParserRuleReturnScope {
@@ -124,7 +124,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "prog"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:41:1: prog : procedures -> ^( ROOT ( procedures )+ ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:41:1: prog : procedures -> ^( ROOT ( procedures )+ ) ;
     public final StageParser.prog_return prog() throws RecognitionException {
         StageParser.prog_return retval = new StageParser.prog_return();
         retval.start = input.LT(1);
@@ -137,8 +137,8 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_procedures=new RewriteRuleSubtreeStream(adaptor,"rule procedures");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:41:9: ( procedures -> ^( ROOT ( procedures )+ ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:41:11: procedures
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:41:9: ( procedures -> ^( ROOT ( procedures )+ ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:41:11: procedures
             {
             pushFollow(FOLLOW_procedures_in_prog213);
             procedures1=procedures();
@@ -162,7 +162,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 41:22: -> ^( ROOT ( procedures )+ )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:41:25: ^( ROOT ( procedures )+ )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:41:25: ^( ROOT ( procedures )+ )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -220,7 +220,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "procedures"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:1: procedures : ( func | filter )+ EOF -> ^( LIST_FUNCTIONS ( func )* ) ^( LIST_FILTERS ( filter )* ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:1: procedures : ( func | filter )+ EOF -> ^( LIST_FUNCTIONS ( func )* ) ^( LIST_FILTERS ( filter )* ) ;
     public final StageParser.procedures_return procedures() throws RecognitionException {
         StageParser.procedures_return retval = new StageParser.procedures_return();
         retval.start = input.LT(1);
@@ -239,10 +239,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_func=new RewriteRuleSubtreeStream(adaptor,"rule func");
         RewriteRuleSubtreeStream stream_filter=new RewriteRuleSubtreeStream(adaptor,"rule filter");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:11: ( ( func | filter )+ EOF -> ^( LIST_FUNCTIONS ( func )* ) ^( LIST_FILTERS ( filter )* ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:13: ( func | filter )+ EOF
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:11: ( ( func | filter )+ EOF -> ^( LIST_FUNCTIONS ( func )* ) ^( LIST_FILTERS ( filter )* ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:13: ( func | filter )+ EOF
             {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:13: ( func | filter )+
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:13: ( func | filter )+
             int cnt1=0;
             loop1:
             do {
@@ -259,7 +259,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:14: func
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:14: func
             	    {
             	    pushFollow(FOLLOW_func_in_procedures230);
             	    func2=func();
@@ -271,7 +271,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:21: filter
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:21: filter
             	    {
             	    pushFollow(FOLLOW_filter_in_procedures234);
             	    filter3=filter();
@@ -313,14 +313,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 43:34: -> ^( LIST_FUNCTIONS ( func )* ) ^( LIST_FILTERS ( filter )* )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:37: ^( LIST_FUNCTIONS ( func )* )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:37: ^( LIST_FUNCTIONS ( func )* )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(LIST_FUNCTIONS, "LIST_FUNCTIONS")
                 , root_1);
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:54: ( func )*
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:54: ( func )*
                 while ( stream_func.hasNext() ) {
                     adaptor.addChild(root_1, stream_func.nextTree());
 
@@ -330,14 +330,14 @@ public TreeAdaptor getTreeAdaptor() {
                 adaptor.addChild(root_0, root_1);
                 }
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:61: ^( LIST_FILTERS ( filter )* )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:61: ^( LIST_FILTERS ( filter )* )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(LIST_FILTERS, "LIST_FILTERS")
                 , root_1);
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:43:76: ( filter )*
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:43:76: ( filter )*
                 while ( stream_filter.hasNext() ) {
                     adaptor.addChild(root_1, stream_filter.nextTree());
 
@@ -386,7 +386,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "func"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:1: func : FUNCTION (ret= ID )? nam= ID params CBL function_block_instructions CBR -> ^( FUNCTION $nam ( $ret)? params function_block_instructions ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:1: func : FUNCTION (ret= ID )? nam= ID params CBL function_block_instructions CBR -> ^( FUNCTION $nam ( $ret)? params function_block_instructions ) ;
     public final StageParser.func_return func() throws RecognitionException {
         StageParser.func_return retval = new StageParser.func_return();
         retval.start = input.LT(1);
@@ -416,14 +416,14 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_function_block_instructions=new RewriteRuleSubtreeStream(adaptor,"rule function_block_instructions");
         RewriteRuleSubtreeStream stream_params=new RewriteRuleSubtreeStream(adaptor,"rule params");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:6: ( FUNCTION (ret= ID )? nam= ID params CBL function_block_instructions CBR -> ^( FUNCTION $nam ( $ret)? params function_block_instructions ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:8: FUNCTION (ret= ID )? nam= ID params CBL function_block_instructions CBR
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:6: ( FUNCTION (ret= ID )? nam= ID params CBL function_block_instructions CBR -> ^( FUNCTION $nam ( $ret)? params function_block_instructions ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:8: FUNCTION (ret= ID )? nam= ID params CBL function_block_instructions CBR
             {
             FUNCTION5=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_func263); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION5);
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:20: (ret= ID )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:20: (ret= ID )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -436,7 +436,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:20: ret= ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:20: ret= ID
                     {
                     ret=(Token)match(input,ID,FOLLOW_ID_in_func267); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(ret);
@@ -475,7 +475,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: function_block_instructions, nam, params, ret, FUNCTION
+            // elements: ret, function_block_instructions, params, nam, FUNCTION
             // token labels: ret, nam
             // rule labels: retval
             // token list labels: 
@@ -491,7 +491,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 46:75: -> ^( FUNCTION $nam ( $ret)? params function_block_instructions )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:78: ^( FUNCTION $nam ( $ret)? params function_block_instructions )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:78: ^( FUNCTION $nam ( $ret)? params function_block_instructions )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -500,7 +500,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 adaptor.addChild(root_1, stream_nam.nextNode());
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:46:95: ( $ret)?
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:46:95: ( $ret)?
                 if ( stream_ret.hasNext() ) {
                     adaptor.addChild(root_1, stream_ret.nextNode());
 
@@ -553,7 +553,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "params"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:1: params : '(' ( paramlist )? ')' -> ^( PARAMS ( paramlist )? ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:1: params : '(' ( paramlist )? ')' -> ^( PARAMS ( paramlist )? ) ;
     public final StageParser.params_return params() throws RecognitionException {
         StageParser.params_return retval = new StageParser.params_return();
         retval.start = input.LT(1);
@@ -572,14 +572,14 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_63=new RewriteRuleTokenStream(adaptor,"token 63");
         RewriteRuleSubtreeStream stream_paramlist=new RewriteRuleSubtreeStream(adaptor,"rule paramlist");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:8: ( '(' ( paramlist )? ')' -> ^( PARAMS ( paramlist )? ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:10: '(' ( paramlist )? ')'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:8: ( '(' ( paramlist )? ')' -> ^( PARAMS ( paramlist )? ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:10: '(' ( paramlist )? ')'
             {
             char_literal10=(Token)match(input,63,FOLLOW_63_in_params306); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_63.add(char_literal10);
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:14: ( paramlist )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:14: ( paramlist )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -588,7 +588,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:14: paramlist
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:14: paramlist
                     {
                     pushFollow(FOLLOW_paramlist_in_params308);
                     paramlist11=paramlist();
@@ -622,14 +622,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 49:29: -> ^( PARAMS ( paramlist )? )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:32: ^( PARAMS ( paramlist )? )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:32: ^( PARAMS ( paramlist )? )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(PARAMS, "PARAMS")
                 , root_1);
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:49:41: ( paramlist )?
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:49:41: ( paramlist )?
                 if ( stream_paramlist.hasNext() ) {
                     adaptor.addChild(root_1, stream_paramlist.nextTree());
 
@@ -678,7 +678,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "paramlist"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:52:1: paramlist : param ( ',' ! param )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:52:1: paramlist : param ( ',' ! param )* ;
     public final StageParser.paramlist_return paramlist() throws RecognitionException {
         StageParser.paramlist_return retval = new StageParser.paramlist_return();
         retval.start = input.LT(1);
@@ -695,8 +695,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree char_literal14_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:52:10: ( param ( ',' ! param )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:52:12: param ( ',' ! param )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:52:10: ( param ( ',' ! param )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:52:12: param ( ',' ! param )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -708,7 +708,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, param13.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:52:18: ( ',' ! param )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:52:18: ( ',' ! param )*
             loop4:
             do {
                 int alt4=2;
@@ -721,7 +721,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt4) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:52:19: ',' ! param
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:52:19: ',' ! param
             	    {
             	    char_literal14=(Token)match(input,65,FOLLOW_65_in_paramlist331); if (state.failed) return retval;
 
@@ -774,7 +774,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "param"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:54:1: param : type= ID id= ID -> ^( PARAM $type $id) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:54:1: param : type= ID id= ID -> ^( PARAM $type $id) ;
     public final StageParser.param_return param() throws RecognitionException {
         StageParser.param_return retval = new StageParser.param_return();
         retval.start = input.LT(1);
@@ -790,8 +790,8 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:54:9: (type= ID id= ID -> ^( PARAM $type $id) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:54:11: type= ID id= ID
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:54:9: (type= ID id= ID -> ^( PARAM $type $id) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:54:11: type= ID id= ID
             {
             type=(Token)match(input,ID,FOLLOW_ID_in_param348); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(type);
@@ -818,7 +818,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 54:25: -> ^( PARAM $type $id)
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:54:28: ^( PARAM $type $id)
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:54:28: ^( PARAM $type $id)
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -871,7 +871,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "function_block_instructions"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:56:1: function_block_instructions : ( first_instructions )? ( loop_instructions )? ( last_instructions )? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:56:1: function_block_instructions : ( first_instructions )? ( loop_instructions )? ( last_instructions )? ;
     public final StageParser.function_block_instructions_return function_block_instructions() throws RecognitionException {
         StageParser.function_block_instructions_return retval = new StageParser.function_block_instructions_return();
         retval.start = input.LT(1);
@@ -888,13 +888,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:57:2: ( ( first_instructions )? ( loop_instructions )? ( last_instructions )? )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:57:4: ( first_instructions )? ( loop_instructions )? ( last_instructions )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:57:2: ( ( first_instructions )? ( loop_instructions )? ( last_instructions )? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:57:4: ( first_instructions )? ( loop_instructions )? ( last_instructions )?
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:57:4: ( first_instructions )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:57:4: ( first_instructions )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -903,7 +903,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:57:4: first_instructions
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:57:4: first_instructions
                     {
                     pushFollow(FOLLOW_first_instructions_in_function_block_instructions374);
                     first_instructions16=first_instructions();
@@ -918,7 +918,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:58:3: ( loop_instructions )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:58:3: ( loop_instructions )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -927,7 +927,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:58:3: loop_instructions
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:58:3: loop_instructions
                     {
                     pushFollow(FOLLOW_loop_instructions_in_function_block_instructions379);
                     loop_instructions17=loop_instructions();
@@ -942,7 +942,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:59:3: ( last_instructions )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:59:3: ( last_instructions )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -951,7 +951,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:59:3: last_instructions
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:59:3: last_instructions
                     {
                     pushFollow(FOLLOW_last_instructions_in_function_block_instructions384);
                     last_instructions18=last_instructions();
@@ -999,7 +999,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "first_instructions"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:1: first_instructions : ( FIRST ^ ( instruction )* ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:1: first_instructions : ( FIRST ^ ( instruction )* ) ;
     public final StageParser.first_instructions_return first_instructions() throws RecognitionException {
         StageParser.first_instructions_return retval = new StageParser.first_instructions_return();
         retval.start = input.LT(1);
@@ -1014,14 +1014,14 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree FIRST19_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:19: ( ( FIRST ^ ( instruction )* ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:21: ( FIRST ^ ( instruction )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:19: ( ( FIRST ^ ( instruction )* ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:21: ( FIRST ^ ( instruction )* )
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:21: ( FIRST ^ ( instruction )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:22: FIRST ^ ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:21: ( FIRST ^ ( instruction )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:22: FIRST ^ ( instruction )*
             {
             FIRST19=(Token)match(input,FIRST,FOLLOW_FIRST_in_first_instructions395); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
@@ -1031,7 +1031,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(FIRST19_tree, root_0);
             }
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:29: ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:29: ( instruction )*
             loop8:
             do {
                 int alt8=2;
@@ -1044,7 +1044,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt8) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:62:30: instruction
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:62:30: instruction
             	    {
             	    pushFollow(FOLLOW_instruction_in_first_instructions399);
             	    instruction20=instruction();
@@ -1098,7 +1098,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "loop_instructions"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:1: loop_instructions : ( LOOP ^ ( instruction )* ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:1: loop_instructions : ( LOOP ^ ( instruction )* ) ;
     public final StageParser.loop_instructions_return loop_instructions() throws RecognitionException {
         StageParser.loop_instructions_return retval = new StageParser.loop_instructions_return();
         retval.start = input.LT(1);
@@ -1113,14 +1113,14 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree LOOP21_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:18: ( ( LOOP ^ ( instruction )* ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:20: ( LOOP ^ ( instruction )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:18: ( ( LOOP ^ ( instruction )* ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:20: ( LOOP ^ ( instruction )* )
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:20: ( LOOP ^ ( instruction )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:21: LOOP ^ ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:20: ( LOOP ^ ( instruction )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:21: LOOP ^ ( instruction )*
             {
             LOOP21=(Token)match(input,LOOP,FOLLOW_LOOP_in_loop_instructions409); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
@@ -1130,7 +1130,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(LOOP21_tree, root_0);
             }
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:27: ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:27: ( instruction )*
             loop9:
             do {
                 int alt9=2;
@@ -1143,7 +1143,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt9) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:63:28: instruction
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:63:28: instruction
             	    {
             	    pushFollow(FOLLOW_instruction_in_loop_instructions413);
             	    instruction22=instruction();
@@ -1197,7 +1197,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "last_instructions"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:1: last_instructions : ( LAST ^ ( instruction )* ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:1: last_instructions : ( LAST ^ ( instruction )* ) ;
     public final StageParser.last_instructions_return last_instructions() throws RecognitionException {
         StageParser.last_instructions_return retval = new StageParser.last_instructions_return();
         retval.start = input.LT(1);
@@ -1212,14 +1212,14 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree LAST23_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:18: ( ( LAST ^ ( instruction )* ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:20: ( LAST ^ ( instruction )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:18: ( ( LAST ^ ( instruction )* ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:20: ( LAST ^ ( instruction )* )
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:20: ( LAST ^ ( instruction )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:21: LAST ^ ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:20: ( LAST ^ ( instruction )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:21: LAST ^ ( instruction )*
             {
             LAST23=(Token)match(input,LAST,FOLLOW_LAST_in_last_instructions423); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
@@ -1229,7 +1229,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(LAST23_tree, root_0);
             }
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:27: ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:27: ( instruction )*
             loop10:
             do {
                 int alt10=2;
@@ -1242,7 +1242,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt10) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:64:28: instruction
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:64:28: instruction
             	    {
             	    pushFollow(FOLLOW_instruction_in_last_instructions427);
             	    instruction24=instruction();
@@ -1296,7 +1296,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "filter"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:67:1: filter : FILTER ^ input ID params CBL ! block_instructions CBR !;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:67:1: filter : FILTER ^ input ID params CBL ! block_instructions CBR !;
     public final StageParser.filter_return filter() throws RecognitionException {
         StageParser.filter_return retval = new StageParser.filter_return();
         retval.start = input.LT(1);
@@ -1321,8 +1321,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree CBR31_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:67:7: ( FILTER ^ input ID params CBL ! block_instructions CBR !)
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:67:9: FILTER ^ input ID params CBL ! block_instructions CBR !
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:67:7: ( FILTER ^ input ID params CBL ! block_instructions CBR !)
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:67:9: FILTER ^ input ID params CBL ! block_instructions CBR !
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -1401,7 +1401,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "input"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:1: input : ( inputlist '->' )? -> ^( INPUTS ( inputlist )? ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:1: input : ( inputlist '->' )? -> ^( INPUTS ( inputlist )? ) ;
     public final StageParser.input_return input() throws RecognitionException {
         StageParser.input_return retval = new StageParser.input_return();
         retval.start = input.LT(1);
@@ -1417,10 +1417,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_66=new RewriteRuleTokenStream(adaptor,"token 66");
         RewriteRuleSubtreeStream stream_inputlist=new RewriteRuleSubtreeStream(adaptor,"rule inputlist");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:6: ( ( inputlist '->' )? -> ^( INPUTS ( inputlist )? ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:8: ( inputlist '->' )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:6: ( ( inputlist '->' )? -> ^( INPUTS ( inputlist )? ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:8: ( inputlist '->' )?
             {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:8: ( inputlist '->' )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:8: ( inputlist '->' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1433,7 +1433,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:9: inputlist '->'
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:9: inputlist '->'
                     {
                     pushFollow(FOLLOW_inputlist_in_input463);
                     inputlist32=inputlist();
@@ -1467,14 +1467,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 70:26: -> ^( INPUTS ( inputlist )? )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:29: ^( INPUTS ( inputlist )? )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:29: ^( INPUTS ( inputlist )? )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(INPUTS, "INPUTS")
                 , root_1);
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:70:38: ( inputlist )?
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:70:38: ( inputlist )?
                 if ( stream_inputlist.hasNext() ) {
                     adaptor.addChild(root_1, stream_inputlist.nextTree());
 
@@ -1523,7 +1523,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "inputlist"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:72:1: inputlist : ID ( ',' ! ID )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:72:1: inputlist : ID ( ',' ! ID )* ;
     public final StageParser.inputlist_return inputlist() throws RecognitionException {
         StageParser.inputlist_return retval = new StageParser.inputlist_return();
         retval.start = input.LT(1);
@@ -1540,8 +1540,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree ID36_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:72:10: ( ID ( ',' ! ID )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:72:12: ID ( ',' ! ID )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:72:10: ( ID ( ',' ! ID )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:72:12: ID ( ',' ! ID )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -1554,7 +1554,7 @@ public TreeAdaptor getTreeAdaptor() {
             adaptor.addChild(root_0, ID34_tree);
             }
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:72:15: ( ',' ! ID )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:72:15: ( ',' ! ID )*
             loop12:
             do {
                 int alt12=2;
@@ -1567,7 +1567,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt12) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:72:16: ',' ! ID
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:72:16: ',' ! ID
             	    {
             	    char_literal35=(Token)match(input,65,FOLLOW_65_in_inputlist486); if (state.failed) return retval;
 
@@ -1621,7 +1621,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "block_instructions"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:75:1: block_instructions : ( instruction )* -> ^( LIST_INSTR ( instruction )* ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:75:1: block_instructions : ( instruction )* -> ^( LIST_INSTR ( instruction )* ) ;
     public final StageParser.block_instructions_return block_instructions() throws RecognitionException {
         StageParser.block_instructions_return retval = new StageParser.block_instructions_return();
         retval.start = input.LT(1);
@@ -1634,10 +1634,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_instruction=new RewriteRuleSubtreeStream(adaptor,"rule instruction");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:76:9: ( ( instruction )* -> ^( LIST_INSTR ( instruction )* ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:76:12: ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:76:9: ( ( instruction )* -> ^( LIST_INSTR ( instruction )* ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:76:12: ( instruction )*
             {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:76:12: ( instruction )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:76:12: ( instruction )*
             loop13:
             do {
                 int alt13=2;
@@ -1650,7 +1650,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt13) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:76:13: instruction
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:76:13: instruction
             	    {
             	    pushFollow(FOLLOW_instruction_in_block_instructions510);
             	    instruction37=instruction();
@@ -1683,14 +1683,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 77:13: -> ^( LIST_INSTR ( instruction )* )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:77:16: ^( LIST_INSTR ( instruction )* )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:77:16: ^( LIST_INSTR ( instruction )* )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(LIST_INSTR, "LIST_INSTR")
                 , root_1);
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:77:29: ( instruction )*
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:77:29: ( instruction )*
                 while ( stream_instruction.hasNext() ) {
                     adaptor.addChild(root_1, stream_instruction.nextTree());
 
@@ -1739,7 +1739,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "instruction"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:81:1: instruction : ( ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' | bypassFilter ';' | quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:81:1: instruction : ( ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' | bypassFilter ';' | quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt );
     public final StageParser.instruction_return instruction() throws RecognitionException {
         StageParser.instruction_return retval = new StageParser.instruction_return();
         retval.start = input.LT(1);
@@ -1790,7 +1790,7 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree char_literal55_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:82:9: ( ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' | bypassFilter ';' | quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:82:9: ( ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' | bypassFilter ';' | quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt )
             int alt14=11;
             int LA14_0 = input.LA(1);
 
@@ -1852,7 +1852,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt14) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:83:8: ( member ';' )=> member ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:8: ( member ';' )=> member ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1869,7 +1869,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:84:8: ( timeFuncCall ';' )=> timeFuncCall ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:8: ( timeFuncCall ';' )=> timeFuncCall ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1886,7 +1886,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:85:10: ( assign ';' )=> assign ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:10: ( assign ';' )=> assign ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1903,7 +1903,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:86:13: ( filtercall ';' )=> filtercall ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:13: ( filtercall ';' )=> filtercall ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1920,7 +1920,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:87:11: ( declare ';' )=> declare ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:11: ( declare ';' )=> declare ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1937,7 +1937,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 6 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:89:11: addFilter ';'
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:89:11: addFilter ';'
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1960,7 +1960,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 7 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:90:11: bypassFilter ';'
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:90:11: bypassFilter ';'
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -1983,7 +1983,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 8 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:91:11: quitInst ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:91:11: quitInst ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -2000,7 +2000,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 9 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:92:11: returnexp ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:92:11: returnexp ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -2017,7 +2017,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 10 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:93:11: ite_stmt
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:93:11: ite_stmt
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -2032,7 +2032,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 11 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:94:11: while_stmt
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:94:11: while_stmt
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -2079,7 +2079,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "returnexp"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:98:1: returnexp : RETURN ^ ( expr )? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:98:1: returnexp : RETURN ^ ( expr )? ;
     public final StageParser.returnexp_return returnexp() throws RecognitionException {
         StageParser.returnexp_return retval = new StageParser.returnexp_return();
         retval.start = input.LT(1);
@@ -2094,8 +2094,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree RETURN58_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:99:2: ( RETURN ^ ( expr )? )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:99:4: RETURN ^ ( expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:2: ( RETURN ^ ( expr )? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:4: RETURN ^ ( expr )?
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -2108,7 +2108,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(RETURN58_tree, root_0);
             }
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:99:12: ( expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:12: ( expr )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2117,7 +2117,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt15) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:99:12: expr
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:12: expr
                     {
                     pushFollow(FOLLOW_expr_in_returnexp786);
                     expr59=expr();
@@ -2165,7 +2165,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "assign"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:101:1: assign : member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:1: assign : member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) ;
     public final StageParser.assign_return assign() throws RecognitionException {
         StageParser.assign_return retval = new StageParser.assign_return();
         retval.start = input.LT(1);
@@ -2184,8 +2184,8 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_member=new RewriteRuleSubtreeStream(adaptor,"rule member");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:101:8: ( member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:101:10: member eq= ASIGEQUAL expr
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:8: ( member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:10: member eq= ASIGEQUAL expr
             {
             pushFollow(FOLLOW_member_in_assign796);
             member60=member();
@@ -2206,7 +2206,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_expr.add(expr61.getTree());
 
             // AST REWRITE
-            // elements: expr, member
+            // elements: member, expr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2220,7 +2220,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 101:35: -> ^( ASSIGN[$eq,\":=\"] member expr )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:101:38: ^( ASSIGN[$eq,\":=\"] member expr )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:38: ^( ASSIGN[$eq,\":=\"] member expr )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -2273,7 +2273,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "filtercall"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:1: filtercall : ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:1: filtercall : ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) );
     public final StageParser.filtercall_return filtercall() throws RecognitionException {
         StageParser.filtercall_return retval = new StageParser.filtercall_return();
         retval.start = input.LT(1);
@@ -2311,7 +2311,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_inputlist=new RewriteRuleSubtreeStream(adaptor,"rule inputlist");
         RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:12: ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:12: ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2373,9 +2373,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt18) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:14: ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:14: ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID
                     {
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:14: ( inputlist )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:14: ( inputlist )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2384,7 +2384,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:14: inputlist
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:14: inputlist
                             {
                             pushFollow(FOLLOW_inputlist_in_filtercall821);
                             inputlist62=inputlist();
@@ -2411,7 +2411,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_63.add(char_literal65);
 
 
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:37: ( expr_list )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:37: ( expr_list )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -2420,7 +2420,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt17) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:37: expr_list
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:37: expr_list
                             {
                             pushFollow(FOLLOW_expr_list_in_filtercall830);
                             expr_list66=expr_list();
@@ -2448,7 +2448,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: ID, expr_list, inputlist, ID
+                    // elements: expr_list, inputlist, ID, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2462,21 +2462,21 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (StageTree)adaptor.nil();
                     // 103:60: -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
                     {
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:63: ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:63: ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(FILTCALL, "FILTCALL")
                         , root_1);
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:74: ^( INPUTS ( inputlist )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:74: ^( INPUTS ( inputlist )? )
                         {
                         StageTree root_2 = (StageTree)adaptor.nil();
                         root_2 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(INPUTS, "INPUTS")
                         , root_2);
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:83: ( inputlist )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:83: ( inputlist )?
                         if ( stream_inputlist.hasNext() ) {
                             adaptor.addChild(root_2, stream_inputlist.nextTree());
 
@@ -2490,14 +2490,14 @@ public TreeAdaptor getTreeAdaptor() {
                         stream_ID.nextNode()
                         );
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:98: ^( ARGLIST ( expr_list )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:98: ^( ARGLIST ( expr_list )? )
                         {
                         StageTree root_2 = (StageTree)adaptor.nil();
                         root_2 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(ARGLIST, "ARGLIST")
                         , root_2);
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:103:108: ( expr_list )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:108: ( expr_list )?
                         if ( stream_expr_list.hasNext() ) {
                             adaptor.addChild(root_2, stream_expr_list.nextTree());
 
@@ -2523,7 +2523,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:104:8: from= ID '->' to= ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:104:8: from= ID '->' to= ID
                     {
                     from=(Token)match(input,ID,FOLLOW_ID_in_filtercall872); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(from);
@@ -2538,7 +2538,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: to, from
+                    // elements: from, to
                     // token labels: to, from
                     // rule labels: retval
                     // token list labels: 
@@ -2554,7 +2554,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (StageTree)adaptor.nil();
                     // 104:27: -> ^( EMPTYFILT $from $to)
                     {
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:104:30: ^( EMPTYFILT $from $to)
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:104:30: ^( EMPTYFILT $from $to)
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
@@ -2609,7 +2609,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "addFilter"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:106:1: addFilter : ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:106:1: addFilter : ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) ;
     public final StageParser.addFilter_return addFilter() throws RecognitionException {
         StageParser.addFilter_return retval = new StageParser.addFilter_return();
         retval.start = input.LT(1);
@@ -2637,8 +2637,8 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_63=new RewriteRuleTokenStream(adaptor,"token 63");
         RewriteRuleSubtreeStream stream_filtercall=new RewriteRuleSubtreeStream(adaptor,"rule filtercall");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:107:2: ( ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:107:4: ADDFILT '(' filtercall ')' 'after' ID
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:2: ( ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:4: ADDFILT '(' filtercall ')' 'after' ID
             {
             ADDFILT71=(Token)match(input,ADDFILT,FOLLOW_ADDFILT_in_addFilter900); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ADDFILT.add(ADDFILT71);
@@ -2682,7 +2682,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 107:42: -> ^( ADDFILT ID filtercall )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:107:45: ^( ADDFILT ID filtercall )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:45: ^( ADDFILT ID filtercall )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -2737,7 +2737,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "bypassFilter"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:109:1: bypassFilter : BYPASSF ^ ID 'with' ! ( ID | INT ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:109:1: bypassFilter : BYPASSF ^ ID 'with' ! ( ID | INT ) ;
     public final StageParser.bypassFilter_return bypassFilter() throws RecognitionException {
         StageParser.bypassFilter_return retval = new StageParser.bypassFilter_return();
         retval.start = input.LT(1);
@@ -2756,8 +2756,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree set80_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:110:2: ( BYPASSF ^ ID 'with' ! ( ID | INT ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:110:4: BYPASSF ^ ID 'with' ! ( ID | INT )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:110:2: ( BYPASSF ^ ID 'with' ! ( ID | INT ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:110:4: BYPASSF ^ ID 'with' ! ( ID | INT )
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -2830,7 +2830,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "quitInst"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:112:1: quitInst : QUIT ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:112:1: quitInst : QUIT ;
     public final StageParser.quitInst_return quitInst() throws RecognitionException {
         StageParser.quitInst_return retval = new StageParser.quitInst_return();
         retval.start = input.LT(1);
@@ -2843,8 +2843,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree QUIT81_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:113:2: ( QUIT )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:113:4: QUIT
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:2: ( QUIT )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:4: QUIT
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -2890,7 +2890,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "declare"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:1: declare : (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:1: declare : (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) );
     public final StageParser.declare_return declare() throws RecognitionException {
         StageParser.declare_return retval = new StageParser.declare_return();
         retval.start = input.LT(1);
@@ -2924,7 +2924,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:9: (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:9: (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2956,7 +2956,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:11: type= ID name= ID ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:11: type= ID name= ID ( ASIGEQUAL expr )?
                     {
                     type=(Token)match(input,ID,FOLLOW_ID_in_declare964); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(type);
@@ -2966,7 +2966,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_ID.add(name);
 
 
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:27: ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:27: ( ASIGEQUAL expr )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -2975,7 +2975,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt19) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:28: ASIGEQUAL expr
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:28: ASIGEQUAL expr
                             {
                             ASIGEQUAL82=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_declare971); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_ASIGEQUAL.add(ASIGEQUAL82);
@@ -2995,7 +2995,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: type, name, expr
+                    // elements: name, type, expr
                     // token labels: name, type
                     // rule labels: retval
                     // token list labels: 
@@ -3011,7 +3011,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (StageTree)adaptor.nil();
                     // 115:45: -> ^( DECLARE $type $name ( expr )? )
                     {
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:48: ^( DECLARE $type $name ( expr )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:48: ^( DECLARE $type $name ( expr )? )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
@@ -3022,7 +3022,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                         adaptor.addChild(root_1, stream_name.nextNode());
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:115:70: ( expr )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:70: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -3041,7 +3041,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:116:5: type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:5: type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )?
                     {
                     type=(Token)match(input,ID,FOLLOW_ID_in_declare998); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(type);
@@ -3063,7 +3063,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_ID.add(name);
 
 
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:116:33: ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:33: ( ASIGEQUAL expr )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3072,7 +3072,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt20) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:116:34: ASIGEQUAL expr
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:34: ASIGEQUAL expr
                             {
                             ASIGEQUAL87=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_declare1011); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_ASIGEQUAL.add(ASIGEQUAL87);
@@ -3092,7 +3092,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: INT, type, name, expr
+                    // elements: name, INT, type, expr
                     // token labels: name, type
                     // rule labels: retval
                     // token list labels: 
@@ -3108,14 +3108,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (StageTree)adaptor.nil();
                     // 116:51: -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
                     {
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:116:54: ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:54: ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(DECLARE, "DECLARE")
                         , root_1);
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:116:64: ^( ARRAY $type INT )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:64: ^( ARRAY $type INT )
                         {
                         StageTree root_2 = (StageTree)adaptor.nil();
                         root_2 = (StageTree)adaptor.becomeRoot(
@@ -3133,7 +3133,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                         adaptor.addChild(root_1, stream_name.nextNode());
 
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:116:89: ( expr )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:89: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -3184,7 +3184,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "ite_stmt"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:119:1: ite_stmt : IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:1: ite_stmt : IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? ;
     public final StageParser.ite_stmt_return ite_stmt() throws RecognitionException {
         StageParser.ite_stmt_return retval = new StageParser.ite_stmt_return();
         retval.start = input.LT(1);
@@ -3217,8 +3217,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree CBR99_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:119:10: ( IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:119:12: IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:10: ( IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:12: IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)?
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -3253,7 +3253,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             CBR95=(Token)match(input,CBR,FOLLOW_CBR_in_ite_stmt1062); if (state.failed) return retval;
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:119:60: ( ELSE ! CBL ! block_instructions CBR !)?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:60: ( ELSE ! CBL ! block_instructions CBR !)?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3262,7 +3262,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt22) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:119:61: ELSE ! CBL ! block_instructions CBR !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:61: ELSE ! CBL ! block_instructions CBR !
                     {
                     ELSE96=(Token)match(input,ELSE,FOLLOW_ELSE_in_ite_stmt1066); if (state.failed) return retval;
 
@@ -3316,7 +3316,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "while_stmt"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:123:1: while_stmt : WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:123:1: while_stmt : WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !;
     public final StageParser.while_stmt_return while_stmt() throws RecognitionException {
         StageParser.while_stmt_return retval = new StageParser.while_stmt_return();
         retval.start = input.LT(1);
@@ -3341,8 +3341,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree CBR106_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:123:12: ( WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !)
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:123:14: WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:123:12: ( WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !)
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:123:14: WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -3410,7 +3410,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:127:1: expr : boolterm ( OR ^ boolterm )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:1: expr : boolterm ( OR ^ boolterm )* ;
     public final StageParser.expr_return expr() throws RecognitionException {
         StageParser.expr_return retval = new StageParser.expr_return();
         retval.start = input.LT(1);
@@ -3427,8 +3427,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree OR108_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:127:9: ( boolterm ( OR ^ boolterm )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:127:13: boolterm ( OR ^ boolterm )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:9: ( boolterm ( OR ^ boolterm )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:13: boolterm ( OR ^ boolterm )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -3440,7 +3440,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, boolterm107.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:127:22: ( OR ^ boolterm )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:22: ( OR ^ boolterm )*
             loop23:
             do {
                 int alt23=2;
@@ -3453,7 +3453,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt23) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:127:23: OR ^ boolterm
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:23: OR ^ boolterm
             	    {
             	    OR108=(Token)match(input,OR,FOLLOW_OR_in_expr1146); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -3512,7 +3512,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "boolterm"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:130:1: boolterm : boolfact ( AND ^ boolfact )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:1: boolterm : boolfact ( AND ^ boolfact )* ;
     public final StageParser.boolterm_return boolterm() throws RecognitionException {
         StageParser.boolterm_return retval = new StageParser.boolterm_return();
         retval.start = input.LT(1);
@@ -3529,8 +3529,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree AND111_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:130:9: ( boolfact ( AND ^ boolfact )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:130:13: boolfact ( AND ^ boolfact )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:9: ( boolfact ( AND ^ boolfact )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:13: boolfact ( AND ^ boolfact )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -3542,7 +3542,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, boolfact110.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:130:22: ( AND ^ boolfact )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:22: ( AND ^ boolfact )*
             loop24:
             do {
                 int alt24=2;
@@ -3555,7 +3555,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt24) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:130:23: AND ^ boolfact
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:23: AND ^ boolfact
             	    {
             	    AND111=(Token)match(input,AND,FOLLOW_AND_in_boolterm1172); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -3614,7 +3614,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "boolfact"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:1: boolfact : num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:1: boolfact : num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? ;
     public final StageParser.boolfact_return boolfact() throws RecognitionException {
         StageParser.boolfact_return retval = new StageParser.boolfact_return();
         retval.start = input.LT(1);
@@ -3641,8 +3641,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree GE119_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:9: ( num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:13: num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:9: ( num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:13: num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -3654,7 +3654,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, num_expr113.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:22: ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:22: ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3663,9 +3663,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt26) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr
                     {
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^)
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^)
                     int alt25=6;
                     switch ( input.LA(1) ) {
                     case EQUAL:
@@ -3709,7 +3709,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                     switch (alt25) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:24: EQUAL ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:24: EQUAL ^
                             {
                             EQUAL114=(Token)match(input,EQUAL,FOLLOW_EQUAL_in_boolfact1199); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -3722,7 +3722,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:33: NOT_EQUAL ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:33: NOT_EQUAL ^
                             {
                             NOT_EQUAL115=(Token)match(input,NOT_EQUAL,FOLLOW_NOT_EQUAL_in_boolfact1204); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -3735,7 +3735,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 3 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:46: LT ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:46: LT ^
                             {
                             LT116=(Token)match(input,LT,FOLLOW_LT_in_boolfact1209); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -3748,7 +3748,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 4 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:52: LE ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:52: LE ^
                             {
                             LE117=(Token)match(input,LE,FOLLOW_LE_in_boolfact1214); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -3761,7 +3761,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 5 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:58: GT ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:58: GT ^
                             {
                             GT118=(Token)match(input,GT,FOLLOW_GT_in_boolfact1219); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -3774,7 +3774,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 6 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:133:64: GE ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:64: GE ^
                             {
                             GE119=(Token)match(input,GE,FOLLOW_GE_in_boolfact1224); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -3836,7 +3836,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "num_expr"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:1: num_expr : term ( ( PLUS ^| MINUS ^) term )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:1: num_expr : term ( ( PLUS ^| MINUS ^) term )* ;
     public final StageParser.num_expr_return num_expr() throws RecognitionException {
         StageParser.num_expr_return retval = new StageParser.num_expr_return();
         retval.start = input.LT(1);
@@ -3855,8 +3855,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MINUS123_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:9: ( term ( ( PLUS ^| MINUS ^) term )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:13: term ( ( PLUS ^| MINUS ^) term )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:9: ( term ( ( PLUS ^| MINUS ^) term )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:13: term ( ( PLUS ^| MINUS ^) term )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -3868,7 +3868,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, term121.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:18: ( ( PLUS ^| MINUS ^) term )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:18: ( ( PLUS ^| MINUS ^) term )*
             loop28:
             do {
                 int alt28=2;
@@ -3881,9 +3881,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt28) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:20: ( PLUS ^| MINUS ^) term
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:20: ( PLUS ^| MINUS ^) term
             	    {
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:20: ( PLUS ^| MINUS ^)
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:20: ( PLUS ^| MINUS ^)
             	    int alt27=2;
             	    int LA27_0 = input.LA(1);
 
@@ -3903,7 +3903,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
             	    switch (alt27) {
             	        case 1 :
-            	            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:21: PLUS ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:21: PLUS ^
             	            {
             	            PLUS122=(Token)match(input,PLUS,FOLLOW_PLUS_in_num_expr1253); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -3916,7 +3916,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:136:29: MINUS ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:29: MINUS ^
             	            {
             	            MINUS123=(Token)match(input,MINUS,FOLLOW_MINUS_in_num_expr1258); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -3981,7 +3981,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "term"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:1: term : factor ( ( MUL ^| DIV ^| MOD ^) factor )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:1: term : factor ( ( MUL ^| DIV ^| MOD ^) factor )* ;
     public final StageParser.term_return term() throws RecognitionException {
         StageParser.term_return retval = new StageParser.term_return();
         retval.start = input.LT(1);
@@ -4002,8 +4002,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MOD128_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:9: ( factor ( ( MUL ^| DIV ^| MOD ^) factor )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:13: factor ( ( MUL ^| DIV ^| MOD ^) factor )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:9: ( factor ( ( MUL ^| DIV ^| MOD ^) factor )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:13: factor ( ( MUL ^| DIV ^| MOD ^) factor )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -4015,7 +4015,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, factor125.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:20: ( ( MUL ^| DIV ^| MOD ^) factor )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:20: ( ( MUL ^| DIV ^| MOD ^) factor )*
             loop30:
             do {
                 int alt30=2;
@@ -4028,9 +4028,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt30) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:22: ( MUL ^| DIV ^| MOD ^) factor
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:22: ( MUL ^| DIV ^| MOD ^) factor
             	    {
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:22: ( MUL ^| DIV ^| MOD ^)
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:22: ( MUL ^| DIV ^| MOD ^)
             	    int alt29=3;
             	    switch ( input.LA(1) ) {
             	    case MUL:
@@ -4059,7 +4059,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             	    switch (alt29) {
             	        case 1 :
-            	            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:23: MUL ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:23: MUL ^
             	            {
             	            MUL126=(Token)match(input,MUL,FOLLOW_MUL_in_term1291); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -4072,7 +4072,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:30: DIV ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:30: DIV ^
             	            {
             	            DIV127=(Token)match(input,DIV,FOLLOW_DIV_in_term1296); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -4085,7 +4085,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 3 :
-            	            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:139:37: MOD ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:37: MOD ^
             	            {
             	            MOD128=(Token)match(input,MOD,FOLLOW_MOD_in_term1301); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -4150,7 +4150,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "factor"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:142:1: factor : ( NOT ^| MINUS ^)? atom ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:1: factor : ( NOT ^| MINUS ^)? atom ;
     public final StageParser.factor_return factor() throws RecognitionException {
         StageParser.factor_return retval = new StageParser.factor_return();
         retval.start = input.LT(1);
@@ -4167,13 +4167,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MINUS131_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:142:9: ( ( NOT ^| MINUS ^)? atom )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:142:13: ( NOT ^| MINUS ^)? atom
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:9: ( ( NOT ^| MINUS ^)? atom )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:13: ( NOT ^| MINUS ^)? atom
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:142:13: ( NOT ^| MINUS ^)?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:13: ( NOT ^| MINUS ^)?
             int alt31=3;
             int LA31_0 = input.LA(1);
 
@@ -4185,7 +4185,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt31) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:142:14: NOT ^
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:14: NOT ^
                     {
                     NOT130=(Token)match(input,NOT,FOLLOW_NOT_in_factor1328); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
@@ -4198,7 +4198,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:142:21: MINUS ^
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:21: MINUS ^
                     {
                     MINUS131=(Token)match(input,MINUS,FOLLOW_MINUS_in_factor1333); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
@@ -4254,7 +4254,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "atom"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:148:1: atom : ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !);
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:148:1: atom : ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !);
     public final StageParser.atom_return atom() throws RecognitionException {
         StageParser.atom_return retval = new StageParser.atom_return();
         retval.start = input.LT(1);
@@ -4285,7 +4285,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_TRUE=new RewriteRuleTokenStream(adaptor,"token TRUE");
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:148:9: ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !)
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:148:9: ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !)
             int alt33=7;
             int LA33_0 = input.LA(1);
 
@@ -4320,7 +4320,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt33) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:151:4: ( member )=> member
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:4: ( member )=> member
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4335,7 +4335,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:152:13: INT
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:152:13: INT
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4351,7 +4351,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:153:11: FLOAT
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:153:11: FLOAT
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4367,7 +4367,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:154:11: CHAR
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:11: CHAR
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4383,7 +4383,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:155:11: STRING
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:155:11: STRING
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4399,9 +4399,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 6 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:156:13: (b= TRUE |b= FALSE )
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:13: (b= TRUE |b= FALSE )
                     {
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:156:13: (b= TRUE |b= FALSE )
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:13: (b= TRUE |b= FALSE )
                     int alt32=2;
                     int LA32_0 = input.LA(1);
 
@@ -4421,7 +4421,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt32) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:156:14: b= TRUE
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:14: b= TRUE
                             {
                             b=(Token)match(input,TRUE,FOLLOW_TRUE_in_atom1442); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_TRUE.add(b);
@@ -4430,7 +4430,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:156:23: b= FALSE
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:23: b= FALSE
                             {
                             b=(Token)match(input,FALSE,FOLLOW_FALSE_in_atom1448); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_FALSE.add(b);
@@ -4457,7 +4457,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (StageTree)adaptor.nil();
                     // 156:33: -> ^( BOOLEAN[$b,$b.text] )
                     {
-                        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:156:36: ^( BOOLEAN[$b,$b.text] )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:36: ^( BOOLEAN[$b,$b.text] )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
@@ -4476,7 +4476,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 7 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:157:13: '(' ! expr ')' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:157:13: '(' ! expr ')' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4527,7 +4527,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "member"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:160:1: member : var ( MEMBER ^ var )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:1: member : var ( MEMBER ^ var )* ;
     public final StageParser.member_return member() throws RecognitionException {
         StageParser.member_return retval = new StageParser.member_return();
         retval.start = input.LT(1);
@@ -4544,8 +4544,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MEMBER142_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:160:8: ( var ( MEMBER ^ var )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:160:10: var ( MEMBER ^ var )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:8: ( var ( MEMBER ^ var )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:10: var ( MEMBER ^ var )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -4557,7 +4557,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, var141.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:160:14: ( MEMBER ^ var )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:14: ( MEMBER ^ var )*
             loop34:
             do {
                 int alt34=2;
@@ -4570,7 +4570,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt34) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:160:15: MEMBER ^ var
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:15: MEMBER ^ var
             	    {
             	    MEMBER142=(Token)match(input,MEMBER,FOLLOW_MEMBER_in_member1505); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -4629,7 +4629,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "var"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:162:1: var : ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:1: var : ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID );
     public final StageParser.var_return var() throws RecognitionException {
         StageParser.var_return retval = new StageParser.var_return();
         retval.start = input.LT(1);
@@ -4646,7 +4646,7 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree ID146_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:162:6: ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:6: ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID )
             int alt35=3;
             int LA35_0 = input.LA(1);
 
@@ -4681,7 +4681,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt35) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:162:8: ( arrayVar )=> arrayVar
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:8: ( arrayVar )=> arrayVar
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4696,7 +4696,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:163:5: ( funcVar )=> funcVar
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:163:5: ( funcVar )=> funcVar
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4711,7 +4711,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:164:5: ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:164:5: ID
                     {
                     root_0 = (StageTree)adaptor.nil();
 
@@ -4759,7 +4759,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "arrayVar"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:167:1: arrayVar : ID '[' expr ']' -> ^( ARRAY ID expr ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:167:1: arrayVar : ID '[' expr ']' -> ^( ARRAY ID expr ) ;
     public final StageParser.arrayVar_return arrayVar() throws RecognitionException {
         StageParser.arrayVar_return retval = new StageParser.arrayVar_return();
         retval.start = input.LT(1);
@@ -4781,8 +4781,8 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:168:2: ( ID '[' expr ']' -> ^( ARRAY ID expr ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:168:4: ID '[' expr ']'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:2: ( ID '[' expr ']' -> ^( ARRAY ID expr ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:4: ID '[' expr ']'
             {
             ID147=(Token)match(input,ID,FOLLOW_ID_in_arrayVar1558); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID147);
@@ -4804,7 +4804,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ID, expr
+            // elements: expr, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4818,7 +4818,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 168:20: -> ^( ARRAY ID expr )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:168:23: ^( ARRAY ID expr )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:23: ^( ARRAY ID expr )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -4873,7 +4873,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "funcVar"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:169:1: funcVar : ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:169:1: funcVar : ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) ;
     public final StageParser.funcVar_return funcVar() throws RecognitionException {
         StageParser.funcVar_return retval = new StageParser.funcVar_return();
         retval.start = input.LT(1);
@@ -4895,8 +4895,8 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_63=new RewriteRuleTokenStream(adaptor,"token 63");
         RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:2: ( ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:4: ID '(' ( expr_list )? ')'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:2: ( ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:4: ID '(' ( expr_list )? ')'
             {
             ID151=(Token)match(input,ID,FOLLOW_ID_in_funcVar1583); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID151);
@@ -4906,7 +4906,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_63.add(char_literal152);
 
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:11: ( expr_list )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:11: ( expr_list )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -4915,7 +4915,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt36) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:11: expr_list
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:11: expr_list
                     {
                     pushFollow(FOLLOW_expr_list_in_funcVar1587);
                     expr_list153=expr_list();
@@ -4935,7 +4935,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ID, expr_list
+            // elements: expr_list, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4949,7 +4949,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 170:26: -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:29: ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:29: ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -4960,14 +4960,14 @@ public TreeAdaptor getTreeAdaptor() {
                 stream_ID.nextNode()
                 );
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:42: ^( ARGLIST ( expr_list )? )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:42: ^( ARGLIST ( expr_list )? )
                 {
                 StageTree root_2 = (StageTree)adaptor.nil();
                 root_2 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(ARGLIST, "ARGLIST")
                 , root_2);
 
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:170:52: ( expr_list )?
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:52: ( expr_list )?
                 if ( stream_expr_list.hasNext() ) {
                     adaptor.addChild(root_2, stream_expr_list.nextTree());
 
@@ -5019,7 +5019,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "timeFuncCall"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:179:1: timeFuncCall : funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:179:1: timeFuncCall : funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) ;
     public final StageParser.timeFuncCall_return timeFuncCall() throws RecognitionException {
         StageParser.timeFuncCall_return retval = new StageParser.timeFuncCall_return();
         retval.start = input.LT(1);
@@ -5043,8 +5043,8 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         RewriteRuleSubtreeStream stream_funcVar=new RewriteRuleSubtreeStream(adaptor,"rule funcVar");
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:180:2: ( funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:180:4: funcVar FROM fexpr= expr UNTIL uexpr= expr
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:180:2: ( funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:180:4: funcVar FROM fexpr= expr UNTIL uexpr= expr
             {
             pushFollow(FOLLOW_funcVar_in_timeFuncCall1622);
             funcVar155=funcVar();
@@ -5092,7 +5092,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.nil();
             // 180:45: -> ^( TIMECALL funcVar $fexpr $uexpr)
             {
-                // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:180:48: ^( TIMECALL funcVar $fexpr $uexpr)
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:180:48: ^( TIMECALL funcVar $fexpr $uexpr)
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -5147,7 +5147,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr_list"
-    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:191:1: expr_list : expr ( ',' ! expr )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:1: expr_list : expr ( ',' ! expr )* ;
     public final StageParser.expr_list_return expr_list() throws RecognitionException {
         StageParser.expr_list_return retval = new StageParser.expr_list_return();
         retval.start = input.LT(1);
@@ -5164,8 +5164,8 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree char_literal159_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:191:10: ( expr ( ',' ! expr )* )
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:191:13: expr ( ',' ! expr )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:10: ( expr ( ',' ! expr )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:13: expr ( ',' ! expr )*
             {
             root_0 = (StageTree)adaptor.nil();
 
@@ -5177,7 +5177,7 @@ public TreeAdaptor getTreeAdaptor() {
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr158.getTree());
 
-            // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:191:18: ( ',' ! expr )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:18: ( ',' ! expr )*
             loop37:
             do {
                 int alt37=2;
@@ -5190,7 +5190,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt37) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:191:19: ',' ! expr
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:19: ',' ! expr
             	    {
             	    char_literal159=(Token)match(input,65,FOLLOW_65_in_expr_list1668); if (state.failed) return retval;
 
@@ -5237,8 +5237,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred1_Stage
     public final void synpred1_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:83:8: ( member ';' )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:83:9: member ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:8: ( member ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:9: member ';'
         {
         pushFollow(FOLLOW_member_in_synpred1_Stage567);
         member();
@@ -5255,8 +5255,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred2_Stage
     public final void synpred2_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:84:8: ( timeFuncCall ';' )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:84:9: timeFuncCall ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:8: ( timeFuncCall ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:9: timeFuncCall ';'
         {
         pushFollow(FOLLOW_timeFuncCall_in_synpred2_Stage587);
         timeFuncCall();
@@ -5273,8 +5273,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred3_Stage
     public final void synpred3_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:85:10: ( assign ';' )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:85:11: assign ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:10: ( assign ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:11: assign ';'
         {
         pushFollow(FOLLOW_assign_in_synpred3_Stage609);
         assign();
@@ -5291,8 +5291,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred4_Stage
     public final void synpred4_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:86:13: ( filtercall ';' )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:86:14: filtercall ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:13: ( filtercall ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:14: filtercall ';'
         {
         pushFollow(FOLLOW_filtercall_in_synpred4_Stage641);
         filtercall();
@@ -5309,8 +5309,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred5_Stage
     public final void synpred5_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:87:11: ( declare ';' )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:87:12: declare ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:11: ( declare ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:12: declare ';'
         {
         pushFollow(FOLLOW_declare_in_synpred5_Stage662);
         declare();
@@ -5327,8 +5327,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred6_Stage
     public final void synpred6_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:151:4: ( member )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:151:5: member
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:4: ( member )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:5: member
         {
         pushFollow(FOLLOW_member_in_synpred6_Stage1372);
         member();
@@ -5343,8 +5343,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred7_Stage
     public final void synpred7_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:162:8: ( arrayVar )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:162:9: arrayVar
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:8: ( arrayVar )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:9: arrayVar
         {
         pushFollow(FOLLOW_arrayVar_in_synpred7_Stage1520);
         arrayVar();
@@ -5359,8 +5359,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred8_Stage
     public final void synpred8_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:163:5: ( funcVar )
-        // /Users/marc/IdeaProjects/VJ/src/parser/Stage.g:163:6: funcVar
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:163:5: ( funcVar )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:163:6: funcVar
         {
         pushFollow(FOLLOW_funcVar_in_synpred8_Stage1532);
         funcVar();

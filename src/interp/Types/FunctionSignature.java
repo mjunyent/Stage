@@ -17,6 +17,8 @@ public class FunctionSignature {
     public StageTree first, loop, last;
     public int id = -1;
 
+    public FunctionSignature() { }
+
     public FunctionSignature(String name, List<Types> args, Types ret) {
         this.name = name;
         this.args = args;

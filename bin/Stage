@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec java -enableassertions -jar /Users/marc/IdeaProjects/VJ/bin/Stage.jar "$@"
+exec java -enableassertions -jar /Users/marc/IdeaProjects/Stage/bin/Stage.jar "$@"

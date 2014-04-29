@@ -1,12 +1,13 @@
 package interp;
 
+import interp.Types.*;
+
 import org.antlr.runtime.tree.*;
 import org.antlr.runtime.Token;
 
 public class StageTree extends CommonTree {
-    private int intValue;
-    private String strValue;
-    private float floatValue;
+    private TypeInterface value = null;
+    private Types type = null;
 
     public StageTree(Token t) {
         super(t);
@@ -16,16 +17,31 @@ public class StageTree extends CommonTree {
         return (StageTree) super.getChild(i);
     }
 
-    public int getIntValue() { return intValue; }
-    public void setIntValue() { intValue = Integer.parseInt(getText()); }
+    public Types getVarType() { return type; }
+    public void setVarType(Types t) { type = t; }
 
-    public boolean getBooleanValue() { return intValue != 0; }
-    public void setBooleanValue() { intValue = getText().equals("true") ? 1 : 0; }
+    public void setIntValue() {
+        type = Types.INT_T;
+        value = new IntType(Integer.parseInt(getText()));
+    }
 
-    public String getStringValue() { return strValue; }
-    public void setStringValue() { String s = getText();
-        strValue = s.substring(1,s.length()-1); }
+    public void setFloatValue() {
+        type = Types.FLOAT_T;
+        value = new FloatType(Float.parseFloat(getText()));
+    }
 
-    public float getFloatValue() { return floatValue; }
-    public void setFloatValue() { floatValue = Float.parseFloat(getText()); }
+    public void setBooleanValue() {
+        type = Types.BOOL_T;
+        value = new BoolType(getText().equals("true"));
+    }
+
+    public void setStringValue() {
+        type = Types.STRING_T;
+        //TODO add type as string.
+    }
+
+    public void setCharValue() {
+        type = Types.CHAR_T;
+        //TODO add type as char.
+    }
 }

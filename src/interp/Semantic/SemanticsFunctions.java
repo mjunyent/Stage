@@ -1,27 +1,27 @@
 package interp.Semantic;
 
 import interp.StageTree;
-import interp.Types.FilterSignature;
-import interp.Types.FunctionList;
-import interp.Types.TypeInterface;
-import interp.Types.Types;
+import interp.Types.*;
 import parser.StageLexer;
 
 import java.util.*;
 
 public class SemanticsFunctions {
-    public class FunctionSignature {
+    /*public class FunctionSignature {
         public List<Types> args;
         public List<String> args_names;
         public Types ret;
         public StageTree root;
         public StageTree first, loop, last;
-    }
+    }*/
 
     private HashMap<String, FunctionSignature> function_list;
     private HashMap<String, FilterSignature> filter_list;
     private StageTree functions_root = null;
     private boolean debug = true;
+
+    //temp vars.
+    private FunctionSignature current_func;
 
     public SemanticsFunctions(StageTree tree, SemanticsFilters sm, boolean debug) {
         this.debug = debug;
@@ -45,12 +45,17 @@ public class SemanticsFunctions {
     private void fillFunctionsMap() {
         if(functions_root == null) return;
 
+        FunctionList builtinFuncs = FunctionGlobalFuncs.getTable();
+
         for(int i=0; i<functions_root.getChildCount(); i++) {
             String fname = functions_root.getChild(i).getChild(0).getText();
+            if(builtinFuncs.exists(fname)) throw new RuntimeException("Function name " + fname + " reserved for builtin functions.");
             if (function_list.containsKey(fname)) throw new RuntimeException("Multiple definitions of function " + fname);
+
             StageTree params;
 
             FunctionSignature func_sig = new FunctionSignature();
+            func_sig.name = fname;
             func_sig.root = functions_root.getChild(i);
             func_sig.args = new ArrayList<Types>();
             func_sig.args_names = new ArrayList<String>();
@@ -89,6 +94,7 @@ public class SemanticsFunctions {
     }
 
     private void checkFunction(FunctionSignature func) {
+        current_func = func;
         FunctionSymbolTable symbol_table = new FunctionSymbolTable(debug);
 
         symbol_table.pushScope();
@@ -143,54 +149,23 @@ public class SemanticsFunctions {
                 break;
 
             case StageLexer.DECLARE:
+                Types varType;
+
                 if(inst.getChild(0).getType() == StageLexer.ARRAY) {
-                    if(!Types.containsForFunctions(inst.getChild(0).getChild(0).getText())) throw new RuntimeException("Type " + inst.getChild(0).getChild(0).getText() + " not valid for functions");
-                    if(inst.getChild(0).getChild(1).getType() != StageLexer.INT) throw new RuntimeException("Array declaration parameter can only be an int");
-
-                    Types varType = Types.getByName(inst.getChild(0).getChild(0).getText());
-                    String varName = inst.getChild(1).getText();
-
-
-                    symbol_table.addArray(varName, varType);
+                    varType = Types.getByArrayTypeFunctions(inst.getChild(0).getChild(0).getText());
+                    if(inst.getChild(0).getChild(1).getType() != StageLexer.INT) throw new RuntimeException("Array declaration parameter can only be an integer");
                 } else {
-                    if(!Types.containsForFunctions(inst.getChild(0).getText())) throw new RuntimeException("Type " + inst.getChild(0).getText() + " not valid for functions");
-                    Types varType = Types.getByName(inst.getChild(0).getText());
-                    String varName = inst.getChild(1).getText();
-                    if(inst.getChildCount() > 2) {
-                        if(varType != getExpressionType(inst.getChild(2), symbol_table)) {
-                            throw new RuntimeException("Types don't match declaring: " + varName + " as " + varType.getName());
-                        }
-                    }
-                    symbol_table.add(varName, varType);
+                    varType = Types.getByNameFunctions(inst.getChild(0).getText());
                 }
 
-        }
-    }
-
-    private void checkFilterInstruction(StageTree inst, FilterSymbolTable symbol_table) {
-        switch (inst.getType()) {
-            case StageLexer.FILTCALL:
-                throw new RuntimeException("Can't make a call to a filter from a filter");
-            case StageLexer.ADDFILT:
-                throw new RuntimeException("Can't add new filters to pipeline from a filter");
-            case StageLexer.BYPASSF:
-                throw new RuntimeException("Can't bypass a filter from a filter");
-            case StageLexer.QUIT:
-                throw new RuntimeException("Can't QUIT a filter, perhaps you should use return");
-            case StageLexer.DECLARE:
-                if(inst.getChild(0).getType() == StageLexer.ARRAY) throw new RuntimeException("Cannot declare arrays in filter");
-                if(!Types.containsForFilters(inst.getChild(0).getText())) throw new RuntimeException("Type " + inst.getChild(0).getText() + " not valid for filters");
-                Types varType = Types.getByName(inst.getChild(0).getText());
                 String varName = inst.getChild(1).getText();
                 if(inst.getChildCount() > 2) {
-                    if(varType != getExpressionType(inst.getChild(2), symbol_table)) {
-                        throw new RuntimeException("Types don't match declaring: " + varName + " as " + varType.getName());
-                    }
+                    if(varType != getExpressionType(inst.getChild(2), symbol_table)) throw new RuntimeException("Types don't match declaring: " + varName + " as " + varType.getName());
                 }
                 symbol_table.add(varName, varType);
                 break;
             case StageLexer.ASSIGN:
-                //TODO: check assignability (not all vars are writable).
+                //TODO: check assignability.
                 Types leftType = getExpressionType(inst.getChild(0), symbol_table);
                 Types rightType = getExpressionType(inst.getChild(1), symbol_table);
                 if(leftType != rightType) throw new RuntimeException("Types don't match");
@@ -201,10 +176,9 @@ public class SemanticsFunctions {
 
                 symbol_table.pushScope();
                 for(int i=0; i<inst.getChild(1).getChildCount(); i++) {
-                    checkFilterInstruction(inst.getChild(1).getChild(i), symbol_table);
+                    checkInstruction(inst.getChild(1).getChild(i), symbol_table);
                 }
                 symbol_table.popScope();
-
                 break;
             case StageLexer.IF:
                 Types i_condition = getExpressionType(inst.getChild(0), symbol_table);
@@ -212,7 +186,7 @@ public class SemanticsFunctions {
 
                 symbol_table.pushScope();
                 for(int i=0; i<inst.getChild(1).getChildCount(); i++) {
-                    checkFilterInstruction(inst.getChild(1).getChild(i), symbol_table);
+                    checkInstruction(inst.getChild(1).getChild(i), symbol_table);
                 }
                 symbol_table.popScope();
 
@@ -220,146 +194,126 @@ public class SemanticsFunctions {
                 if(inst.getChildCount() > 2) {
                     symbol_table.pushScope();
                     for(int i=0; i<inst.getChild(2).getChildCount(); i++) {
-                        checkFilterInstruction(inst.getChild(2).getChild(i), symbol_table);
+                        checkInstruction(inst.getChild(2).getChild(i), symbol_table);
                     }
                     symbol_table.popScope();
                 }
-
                 break;
-            /* THere are no member functions in filters, so any of that will give no result (except funcall)
             case StageLexer.MEMBER:
             case StageLexer.ARRAY:
             case StageLexer.ID:
             case StageLexer.FUNCALL:
                 getExpressionType(inst, symbol_table);
-                break;*/
-            case StageLexer.MEMBER:
-            case StageLexer.ARRAY:
-            case StageLexer.ID:
-                throw new RuntimeException("Instruction does nothing or calls member function which is not allowed in filters.");
-            case StageLexer.FUNCALL:
-                getFunCallReturnType(inst, symbol_table, null);
-                break;
             case StageLexer.TIMECALL:
-                throw new RuntimeException("Functions in filter cannot be called over time.");
+                getExpressionType(inst.getChild(0), symbol_table);
+                if(getExpressionType(inst.getChild(1), symbol_table) != Types.FLOAT_T
+                   | getExpressionType(inst.getChild(2), symbol_table) != Types.FLOAT_T)
+                    throw new RuntimeException("Time values must be float.");
+                break;
             case StageLexer.RETURN:
-                if(inst.getChildCount() == 0 || getExpressionType(inst.getChild(0), symbol_table) != Types.VEC4_T)
-                    throw new RuntimeException("Filters must return a vec4");
+                if(inst.getChildCount() == 0 && current_func.ret != Types.VOID_T) throw new RuntimeException("Function must return a " + current_func.ret.getName() + ".");
+                if(inst.getChildCount() != 0 && getExpressionType(inst.getChild(0), symbol_table) != current_func.ret)
+                    throw new RuntimeException("Function must return a " + current_func.ret.getName() + ".");
                 break;
             default:
                 throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
 
+
         }
     }
 
-    private Types getExpressionType(StageTree exp, FilterSymbolTable symbol_table) {
+    private Types getExpressionType(StageTree exp, FunctionSymbolTable symbol_table) {
         if(exp.getType() == StageLexer.INT) {
+            exp.setIntValue();
             return Types.INT_T;
         }
         if(exp.getType() == StageLexer.FLOAT) {
+            exp.setFloatValue();
             return Types.FLOAT_T;
         }
         if(exp.getType() == StageLexer.CHAR) {
+            exp.setCharValue();
             return Types.CHAR_T;
         }
         if(exp.getType() == StageLexer.STRING) {
+            exp.setStringValue();
             return Types.STRING_T;
         }
         if(exp.getType() == StageLexer.BOOLEAN) {
+            exp.setBooleanValue();
             return Types.BOOL_T;
         }
         if(exp.getType() == StageLexer.FUNCALL) {
-            return getFunCallReturnType(exp, symbol_table, null);
+            Types retType = getFunCallReturn(exp, symbol_table);
+            exp.setVarType(retType);
+            return retType;
         }
         if(exp.getType() == StageLexer.ARRAY) {
-            String name = exp.getChild(0).getText();
+            Types leftType = symbol_table.getType(exp.getChild(0).getText());
             Types pos = getExpressionType(exp.getChild(1), symbol_table);
-            Types leftType = symbol_table.getType(name);
             Types array_access_ret = leftType.getInstance().getMethodArgs("[", Arrays.asList(pos) );
             if(array_access_ret == null) throw new RuntimeException("Type: " + pos.getName() + " has no array access for this kind of index");
+                exp.setVarType(array_access_ret);
+                exp.getChild(0).setVarType(leftType);
+                exp.getChild(1).setVarType(pos);
             return array_access_ret;
         }
         if(exp.getType() == StageLexer.MEMBER) {
             return getMemberType(exp, symbol_table);
         }
         if(exp.getType() == StageLexer.ID) {
-            return symbol_table.getType(exp.getText());
+            Types type = symbol_table.getType(exp.getText());
+            exp.setVarType(type);
+            return type;
         }
 
         //One child operands.
         if(exp.getChildCount() == 1) { //we expect not or -  (- is an alias of not)
             String opName = exp.getText();
-            if(exp.getType() == StageLexer.MINUS) opName = "not";
+            if(exp.getType() == StageLexer.MINUS) opName = "not"; //TODO think if it's necessary.
             Types leftType = getExpressionType(exp.getChild(0), symbol_table);
-            return getMemberFunctionReturn(opName, leftType, new ArrayList<Types>());
+
+            Types retType = getMemberFunCallReturn(opName, leftType, new ArrayList<Types>());
+
+            exp.getChild(0).setVarType(leftType);
+            exp.setVarType(retType);
+            return retType;
         }
 
         //Two child operands.
         if(exp.getChildCount() == 2) { //we expect or, and, ==, !=, >, <, >=, <=, +, -, *, /, %
             Types leftType = getExpressionType(exp.getChild(0), symbol_table);
-            Types rightType[] = { getExpressionType(exp.getChild(1), symbol_table) };
-            return getMemberFunctionReturn(exp.getText(), leftType, Arrays.asList(rightType));
+            Types rightType = getExpressionType(exp.getChild(1), symbol_table);
+            Types retType = getMemberFunCallReturn(exp.getText(), leftType, Arrays.asList(rightType));
+
+            exp.getChild(0).setVarType(leftType);
+            exp.getChild(1).setVarType(rightType);
+            exp.setVarType(retType);
+            return retType;
         }
 
         throw new RuntimeException("Expression not recognized");
     }
 
-    private Types getMemberType(StageTree tree, FilterSymbolTable symbol_table) {
-        Types leftType = getExpressionType(tree.getChild(0), symbol_table);
-        TypeInterface leftTypeInstance = leftType.getInstance();
-
-        switch (tree.getChild(1).getType()) {
-            case StageLexer.ID:
-                Types ret = leftTypeInstance.getAttributeType(tree.getChild(1).getText());
-                if(ret == null) throw new RuntimeException("Member " + tree.getChild(1).getText() + " not found in type " + leftTypeInstance.getTypeName());
-                return ret;
-            case StageLexer.FUNCALL:
-                throw new RuntimeException("Member functions can not be called from filter. Calling " + tree.getChild(1).getText() + " in type " + leftTypeInstance.getTypeName());
-                //return getFunCallReturnType(tree.getChild(1), symbol_table, leftType);
-            case StageLexer.ARRAY:
-                String name = tree.getChild(1).getChild(0).getText();
-                Types pos = getExpressionType(tree.getChild(1).getChild(1), symbol_table);
-
-                //Check member is in array.
-                Types member_arr = leftTypeInstance.getAttributeType(name);
-                if(member_arr == null) throw new RuntimeException("Member " + name + " not found in type " + leftTypeInstance.getTypeName());
-
-                //Check tipes of array and values it returns
-                Types array_access_ret = member_arr.getInstance().getMethodArgs("[", Arrays.asList(pos));
-                if(array_access_ret == null) throw new RuntimeException("Type: " + member_arr + " in " + name + " has no array access for this kind of index");
-                return array_access_ret;
-            default:
-                throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
+    private Types getFunCallReturn(StageTree tree, FunctionSymbolTable symbol_table) {
+        String fname = tree.getChild(0).getText();
+        ArrayList<Types> args = new ArrayList<Types>();
+        for(int i=0; i<tree.getChild(1).getChildCount(); i++) {
+            Types parmesano = getExpressionType(tree.getChild(1).getChild(i), symbol_table);
+            //tree.getChild(1).getChild(i).setVarType(parmesano); no need, getExpression does it.
+            args.add(parmesano);
         }
+
+        if(FunctionGlobalFuncs.getTable().exists(fname, args)) { //Check builtin functions.
+            return FunctionGlobalFuncs.getTable().getFunction(fname,args).ret;
+        } else if(function_list.containsKey(fname)) { //Check global functions.
+            if(!function_list.get(fname).args.equals(args)) throw new RuntimeException("Calling function " + fname + " with wrong parameters. Calling with " + args);
+            return function_list.get(fname).ret;
+        }
+        throw new RuntimeException("Function " + fname + " doesn't exist or has wrong parameters. Calling with " + args);
     }
 
-    private Types getFunCallReturnType(StageTree tree, FilterSymbolTable symbol_table, Types leftType) {
-        if(leftType == null) { //direct function.
-            FunctionList funcs = FilterGlobalFuncs.getTable();
-
-            ArrayList<Types> args = new ArrayList<Types>();
-            for(int i=0; i< tree.getChild(1).getChildCount(); i++) {
-                args.add(getExpressionType(tree.getChild(1).getChild(i), symbol_table));
-            }
-
-            String name = tree.getChild(0).getText();
-
-            if(!funcs.exists(name,args)) {
-                throw new RuntimeException("Function " + name + " doesn't exist or has wrong parameters. Calling with " + args);
-            }
-
-            return funcs.getReturn(name,args);
-        } else { //method //TODO this call is always with null. Let it here until you do the interpreter to copy & paste. IN FACT THIS DOESNT WORK, CHILDS IDS ARE WRONG.
-            ArrayList<Types> args = new ArrayList<Types>();
-            for(int i=0; i< tree.getChild(2).getChildCount(); i++) {
-                args.add(getExpressionType(tree.getChild(2).getChild(i), symbol_table));
-            }
-
-            return getMemberFunctionReturn(tree.getChild(1).getText(), leftType, args);
-        }
-    }
-
-    private Types getMemberFunctionReturn(String name, Types base, List<Types> args) {
+    private Types getMemberFunCallReturn(String name, Types base, List<Types> args) {
         TypeInterface myType = base.getInstance();
         Types method_return = myType.getMethodArgs(name, args);
 
@@ -367,4 +321,45 @@ public class SemanticsFunctions {
         return method_return;
     }
 
+    private Types getMemberType(StageTree tree, FunctionSymbolTable symbol_table) {
+        Types leftType = getExpressionType(tree.getChild(0), symbol_table);
+        TypeInterface leftTypeInstance = leftType.getInstance();
+
+        Types ret;
+        StageTree node = tree.getChild(1);
+
+        switch (node.getType()) {
+            case StageLexer.ID:
+                ret = leftTypeInstance.getAttributeType(node.getText());
+                node.setVarType(ret);
+                if(ret == null) throw new RuntimeException("Member " + node.getText() + " doesn't exist in type " + leftTypeInstance.getTypeName());
+                return ret;
+            case StageLexer.FUNCALL:
+                String fname = node.getChild(0).getText();
+                ArrayList<Types> args = new ArrayList<Types>();
+                for(int i=0; i<node.getChild(1).getChildCount(); i++) {
+                    Types gorgonzola = getExpressionType(node.getChild(1).getChild(i), symbol_table);
+                    args.add(gorgonzola);
+                }
+                ret = leftTypeInstance.getMethodArgs(fname, args);
+                if(ret == null) throw new RuntimeException("Method " + fname + " arguments don't match");
+                node.setVarType(ret);
+                return ret;
+            case StageLexer.ARRAY:
+                String name = node.getChild(0).getText();
+                Types pos = getExpressionType(node.getChild(1), symbol_table);
+                //Check array is a member.
+                Types member_arr = leftTypeInstance.getAttributeType(name);
+                if(member_arr == null) throw new RuntimeException("Member " + name + " not found in type " + leftTypeInstance.getTypeName());
+                //Check tipes of array and values it returns
+                ret = member_arr.getInstance().getMethodArgs("[", Arrays.asList(pos));
+                if(ret == null) throw new RuntimeException("Member " + name + " of type " + member_arr.getName() + " has no array access for this kind of index");
+                node.setVarType(ret);
+                node.getChild(0).setVarType(member_arr);
+                node.getChild(1).setVarType(pos);
+                return ret;
+            default:
+                throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
+        }
+    }
 }

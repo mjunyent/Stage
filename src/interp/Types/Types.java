@@ -27,7 +27,7 @@ public enum Types {
     private boolean allowedInFunctions;
     private boolean allowedInFilters;
     private Types  arrayOf;
-    private TypeInterface inst = null;
+//    private TypeInterface inst = null;
 
     //Hashmap to fasten queries of types. Only for functions.
     private static HashMap<String, Types> table_functions;
@@ -46,12 +46,12 @@ public enum Types {
         allowedInFilters = inFilt;
         this.arrayOf = arrayOf;
 
-        if(c != null) {
+/*        if(c != null) {
             try {
                 inst = (TypeInterface) cl.newInstance();
                 if(arrayOf != null) ((ArrayType) inst).setType(this); //TODO GIVE TYPE AND TYPE OF ARRAY.
             } catch (InstantiationException e) { e.printStackTrace(); } catch (IllegalAccessException e) { e.printStackTrace(); }
-        }
+        }*/
     }
 
     //Getters
@@ -74,6 +74,11 @@ public enum Types {
         throw new RuntimeException("Type " + name + " not found for functions.");
     }
 
+    public static Types getByArrayTypeFunctions(String name) {
+        if(table_functions.containsKey("0_"+name)) return table_functions.get("0_"+name);
+        throw new RuntimeException("Type array of " + name + " not found for functions.");
+    }
+
     public static Types getArrayByElementName(String name) {
         for(Types t : Types.values()) {
             if(t.isArray() && t.getArrayOf().getName().equals(name)) return t;
@@ -84,7 +89,7 @@ public enum Types {
     public TypeInterface getInstance() {
         try {
             TypeInterface tp = (TypeInterface) cl.newInstance();
-            if(arrayOf != null) ((ArrayType) inst).setType(this); //TODO GIVE TYPE AND TYPE OF ARRAY.
+            if(arrayOf != null) ((ArrayType) tp).setType(this); //TODO GIVE TYPE AND TYPE OF ARRAY.
             return tp;
         } catch (InstantiationException e) { e.printStackTrace(); } catch (IllegalAccessException e) { e.printStackTrace(); }
         return null;
