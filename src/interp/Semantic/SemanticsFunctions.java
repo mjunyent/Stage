@@ -102,20 +102,26 @@ public class SemanticsFunctions {
             symbol_table.add(func.args_names.get(i), func.args.get(i));
         }
 
-        symbol_table.pushScope();
-        for(int i=0; i<func.first.getChildCount(); i++) {
-            checkInstruction(func.first.getChild(i), symbol_table);
+        if(func.first != null) {
+            symbol_table.pushScope();
+            for(int i=0; i<func.first.getChildCount(); i++) {
+                checkInstruction(func.first.getChild(i), symbol_table);
+            }
         }
 
-        symbol_table.pushScope();
-        for(int i=0; i<func.loop.getChildCount(); i++) {
-            checkInstruction(func.loop.getChild(i), symbol_table);
+        if(func.loop != null) {
+            symbol_table.pushScope();
+            for(int i=0; i<func.loop.getChildCount(); i++) {
+                checkInstruction(func.loop.getChild(i), symbol_table);
+            }
+            symbol_table.popScope();
         }
-        symbol_table.popScope();
 
-        symbol_table.pushScope();
-        for(int i=0; i<func.last.getChildCount(); i++) {
-            checkInstruction(func.last.getChild(i), symbol_table);
+        if(func.last != null) {
+            symbol_table.pushScope();
+            for(int i=0; i<func.last.getChildCount(); i++) {
+                checkInstruction(func.last.getChild(i), symbol_table);
+            }
         }
 
         //TODO check return.

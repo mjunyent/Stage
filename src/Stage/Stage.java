@@ -30,6 +30,7 @@ package Stage;
 // Imports for ANTLR
 import interp.GLSLTranslator.Translator;
 import interp.Semantic.SemanticsFilters;
+import interp.Semantic.SemanticsFunctions;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
 
@@ -113,10 +114,15 @@ public class Stage{
         SemanticsFilters sem = new SemanticsFilters(t, true);
         sem.checkFilters();
 
+        SemanticsFunctions semf = new SemanticsFunctions(t, sem, true);
+        semf.checkFunctions();
+
         for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
             Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
             tr.writeFile("");
         }
+
+
 
         /*
         // Start interpretation (only if execution required)

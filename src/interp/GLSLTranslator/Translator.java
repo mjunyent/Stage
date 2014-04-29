@@ -67,7 +67,6 @@ public class Translator {
         } catch (IOException e) { e.printStackTrace(); return; }
 
         for(String line : code) {
-            System.out.println(line);
             try {
                 f0.write(line + newLine);
             } catch (IOException e) { e.printStackTrace(); return; }

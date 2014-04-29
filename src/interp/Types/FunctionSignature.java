@@ -13,8 +13,8 @@ public class FunctionSignature {
 
     //Optional fields
     public List<String> args_names;
-    public StageTree root;
-    public StageTree first, loop, last;
+    public StageTree root = null;
+    public StageTree first = null, loop = null, last = null;
     public int id = -1;
 
     public FunctionSignature() { }
