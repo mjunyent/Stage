@@ -42,8 +42,11 @@ import java.io.*;
 import parser.*;
 import interp.*;
 
+//Processing
+import processing.core.*;
+import processing.opengl.*;
 
-public class Stage{
+public class Stage extends PApplet {
 
     /** The file name of the program. */
     private static String infile = null;
@@ -57,8 +60,9 @@ public class Stage{
     private static boolean execute = true;
       
     /** Main program that invokes the parser and the interpreter. */
-    
-    public static void main(String[] args) throws Exception {
+
+//    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         // Parser for command line options
         if (!readOptions (args)) System.exit(1);
 
@@ -98,16 +102,16 @@ public class Stage{
         // Generate a file for the AST (option -ast file)
         if (astfile != null) {
             File ast = new File(astfile);
-            BufferedWriter output = new BufferedWriter(new FileWriter(ast));
+            BufferedWriter output = null;
+            try { output = new BufferedWriter(new FileWriter(ast)); } catch (IOException e) { e.printStackTrace(); }
             if (dotformat) {
                 DOTTreeGenerator gen = new DOTTreeGenerator();
-                output.write(gen.toDOT(t).toString());
+                try { output.write(gen.toDOT(t).toString()); } catch (IOException e) { e.printStackTrace(); }
             } else {
-                output.write(t.toStringTree());
+                try { output.write(t.toStringTree()); } catch (IOException e) { e.printStackTrace(); }
             }
-            output.close();
+            try { output.close(); } catch (IOException e) { e.printStackTrace(); }
         }
-
 
         System.out.println("CHECKING THINGS! UEUEUEUE");
 
@@ -122,7 +126,8 @@ public class Stage{
             tr.writeFile("");
         }
 
-
+//        PApplet.main(new String[] { "--present", "Stage.Stage" }); //--full-screen http://processing.org/reference/javadoc/core/processing/core/PApplet.html
+        PApplet.main(new String[] { "Stage.Stage" });
 
         /*
         // Start interpretation (only if execution required)
@@ -224,6 +229,25 @@ public class Stage{
         
         infile = files[0];
         return true;
+    }
+
+    PShader shader;
+
+    public void setup() {
+        size(200,200,OPENGL);
+        background(0);
+        shader = loadShader("landscape.glsl");
+        shader.set("resolution", (float)width, (float)height);
+    }
+
+    public void draw() {
+        background(0);
+
+        shader.set("time", (float)(millis()/1000.0));
+        shader(shader);
+        rect(0, 0, width, height);
+
+        frame.setTitle("frame: " + frameCount + " - fps: " + frameRate);
     }
 }
 
