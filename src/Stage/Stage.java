@@ -29,6 +29,7 @@ package Stage;
 
 // Imports for ANTLR
 import interp.GLSLTranslator.Translator;
+import interp.Player.Player;
 import interp.Semantic.SemanticsFilters;
 import interp.Semantic.SemanticsFunctions;
 import org.antlr.runtime.*;
@@ -58,7 +59,9 @@ public class Stage extends PApplet {
     private static String tracefile = null;
     /** Flag to indicate whether the program must be executed after parsing. */
     private static boolean execute = true;
-      
+
+
+    private static StageTree st;
     /** Main program that invokes the parser and the interpreter. */
 
 //    public static void main(String[] args) throws Exception {
@@ -99,6 +102,8 @@ public class Stage extends PApplet {
         // Get the AST
         StageTree t = (StageTree)result.getTree();
 
+        st = t;
+/*
         // Generate a file for the AST (option -ast file)
         if (astfile != null) {
             File ast = new File(astfile);
@@ -124,7 +129,7 @@ public class Stage extends PApplet {
         for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
             Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
             tr.writeFile("");
-        }
+        }*/
 
 //        PApplet.main(new String[] { "--present", "Stage.Stage" }); //--full-screen http://processing.org/reference/javadoc/core/processing/core/PApplet.html
         PApplet.main(new String[] { "Stage.Stage" });
@@ -238,6 +243,8 @@ public class Stage extends PApplet {
         background(0);
         shader = loadShader("landscape.glsl");
         shader.set("resolution", (float)width, (float)height);
+
+        Player player = new Player(this, st, null, true);
     }
 
     public void draw() {

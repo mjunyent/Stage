@@ -50,7 +50,8 @@ PARSER_SRC =	$(PARSER)/$(TARGET)Lexer.java \
 INTERP_SRC =	$(INTERP)/*.java \
 				$(INTERP)/GLSLTranslator/*.java \
 				$(INTERP)/Semantic/*.java \
-				$(INTERP)/Types/*.java
+				$(INTERP)/Types/*.java \
+				$(INTERP)/Player/*.java
 
 ALL_SRC =		$(MAIN_SRC) $(PARSER_SRC) $(INTERP_SRC)
 				

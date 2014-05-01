@@ -15,6 +15,7 @@ public class FunctionGlobalVars {
 
         table.put("time", Types.FLOAT_T);
         table.put("resolution", Types.VEC2_T);
+        table.put("INFINITY", Types.FLOAT_T);
     }
 
     public static Map<String,Types> getTable() {

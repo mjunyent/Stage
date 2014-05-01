@@ -37,6 +37,8 @@ public class SemanticsFunctions {
         fillFunctionsMap();
     }
 
+    public HashMap<String, FunctionSignature> getFunctionList() { return function_list; }
+
     public StageTree getFunctionsRoot() {
         return functions_root;
     }

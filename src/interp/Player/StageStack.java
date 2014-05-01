@@ -1,13 +1,16 @@
-package interp.Semantic;
+package interp.Player;
 
+
+import interp.Semantic.FunctionGlobalVars;
 import interp.Types.Types;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
-//TODO this is wrong, no double type...
-public class FunctionSymbolTable {
+
+public class StageStack {
+
     private LinkedList<HashMap<String,Types>> stack;
     private HashMap<String,Types> current_scope = null;
 
