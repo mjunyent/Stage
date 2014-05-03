@@ -1,0 +1,27 @@
+(ROOT
+	(LIST_FUNCTIONS 
+		(function main PARAMS 
+			(FIRST: 
+				(DECLARE (ARRAY int 5) cosa)
+				(DECLARE int variable 0)
+				(DECLARE float p 5.0)
+				(DECLARE vec4 n (FUNCALL vec4 (ARGLIST 0.0 0.0 0.0 0.0)))
+				(FUNCALL println (ARGLIST 3))
+				(DECLARE vec4 m) (:= (. m x) 6.0)
+				(FUNCALL println (ARGLIST (. m x))) (:= (. m x) (* (. m x) 2.0))
+				(FUNCALL println (ARGLIST (. m x))))
+			
+			(LOOP:
+				(:= p (+ p 1.0))
+				(FUNCALL println (ARGLIST p))
+				(:= (ARRAY cosa 0) (+ (ARRAY cosa 1) 1))
+				(FUNCALL println (ARGLIST (ARRAY cosa 0)))
+				(:= (ARRAY cosa 1) (ARRAY cosa 0))
+				(if (== (ARRAY cosa 1) 1) (LIST_INSTR (:= (ARRAY cosa 1) (- (ARRAY cosa 1) 2))))
+				(DECLARE int a 1)
+				(FUNCALL println (ARGLIST a))
+				(while
+					(< a 2)
+					(LIST_INSTR (FUNCALL println (ARGLIST (ARRAY cosa a))) (:= a (+ a 1)))))
+			
+			(LAST: (FUNCALL println (ARGLIST 9.0)))) (function square float (PARAMS (PARAM float num)) (FIRST: (return (* num num))))) (LIST_FILTERS (filter INPUTS testA (PARAMS (PARAM float k)) (LIST_INSTR (DECLARE bool t true) (DECLARE int p 5) (DECLARE float n 5.0) (DECLARE float m (* n 5.0)) (DECLARE vec4 hop (FUNCALL vec4 (ARGLIST 0.0 0.0 0.0 0.0))) (:= (. hop x) (. hop y)) (:= (. hop z) 5.0) (FUNCALL vec4 (ARGLIST 0.0 0.0 0.0 0.0)) (while (not t) (LIST_INSTR (DECLARE float p (. hop w)) (:= m (* p m)))) (if (or (!= m n) (< m 5.0)) (LIST_INSTR (:= m (* m m)))) (return (FUNCALL vec4 (ARGLIST k k (- m n) n))))) (filter (INPUTS v1 v2) mix (PARAMS (PARAM float m)) (LIST_INSTR (return (+ (* (ARRAY v1 UV) m) (* (ARRAY v1 UV) (- 1.0 m))))))))

@@ -48,6 +48,10 @@ public class BoolType implements TypeInterface {
         return null;
     }
 
+    public void set(TypeInterface obj) {
+        value = ((BoolType)obj).getValue();
+    }
+
     public Types getAttributeType(String name) { return null; }
     public TypeInterface getAttribute(String name) { return null; }
 

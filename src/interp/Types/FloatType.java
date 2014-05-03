@@ -76,6 +76,10 @@ public class FloatType implements TypeInterface {
     public Types getAttributeType(String name) { return null; }
     public TypeInterface getAttribute(String name) { return null; }
 
+    public void set(TypeInterface obj) {
+        value = ((FloatType)obj).getValue();
+    }
+
     //TODO if you want autocast, do it only on interpreter.
 /*    public boolean canCastTo(Types type) {
 //        if(type == Types.VEC2_T || type == Types.VEC4_T) return true;

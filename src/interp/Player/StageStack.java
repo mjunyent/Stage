@@ -4,6 +4,9 @@ import interp.Types.TypeInterface;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import java.util.Iterator;
+import java.util.Map;
+
 public class StageStack {
     private LinkedList<HashMap<String,TypeInterface>> stack;
     private HashMap<String,TypeInterface> current_scope = null;
@@ -23,6 +26,19 @@ public class StageStack {
         }*/
     }
 
+    public void printAllScopes() {
+        for(int i=0; i<stack.size(); i++) {
+            System.out.println("Scope level: " + i);
+            HashMap<String,TypeInterface> scope = stack.get(i);
+
+            Iterator it = scope.entrySet().iterator();
+            while(it.hasNext()) {
+                Map.Entry<String, TypeInterface> hue = (Map.Entry)it.next();
+                System.out.println("    var: " + hue.getKey() + "<" + hue.getValue().getTypeName().getName() + ">");
+            }
+        }
+    }
+
     public boolean exists(String name) {
         for(HashMap<String,TypeInterface> scope : stack) {
             if(scope.containsKey(name)) return true;
@@ -34,7 +50,7 @@ public class StageStack {
         return current_scope.containsKey(name);
     }
 
-    public TypeInterface getVar(String name) {
+    public TypeInterface getVar(String name) { //TODO check this, order of visibility.
         for(int i=stack.size()-1; i>=0; i--) {
             HashMap<String, TypeInterface> scope = stack.get(i);
             if(scope.containsKey(name)) return scope.get(name);

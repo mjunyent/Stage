@@ -22,4 +22,8 @@ public class SamplerType implements TypeInterface {
     //Sampler type is only executed in Shader, it does not need call and get.
     public TypeInterface callMethod(String name, List<TypeInterface> args) { return null; }
     public TypeInterface getAttribute(String name) { return null; }
+
+    public void set(TypeInterface obj) {
+        //TODO
+    }
 }

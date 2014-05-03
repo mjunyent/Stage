@@ -72,4 +72,8 @@ public class IntType implements TypeInterface {
 
     public Types getAttributeType(String name) { return null; }
     public TypeInterface getAttribute(String name) { return null; }
+
+    public void set(TypeInterface obj) {
+        value = ((IntType)obj).getValue();
+    }
 }

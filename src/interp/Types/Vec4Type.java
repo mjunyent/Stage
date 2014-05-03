@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Vec4Type implements TypeInterface {
-
     private FloatType valX, valY, valZ, valW;
 
     public Vec4Type() {
@@ -91,6 +90,18 @@ public class Vec4Type implements TypeInterface {
         return null;
     }
     public TypeInterface getAttribute(String name) {
-        //TODO
-        return null; }
+        if(name.equals("x")) return valX;
+        if(name.equals("y")) return valY;
+        if(name.equals("z")) return valZ;
+        if(name.equals("w")) return valW;
+        return null;
+    }
+
+    public void set(TypeInterface obj) {
+        valX = ((Vec4Type)obj).valX;
+        valY = ((Vec4Type)obj).valY;
+        valZ = ((Vec4Type)obj).valZ;
+        valW = ((Vec4Type)obj).valW;
+    }
+
 }

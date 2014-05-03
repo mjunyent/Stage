@@ -3,7 +3,6 @@ package interp.Types;
 import java.util.List;
 
 public class Vec2Type implements TypeInterface {
-
     private FloatType valX, valY;
 
     public Vec2Type() {
@@ -81,8 +80,13 @@ public class Vec2Type implements TypeInterface {
         if(name.equals("x") || name.equals("y")) return Types.FLOAT_T;
         return null;
     }
+
     public TypeInterface getAttribute(String name) {
         //TODO
         return null; }
 
+    public void set(TypeInterface obj) {
+        valX = ((Vec2Type)obj).valX;
+        valY = ((Vec2Type)obj).valY;
+    }
 }

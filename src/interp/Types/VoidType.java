@@ -25,4 +25,7 @@ public class VoidType implements TypeInterface {
     public TypeInterface getAttribute(String name) {
         return null;
     }
+
+    public void set(TypeInterface obj) {
+    }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayType implements TypeInterface {
-
     Types general_type, array_type;
     ArrayList<TypeInterface> array;
 
@@ -23,11 +22,6 @@ public class ArrayType implements TypeInterface {
         for(int i=0; i<s.getValue(); i++) {
             array.add(array_type.getInstance());
         }
-    }
-
-    public void setValue(int pos, TypeInterface obj) {
-        if(pos < 0 || pos > array.size()) throw new RuntimeException("Array out of bounds!");
-        array.set(pos, obj);
     }
 
     public TypeInterface getValue(int pos) {
@@ -64,5 +58,9 @@ public class ArrayType implements TypeInterface {
     public TypeInterface getAttribute(String name) {
         //TODO
         return null;
+    }
+
+    public void set(TypeInterface obj) {
+        //TODO
     }
 }

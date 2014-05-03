@@ -27,10 +27,16 @@ filter v1,v2 -> mix(float m) {
 
 function main() {
 FIRST:
+	int[5] cosa;
 	int variable = 0;
-	float p;
-	vec4 n = vec4(0.0,0.0,0.0,0.0);
+	float p = 5.0;
+//	vec4 n = vec4(0.0,0.0,0.0,0.0);
 	println(3);
+	vec4 m;
+	m.x = 6.0;
+	println(m.x);
+	m.x = m.x*2.0;
+	println(m.x);
 
 	/*
 	video v1 = video("nomdelfitxer");
@@ -46,7 +52,24 @@ FIRST:
 
 LOOP:
 	p = p+1.0;
-	println(p);
+	//println(p);
+	
+	cosa[0] = cosa[1]+1;
+	//println(cosa[0]);
+	cosa[1] = cosa[0];
+	if(cosa[1] == 1) {
+		cosa[1] = cosa[1]-2;
+	}
+	
+	int vares = 1;
+	println(true);
+	println(vares);
+	while(vares<5) {
+		println(8.8);
+		println(cosa[vares]);
+		vares = vares+1;
+	}
+	
 //	variable = variable+1;
 //	p = square(p);
 //	n.z = p;

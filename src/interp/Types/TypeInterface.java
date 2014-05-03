@@ -18,6 +18,9 @@ public interface TypeInterface {
     //Get attribute.
     public TypeInterface getAttribute(String name);
 
+    //Set
+    public void set(TypeInterface obj);
+
     //Auto cast.
 //    public boolean canCastTo(Types type);
 //    public TypeInterface castTo(Types type);
