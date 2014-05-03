@@ -32,6 +32,7 @@ import interp.GLSLTranslator.Translator;
 import interp.Player.Player;
 import interp.Semantic.SemanticsFilters;
 import interp.Semantic.SemanticsFunctions;
+import interp.Types.IntType;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
 
@@ -66,6 +67,24 @@ public class Stage extends PApplet {
 
 //    public static void main(String[] args) throws Exception {
     public static void main(String[] args) {
+
+        IntType a = new IntType(5);
+        IntType b = a;
+        a = new IntType(3);
+        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
+
+        a = b;
+        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
+
+        b = new IntType(8);
+        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
+
+        a = b;
+        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
+        b.setValue(1);
+        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
+
+
         // Parser for command line options
         if (!readOptions (args)) System.exit(1);
 
@@ -103,7 +122,7 @@ public class Stage extends PApplet {
         StageTree t = (StageTree)result.getTree();
 
         st = t;
-/*
+
         // Generate a file for the AST (option -ast file)
         if (astfile != null) {
             File ast = new File(astfile);
@@ -120,6 +139,7 @@ public class Stage extends PApplet {
 
         System.out.println("CHECKING THINGS! UEUEUEUE");
 
+/*
         SemanticsFilters sem = new SemanticsFilters(t, true);
         sem.checkFilters();
 
@@ -237,6 +257,7 @@ public class Stage extends PApplet {
     }
 
     PShader shader;
+    Player player;
 
     public void setup() {
         size(200,200,OPENGL);
@@ -244,7 +265,7 @@ public class Stage extends PApplet {
         shader = loadShader("landscape.glsl");
         shader.set("resolution", (float)width, (float)height);
 
-        Player player = new Player(this, st, null, true);
+        player = new Player(this, st, null, true);
     }
 
     public void draw() {
@@ -255,6 +276,8 @@ public class Stage extends PApplet {
         rect(0, 0, width, height);
 
         frame.setTitle("frame: " + frameCount + " - fps: " + frameRate);
+
+        player.loop((float)(millis()/1000.0));
     }
 }
 

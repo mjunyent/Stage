@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public enum Types {
     //ENUM       NAME        Class              Func    Filt    ArrayOf
-    VOID_T      ("void",     null,              true,   true,   null),
+    VOID_T      ("void",     VoidType.class,    true,   true,   null),
 
     INT_T       ("int",      IntType.class,     true,   true,   null),
     A_INT_T     ("0_int",    ArrayType.class,   true,   false,  Types.INT_T),
@@ -89,7 +89,7 @@ public enum Types {
     public TypeInterface getInstance() {
         try {
             TypeInterface tp = (TypeInterface) cl.newInstance();
-            if(arrayOf != null) ((ArrayType) tp).setType(this); //TODO GIVE TYPE AND TYPE OF ARRAY.
+            if(arrayOf != null) ((ArrayType) tp).setType(this);
             return tp;
         } catch (InstantiationException e) { e.printStackTrace(); } catch (IllegalAccessException e) { e.printStackTrace(); }
         return null;

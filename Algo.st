@@ -30,6 +30,8 @@ FIRST:
 	int variable = 0;
 	float p;
 	vec4 n = vec4(0.0,0.0,0.0,0.0);
+	println(3);
+
 	/*
 	video v1 = video("nomdelfitxer");
 	video v2 = video("nomdelfitxer");
@@ -43,9 +45,14 @@ FIRST:
 	music.play();*/
 
 LOOP:
-	variable = variable+1;
-	p = square(p);
-	n.z = p;
+	p = p+1.0;
+	println(p);
+//	variable = variable+1;
+//	p = square(p);
+//	n.z = p;
+	
+LAST:
+	println(9.0);
 }
 
 function float square(float num) {

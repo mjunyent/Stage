@@ -162,9 +162,11 @@ public class SemanticsFunctions {
                 if(inst.getChild(0).getType() == StageLexer.ARRAY) {
                     varType = Types.getByArrayTypeFunctions(inst.getChild(0).getChild(0).getText());
                     if(inst.getChild(0).getChild(1).getType() != StageLexer.INT) throw new RuntimeException("Array declaration parameter can only be an integer");
+                    inst.getChild(0).getChild(1).setIntValue();
                 } else {
                     varType = Types.getByNameFunctions(inst.getChild(0).getText());
                 }
+                inst.getChild(0).setVarType(varType);
 
                 String varName = inst.getChild(1).getText();
                 if(inst.getChildCount() > 2) {
@@ -212,6 +214,7 @@ public class SemanticsFunctions {
             case StageLexer.ID:
             case StageLexer.FUNCALL:
                 getExpressionType(inst, symbol_table);
+                break;
             case StageLexer.TIMECALL:
                 getExpressionType(inst.getChild(0), symbol_table);
                 if(getExpressionType(inst.getChild(1), symbol_table) != Types.FLOAT_T
@@ -225,8 +228,6 @@ public class SemanticsFunctions {
                 break;
             default:
                 throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
-
-
         }
     }
 

@@ -13,9 +13,19 @@ public class FunctionDispatcher {
         public float endTime;
         public boolean init;
         public boolean fin;
-        public StageStack stack; //TODO
+        public StageStack stack;
 
-        public FuncTime(String name, float s, float e) { fname = name; startTime = s; endTime = e; init = false; fin = false; }
+        public FuncTime(String name, float s, float e) {
+            fname = name; startTime = s; endTime = e;
+            init = false; fin = false;
+            stack = new StageStack();
+        }
+
+        public FuncTime(String name, float s, float e, StageStack st) {
+            fname = name; startTime = s; endTime = e;
+            init = false; fin = false;
+            stack = st;
+        }
     }
     private HashMap<String, FunctionSignature> function_list;
     private LinkedList<FuncTime> callList;
@@ -36,6 +46,7 @@ public class FunctionDispatcher {
             FuncTime ft = callList.get(i);
 
             if(time > ft.endTime) { //func already ended.
+                System.out.println(ft.fname + " hue " + ft.endTime + "-" + time);
                 if(ft.fin) callList.remove(i); //already ended, remove.
                 else { //not ended but finished, end and remove.
                    executeFunc(ft, player.LAST);
@@ -43,11 +54,13 @@ public class FunctionDispatcher {
                 }
             } else if(time > ft.startTime) { //func has started some time ago.
                 if(!ft.init) {
-                    executeFunc(ft, player.START);
+                    executeFunc(ft, player.FIRST);
                     ft.init = true;
                 }
                 executeFunc(ft, player.LOOP);
             } //else func hasn't started.
+
+//            callList.set(i, ft);
         }
     }
 
@@ -55,12 +68,18 @@ public class FunctionDispatcher {
         callList.addLast(new FuncTime(fname,start,end));
     }
 
+    public void addFunc(String fname, float start, float end, StageStack st) {
+        callList.addLast(new FuncTime(fname,start,end,st));
+    }
+
     private void executeFunc(FuncTime ft, int what) {
         if(!function_list.containsKey(ft.fname)) throw new RuntimeException("Dispatcher didn't find " + ft.fname + ". This shouldn't happen");
         FunctionSignature fs = function_list.get(ft.fname);
 
-//        interp.run(fs, what);
-//        if(interp.quit()) ft.endTime = -1; //next iteration func last will be called.
-//        if(interp.ret()) { ft.endTime = -1; ft.endTime = -1; } //next iteration func will be removed.
+        Interpreter interp = player.getInterpreter();
+
+        interp.run(fs, what, ft.stack);
+        if(interp.quit()) ft.endTime = -1; //next iteration func last will be called.
+        if(interp.ret()) { ft.endTime = -1; ft.fin = true; } //next iteration func will be removed.
     }
 }

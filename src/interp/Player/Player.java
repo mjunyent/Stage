@@ -21,16 +21,17 @@ import processing.opengl.*;
  * Created by marc on 30/04/14.
  */
 public class Player {
-    public static int START = 0;
-    public static int LOOP = 1;
-    public static int LAST = 2;
+    public static final int FIRST = 0;
+    public static final int LOOP = 1;
+    public static final int LAST = 2;
 
     private HashMap<String, FunctionSignature> function_list;
     private HashMap<String, FilterSignature> filter_list;
     private StageTree tree;
     private PApplet screen;
-//    private SceneGraph scene_graph;
+    private SceneGraph scene_graph;
     private FunctionDispatcher func_disp;
+    private Interpreter interpreter;
 
 
     private boolean debug;
@@ -63,8 +64,11 @@ public class Player {
         compileShaders();
 
         func_disp = new FunctionDispatcher(tree, function_list, this);
+        interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
 
     }
+
+    public Interpreter getInterpreter() { return interpreter; }
 
     private void compileShaders() {
         File file = new File("./" + folder);
@@ -79,5 +83,9 @@ public class Player {
             String filter_name = pairs.getKey();
             fs.shader = screen.loadShader(folder + filter_name + ".glsl"); //TODO , "resources/pass.vert");
         }
+    }
+
+    public void loop(float time) {
+        func_disp.process(time);
     }
 }

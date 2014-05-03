@@ -13,19 +13,16 @@ public class ArrayType implements TypeInterface {
         array = new ArrayList<TypeInterface>();
     }
 
-    public ArrayType(Types t, int size) {
-        general_type = t;
-        array_type = t.getArrayOf();
-
-        array = new ArrayList<TypeInterface>();
-        for(int i=0; i<size; i++) {
-            array.add(array_type.getInstance());
-        }
-    }
-
     public void setType(Types t) {
         general_type = t;
         array_type = t.getArrayOf();
+    }
+
+    public void setSize(IntType s) {
+        array = new ArrayList<TypeInterface>();
+        for(int i=0; i<s.getValue(); i++) {
+            array.add(array_type.getInstance());
+        }
     }
 
     public void setValue(int pos, TypeInterface obj) {

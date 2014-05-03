@@ -17,6 +17,8 @@ public class StageTree extends CommonTree {
         return (StageTree) super.getChild(i);
     }
 
+    public TypeInterface getValue() { return value; }
+
     public Types getVarType() { return type; }
     public void setVarType(Types t) { type = t; }
 
