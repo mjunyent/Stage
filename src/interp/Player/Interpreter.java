@@ -108,17 +108,13 @@ public class Interpreter {
                     }
                     current_stack.add(varName, var);
                 } else { //TODO be careful with what you copy and not! Second parameter is makecopy ALWAYS.
-                    System.out.println("HEHLO" + varName + "-" + evaluateExpr(inst.getChild(2), true).getTypeName().getName());
-                    if(varName.equals("vares")) System.out.println(((IntType)evaluateExpr(inst.getChild(2), true)).getValue());
-                    if(varName.equals("vares")) System.out.println("NEIN: " + ((IntType)inst.getChild(2).getValue()).getValue());
-                    if(varName.equals("vares")) System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                     current_stack.add(varName, evaluateExpr(inst.getChild(2), true));
                 }
                 break;
             case StageLexer.ASSIGN: //TODO fix this this this this this NOW.
-//                TypeInterface leftT = evaluateExpr(inst.getChild(0), false); //pass left whatever by reference.
+                TypeInterface leftT = evaluateExpr(inst.getChild(0), false); //pass left whatever by reference.
                 TypeInterface rightT = evaluateExpr(inst.getChild(1), true); //make a copy of right whatever.
-                setValue(inst.getChild(0), rightT);
+                leftT.set(rightT);
                 break;
             case StageLexer.WHILE:
                 BoolType w_condition = (BoolType) evaluateExpr(inst.getChild(0), false);
@@ -187,47 +183,15 @@ public class Interpreter {
         }
     }
 
-    private void setValue(StageTree exp, TypeInterface right) {
-        switch (exp.getType()) {
-            case StageLexer.ID: //TODO ADD UPDATE.
-                current_stack.getVar(exp.getText()).set(right);
-                break;
-            case StageLexer.ARRAY:
-                ArrayType leftT = (ArrayType)current_stack.getVar(exp.getChild(0).getText());
-                TypeInterface pos = evaluateExpr(exp.getChild(1), false);
-                leftT.callMethod("[", Arrays.asList(pos)).set(right);
-                break;
-            case StageLexer.MEMBER:
-                TypeInterface m_leftT = evaluateExpr(exp.getChild(0), false);
-
-                StageTree node = exp.getChild(1);
-                switch (node.getType()) {
-                    case StageLexer.ID:
-                        m_leftT.getAttribute(node.getText()).set(right);
-                        break;
-                    case StageLexer.FUNCALL:
-                        String fname = node.getChild(0).getText();
-                        ArrayList<TypeInterface> args = new ArrayList<TypeInterface>();
-                        for(int i=0; i<node.getChild(1).getChildCount(); i++) {
-                            args.add(evaluateExpr(node.getChild(1).getChild(i), false));
-                        }
-                        m_leftT.callMethod(fname, args).set(right);
-                        break;
-                    case StageLexer.ARRAY: //TODO arrays as IntType not necessary, maybe other types.
-                        String name = node.getChild(0).getText();
-                        TypeInterface m_pos = evaluateExpr(node.getChild(1), false);
-                        ((ArrayType)m_leftT.getAttribute(name)).callMethod("[", Arrays.asList(m_pos)).set(right);
-                        break;
-                    default:
-                        throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
-                }
-                break;
-            default:
-                throw new RuntimeException("This is wrong, so wrong. Could not give value in assignment.");
-        }
-    }
-
-    private TypeInterface evaluateExpr(StageTree exp, boolean copy) {
+    /*
+     * Hardcoded values (int,float,char,string,bool) always passed by copy.
+     * Funcall returns always passed by copy (return does it). TODO
+     *  Array passed by copy if specified.
+     *  Member passed by copy if specified.
+     *  Id passed by copy if specified.
+     * Operators always passed by copy.
+     */
+    private TypeInterface evaluateExpr(StageTree exp, boolean getByReference) {
         switch (exp.getType()) {
             case StageLexer.INT:
             case StageLexer.FLOAT:
@@ -252,31 +216,61 @@ public class Interpreter {
             case StageLexer.ARRAY:
                 TypeInterface leftT = current_stack.getVar(exp.getChild(0).getText());
                 TypeInterface pos = (IntType) evaluateExpr(exp.getChild(1), false);
-                return leftT.callMethod("[", Arrays.asList(pos));
+
+                if(getByReference) return leftT.callMethod("[", Arrays.asList(pos));
+                else {
+                    TypeInterface ret = exp.getVarType().getInstance();
+                    ret.set(leftT.callMethod("[", Arrays.asList(pos)));
+                    return ret;
+                }
             case StageLexer.MEMBER:
                 TypeInterface m_leftT = evaluateExpr(exp.getChild(0), false);
 
                 StageTree node = exp.getChild(1);
                 switch (node.getType()) {
                     case StageLexer.ID:
-                        return m_leftT.getAttribute(node.getText());
+                        TypeInterface m = m_leftT.getAttribute(node.getText());
+                        if(getByReference) return m;
+                        else {
+                            TypeInterface r = m.getTypeName().getInstance();
+                            r.set(m);
+                            return r;
+                        }
                     case StageLexer.FUNCALL:
                         String fname = node.getChild(0).getText();
                         ArrayList<TypeInterface> args = new ArrayList<TypeInterface>();
                         for(int i=0; i<node.getChild(1).getChildCount(); i++) {
                             args.add(evaluateExpr(node.getChild(1).getChild(i), false));
                         }
-                        return m_leftT.callMethod(fname, args);
+                        TypeInterface fm = m_leftT.callMethod(fname, args);
+                        if(getByReference) return fm;
+                        else {
+                            TypeInterface r = fm.getTypeName().getInstance();
+                            r.set(fm);
+                            return r;
+                        }
                     case StageLexer.ARRAY:
                         String name = node.getChild(0).getText();
                         TypeInterface m_pos = evaluateExpr(node.getChild(1), false);
-                        return m_leftT.getAttribute(name).callMethod("[", Arrays.asList(m_pos));
+                        TypeInterface am = m_leftT.getAttribute(name).callMethod("[", Arrays.asList(m_pos));
+                        if(getByReference) return am;
+                        else {
+                            TypeInterface r = am.getTypeName().getInstance();
+                            r.set(am);
+                            return r;
+                        }
                     default:
                         throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
                 }
             case StageLexer.ID:
                 //TODO add builtin vars.
-                return current_stack.getVar(exp.getText());
+                TypeInterface tid = current_stack.getVar(exp.getText());
+                if(getByReference) return tid;
+                else {
+                    TypeInterface r = tid.getTypeName().getInstance();
+                    r.set(tid);
+                    return tid;
+                }
         }
 
         //One child operands.

@@ -5,9 +5,6 @@ import interp.Types.*;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by marc on 29/04/14.
- */
 public class FunctionGlobalFuncs {
     private static final FunctionList table;
     static {
