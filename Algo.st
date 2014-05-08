@@ -29,9 +29,10 @@ function main() {
 FIRST:
 	int[5] cosa;
 	int variable = 0;
-	float p = 5.0;
+	float p = 0.0;
 //	vec4 n = vec4(0.0,0.0,0.0,0.0);
 	println(3);
+	println(p);
 	vec4 m;
 	m.x = 6.0;
 	println(m.x);
@@ -51,24 +52,17 @@ FIRST:
 	music.play();*/
 
 LOOP:
-	p = p+1.0;
-	//println(p);
-	
-	cosa[0] = cosa[1]+1;
-	//println(cosa[0]);
-	cosa[1] = cosa[0];
-	if(cosa[1] == 1) {
-		cosa[1] = cosa[1]-2;
-	}
-	
-	int vares = 1;
 	println(true);
-	println(vares);
-	while(vares<5) {
-		println(8.8);
-		println(cosa[vares]);
-		vares = vares+1;
-	}
+	println(p);
+	float m = 4.0;
+	float k = square(m);
+	println(k);
+	println(m);
+	p = p+1.0;
+	
+	println(cube(m));
+	println(m);
+	//println(p);
 	
 //	variable = variable+1;
 //	p = square(p);
@@ -78,9 +72,23 @@ LAST:
 	println(9.0);
 }
 
+function float cube(float num) {
+FIRST:
+	num = num*square(num);	
+LOOP:
+	println(false);
+LAST:
+	return num;
+}
+
 function float square(float num) {
 FIRST:
-	return num*num;
+num = num*num;
+LOOP:
+//return a*a-1.0;
+LAST:
+return num;
+//	return num*num;
 }
 
 

@@ -50,18 +50,18 @@ public class Interpreter {
                 if(func.first == null) return;
                 current_stack.pushScope();
                 runFuncs(func.first);
-                System.out.println("FIRST");
-                current_stack.printAllScopes();
+//                System.out.println("FIRST");
+//                current_stack.printAllScopes();
                 break;
             case Player.LOOP:
                 if(func.loop == null) return;
                 current_stack.pushScope();
                 runFuncs(func.loop);
-                System.out.println("LOOP");
-                current_stack.printAllScopes();
+//                System.out.println("LOOP");
+//                current_stack.printAllScopes();
                 current_stack.popScope();
-                System.out.println("LOOP AFTER");
-                current_stack.printAllScopes();
+//                System.out.println("LOOP AFTER");
+//                current_stack.printAllScopes();
                 break;
             case Player.LAST:
                 if(func.last == null) return;
@@ -107,13 +107,13 @@ public class Interpreter {
                         ((ArrayType) var).setSize(size);
                     }
                     current_stack.add(varName, var);
-                } else { //TODO be careful with what you copy and not! Second parameter is makecopy ALWAYS.
+                } else {
                     current_stack.add(varName, evaluateExpr(inst.getChild(2), true));
                 }
                 break;
-            case StageLexer.ASSIGN: //TODO fix this this this this this NOW.
-                TypeInterface leftT = evaluateExpr(inst.getChild(0), false); //pass left whatever by reference.
-                TypeInterface rightT = evaluateExpr(inst.getChild(1), true); //make a copy of right whatever.
+            case StageLexer.ASSIGN:
+                TypeInterface leftT = evaluateExpr(inst.getChild(0), true); //pass left whatever by reference.
+                TypeInterface rightT = evaluateExpr(inst.getChild(1), false); //make a copy of right whatever.
                 leftT.set(rightT);
                 break;
             case StageLexer.WHILE:
@@ -163,9 +163,8 @@ public class Interpreter {
                 FunctionSignature fs = function_list.get(funname);
 
                 for(int i=0; i<argst.getChildCount(); i++) {
-                    fun_stack.add(fs.args_names.get(i), evaluateExpr(argst.getChild(i), false));
+                    fun_stack.add(fs.args_names.get(i), evaluateExpr(argst.getChild(i), true));
                 }
-//TODO check what's by copy and what's not.
                 func_disp.addFunc(funname, stTime.getValue(), edTime.getValue(), fun_stack);
                 break;
             case StageLexer.RETURN:
@@ -224,7 +223,7 @@ public class Interpreter {
                     return ret;
                 }
             case StageLexer.MEMBER:
-                TypeInterface m_leftT = evaluateExpr(exp.getChild(0), false);
+                TypeInterface m_leftT = evaluateExpr(exp.getChild(0), getByReference);
 
                 StageTree node = exp.getChild(1);
                 switch (node.getType()) {
@@ -269,7 +268,7 @@ public class Interpreter {
                 else {
                     TypeInterface r = tid.getTypeName().getInstance();
                     r.set(tid);
-                    return tid;
+                    return r;
                 }
         }
 
@@ -291,7 +290,6 @@ public class Interpreter {
     }
 
     private TypeInterface getFuncReturn(String name, ArrayList<TypeInterface> args) {
-        System.out.println("CALLING FUNC INNER. INTERPRETER 248, HUEHUE" + name);
         FunctionSignature fs = function_list.get(name);
         StageStack old_stack = current_stack;
 
