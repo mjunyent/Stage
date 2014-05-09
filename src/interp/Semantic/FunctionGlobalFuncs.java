@@ -16,6 +16,8 @@ public class FunctionGlobalFuncs {
         table.add("println", new Types[] { Types.INT_T }, Types.VOID_T);
         table.add("println", new Types[] { Types.FLOAT_T }, Types.VOID_T);
         table.add("println", new Types[] { Types.BOOL_T }, Types.VOID_T);
+        table.add("println", new Types[] { Types.CHAR_T }, Types.VOID_T);
+        table.add("println", new Types[] { Types.STRING_T }, Types.VOID_T);
     }
 
     public static FunctionList getTable() {
@@ -30,6 +32,10 @@ public class FunctionGlobalFuncs {
                 System.out.println("Float value: " + ((FloatType)args.get(0)).getValue());
             } else if(args.get(0).getTypeName() == Types.BOOL_T) {
                 System.out.println("Bool value: " + ((BoolType)args.get(0)).getValue());
+            } else if(args.get(0).getTypeName() == Types.CHAR_T) {
+                System.out.println("Char value: " + ((CharType)args.get(0)).getValue());
+            } else if(args.get(0).getTypeName() == Types.STRING_T) {
+                System.out.println(((StringType)args.get(0)).getValue());
             }
             return Types.VOID_T.getInstance();
         }

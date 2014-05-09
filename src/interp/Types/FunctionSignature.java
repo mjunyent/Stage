@@ -16,7 +16,7 @@ public class FunctionSignature {
     public StageTree root = null;
     public StageTree first = null, loop = null, last = null;
     public int id = -1;
-    public List<TypeInterface> arg_types;
+//    public List<TypeInterface> arg_types; saved in stack.
 
     public FunctionSignature() { }
 
@@ -24,6 +24,13 @@ public class FunctionSignature {
         this.name = name;
         this.args = args;
         this.ret = ret;
+    }
+
+    public FunctionSignature(String name, List<Types> args, Types ret, int id) {
+        this.name = name;
+        this.args = args;
+        this.ret = ret;
+        this.id = id;
     }
 
     @Override

@@ -86,310 +86,314 @@ digraph {
   n53 [label="."];
   n54 [label="m"];
   n55 [label="x"];
-  n56 [label="LOOP:"];
-  n56 [label="LOOP:"];
+  n56 [label="TIMECALL"];
+  n56 [label="TIMECALL"];
   n57 [label="FUNCALL"];
   n57 [label="FUNCALL"];
-  n58 [label="println"];
+  n58 [label="printFC"];
   n59 [label="ARGLIST"];
   n59 [label="ARGLIST"];
-  n60 [label="true"];
-  n61 [label="FUNCALL"];
-  n61 [label="FUNCALL"];
-  n62 [label="println"];
-  n63 [label="ARGLIST"];
-  n63 [label="ARGLIST"];
-  n64 [label="p"];
-  n65 [label="DECLARE"];
-  n65 [label="DECLARE"];
-  n66 [label="float"];
-  n67 [label="m"];
-  n68 [label="4.0"];
-  n69 [label="DECLARE"];
-  n69 [label="DECLARE"];
-  n70 [label="float"];
-  n71 [label="k"];
-  n72 [label="FUNCALL"];
-  n72 [label="FUNCALL"];
-  n73 [label="square"];
-  n74 [label="ARGLIST"];
-  n74 [label="ARGLIST"];
-  n75 [label="m"];
-  n76 [label="FUNCALL"];
-  n76 [label="FUNCALL"];
-  n77 [label="println"];
-  n78 [label="ARGLIST"];
-  n78 [label="ARGLIST"];
-  n79 [label="k"];
-  n80 [label="FUNCALL"];
-  n80 [label="FUNCALL"];
-  n81 [label="println"];
-  n82 [label="ARGLIST"];
-  n82 [label="ARGLIST"];
-  n83 [label="m"];
-  n84 [label=":="];
-  n84 [label=":="];
-  n85 [label="p"];
-  n86 [label="+"];
-  n86 [label="+"];
-  n87 [label="p"];
-  n88 [label="1.0"];
-  n89 [label="FUNCALL"];
-  n89 [label="FUNCALL"];
-  n90 [label="println"];
-  n91 [label="ARGLIST"];
-  n91 [label="ARGLIST"];
-  n92 [label="FUNCALL"];
-  n92 [label="FUNCALL"];
-  n93 [label="cube"];
-  n94 [label="ARGLIST"];
-  n94 [label="ARGLIST"];
-  n95 [label="m"];
-  n96 [label="FUNCALL"];
-  n96 [label="FUNCALL"];
-  n97 [label="println"];
-  n98 [label="ARGLIST"];
-  n98 [label="ARGLIST"];
-  n99 [label="m"];
-  n100 [label="LAST:"];
-  n100 [label="LAST:"];
-  n101 [label="FUNCALL"];
-  n101 [label="FUNCALL"];
-  n102 [label="println"];
-  n103 [label="ARGLIST"];
-  n103 [label="ARGLIST"];
-  n104 [label="9.0"];
-  n105 [label="function"];
-  n105 [label="function"];
-  n106 [label="cube"];
-  n107 [label="float"];
-  n108 [label="PARAMS"];
-  n108 [label="PARAMS"];
-  n109 [label="PARAM"];
-  n109 [label="PARAM"];
-  n110 [label="float"];
-  n111 [label="num"];
-  n112 [label="FIRST:"];
-  n112 [label="FIRST:"];
-  n113 [label=":="];
-  n113 [label=":="];
-  n114 [label="num"];
-  n115 [label="*"];
-  n115 [label="*"];
+  n60 [label="p"];
+  n61 [label="10.0"];
+  n62 [label="10000.0"];
+  n63 [label="TIMECALL"];
+  n63 [label="TIMECALL"];
+  n64 [label="FUNCALL"];
+  n64 [label="FUNCALL"];
+  n65 [label="printFC"];
+  n66 [label="ARGLIST"];
+  n66 [label="ARGLIST"];
+  n67 [label="-"];
+  n67 [label="-"];
+  n68 [label="p"];
+  n69 [label="10.0"];
+  n70 [label="14.0"];
+  n71 [label="18.0"];
+  n72 [label="LOOP:"];
+  n72 [label="LOOP:"];
+  n73 [label=":="];
+  n73 [label=":="];
+  n74 [label="p"];
+  n75 [label="+"];
+  n75 [label="+"];
+  n76 [label="p"];
+  n77 [label="1.0"];
+  n78 [label="LAST:"];
+  n78 [label="LAST:"];
+  n79 [label="FUNCALL"];
+  n79 [label="FUNCALL"];
+  n80 [label="println"];
+  n81 [label="ARGLIST"];
+  n81 [label="ARGLIST"];
+  n82 [label="9.0"];
+  n83 [label="function"];
+  n83 [label="function"];
+  n84 [label="cube"];
+  n85 [label="float"];
+  n86 [label="PARAMS"];
+  n86 [label="PARAMS"];
+  n87 [label="PARAM"];
+  n87 [label="PARAM"];
+  n88 [label="float"];
+  n89 [label="num"];
+  n90 [label="FIRST:"];
+  n90 [label="FIRST:"];
+  n91 [label=":="];
+  n91 [label=":="];
+  n92 [label="num"];
+  n93 [label="*"];
+  n93 [label="*"];
+  n94 [label="num"];
+  n95 [label="FUNCALL"];
+  n95 [label="FUNCALL"];
+  n96 [label="square"];
+  n97 [label="ARGLIST"];
+  n97 [label="ARGLIST"];
+  n98 [label="num"];
+  n99 [label="LOOP:"];
+  n99 [label="LOOP:"];
+  n100 [label="FUNCALL"];
+  n100 [label="FUNCALL"];
+  n101 [label="println"];
+  n102 [label="ARGLIST"];
+  n102 [label="ARGLIST"];
+  n103 [label="false"];
+  n104 [label="LAST:"];
+  n104 [label="LAST:"];
+  n105 [label="return"];
+  n105 [label="return"];
+  n106 [label="num"];
+  n107 [label="function"];
+  n107 [label="function"];
+  n108 [label="square"];
+  n109 [label="float"];
+  n110 [label="PARAMS"];
+  n110 [label="PARAMS"];
+  n111 [label="PARAM"];
+  n111 [label="PARAM"];
+  n112 [label="float"];
+  n113 [label="num"];
+  n114 [label="FIRST:"];
+  n114 [label="FIRST:"];
+  n115 [label=":="];
+  n115 [label=":="];
   n116 [label="num"];
-  n117 [label="FUNCALL"];
-  n117 [label="FUNCALL"];
-  n118 [label="square"];
-  n119 [label="ARGLIST"];
-  n119 [label="ARGLIST"];
-  n120 [label="num"];
-  n121 [label="LOOP:"];
-  n121 [label="LOOP:"];
-  n122 [label="FUNCALL"];
-  n122 [label="FUNCALL"];
-  n123 [label="println"];
-  n124 [label="ARGLIST"];
-  n124 [label="ARGLIST"];
-  n125 [label="false"];
-  n126 [label="LAST:"];
-  n126 [label="LAST:"];
-  n127 [label="return"];
-  n127 [label="return"];
-  n128 [label="num"];
-  n129 [label="function"];
-  n129 [label="function"];
-  n130 [label="square"];
-  n131 [label="float"];
-  n132 [label="PARAMS"];
-  n132 [label="PARAMS"];
-  n133 [label="PARAM"];
-  n133 [label="PARAM"];
-  n134 [label="float"];
-  n135 [label="num"];
-  n136 [label="FIRST:"];
-  n136 [label="FIRST:"];
-  n137 [label=":="];
-  n137 [label=":="];
-  n138 [label="num"];
-  n139 [label="*"];
-  n139 [label="*"];
-  n140 [label="num"];
-  n141 [label="num"];
-  n142 [label="LOOP:"];
+  n117 [label="*"];
+  n117 [label="*"];
+  n118 [label="num"];
+  n119 [label="num"];
+  n120 [label="LOOP:"];
+  n121 [label="LAST:"];
+  n121 [label="LAST:"];
+  n122 [label="return"];
+  n122 [label="return"];
+  n123 [label="num"];
+  n124 [label="function"];
+  n124 [label="function"];
+  n125 [label="printFC"];
+  n126 [label="float"];
+  n127 [label="PARAMS"];
+  n127 [label="PARAMS"];
+  n128 [label="PARAM"];
+  n128 [label="PARAM"];
+  n129 [label="float"];
+  n130 [label="num"];
+  n131 [label="FIRST:"];
+  n131 [label="FIRST:"];
+  n132 [label="FUNCALL"];
+  n132 [label="FUNCALL"];
+  n133 [label="println"];
+  n134 [label="ARGLIST"];
+  n134 [label="ARGLIST"];
+  n135 [label="\"FIRST!\""];
+  n136 [label="LOOP:"];
+  n136 [label="LOOP:"];
+  n137 [label="FUNCALL"];
+  n137 [label="FUNCALL"];
+  n138 [label="println"];
+  n139 [label="ARGLIST"];
+  n139 [label="ARGLIST"];
+  n140 [label="+"];
+  n140 [label="+"];
+  n141 [label="\"Frame number: \""];
+  n142 [label="num"];
   n143 [label="LAST:"];
   n143 [label="LAST:"];
-  n144 [label="return"];
-  n144 [label="return"];
-  n145 [label="num"];
-  n146 [label="LIST_FILTERS"];
-  n146 [label="LIST_FILTERS"];
-  n147 [label="filter"];
-  n147 [label="filter"];
-  n148 [label="INPUTS"];
-  n149 [label="testA"];
-  n150 [label="PARAMS"];
-  n150 [label="PARAMS"];
-  n151 [label="PARAM"];
-  n151 [label="PARAM"];
-  n152 [label="float"];
-  n153 [label="k"];
-  n154 [label="LIST_INSTR"];
-  n154 [label="LIST_INSTR"];
-  n155 [label="DECLARE"];
-  n155 [label="DECLARE"];
-  n156 [label="bool"];
-  n157 [label="t"];
-  n158 [label="true"];
-  n159 [label="DECLARE"];
-  n159 [label="DECLARE"];
-  n160 [label="int"];
-  n161 [label="p"];
-  n162 [label="5"];
-  n163 [label="DECLARE"];
-  n163 [label="DECLARE"];
-  n164 [label="float"];
-  n165 [label="n"];
-  n166 [label="5.0"];
-  n167 [label="DECLARE"];
-  n167 [label="DECLARE"];
-  n168 [label="float"];
-  n169 [label="m"];
-  n170 [label="*"];
-  n170 [label="*"];
-  n171 [label="n"];
-  n172 [label="5.0"];
-  n173 [label="DECLARE"];
-  n173 [label="DECLARE"];
-  n174 [label="vec4"];
-  n175 [label="hop"];
-  n176 [label="FUNCALL"];
-  n176 [label="FUNCALL"];
-  n177 [label="vec4"];
-  n178 [label="ARGLIST"];
-  n178 [label="ARGLIST"];
-  n179 [label="0.0"];
-  n180 [label="0.0"];
+  n144 [label="FUNCALL"];
+  n144 [label="FUNCALL"];
+  n145 [label="println"];
+  n146 [label="ARGLIST"];
+  n146 [label="ARGLIST"];
+  n147 [label="\"LAST!\""];
+  n148 [label="LIST_FILTERS"];
+  n148 [label="LIST_FILTERS"];
+  n149 [label="filter"];
+  n149 [label="filter"];
+  n150 [label="INPUTS"];
+  n151 [label="testA"];
+  n152 [label="PARAMS"];
+  n152 [label="PARAMS"];
+  n153 [label="PARAM"];
+  n153 [label="PARAM"];
+  n154 [label="float"];
+  n155 [label="k"];
+  n156 [label="LIST_INSTR"];
+  n156 [label="LIST_INSTR"];
+  n157 [label="DECLARE"];
+  n157 [label="DECLARE"];
+  n158 [label="bool"];
+  n159 [label="t"];
+  n160 [label="true"];
+  n161 [label="DECLARE"];
+  n161 [label="DECLARE"];
+  n162 [label="int"];
+  n163 [label="p"];
+  n164 [label="5"];
+  n165 [label="DECLARE"];
+  n165 [label="DECLARE"];
+  n166 [label="float"];
+  n167 [label="n"];
+  n168 [label="5.0"];
+  n169 [label="DECLARE"];
+  n169 [label="DECLARE"];
+  n170 [label="float"];
+  n171 [label="m"];
+  n172 [label="*"];
+  n172 [label="*"];
+  n173 [label="n"];
+  n174 [label="5.0"];
+  n175 [label="DECLARE"];
+  n175 [label="DECLARE"];
+  n176 [label="vec4"];
+  n177 [label="hop"];
+  n178 [label="FUNCALL"];
+  n178 [label="FUNCALL"];
+  n179 [label="vec4"];
+  n180 [label="ARGLIST"];
+  n180 [label="ARGLIST"];
   n181 [label="0.0"];
   n182 [label="0.0"];
-  n183 [label=":="];
-  n183 [label=":="];
-  n184 [label="."];
-  n184 [label="."];
-  n185 [label="hop"];
-  n186 [label="x"];
-  n187 [label="."];
-  n187 [label="."];
-  n188 [label="hop"];
-  n189 [label="y"];
-  n190 [label=":="];
-  n190 [label=":="];
-  n191 [label="."];
-  n191 [label="."];
-  n192 [label="hop"];
-  n193 [label="z"];
-  n194 [label="5.0"];
-  n195 [label="FUNCALL"];
-  n195 [label="FUNCALL"];
-  n196 [label="vec4"];
-  n197 [label="ARGLIST"];
-  n197 [label="ARGLIST"];
-  n198 [label="0.0"];
-  n199 [label="0.0"];
+  n183 [label="0.0"];
+  n184 [label="0.0"];
+  n185 [label=":="];
+  n185 [label=":="];
+  n186 [label="."];
+  n186 [label="."];
+  n187 [label="hop"];
+  n188 [label="x"];
+  n189 [label="."];
+  n189 [label="."];
+  n190 [label="hop"];
+  n191 [label="y"];
+  n192 [label=":="];
+  n192 [label=":="];
+  n193 [label="."];
+  n193 [label="."];
+  n194 [label="hop"];
+  n195 [label="z"];
+  n196 [label="5.0"];
+  n197 [label="FUNCALL"];
+  n197 [label="FUNCALL"];
+  n198 [label="vec4"];
+  n199 [label="ARGLIST"];
+  n199 [label="ARGLIST"];
   n200 [label="0.0"];
   n201 [label="0.0"];
-  n202 [label="while"];
-  n202 [label="while"];
-  n203 [label="not"];
-  n203 [label="not"];
-  n204 [label="t"];
-  n205 [label="LIST_INSTR"];
-  n205 [label="LIST_INSTR"];
-  n206 [label="DECLARE"];
-  n206 [label="DECLARE"];
-  n207 [label="float"];
-  n208 [label="p"];
-  n209 [label="."];
-  n209 [label="."];
-  n210 [label="hop"];
-  n211 [label="w"];
-  n212 [label=":="];
-  n212 [label=":="];
-  n213 [label="m"];
-  n214 [label="*"];
-  n214 [label="*"];
-  n215 [label="p"];
-  n216 [label="m"];
-  n217 [label="if"];
-  n217 [label="if"];
-  n218 [label="or"];
-  n218 [label="or"];
-  n219 [label="!="];
-  n219 [label="!="];
-  n220 [label="m"];
-  n221 [label="n"];
-  n222 [label="<"];
-  n222 [label="<"];
-  n223 [label="m"];
-  n224 [label="5.0"];
-  n225 [label="LIST_INSTR"];
-  n225 [label="LIST_INSTR"];
-  n226 [label=":="];
-  n226 [label=":="];
-  n227 [label="m"];
-  n228 [label="*"];
-  n228 [label="*"];
+  n202 [label="0.0"];
+  n203 [label="0.0"];
+  n204 [label="while"];
+  n204 [label="while"];
+  n205 [label="not"];
+  n205 [label="not"];
+  n206 [label="t"];
+  n207 [label="LIST_INSTR"];
+  n207 [label="LIST_INSTR"];
+  n208 [label="DECLARE"];
+  n208 [label="DECLARE"];
+  n209 [label="float"];
+  n210 [label="p"];
+  n211 [label="."];
+  n211 [label="."];
+  n212 [label="hop"];
+  n213 [label="w"];
+  n214 [label=":="];
+  n214 [label=":="];
+  n215 [label="m"];
+  n216 [label="*"];
+  n216 [label="*"];
+  n217 [label="p"];
+  n218 [label="m"];
+  n219 [label="if"];
+  n219 [label="if"];
+  n220 [label="or"];
+  n220 [label="or"];
+  n221 [label="!="];
+  n221 [label="!="];
+  n222 [label="m"];
+  n223 [label="n"];
+  n224 [label="<"];
+  n224 [label="<"];
+  n225 [label="m"];
+  n226 [label="5.0"];
+  n227 [label="LIST_INSTR"];
+  n227 [label="LIST_INSTR"];
+  n228 [label=":="];
+  n228 [label=":="];
   n229 [label="m"];
-  n230 [label="m"];
-  n231 [label="return"];
-  n231 [label="return"];
-  n232 [label="FUNCALL"];
-  n232 [label="FUNCALL"];
-  n233 [label="vec4"];
-  n234 [label="ARGLIST"];
-  n234 [label="ARGLIST"];
-  n235 [label="k"];
-  n236 [label="k"];
-  n237 [label="-"];
-  n237 [label="-"];
-  n238 [label="m"];
-  n239 [label="n"];
-  n240 [label="n"];
-  n241 [label="filter"];
-  n241 [label="filter"];
-  n242 [label="INPUTS"];
-  n242 [label="INPUTS"];
-  n243 [label="v1"];
-  n244 [label="v2"];
-  n245 [label="mix"];
-  n246 [label="PARAMS"];
-  n246 [label="PARAMS"];
-  n247 [label="PARAM"];
-  n247 [label="PARAM"];
-  n248 [label="float"];
-  n249 [label="m"];
-  n250 [label="LIST_INSTR"];
-  n250 [label="LIST_INSTR"];
-  n251 [label="return"];
-  n251 [label="return"];
-  n252 [label="+"];
-  n252 [label="+"];
-  n253 [label="*"];
-  n253 [label="*"];
-  n254 [label="ARRAY"];
-  n254 [label="ARRAY"];
-  n255 [label="v1"];
-  n256 [label="UV"];
-  n257 [label="m"];
-  n258 [label="*"];
-  n258 [label="*"];
-  n259 [label="ARRAY"];
-  n259 [label="ARRAY"];
-  n260 [label="v1"];
-  n261 [label="UV"];
-  n262 [label="-"];
-  n262 [label="-"];
-  n263 [label="1.0"];
-  n264 [label="m"];
+  n230 [label="*"];
+  n230 [label="*"];
+  n231 [label="m"];
+  n232 [label="m"];
+  n233 [label="return"];
+  n233 [label="return"];
+  n234 [label="FUNCALL"];
+  n234 [label="FUNCALL"];
+  n235 [label="vec4"];
+  n236 [label="ARGLIST"];
+  n236 [label="ARGLIST"];
+  n237 [label="k"];
+  n238 [label="k"];
+  n239 [label="-"];
+  n239 [label="-"];
+  n240 [label="m"];
+  n241 [label="n"];
+  n242 [label="n"];
+  n243 [label="filter"];
+  n243 [label="filter"];
+  n244 [label="INPUTS"];
+  n244 [label="INPUTS"];
+  n245 [label="v1"];
+  n246 [label="v2"];
+  n247 [label="mix"];
+  n248 [label="PARAMS"];
+  n248 [label="PARAMS"];
+  n249 [label="PARAM"];
+  n249 [label="PARAM"];
+  n250 [label="float"];
+  n251 [label="m"];
+  n252 [label="LIST_INSTR"];
+  n252 [label="LIST_INSTR"];
+  n253 [label="return"];
+  n253 [label="return"];
+  n254 [label="+"];
+  n254 [label="+"];
+  n255 [label="*"];
+  n255 [label="*"];
+  n256 [label="ARRAY"];
+  n256 [label="ARRAY"];
+  n257 [label="v1"];
+  n258 [label="UV"];
+  n259 [label="m"];
+  n260 [label="*"];
+  n260 [label="*"];
+  n261 [label="ARRAY"];
+  n261 [label="ARRAY"];
+  n262 [label="v1"];
+  n263 [label="UV"];
+  n264 [label="-"];
+  n264 [label="-"];
+  n265 [label="1.0"];
+  n266 [label="m"];
 
   n0 -> n1 // "ROOT" -> "LIST_FUNCTIONS"
   n1 -> n2 // "LIST_FUNCTIONS" -> "function"
@@ -446,214 +450,216 @@ digraph {
   n52 -> n53 // "ARGLIST" -> "."
   n53 -> n54 // "." -> "m"
   n53 -> n55 // "." -> "x"
-  n2 -> n56 // "function" -> "LOOP:"
-  n56 -> n57 // "LOOP:" -> "FUNCALL"
-  n57 -> n58 // "FUNCALL" -> "println"
+  n5 -> n56 // "FIRST:" -> "TIMECALL"
+  n56 -> n57 // "TIMECALL" -> "FUNCALL"
+  n57 -> n58 // "FUNCALL" -> "printFC"
   n57 -> n59 // "FUNCALL" -> "ARGLIST"
-  n59 -> n60 // "ARGLIST" -> "true"
-  n56 -> n61 // "LOOP:" -> "FUNCALL"
-  n61 -> n62 // "FUNCALL" -> "println"
-  n61 -> n63 // "FUNCALL" -> "ARGLIST"
-  n63 -> n64 // "ARGLIST" -> "p"
-  n56 -> n65 // "LOOP:" -> "DECLARE"
-  n65 -> n66 // "DECLARE" -> "float"
-  n65 -> n67 // "DECLARE" -> "m"
-  n65 -> n68 // "DECLARE" -> "4.0"
-  n56 -> n69 // "LOOP:" -> "DECLARE"
-  n69 -> n70 // "DECLARE" -> "float"
-  n69 -> n71 // "DECLARE" -> "k"
-  n69 -> n72 // "DECLARE" -> "FUNCALL"
-  n72 -> n73 // "FUNCALL" -> "square"
-  n72 -> n74 // "FUNCALL" -> "ARGLIST"
-  n74 -> n75 // "ARGLIST" -> "m"
-  n56 -> n76 // "LOOP:" -> "FUNCALL"
-  n76 -> n77 // "FUNCALL" -> "println"
-  n76 -> n78 // "FUNCALL" -> "ARGLIST"
-  n78 -> n79 // "ARGLIST" -> "k"
-  n56 -> n80 // "LOOP:" -> "FUNCALL"
-  n80 -> n81 // "FUNCALL" -> "println"
-  n80 -> n82 // "FUNCALL" -> "ARGLIST"
-  n82 -> n83 // "ARGLIST" -> "m"
-  n56 -> n84 // "LOOP:" -> ":="
-  n84 -> n85 // ":=" -> "p"
-  n84 -> n86 // ":=" -> "+"
-  n86 -> n87 // "+" -> "p"
-  n86 -> n88 // "+" -> "1.0"
-  n56 -> n89 // "LOOP:" -> "FUNCALL"
-  n89 -> n90 // "FUNCALL" -> "println"
-  n89 -> n91 // "FUNCALL" -> "ARGLIST"
-  n91 -> n92 // "ARGLIST" -> "FUNCALL"
-  n92 -> n93 // "FUNCALL" -> "cube"
-  n92 -> n94 // "FUNCALL" -> "ARGLIST"
-  n94 -> n95 // "ARGLIST" -> "m"
-  n56 -> n96 // "LOOP:" -> "FUNCALL"
-  n96 -> n97 // "FUNCALL" -> "println"
-  n96 -> n98 // "FUNCALL" -> "ARGLIST"
-  n98 -> n99 // "ARGLIST" -> "m"
-  n2 -> n100 // "function" -> "LAST:"
-  n100 -> n101 // "LAST:" -> "FUNCALL"
-  n101 -> n102 // "FUNCALL" -> "println"
-  n101 -> n103 // "FUNCALL" -> "ARGLIST"
-  n103 -> n104 // "ARGLIST" -> "9.0"
-  n1 -> n105 // "LIST_FUNCTIONS" -> "function"
-  n105 -> n106 // "function" -> "cube"
-  n105 -> n107 // "function" -> "float"
-  n105 -> n108 // "function" -> "PARAMS"
-  n108 -> n109 // "PARAMS" -> "PARAM"
-  n109 -> n110 // "PARAM" -> "float"
-  n109 -> n111 // "PARAM" -> "num"
-  n105 -> n112 // "function" -> "FIRST:"
-  n112 -> n113 // "FIRST:" -> ":="
-  n113 -> n114 // ":=" -> "num"
-  n113 -> n115 // ":=" -> "*"
-  n115 -> n116 // "*" -> "num"
-  n115 -> n117 // "*" -> "FUNCALL"
-  n117 -> n118 // "FUNCALL" -> "square"
-  n117 -> n119 // "FUNCALL" -> "ARGLIST"
-  n119 -> n120 // "ARGLIST" -> "num"
-  n105 -> n121 // "function" -> "LOOP:"
-  n121 -> n122 // "LOOP:" -> "FUNCALL"
-  n122 -> n123 // "FUNCALL" -> "println"
-  n122 -> n124 // "FUNCALL" -> "ARGLIST"
-  n124 -> n125 // "ARGLIST" -> "false"
-  n105 -> n126 // "function" -> "LAST:"
-  n126 -> n127 // "LAST:" -> "return"
-  n127 -> n128 // "return" -> "num"
-  n1 -> n129 // "LIST_FUNCTIONS" -> "function"
-  n129 -> n130 // "function" -> "square"
-  n129 -> n131 // "function" -> "float"
-  n129 -> n132 // "function" -> "PARAMS"
-  n132 -> n133 // "PARAMS" -> "PARAM"
-  n133 -> n134 // "PARAM" -> "float"
-  n133 -> n135 // "PARAM" -> "num"
-  n129 -> n136 // "function" -> "FIRST:"
-  n136 -> n137 // "FIRST:" -> ":="
-  n137 -> n138 // ":=" -> "num"
-  n137 -> n139 // ":=" -> "*"
-  n139 -> n140 // "*" -> "num"
-  n139 -> n141 // "*" -> "num"
-  n129 -> n142 // "function" -> "LOOP:"
-  n129 -> n143 // "function" -> "LAST:"
-  n143 -> n144 // "LAST:" -> "return"
-  n144 -> n145 // "return" -> "num"
-  n0 -> n146 // "ROOT" -> "LIST_FILTERS"
-  n146 -> n147 // "LIST_FILTERS" -> "filter"
-  n147 -> n148 // "filter" -> "INPUTS"
-  n147 -> n149 // "filter" -> "testA"
-  n147 -> n150 // "filter" -> "PARAMS"
-  n150 -> n151 // "PARAMS" -> "PARAM"
-  n151 -> n152 // "PARAM" -> "float"
-  n151 -> n153 // "PARAM" -> "k"
-  n147 -> n154 // "filter" -> "LIST_INSTR"
-  n154 -> n155 // "LIST_INSTR" -> "DECLARE"
-  n155 -> n156 // "DECLARE" -> "bool"
-  n155 -> n157 // "DECLARE" -> "t"
-  n155 -> n158 // "DECLARE" -> "true"
-  n154 -> n159 // "LIST_INSTR" -> "DECLARE"
-  n159 -> n160 // "DECLARE" -> "int"
-  n159 -> n161 // "DECLARE" -> "p"
-  n159 -> n162 // "DECLARE" -> "5"
-  n154 -> n163 // "LIST_INSTR" -> "DECLARE"
-  n163 -> n164 // "DECLARE" -> "float"
-  n163 -> n165 // "DECLARE" -> "n"
-  n163 -> n166 // "DECLARE" -> "5.0"
-  n154 -> n167 // "LIST_INSTR" -> "DECLARE"
-  n167 -> n168 // "DECLARE" -> "float"
-  n167 -> n169 // "DECLARE" -> "m"
-  n167 -> n170 // "DECLARE" -> "*"
-  n170 -> n171 // "*" -> "n"
-  n170 -> n172 // "*" -> "5.0"
-  n154 -> n173 // "LIST_INSTR" -> "DECLARE"
-  n173 -> n174 // "DECLARE" -> "vec4"
-  n173 -> n175 // "DECLARE" -> "hop"
-  n173 -> n176 // "DECLARE" -> "FUNCALL"
-  n176 -> n177 // "FUNCALL" -> "vec4"
-  n176 -> n178 // "FUNCALL" -> "ARGLIST"
-  n178 -> n179 // "ARGLIST" -> "0.0"
-  n178 -> n180 // "ARGLIST" -> "0.0"
-  n178 -> n181 // "ARGLIST" -> "0.0"
-  n178 -> n182 // "ARGLIST" -> "0.0"
-  n154 -> n183 // "LIST_INSTR" -> ":="
-  n183 -> n184 // ":=" -> "."
-  n184 -> n185 // "." -> "hop"
-  n184 -> n186 // "." -> "x"
-  n183 -> n187 // ":=" -> "."
-  n187 -> n188 // "." -> "hop"
-  n187 -> n189 // "." -> "y"
-  n154 -> n190 // "LIST_INSTR" -> ":="
-  n190 -> n191 // ":=" -> "."
-  n191 -> n192 // "." -> "hop"
-  n191 -> n193 // "." -> "z"
-  n190 -> n194 // ":=" -> "5.0"
-  n154 -> n195 // "LIST_INSTR" -> "FUNCALL"
-  n195 -> n196 // "FUNCALL" -> "vec4"
-  n195 -> n197 // "FUNCALL" -> "ARGLIST"
-  n197 -> n198 // "ARGLIST" -> "0.0"
-  n197 -> n199 // "ARGLIST" -> "0.0"
-  n197 -> n200 // "ARGLIST" -> "0.0"
-  n197 -> n201 // "ARGLIST" -> "0.0"
-  n154 -> n202 // "LIST_INSTR" -> "while"
-  n202 -> n203 // "while" -> "not"
-  n203 -> n204 // "not" -> "t"
-  n202 -> n205 // "while" -> "LIST_INSTR"
-  n205 -> n206 // "LIST_INSTR" -> "DECLARE"
-  n206 -> n207 // "DECLARE" -> "float"
-  n206 -> n208 // "DECLARE" -> "p"
-  n206 -> n209 // "DECLARE" -> "."
-  n209 -> n210 // "." -> "hop"
-  n209 -> n211 // "." -> "w"
-  n205 -> n212 // "LIST_INSTR" -> ":="
-  n212 -> n213 // ":=" -> "m"
-  n212 -> n214 // ":=" -> "*"
-  n214 -> n215 // "*" -> "p"
-  n214 -> n216 // "*" -> "m"
-  n154 -> n217 // "LIST_INSTR" -> "if"
-  n217 -> n218 // "if" -> "or"
-  n218 -> n219 // "or" -> "!="
-  n219 -> n220 // "!=" -> "m"
-  n219 -> n221 // "!=" -> "n"
-  n218 -> n222 // "or" -> "<"
-  n222 -> n223 // "<" -> "m"
-  n222 -> n224 // "<" -> "5.0"
-  n217 -> n225 // "if" -> "LIST_INSTR"
-  n225 -> n226 // "LIST_INSTR" -> ":="
-  n226 -> n227 // ":=" -> "m"
-  n226 -> n228 // ":=" -> "*"
-  n228 -> n229 // "*" -> "m"
-  n228 -> n230 // "*" -> "m"
-  n154 -> n231 // "LIST_INSTR" -> "return"
-  n231 -> n232 // "return" -> "FUNCALL"
-  n232 -> n233 // "FUNCALL" -> "vec4"
-  n232 -> n234 // "FUNCALL" -> "ARGLIST"
-  n234 -> n235 // "ARGLIST" -> "k"
-  n234 -> n236 // "ARGLIST" -> "k"
-  n234 -> n237 // "ARGLIST" -> "-"
-  n237 -> n238 // "-" -> "m"
-  n237 -> n239 // "-" -> "n"
-  n234 -> n240 // "ARGLIST" -> "n"
-  n146 -> n241 // "LIST_FILTERS" -> "filter"
-  n241 -> n242 // "filter" -> "INPUTS"
-  n242 -> n243 // "INPUTS" -> "v1"
-  n242 -> n244 // "INPUTS" -> "v2"
-  n241 -> n245 // "filter" -> "mix"
-  n241 -> n246 // "filter" -> "PARAMS"
-  n246 -> n247 // "PARAMS" -> "PARAM"
-  n247 -> n248 // "PARAM" -> "float"
-  n247 -> n249 // "PARAM" -> "m"
-  n241 -> n250 // "filter" -> "LIST_INSTR"
-  n250 -> n251 // "LIST_INSTR" -> "return"
-  n251 -> n252 // "return" -> "+"
-  n252 -> n253 // "+" -> "*"
-  n253 -> n254 // "*" -> "ARRAY"
-  n254 -> n255 // "ARRAY" -> "v1"
-  n254 -> n256 // "ARRAY" -> "UV"
-  n253 -> n257 // "*" -> "m"
-  n252 -> n258 // "+" -> "*"
-  n258 -> n259 // "*" -> "ARRAY"
-  n259 -> n260 // "ARRAY" -> "v1"
-  n259 -> n261 // "ARRAY" -> "UV"
-  n258 -> n262 // "*" -> "-"
-  n262 -> n263 // "-" -> "1.0"
-  n262 -> n264 // "-" -> "m"
+  n59 -> n60 // "ARGLIST" -> "p"
+  n56 -> n61 // "TIMECALL" -> "10.0"
+  n56 -> n62 // "TIMECALL" -> "10000.0"
+  n5 -> n63 // "FIRST:" -> "TIMECALL"
+  n63 -> n64 // "TIMECALL" -> "FUNCALL"
+  n64 -> n65 // "FUNCALL" -> "printFC"
+  n64 -> n66 // "FUNCALL" -> "ARGLIST"
+  n66 -> n67 // "ARGLIST" -> "-"
+  n67 -> n68 // "-" -> "p"
+  n67 -> n69 // "-" -> "10.0"
+  n63 -> n70 // "TIMECALL" -> "14.0"
+  n63 -> n71 // "TIMECALL" -> "18.0"
+  n2 -> n72 // "function" -> "LOOP:"
+  n72 -> n73 // "LOOP:" -> ":="
+  n73 -> n74 // ":=" -> "p"
+  n73 -> n75 // ":=" -> "+"
+  n75 -> n76 // "+" -> "p"
+  n75 -> n77 // "+" -> "1.0"
+  n2 -> n78 // "function" -> "LAST:"
+  n78 -> n79 // "LAST:" -> "FUNCALL"
+  n79 -> n80 // "FUNCALL" -> "println"
+  n79 -> n81 // "FUNCALL" -> "ARGLIST"
+  n81 -> n82 // "ARGLIST" -> "9.0"
+  n1 -> n83 // "LIST_FUNCTIONS" -> "function"
+  n83 -> n84 // "function" -> "cube"
+  n83 -> n85 // "function" -> "float"
+  n83 -> n86 // "function" -> "PARAMS"
+  n86 -> n87 // "PARAMS" -> "PARAM"
+  n87 -> n88 // "PARAM" -> "float"
+  n87 -> n89 // "PARAM" -> "num"
+  n83 -> n90 // "function" -> "FIRST:"
+  n90 -> n91 // "FIRST:" -> ":="
+  n91 -> n92 // ":=" -> "num"
+  n91 -> n93 // ":=" -> "*"
+  n93 -> n94 // "*" -> "num"
+  n93 -> n95 // "*" -> "FUNCALL"
+  n95 -> n96 // "FUNCALL" -> "square"
+  n95 -> n97 // "FUNCALL" -> "ARGLIST"
+  n97 -> n98 // "ARGLIST" -> "num"
+  n83 -> n99 // "function" -> "LOOP:"
+  n99 -> n100 // "LOOP:" -> "FUNCALL"
+  n100 -> n101 // "FUNCALL" -> "println"
+  n100 -> n102 // "FUNCALL" -> "ARGLIST"
+  n102 -> n103 // "ARGLIST" -> "false"
+  n83 -> n104 // "function" -> "LAST:"
+  n104 -> n105 // "LAST:" -> "return"
+  n105 -> n106 // "return" -> "num"
+  n1 -> n107 // "LIST_FUNCTIONS" -> "function"
+  n107 -> n108 // "function" -> "square"
+  n107 -> n109 // "function" -> "float"
+  n107 -> n110 // "function" -> "PARAMS"
+  n110 -> n111 // "PARAMS" -> "PARAM"
+  n111 -> n112 // "PARAM" -> "float"
+  n111 -> n113 // "PARAM" -> "num"
+  n107 -> n114 // "function" -> "FIRST:"
+  n114 -> n115 // "FIRST:" -> ":="
+  n115 -> n116 // ":=" -> "num"
+  n115 -> n117 // ":=" -> "*"
+  n117 -> n118 // "*" -> "num"
+  n117 -> n119 // "*" -> "num"
+  n107 -> n120 // "function" -> "LOOP:"
+  n107 -> n121 // "function" -> "LAST:"
+  n121 -> n122 // "LAST:" -> "return"
+  n122 -> n123 // "return" -> "num"
+  n1 -> n124 // "LIST_FUNCTIONS" -> "function"
+  n124 -> n125 // "function" -> "printFC"
+  n124 -> n126 // "function" -> "float"
+  n124 -> n127 // "function" -> "PARAMS"
+  n127 -> n128 // "PARAMS" -> "PARAM"
+  n128 -> n129 // "PARAM" -> "float"
+  n128 -> n130 // "PARAM" -> "num"
+  n124 -> n131 // "function" -> "FIRST:"
+  n131 -> n132 // "FIRST:" -> "FUNCALL"
+  n132 -> n133 // "FUNCALL" -> "println"
+  n132 -> n134 // "FUNCALL" -> "ARGLIST"
+  n134 -> n135 // "ARGLIST" -> "\"FIRST!\""
+  n124 -> n136 // "function" -> "LOOP:"
+  n136 -> n137 // "LOOP:" -> "FUNCALL"
+  n137 -> n138 // "FUNCALL" -> "println"
+  n137 -> n139 // "FUNCALL" -> "ARGLIST"
+  n139 -> n140 // "ARGLIST" -> "+"
+  n140 -> n141 // "+" -> "\"Frame number: \""
+  n140 -> n142 // "+" -> "num"
+  n124 -> n143 // "function" -> "LAST:"
+  n143 -> n144 // "LAST:" -> "FUNCALL"
+  n144 -> n145 // "FUNCALL" -> "println"
+  n144 -> n146 // "FUNCALL" -> "ARGLIST"
+  n146 -> n147 // "ARGLIST" -> "\"LAST!\""
+  n0 -> n148 // "ROOT" -> "LIST_FILTERS"
+  n148 -> n149 // "LIST_FILTERS" -> "filter"
+  n149 -> n150 // "filter" -> "INPUTS"
+  n149 -> n151 // "filter" -> "testA"
+  n149 -> n152 // "filter" -> "PARAMS"
+  n152 -> n153 // "PARAMS" -> "PARAM"
+  n153 -> n154 // "PARAM" -> "float"
+  n153 -> n155 // "PARAM" -> "k"
+  n149 -> n156 // "filter" -> "LIST_INSTR"
+  n156 -> n157 // "LIST_INSTR" -> "DECLARE"
+  n157 -> n158 // "DECLARE" -> "bool"
+  n157 -> n159 // "DECLARE" -> "t"
+  n157 -> n160 // "DECLARE" -> "true"
+  n156 -> n161 // "LIST_INSTR" -> "DECLARE"
+  n161 -> n162 // "DECLARE" -> "int"
+  n161 -> n163 // "DECLARE" -> "p"
+  n161 -> n164 // "DECLARE" -> "5"
+  n156 -> n165 // "LIST_INSTR" -> "DECLARE"
+  n165 -> n166 // "DECLARE" -> "float"
+  n165 -> n167 // "DECLARE" -> "n"
+  n165 -> n168 // "DECLARE" -> "5.0"
+  n156 -> n169 // "LIST_INSTR" -> "DECLARE"
+  n169 -> n170 // "DECLARE" -> "float"
+  n169 -> n171 // "DECLARE" -> "m"
+  n169 -> n172 // "DECLARE" -> "*"
+  n172 -> n173 // "*" -> "n"
+  n172 -> n174 // "*" -> "5.0"
+  n156 -> n175 // "LIST_INSTR" -> "DECLARE"
+  n175 -> n176 // "DECLARE" -> "vec4"
+  n175 -> n177 // "DECLARE" -> "hop"
+  n175 -> n178 // "DECLARE" -> "FUNCALL"
+  n178 -> n179 // "FUNCALL" -> "vec4"
+  n178 -> n180 // "FUNCALL" -> "ARGLIST"
+  n180 -> n181 // "ARGLIST" -> "0.0"
+  n180 -> n182 // "ARGLIST" -> "0.0"
+  n180 -> n183 // "ARGLIST" -> "0.0"
+  n180 -> n184 // "ARGLIST" -> "0.0"
+  n156 -> n185 // "LIST_INSTR" -> ":="
+  n185 -> n186 // ":=" -> "."
+  n186 -> n187 // "." -> "hop"
+  n186 -> n188 // "." -> "x"
+  n185 -> n189 // ":=" -> "."
+  n189 -> n190 // "." -> "hop"
+  n189 -> n191 // "." -> "y"
+  n156 -> n192 // "LIST_INSTR" -> ":="
+  n192 -> n193 // ":=" -> "."
+  n193 -> n194 // "." -> "hop"
+  n193 -> n195 // "." -> "z"
+  n192 -> n196 // ":=" -> "5.0"
+  n156 -> n197 // "LIST_INSTR" -> "FUNCALL"
+  n197 -> n198 // "FUNCALL" -> "vec4"
+  n197 -> n199 // "FUNCALL" -> "ARGLIST"
+  n199 -> n200 // "ARGLIST" -> "0.0"
+  n199 -> n201 // "ARGLIST" -> "0.0"
+  n199 -> n202 // "ARGLIST" -> "0.0"
+  n199 -> n203 // "ARGLIST" -> "0.0"
+  n156 -> n204 // "LIST_INSTR" -> "while"
+  n204 -> n205 // "while" -> "not"
+  n205 -> n206 // "not" -> "t"
+  n204 -> n207 // "while" -> "LIST_INSTR"
+  n207 -> n208 // "LIST_INSTR" -> "DECLARE"
+  n208 -> n209 // "DECLARE" -> "float"
+  n208 -> n210 // "DECLARE" -> "p"
+  n208 -> n211 // "DECLARE" -> "."
+  n211 -> n212 // "." -> "hop"
+  n211 -> n213 // "." -> "w"
+  n207 -> n214 // "LIST_INSTR" -> ":="
+  n214 -> n215 // ":=" -> "m"
+  n214 -> n216 // ":=" -> "*"
+  n216 -> n217 // "*" -> "p"
+  n216 -> n218 // "*" -> "m"
+  n156 -> n219 // "LIST_INSTR" -> "if"
+  n219 -> n220 // "if" -> "or"
+  n220 -> n221 // "or" -> "!="
+  n221 -> n222 // "!=" -> "m"
+  n221 -> n223 // "!=" -> "n"
+  n220 -> n224 // "or" -> "<"
+  n224 -> n225 // "<" -> "m"
+  n224 -> n226 // "<" -> "5.0"
+  n219 -> n227 // "if" -> "LIST_INSTR"
+  n227 -> n228 // "LIST_INSTR" -> ":="
+  n228 -> n229 // ":=" -> "m"
+  n228 -> n230 // ":=" -> "*"
+  n230 -> n231 // "*" -> "m"
+  n230 -> n232 // "*" -> "m"
+  n156 -> n233 // "LIST_INSTR" -> "return"
+  n233 -> n234 // "return" -> "FUNCALL"
+  n234 -> n235 // "FUNCALL" -> "vec4"
+  n234 -> n236 // "FUNCALL" -> "ARGLIST"
+  n236 -> n237 // "ARGLIST" -> "k"
+  n236 -> n238 // "ARGLIST" -> "k"
+  n236 -> n239 // "ARGLIST" -> "-"
+  n239 -> n240 // "-" -> "m"
+  n239 -> n241 // "-" -> "n"
+  n236 -> n242 // "ARGLIST" -> "n"
+  n148 -> n243 // "LIST_FILTERS" -> "filter"
+  n243 -> n244 // "filter" -> "INPUTS"
+  n244 -> n245 // "INPUTS" -> "v1"
+  n244 -> n246 // "INPUTS" -> "v2"
+  n243 -> n247 // "filter" -> "mix"
+  n243 -> n248 // "filter" -> "PARAMS"
+  n248 -> n249 // "PARAMS" -> "PARAM"
+  n249 -> n250 // "PARAM" -> "float"
+  n249 -> n251 // "PARAM" -> "m"
+  n243 -> n252 // "filter" -> "LIST_INSTR"
+  n252 -> n253 // "LIST_INSTR" -> "return"
+  n253 -> n254 // "return" -> "+"
+  n254 -> n255 // "+" -> "*"
+  n255 -> n256 // "*" -> "ARRAY"
+  n256 -> n257 // "ARRAY" -> "v1"
+  n256 -> n258 // "ARRAY" -> "UV"
+  n255 -> n259 // "*" -> "m"
+  n254 -> n260 // "+" -> "*"
+  n260 -> n261 // "*" -> "ARRAY"
+  n261 -> n262 // "ARRAY" -> "v1"
+  n261 -> n263 // "ARRAY" -> "UV"
+  n260 -> n264 // "*" -> "-"
+  n264 -> n265 // "-" -> "1.0"
+  n264 -> n266 // "-" -> "m"
 
 }

@@ -15,8 +15,8 @@ public enum Types {
     BOOL_T      ("bool",     BoolType.class,    true,   true,   null),
     A_BOOL_T    ("0_bool",   ArrayType.class,   true,   false,  Types.BOOL_T),
 
-    CHAR_T      ("char",     null,              true,   false,  null),
-    STRING_T    ("string",   null,              true,   false,  null),
+    CHAR_T      ("char",     CharType.class,    true,   false,  null),
+    STRING_T    ("string",   StringType.class,  true,   false,  null),
     SAMPLER_T   ("_sampler", SamplerType.class, false,  true,   null),
     ARRAY_T     ("_array",   ArrayType.class,   true,   false,  null),
     VEC4_T      ("vec4",     Vec4Type.class,    true,   true,   null),

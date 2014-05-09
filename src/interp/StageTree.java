@@ -39,11 +39,12 @@ public class StageTree extends CommonTree {
 
     public void setStringValue() {
         type = Types.STRING_T;
-        //TODO add type as string.
+        String s = getText();
+        value = new StringType(s.substring(1,s.length()-1));
     }
 
     public void setCharValue() {
         type = Types.CHAR_T;
-        //TODO add type as char.
+        value = new CharType(getText().charAt(1));
     }
 }

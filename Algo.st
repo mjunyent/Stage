@@ -38,6 +38,9 @@ FIRST:
 	println(m.x);
 	m.x = m.x*2.0;
 	println(m.x);
+	
+	printFC(p) from 10.0 until 10000.0;
+	printFC(p-10.0) from 14.0 until 18.0;
 
 	/*
 	video v1 = video("nomdelfitxer");
@@ -52,21 +55,19 @@ FIRST:
 	music.play();*/
 
 LOOP:
-	println(true);
+/*	println(true);
 	println(p);
 	float m = 4.0;
+	
 	float k = square(m);
 	println(k);
 	println(m);
-	p = p+1.0;
 	
 	println(cube(m));
-	println(m);
-	//println(p);
-	
-//	variable = variable+1;
-//	p = square(p);
-//	n.z = p;
+	println(m);*/
+
+	p = p+1.0;
+//	printFC(p);
 	
 LAST:
 	println(9.0);
@@ -89,6 +90,15 @@ LOOP:
 LAST:
 return num;
 //	return num*num;
+}
+
+function float printFC(float num) {
+FIRST:
+	println("FIRST!");
+LOOP:
+	println("Frame number: " + num);
+LAST:
+	println("LAST!");
 }
 
 

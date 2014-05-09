@@ -48,6 +48,10 @@ public class FunctionList {
         table.put(new smallSignature(name, Arrays.asList(args)), new FunctionSignature(name, Arrays.asList(args), ret));
     }
 
+    public void add(String name, Types[] args, Types ret, int id) {
+        table.put(new smallSignature(name, Arrays.asList(args)), new FunctionSignature(name, Arrays.asList(args), ret, id));
+    }
+
     public void add(FunctionSignature f) {
         table.put(new smallSignature(f.name, f.args), f);
     }
@@ -67,6 +71,20 @@ public class FunctionList {
 
     public FunctionSignature getFunction(String name, List<Types> args) {
         return table.get(new smallSignature(name,args));
+    }
+
+    public FunctionSignature getFunctionByInterface(String name, List<TypeInterface> args) {
+        ArrayList<Types> at = new ArrayList<Types>();
+        for(TypeInterface a : args) at.add(a.getTypeName());
+
+        return table.get(new smallSignature(name, at));
+    }
+
+    public boolean existsByInterface(String name, List<TypeInterface> args) {
+        ArrayList<Types> at = new ArrayList<Types>();
+        for(TypeInterface a : args) at.add(a.getTypeName());
+
+        return table.containsKey(new smallSignature(name, at));
     }
 
     public List<FunctionSignature> getByName(String name) {
