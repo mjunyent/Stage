@@ -132,14 +132,36 @@ public class SemanticsFunctions {
     private void checkInstruction(StageTree inst, FunctionSymbolTable symbol_table) {
         switch (inst.getType()) {
             case StageLexer.BYPASSF:
+                TypeInterface toskip = symbol_table.getType(inst.getChild(0).getText()).getInstance();
+                if(! (toskip instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + " can't be input of a filter.");
+                if(inst.getChild(1).getType() != StageLexer.INT) {
+                    TypeInterface with = symbol_table.getType(inst.getChild(1).getText()).getInstance();
+                    if(! (with instanceof NodeInterface))  throw new RuntimeException(inst.getChild(1).getText() + " can't be input of a filter.");
+                }
+                break;
             case StageLexer.QUIT:
+                //Nothing to check.
+                break;
             case StageLexer.EMPTYFILT:
-                //nothing to be checked.
+                TypeInterface leftFilt  = symbol_table.getType(inst.getChild(0).getText()).getInstance();
+                TypeInterface rightFilt = symbol_table.getType(inst.getChild(1).getText()).getInstance();
+                if(! (leftFilt instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + " can't be input/output of a filter.");
+                if(! (rightFilt instanceof NodeInterface)) throw new RuntimeException(inst.getChild(1).getText() + " can't be input/output of a filter.");
+                if(!((NodeInterface)rightFilt).writable()) throw new RuntimeException(inst.getChild(1).getText() + " can't be output of a filter.");
                 break;
             case StageLexer.FILTCALL:
-                //TODO we don't check nodes names, maybe check they're not overlaping any var.
                 String filter_name = inst.getChild(1).getText();
+
                 int numInputs = inst.getChild(0).getChildCount();
+                for(int i=0; i<numInputs; i++) {
+                    TypeInterface input = symbol_table.getType(inst.getChild(0).getChild(i).getText()).getInstance();
+                    if(! (input instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getChild(i).getText() + " can't be input of a filter.");
+                }
+
+                TypeInterface output = symbol_table.getType(inst.getChild(3).getText()).getInstance();
+                if(! (output instanceof NodeInterface)) throw new RuntimeException(inst.getChild(3).getText() + " can't be output of a filter.");
+                if(!((NodeInterface)output).writable()) throw new RuntimeException(inst.getChild(3).getText() + " can't be output of a filter.");
+
                 ArrayList<Types> args = new ArrayList<Types>();
 
                 for(int i=0; i<inst.getChild(2).getChildCount(); i++) {
@@ -153,6 +175,8 @@ public class SemanticsFunctions {
                 if(!f.args.equals(args)) throw new RuntimeException("Filter call to " + filter_name + " parameter types don't match.");
                 break;
             case StageLexer.ADDFILT:
+                TypeInterface toadd = symbol_table.getType(inst.getChild(0).getText()).getInstance();
+                if(! (toadd instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + " can't be input of a filter.");
                 checkInstruction(inst.getChild(1), symbol_table);
                 break;
 

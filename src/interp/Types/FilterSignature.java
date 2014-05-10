@@ -9,7 +9,12 @@ public class FilterSignature {
     public List<Types> args;
     public List<String> args_names;
     public List<String> inputs;
-    //TODO add inputs_names
+
+    //To be filled by Interpreter.
+    public List<TypeInterface> args_values;
+    public List<String> inputs_ids;
+
+    //Todo.
     public PShader shader = null;
 }
 

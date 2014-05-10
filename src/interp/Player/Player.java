@@ -1,8 +1,7 @@
 package interp.Player;
 
 import interp.GLSLTranslator.Translator;
-import interp.Semantic.SemanticsFilters;
-import interp.Semantic.SemanticsFunctions;
+import interp.Semantic.*;
 import interp.StageTree;
 import interp.Types.FilterSignature;
 import interp.Types.FunctionSignature;
@@ -33,7 +32,7 @@ public class Player {
     private FunctionDispatcher func_disp;
     private Interpreter interpreter;
 
-
+    private float lastTime;
     private boolean debug;
     private String folder;
 
@@ -43,6 +42,9 @@ public class Player {
         if(folder == null) folder = "temp/";
         this.folder = folder;
         this.screen = screen;
+        FunctionGlobalVars.resolution.setValue(screen.width, screen.height);
+        FunctionGlobalVars.screen = screen;
+        FunctionGlobalVars.renderer = screen.OPENGL;
 
         if(debug) System.err.println("Checking filter semantics: ");
         SemanticsFilters sem = new SemanticsFilters(tree, debug);
@@ -65,7 +67,7 @@ public class Player {
 
         func_disp = new FunctionDispatcher(tree, function_list, this);
         interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
-
+        lastTime = 0;
     }
 
     public Interpreter getInterpreter() { return interpreter; }
@@ -86,6 +88,9 @@ public class Player {
     }
 
     public void loop(float time) {
+        FunctionGlobalVars.time.setValue(time);
+        FunctionGlobalVars.dt.setValue(time-lastTime);
+        lastTime = time;
         func_disp.process(time);
     }
 }

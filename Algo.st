@@ -42,6 +42,10 @@ FIRST:
 	printFC(p) from 10.0 until 10000.0;
 	printFC(p-10.0) from 14.0 until 18.0;
 
+	node A;
+	node B;
+	
+	A -> B;
 	/*
 	video v1 = video("nomdelfitxer");
 	video v2 = video("nomdelfitxer");
@@ -55,6 +59,7 @@ FIRST:
 	music.play();*/
 
 LOOP:
+println("Now: " + now + " Time: " + time + " dt: " + dt);
 /*	println(true);
 	println(p);
 	float m = 4.0;

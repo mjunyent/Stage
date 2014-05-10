@@ -1,6 +1,7 @@
 package interp.Player;
 
 import interp.Semantic.FunctionGlobalFuncs;
+import interp.Semantic.FunctionGlobalVars;
 import interp.StageTree;
 import interp.Types.*;
 import parser.StageLexer;
@@ -184,7 +185,7 @@ public class Interpreter {
 
     /*
      * Hardcoded values (int,float,char,string,bool) always passed by copy.
-     * Funcall returns always passed by copy (return does it). TODO
+     * Funcall returns always passed by copy (return does it).
      *  Array passed by copy if specified.
      *  Member passed by copy if specified.
      *  Id passed by copy if specified.
@@ -262,13 +263,22 @@ public class Interpreter {
                         throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");
                 }
             case StageLexer.ID:
-                //TODO add builtin vars.
-                TypeInterface tid = current_stack.getVar(exp.getText());
-                if(getByReference) return tid;
-                else {
-                    TypeInterface r = tid.getTypeName().getInstance();
-                    r.set(tid);
-                    return r;
+                if(current_stack.exists(exp.getText())) {
+                    TypeInterface tid = current_stack.getVar(exp.getText());
+                    if(getByReference) return tid;
+                    else {
+                        TypeInterface r = tid.getTypeName().getInstance();
+                        r.set(tid);
+                        return r;
+                    }
+                } else {
+                    TypeInterface tid = FunctionGlobalVars.getVar(exp.getText());
+                    if(getByReference) return tid;
+                    else {
+                        TypeInterface r = tid.getTypeName().getInstance();
+                        r.set(tid);
+                        return r;
+                    }
                 }
         }
 

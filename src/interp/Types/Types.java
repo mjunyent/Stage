@@ -20,7 +20,9 @@ public enum Types {
     SAMPLER_T   ("_sampler", SamplerType.class, false,  true,   null),
     ARRAY_T     ("_array",   ArrayType.class,   true,   false,  null),
     VEC4_T      ("vec4",     Vec4Type.class,    true,   true,   null),
-    VEC2_T      ("vec2",     Vec2Type.class,    true,   true,   null);
+    VEC2_T      ("vec2",     Vec2Type.class,    true,   true,   null),
+
+    NODE_T      ("node",     NodeType.class,    true,   false,  null);
 
     private String  name;
     private Class   cl;

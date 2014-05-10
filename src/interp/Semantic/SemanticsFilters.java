@@ -71,6 +71,7 @@ public class SemanticsFilters {
                 fs.inputs.add(node.getChild(0).getChild(j).getText());
             }
             for(int j=0; j<node.getChild(2).getChildCount(); j++) {
+                //TODO chekckckck rays maybe already chkd.
                 String var_type = node.getChild(2).getChild(j).getChild(0).getText();
                 String var_name = node.getChild(2).getChild(j).getChild(1).getText();
                 fs.args.add( Types.getByNameFilters(var_type) );
