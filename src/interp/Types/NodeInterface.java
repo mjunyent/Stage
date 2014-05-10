@@ -1,5 +1,8 @@
 package interp.Types;
 
+import processing.core.PGraphics;
+import processing.core.PImage;
+
 public interface NodeInterface {
     public void init();
 
@@ -10,4 +13,8 @@ public interface NodeInterface {
     public void delete();
 
     public boolean writable();
+
+    public PImage getImage();
+
+    public PGraphics getRenderer();
 }

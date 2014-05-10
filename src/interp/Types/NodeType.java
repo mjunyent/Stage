@@ -3,6 +3,7 @@ package interp.Types;
 import interp.Semantic.FunctionGlobalVars;
 import processing.core.PApplet;
 import processing.core.PGraphics;
+import processing.core.PImage;
 
 import java.util.List;
 
@@ -19,6 +20,14 @@ public class NodeType implements NodeInterface, TypeInterface {
 
     public void setTarget() {
 
+    }
+
+    public PImage getImage() {
+        return image;
+    }
+
+    public PGraphics getRenderer() {
+        return image;
     }
 
     public void passToShad() {
