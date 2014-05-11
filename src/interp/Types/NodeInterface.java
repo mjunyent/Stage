@@ -12,9 +12,8 @@ public interface NodeInterface {
 
     public void delete();
 
+    public int nodeId();
     public boolean writable();
-
     public PImage getImage();
-
     public PGraphics getRenderer();
 }

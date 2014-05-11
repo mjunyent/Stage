@@ -1,7 +1,6 @@
 package interp.Types;
 
 import processing.opengl.PShader;
-
 import java.util.List;
 
 public class FilterSignature {
@@ -10,11 +9,6 @@ public class FilterSignature {
     public List<String> args_names;
     public List<String> inputs;
 
-    //To be filled by Interpreter.
-    public List<TypeInterface> args_values;
-    public List<String> inputs_ids;
-
-    //Todo.
     public PShader shader = null;
 }
 

@@ -89,7 +89,23 @@ public class Interpreter {
                 //TODO edit scene graph.
                 break;
             case StageLexer.FILTCALL:
-                //TODO edit scene graph.
+                String output_name = inst.getChild(3).getText();
+                NodeInterface node = (NodeInterface)current_stack.getVar(output_name);
+
+                String filter_name = inst.getChild(1).getText();
+                FilterSignature filt_sig = filter_list.get(filter_name);
+
+                ArrayList<TypeInterface> args_values = new ArrayList<TypeInterface>();
+                for(int i=0; i<inst.getChild(2).getChildCount(); i++) {
+                    args_values.add( evaluateExpr(inst.getChild(2).getChild(i), false) );
+                }
+
+                ArrayList<String> inputs_ids = new ArrayList<String>();
+                for(int i=0; i<inst.getChild(0).getChildCount(); i++) {
+                    inputs_ids.add(inst.getChild(0).getChild(i).getText());
+                }
+
+                scene_graph.addNode(output_name, node, filt_sig, args_values, inputs_ids);
                 break;
             case StageLexer.ADDFILT:
                 //TODO edit scene graph.

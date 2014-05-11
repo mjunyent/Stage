@@ -66,6 +66,7 @@ public class Player {
         compileShaders();
 
         func_disp = new FunctionDispatcher(tree, function_list, this);
+        scene_graph = new SceneGraph();
         interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
         lastTime = 0;
     }

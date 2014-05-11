@@ -1,64 +1,73 @@
 package interp.Player;
 
+import interp.Semantic.FunctionGlobalVars;
 import interp.Types.*;
-import processing.core.PApplet;
 import processing.core.PImage;
 import processing.opengl.PShader;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SceneGraph {
     class node {
         public String name;
         public NodeInterface node;
         public FilterSignature fs;
+        public boolean checked;
+        public List<TypeInterface> args_values;
+        public List<String> inputs_ids;
 
-        node(String name, NodeInterface node, FilterSignature fs) {
+        node(String name, NodeInterface node, FilterSignature fs, List<TypeInterface> args_values, List<String> inputs_ids) {
             this.name = name;
             this.node = node;
             this.fs = fs;
+            this.args_values = args_values;
+            this.inputs_ids = inputs_ids;
+            if(fs == null) checked = true;
+            else checked = false;
         }
     }
 
     private HashMap<String, node> name2node;
-    private PApplet screen;
 
-    public SceneGraph(PApplet screen) {
+    public SceneGraph() {
         name2node = new HashMap<String, node>();
-        this.screen = screen;
     }
 
     //TODO check recursivity.
-    public void addNode(String name, NodeInterface node, FilterSignature fs) {
-        name2node.put(name, new node(name,node,fs));
+    public void addNode(String name, NodeInterface node, FilterSignature fs, List<TypeInterface> args_values, List<String> inputs_ids) {
+        name2node.put(name, new node(name,node,fs,args_values,inputs_ids));
+    }
+
+    public void addCopy(String name, String from, NodeInterface to) {
+     // TO DO   name2node.put(name, )
     }
 
     public void process(String name) {
         node info = name2node.get(name);
+        if(info.checked) return;
 
         //process all requisites before.
-        for(String pre : info.fs.inputs_ids) {
+        for(String pre : info.inputs_ids) {
             process(pre);
         }
 
-        //TODO if there is shader!
-        //TODO IF there is node?!
+        //TODO IF there is no node?!
 
         //call shader.
         info.node.getRenderer().shader(info.fs.shader);
 
         //give input images.
-        for(int i=0; i<info.fs.inputs_ids.size(); i++) {
-            node input = name2node.get(info.fs.inputs_ids.get(i)); if(input == null) continue;
+        for(int i=0; i<info.inputs_ids.size(); i++) {
+            node input = name2node.get(info.inputs_ids.get(i)); if(input == null) continue;
             PImage input_img = input.node.getImage(); if(input_img == null) continue;
             info.fs.shader.set(input.fs.inputs.get(i), input_img);
         }
 
         //give input data.
-        for(int i=0; i<info.fs.args_values.size(); i++) {
+        for(int i=0; i<info.args_values.size(); i++) {
             String n = info.fs.args_names.get(i);
-            TypeInterface ti = info.fs.args_values.get(i);
+            TypeInterface ti = info.args_values.get(i);
             PShader shader = info.fs.shader;
 
             switch (ti.getTypeName()) {
@@ -80,8 +89,8 @@ public class SceneGraph {
             }
         }
 
-//        info.node.getRenderer().rect(0, 0, info.node.getWidth(), info.node.getHeight());
+        info.node.getRenderer().rect(0, 0, FunctionGlobalVars.resolution.getX(), FunctionGlobalVars.resolution.getY());
+
+        info.checked = true;
     }
-
-
 }
