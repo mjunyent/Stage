@@ -9,8 +9,7 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class ScreenNode implements NodeInterface,TypeInterface {
-    int id;
+public class ScreenNode extends NodeInterface implements TypeInterface {
     PApplet screen;
 
     public ScreenNode() { }
@@ -20,14 +19,9 @@ public class ScreenNode implements NodeInterface,TypeInterface {
     }
 
     public void init() {}
-
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
     public PImage getImage() {
         return screen.g;
     }
-
     public boolean writable() { return true; }
 
     public PGraphics getRenderer() {

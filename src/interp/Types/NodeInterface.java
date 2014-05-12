@@ -3,11 +3,24 @@ package interp.Types;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
-public interface NodeInterface {
-    public void init();
-    public int getId();
-    public void setId(int id);
-    public PImage getImage();
-    public boolean writable();
-    public PGraphics getRenderer();
+public abstract class NodeInterface {
+    int id;
+    int references;
+
+    public NodeInterface() {
+        id = -1;
+        references = 0;
+    }
+
+    public abstract void init();
+    public abstract PImage getImage();
+    public abstract boolean writable();
+    public abstract PGraphics getRenderer();
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public int getReferences() { return references; }
+    public void addReference() { references++; }
+    public void removeReference() { references--; }
 }

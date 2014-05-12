@@ -64,9 +64,11 @@ FIRST:
 
 LOOP:
 //println("Now: " + now + " Time: " + time + " dt: " + dt);
--> pinta(1.0,0.0,0.0) -> A;
--> pinta(0.0,0.0,1.0) -> B;
-A,B -> mix(0.5) -> output;
+	-> pinta(1.0,0.0,0.0) -> A;
+	-> pinta(0.0,0.0,1.0) -> B;
+	node C;
+	C = B; //detect and delete unused nodes -> if it's out of scope.....
+	A,C -> mix(0.5) -> output;
 
 /*	println(true);
 	println(p);

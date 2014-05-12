@@ -15,10 +15,10 @@ public class FunctionDispatcher {
         public boolean fin;
         public StageStack stack;
 
-        public FuncTime(String name, float s, float e) {
+        public FuncTime(String name, float s, float e, SceneGraph sc) {
             fname = name; startTime = s; endTime = e;
             init = false; fin = false;
-            stack = new StageStack();
+            stack = new StageStack(sc);
         }
 
         public FuncTime(String name, float s, float e, StageStack st) {
@@ -31,14 +31,16 @@ public class FunctionDispatcher {
     private LinkedList<FuncTime> callList;
     private StageTree tree;
     private Player player;
+    private SceneGraph sc;
 
-    public FunctionDispatcher(StageTree t, HashMap<String, FunctionSignature> fl, Player p) {
+    public FunctionDispatcher(StageTree t, HashMap<String, FunctionSignature> fl, Player p, SceneGraph sc) {
         tree = t;
         function_list = fl;
         player = p;
+        this.sc = sc;
 
         callList = new LinkedList<FuncTime>();
-        callList.add(new FuncTime("main", 0, Float.POSITIVE_INFINITY));
+        callList.add(new FuncTime("main", 0, Float.POSITIVE_INFINITY, sc));
     }
 
     public void process(float time) {
@@ -46,10 +48,13 @@ public class FunctionDispatcher {
             FuncTime ft = callList.get(i);
 
             if(time > ft.endTime) { //func already ended.
-                System.out.println(ft.fname + " hue " + ft.endTime + "-" + time);
-                if(ft.fin) callList.remove(i); //already ended, remove.
+                if(ft.fin) {
+                    ft.stack.flushStack();
+                    callList.remove(i); //already ended, remove.
+                }
                 else { //not ended but finished, end and remove.
                    executeFunc(ft, player.LAST);
+                   ft.stack.flushStack();
                    callList.remove(i);
                 }
             } else if(time > ft.startTime) { //func has started some time ago.
@@ -65,7 +70,7 @@ public class FunctionDispatcher {
     }
 
     public void addFunc(String fname, float start, float end) {
-        callList.addLast(new FuncTime(fname,start,end));
+        callList.addLast(new FuncTime(fname,start,end,sc));
     }
 
     public void addFunc(String fname, float start, float end, StageStack st) {

@@ -3,14 +3,15 @@ package interp.Player;
 import interp.Semantic.FunctionGlobalVars;
 import interp.Types.*;
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.opengl.PShader;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SceneGraph {
     ArrayList<NodeInterface> nodes;
+    ArrayList<Integer> referenceCount;
     ArrayList<Effect> effects;
     ArrayList<ArrayList<Integer>> graph;
     int nextId;
@@ -27,8 +28,16 @@ public class SceneGraph {
         }
     }
 
+    public void printatuputamadre() {
+        System.out.println("PRINTATUPUTAMADRE");
+        for(int i=0; i<referenceCount.size(); i++) {
+            System.out.println(i + ": " + referenceCount.get(i));
+        }
+    }
+
     public SceneGraph(PApplet screen) {
         nodes = new ArrayList<NodeInterface>();
+        referenceCount = new ArrayList<Integer>();
         graph = new ArrayList<ArrayList<Integer>>();
         effects = new ArrayList<Effect>();
         nextId = 0;
@@ -40,7 +49,15 @@ public class SceneGraph {
 
     public void clear() {
         for(int i=0; i<effects.size(); i++) effects.set(i,null);
-        for(int i=0; i<graph.size(); i++) graph.get(i).clear();
+        for(int i=0; i<graph.size(); i++) if(graph.get(i) != null) graph.get(i).clear();
+        for(int i=1; i<referenceCount.size(); i++) {
+            if(referenceCount.get(i) <= 0) {
+                nodes.set(i, null);
+                referenceCount.set(i, -99);
+                effects.set(i, null);
+                graph.set(i, null);
+            }
+        }
     }
 
     public void addNode(NodeInterface node) {
@@ -49,8 +66,19 @@ public class SceneGraph {
         nextId++;
 
         nodes.add(node);
+        referenceCount.add(0);
         graph.add(new ArrayList<Integer>());
         effects.add(null);
+    }
+
+    public void addRef(NodeInterface node) {
+        int id = node.getId();
+        referenceCount.set(id, referenceCount.get(id)+1);
+    }
+
+    public void delRef(NodeInterface node) {
+        int id = node.getId();
+        referenceCount.set(id, referenceCount.get(id)-1);
     }
 
     public void addEffect(NodeInterface node, FilterSignature filter, List<TypeInterface> args, List<NodeInterface> inputs) {

@@ -6,9 +6,8 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class NodeType implements NodeInterface, TypeInterface {
+public class NodeType extends NodeInterface implements TypeInterface {
     private PGraphics image;
-    private int id;
 
     public NodeType() {
         id = -1;
@@ -22,8 +21,6 @@ public class NodeType implements NodeInterface, TypeInterface {
                                                         );
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
     public boolean writable() { return true; }
     public PImage getImage() {
         return image;
@@ -32,9 +29,7 @@ public class NodeType implements NodeInterface, TypeInterface {
         return image;
     }
 
-
     public Types getTypeName() { return Types.NODE_T; }
-
 
     public Types getMethodArgs(String name, List<Types> args) { return null; }
     public TypeInterface callMethod(String name, List<TypeInterface> args) { return null; }

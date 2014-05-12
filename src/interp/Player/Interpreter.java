@@ -122,15 +122,22 @@ public class Interpreter {
                         ((ArrayType) var).setSize(size);
                     }
 
-                    if(var instanceof NodeInterface) scene_graph.addNode((NodeInterface) var);
+                    if(var instanceof NodeInterface) {
+                        scene_graph.addNode((NodeInterface) var);
+                        scene_graph.addRef((NodeInterface) var);
+                    }
                     current_stack.add(varName, var);
                 } else {
-                    current_stack.add(varName, evaluateExpr(inst.getChild(2), true));
+                    TypeInterface t = evaluateExpr(inst.getChild(2), false);
+                    if(t instanceof NodeInterface) scene_graph.addRef((NodeInterface) t);
+                    current_stack.add(varName, t);
                 }
                 break;
             case StageLexer.ASSIGN:
                 TypeInterface leftT = evaluateExpr(inst.getChild(0), true); //pass left whatever by reference.
                 TypeInterface rightT = evaluateExpr(inst.getChild(1), false); //make a copy of right whatever.
+                if(rightT instanceof NodeInterface) scene_graph.addRef((NodeInterface) rightT);
+                if(leftT  instanceof NodeInterface) scene_graph.delRef((NodeInterface) leftT );
                 leftT.set(rightT);
                 break;
             case StageLexer.WHILE:
@@ -170,7 +177,7 @@ public class Interpreter {
                 evaluateExpr(inst, false);
                 break;
             case StageLexer.TIMECALL:
-                StageStack fun_stack = new StageStack();
+                StageStack fun_stack = new StageStack(scene_graph);
                 FloatType stTime = (FloatType)evaluateExpr(inst.getChild(1), false);
                 FloatType edTime = (FloatType)evaluateExpr(inst.getChild(2), false);
 
@@ -319,63 +326,73 @@ public class Interpreter {
         FunctionSignature fs = function_list.get(name);
         StageStack old_stack = current_stack;
 
-        current_stack = new StageStack();
+        current_stack = new StageStack(scene_graph);
         TypeInterface ret = fs.ret.getInstance();
 
         for(int i=0; i<args.size(); i++) {
             current_stack.add(fs.args_names.get(i), args.get(i));
         }
 
-        //Run first.
+        //Run first
         if(fs.first != null) {
             current_stack.pushScope();
             runFuncs(fs.first);
         }
+        //Check if return was invoked
         if(this.ret) {
+            current_stack.flushStack();
             current_stack = old_stack;
             quit = false;
             this.ret = false;
             return ret_val;
         }
+        //Check if quit was invoked
         if(this.quit) {
-            if(fs.last != null) {
+            if(fs.last != null) { //then call last if not null
                 current_stack.pushScope();
                 runFuncs(fs.last);
-                if(this.ret) {
+                if(this.ret) { //if ret call ret, if quit we don't bother to check
+                    current_stack.flushStack();
                     current_stack = old_stack;
                     quit = false;
                     this.ret = false;
                     return ret_val;
                 }
-            }
+            } //anyways, flush, unstack and return
+            current_stack.flushStack();
             current_stack = old_stack;
             quit = false;
             this.ret = false;
             return ret;
         }
+        //Call loop if not null
         if(fs.loop != null) {
             current_stack.pushScope();
             runFuncs(fs.loop);
             current_stack.popScope();
         }
+        //If return end here
         if(this.ret) {
+            current_stack.flushStack();
             current_stack = old_stack;
             quit = false;
             this.ret = false;
             return ret_val;
         }
-
+        //Call last if not null
         if(fs.last != null) {
             current_stack.pushScope();
             runFuncs(fs.last);
         }
-        if(this.ret) {
+        if(this.ret) { //Check if return was invoked
+            current_stack.flushStack();
             current_stack = old_stack;
             quit = false;
             this.ret = false;
             return ret_val;
         }
 
+        current_stack.flushStack();
         current_stack = old_stack;
         quit = false;
         this.ret = false;
