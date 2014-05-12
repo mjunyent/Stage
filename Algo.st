@@ -49,7 +49,8 @@ FIRST:
 	printFC(p-10.0) from 14.0 until 18.0;
 
 	node A;
-	node B;
+	
+	drawRed(A) from 10.0 until 12.0;
 	/*
 	video v1 = video("nomdelfitxer");
 	video v2 = video("nomdelfitxer");
@@ -63,7 +64,10 @@ FIRST:
 	music.play();*/
 
 LOOP:
+
+	A -> output;
 //println("Now: " + now + " Time: " + time + " dt: " + dt);
+/*
 	-> pinta(1.0,0.0,0.0) -> A;
 	-> pinta(0.0,0.0,1.0) -> B;
 	node C;
@@ -72,7 +76,9 @@ LOOP:
 	C -> D;
 //	C = B; //detect and delete unused nodes -> if it's out of scope.....
 	A,D -> mix(0.5) -> output;
-
+	*/
+	
+	
 /*	println(true);
 	println(p);
 	float m = 4.0;
@@ -89,6 +95,24 @@ LOOP:
 	
 LAST:
 	println(9.0);
+}
+
+function void drawRed(node X) {
+FIRST:
+	println("RED");
+LOOP:
+	-> pinta(1.0,0.0,0.0) -> X;
+LAST:
+	drawBlue(X) from now until now+2.0;
+}
+
+function void drawBlue(node X) {
+FIRST:
+	println("BLUE");
+LOOP:
+	-> pinta(0.0,0.0,1.0) -> X;
+LAST:
+	drawRed(X) from now until now+2.0;
 }
 
 function float cube(float num) {

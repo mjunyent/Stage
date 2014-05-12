@@ -10,6 +10,7 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+//TODO node reference counter for return and funcall.
 
 public class Interpreter {
     private HashMap<String, FunctionSignature> function_list;
@@ -189,7 +190,9 @@ public class Interpreter {
                 FunctionSignature fs = function_list.get(funname);
 
                 for(int i=0; i<argst.getChildCount(); i++) {
-                    fun_stack.add(fs.args_names.get(i), evaluateExpr(argst.getChild(i), true));
+                    TypeInterface tps = evaluateExpr(argst.getChild(i), true);
+                    fun_stack.add(fs.args_names.get(i), tps);
+                    if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                 }
                 func_disp.addFunc(funname, stTime.getValue(), edTime.getValue(), fun_stack);
                 break;
@@ -230,7 +233,9 @@ public class Interpreter {
                 String func_name = exp.getChild(0).getText();
                 ArrayList<TypeInterface> fargs = new ArrayList<TypeInterface>();
                 for(int i=0; i<exp.getChild(1).getChildCount(); i++) {
-                    fargs.add(evaluateExpr(exp.getChild(1).getChild(i), false));
+                    TypeInterface tps = evaluateExpr(exp.getChild(1).getChild(i), false);
+                    fargs.add(tps);
+                    if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                 }
 
                 if(FunctionGlobalFuncs.getTable().exists(func_name)) {
@@ -265,7 +270,9 @@ public class Interpreter {
                         String fname = node.getChild(0).getText();
                         ArrayList<TypeInterface> args = new ArrayList<TypeInterface>();
                         for(int i=0; i<node.getChild(1).getChildCount(); i++) {
-                            args.add(evaluateExpr(node.getChild(1).getChild(i), false));
+                            TypeInterface tps = evaluateExpr(node.getChild(1).getChild(i), false);
+                            args.add(tps);
+                            if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                         }
                         TypeInterface fm = m_leftT.callMethod(fname, args);
                         if(getByReference) return fm;
