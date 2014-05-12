@@ -21,8 +21,14 @@ filter testA(float k) {
 }
 
 filter v1,v2 -> mix(float m) {
-	return v1[UV]*m + v1[UV]*(1.0-m);
+	float n = 1.0-m;
+	vec2 k = vec2(0.5,0.5);
+	return v1[k]*m+v2[k]*n;
 //	return v1[UV]*vec4(m,m,m,m) + v2[UV]*(vec4(1.0,1.0,1.0,1.0)*vec4(m,m,m,m));
+}
+
+filter pinta(float r, float g, float b) {
+	return vec4(r,g,b,1.0);
 }
 
 function main() {
@@ -44,8 +50,6 @@ FIRST:
 
 	node A;
 	node B;
-	
-	A -> B;
 	/*
 	video v1 = video("nomdelfitxer");
 	video v2 = video("nomdelfitxer");
@@ -59,7 +63,11 @@ FIRST:
 	music.play();*/
 
 LOOP:
-println("Now: " + now + " Time: " + time + " dt: " + dt);
+//println("Now: " + now + " Time: " + time + " dt: " + dt);
+-> pinta(1.0,0.0,0.0) -> A;
+-> pinta(0.0,0.0,1.0) -> B;
+A,B -> mix(0.5) -> output;
+
 /*	println(true);
 	println(p);
 	float m = 4.0;
@@ -101,7 +109,7 @@ function float printFC(float num) {
 FIRST:
 	println("FIRST!");
 LOOP:
-	println("Frame number: " + num);
+	//println("Frame number: " + num);
 LAST:
 	println("LAST!");
 }

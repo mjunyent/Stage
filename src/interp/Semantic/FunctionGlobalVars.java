@@ -1,5 +1,6 @@
 package interp.Semantic;
 
+import interp.Player.ScreenNode;
 import interp.Types.FloatType;
 import interp.Types.TypeInterface;
 import interp.Types.Types;
@@ -15,6 +16,7 @@ public class FunctionGlobalVars {
     public static Vec2Type resolution = new Vec2Type(0.0f,0.0f);
     public static FloatType Infinity = new FloatType(Float.MAX_VALUE);
 
+    public static ScreenNode screen_node;
     public static PApplet screen;
     public static String renderer;
 
@@ -27,6 +29,7 @@ public class FunctionGlobalVars {
         table.put("dt", Types.FLOAT_T);
         table.put("resolution", Types.VEC2_T);
         table.put("INFINITY", Types.FLOAT_T);
+        table.put("output", Types.SCREEN_T);
     }
 
     public static Map<String,Types> getTable() {
@@ -38,6 +41,7 @@ public class FunctionGlobalVars {
         if(name.equals("resolution")) return resolution;
         if(name.equals("dt")) return dt;
         if(name.equals("INFINITY")) return Infinity;
+        if(name.equals("output")) return screen_node;
 
         return null;
     }

@@ -5,8 +5,8 @@
 
 #define PROCESSING_COLOR_SHADER
 
-uniform float time
-uniform vec2 resolution
+uniform float time;
+uniform vec2 resolution;
 uniform float k;
 void main() {
     vec2 UV = gl_FragCoord.xy / resolution.xy;
@@ -17,7 +17,7 @@ void main() {
     vec4 hop = vec4(0.0, 0.0, 0.0, 0.0);
     hop.x = hop.y;
     hop.z = 5.0;
-    vec4(0.0, 0.0, 0.0, 0.0)
+    vec4(0.0, 0.0, 0.0, 0.0);
     while(!(t)) {
         float p = hop.w;
         m = (p)*(m);
@@ -25,5 +25,5 @@ void main() {
     if(((m)!=(n))||((m)<(5.0))) {
         m = (m)*(m);
     }
-    glFragColor = vec4(k, k, (m)-(n), n)
+    gl_FragColor = vec4(k, k, (m)-(n), n);
 }

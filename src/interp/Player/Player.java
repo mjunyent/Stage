@@ -66,7 +66,7 @@ public class Player {
         compileShaders();
 
         func_disp = new FunctionDispatcher(tree, function_list, this);
-        scene_graph = new SceneGraph();
+        scene_graph = new SceneGraph(screen);
         interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
         lastTime = 0;
     }
@@ -93,5 +93,6 @@ public class Player {
         FunctionGlobalVars.dt.setValue(time-lastTime);
         lastTime = time;
         func_disp.process(time);
+        scene_graph.process(0);
     }
 }

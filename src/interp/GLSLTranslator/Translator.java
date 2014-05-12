@@ -26,8 +26,8 @@ public class Translator {
         header.add("#define PROCESSING_COLOR_SHADER");
         header.add("");
 
-        header.add("uniform float time");
-        header.add("uniform vec2 resolution");
+        header.add("uniform float time;");
+        header.add("uniform vec2 resolution;");
 
 
         ArrayList<String> sampler_uniforms = new ArrayList<String>();
@@ -127,10 +127,10 @@ public class Translator {
             case StageLexer.ARRAY:
             case StageLexer.ID:
             case StageLexer.FUNCALL:
-                code.add(printSpaces(spaces) + getExpressionCode(inst));
+                code.add(printSpaces(spaces) + getExpressionCode(inst) + ";");
                 break;
             case StageLexer.RETURN:
-                code.add(printSpaces(spaces) + "glFragColor = " + getExpressionCode(inst.getChild(0)));
+                code.add(printSpaces(spaces) + "gl_FragColor = " + getExpressionCode(inst.getChild(0)) + ";");
                 break;
             default:
                 throw new RuntimeException("Instruction not recognised, this shouldn't appear here.");

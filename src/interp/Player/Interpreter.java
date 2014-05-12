@@ -89,8 +89,7 @@ public class Interpreter {
                 //TODO edit scene graph.
                 break;
             case StageLexer.FILTCALL:
-                String output_name = inst.getChild(3).getText();
-                NodeInterface node = (NodeInterface)current_stack.getVar(output_name);
+                NodeInterface node = (NodeInterface)evaluateExpr(inst.getChild(3),true);
 
                 String filter_name = inst.getChild(1).getText();
                 FilterSignature filt_sig = filter_list.get(filter_name);
@@ -100,12 +99,11 @@ public class Interpreter {
                     args_values.add( evaluateExpr(inst.getChild(2).getChild(i), false) );
                 }
 
-                ArrayList<String> inputs_ids = new ArrayList<String>();
+                ArrayList<NodeInterface> input_nodes = new ArrayList<NodeInterface>();
                 for(int i=0; i<inst.getChild(0).getChildCount(); i++) {
-                    inputs_ids.add(inst.getChild(0).getChild(i).getText());
+                    input_nodes.add( (NodeInterface) evaluateExpr(inst.getChild(0).getChild(i), true) );
                 }
-
-                scene_graph.addNode(output_name, node, filt_sig, args_values, inputs_ids);
+                scene_graph.addEffect(node, filt_sig, args_values, input_nodes);
                 break;
             case StageLexer.ADDFILT:
                 //TODO edit scene graph.
@@ -123,6 +121,8 @@ public class Interpreter {
                         IntType size = (IntType)inst.getChild(0).getChild(1).getValue();
                         ((ArrayType) var).setSize(size);
                     }
+
+                    if(var instanceof NodeInterface) scene_graph.addNode((NodeInterface) var);
                     current_stack.add(varName, var);
                 } else {
                     current_stack.add(varName, evaluateExpr(inst.getChild(2), true));

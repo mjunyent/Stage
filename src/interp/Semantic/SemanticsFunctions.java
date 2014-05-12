@@ -168,7 +168,7 @@ public class SemanticsFunctions {
                     args.add( getExpressionType(inst.getChild(2).getChild(i), symbol_table) );
                 }
 
-                if(filter_list.containsKey(filter_name)) throw new RuntimeException("Filter " + filter_name + " doesn't exist.");
+                if(!filter_list.containsKey(filter_name)) throw new RuntimeException("Filter " + filter_name + " doesn't exist.");
                 FilterSignature f = filter_list.get(filter_name);
 
                 if(f.inputs.size() != numInputs) throw new RuntimeException("Filter call to " + filter_name + " number of inputs don't match");

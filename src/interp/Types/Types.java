@@ -1,5 +1,7 @@
 package interp.Types;
 
+import interp.Player.ScreenNode;
+
 import java.util.HashMap;
 
 public enum Types {
@@ -25,7 +27,9 @@ public enum Types {
     VEC4_T      ("vec4",     Vec4Type.class,    true,   true,   null),
     VEC2_T      ("vec2",     Vec2Type.class,    true,   true,   null),
 
-    NODE_T      ("node",     NodeType.class,    true,   false,  null);
+    NODE_T      ("node",     NodeType.class,    true,   false,  null),
+
+    SCREEN_T    ("screen",   ScreenNode.class,  false,  false,  null);
 
     private String  name;
     private Class   cl;

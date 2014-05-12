@@ -7,12 +7,10 @@
 
 uniform float time;
 uniform vec2 resolution;
-uniform sampler2D v1;
-uniform sampler2D v2;
-uniform float m;
+uniform float r;
+uniform float g;
+uniform float b;
 void main() {
     vec2 UV = gl_FragCoord.xy / resolution.xy;
-    float n = (1.0)-(m);
-    vec2 k = vec2(0.5, 0.5);
-    gl_FragColor = ((texture2D(v1, k))*(m))+((texture2D(v2, k))*(n));
+    gl_FragColor = vec4(r, g, b, 1.0);
 }
