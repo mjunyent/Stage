@@ -73,11 +73,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SceneGraph.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SceneGraph.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="90" selection-end="90" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1530">
-              <folding />
+            <state line="79" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.3243243" vertical-offset="969" max-vertical-offset="3450">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,10 +125,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NodeInterface.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NodeInterface.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interp/Types/NodeInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="24" selection-start="259" selection-end="259" vertical-scroll-proportion="0.28718704" vertical-offset="0" max-vertical-offset="679">
+            <state line="4" column="0" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
@@ -215,11 +217,11 @@
         <option value="$PROJECT_DIR$/src/interp/Semantic/SemanticsFilters.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/NodeType.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/Types.java" />
-        <option value="$PROJECT_DIR$/src/interp/Player/SceneGraph.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/FilterSignature.java" />
         <option value="$PROJECT_DIR$/src/interp/Player/Player.java" />
         <option value="$PROJECT_DIR$/src/interp/Player/Interpreter.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/NodeInterface.java" />
+        <option value="$PROJECT_DIR$/src/interp/Player/SceneGraph.java" />
       </list>
     </option>
   </component>
@@ -1009,13 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="90" selection-end="90" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Semantic/SemanticsFilters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="58" selection-start="2275" selection-end="2275" vertical-scroll-proportion="-0.18018018" vertical-offset="1095" max-vertical-offset="4500">
@@ -1072,8 +1067,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Types/NodeInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="259" selection-end="259" vertical-scroll-proportion="0.28718704" vertical-offset="0" max-vertical-offset="679">
+        <state line="4" column="0" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.3243243" vertical-offset="969" max-vertical-offset="3450">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
