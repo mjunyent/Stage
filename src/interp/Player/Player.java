@@ -94,8 +94,6 @@ public class Player {
         lastTime = time;
         func_disp.process(time);
         scene_graph.process(0);
-
         scene_graph.clear();
-        scene_graph.printatuputamadre();
     }
 }

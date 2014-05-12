@@ -3,6 +3,7 @@ package interp.Player;
 import interp.Semantic.FunctionGlobalVars;
 import interp.Types.*;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.opengl.PShader;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class SceneGraph {
         }
     }
 
-    public void printatuputamadre() {
+    public void printReferenceCount() {
         System.out.println("PRINTATUPUTAMADRE");
         for(int i=0; i<referenceCount.size(); i++) {
             System.out.println(i + ": " + referenceCount.get(i));
@@ -112,6 +113,15 @@ public class SceneGraph {
         //process dependencies
         for(Integer i : dependencies) {
             process(i);
+        }
+
+        //Shortcut, copy shader (empty filter signature variable).
+        if(effect.fs == null) {
+            node.getRenderer().beginDraw();
+            node.getRenderer().background(0);
+            node.getRenderer().image(nodes.get(dependencies.get(0)).getImage(), 0.0f, 0.0f, node.getRenderer().width, node.getRenderer().height);
+            node.getRenderer().endDraw();
+            return;
         }
 
         //call shader

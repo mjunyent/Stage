@@ -86,7 +86,9 @@ public class Interpreter {
                 //TODO edit scene graph.
                 break;
             case StageLexer.EMPTYFILT:
-                //TODO edit scene graph.
+                NodeInterface from = (NodeInterface)evaluateExpr(inst.getChild(0),true);
+                NodeInterface to   = (NodeInterface)evaluateExpr(inst.getChild(1),true);
+                scene_graph.addEffect(to, null, null, Arrays.asList(from));
                 break;
             case StageLexer.FILTCALL:
                 NodeInterface node = (NodeInterface)evaluateExpr(inst.getChild(3),true);

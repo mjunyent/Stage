@@ -67,8 +67,11 @@ LOOP:
 	-> pinta(1.0,0.0,0.0) -> A;
 	-> pinta(0.0,0.0,1.0) -> B;
 	node C;
-	C = B; //detect and delete unused nodes -> if it's out of scope.....
-	A,C -> mix(0.5) -> output;
+	node D;
+	B -> C;
+	C -> D;
+//	C = B; //detect and delete unused nodes -> if it's out of scope.....
+	A,D -> mix(0.5) -> output;
 
 /*	println(true);
 	println(p);

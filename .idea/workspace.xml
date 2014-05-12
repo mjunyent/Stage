@@ -64,10 +64,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SceneGraph.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SceneGraph.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="9" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.7657658" vertical-offset="705" max-vertical-offset="2505">
+            <state line="32" column="35" selection-start="852" selection-end="852" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2655">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,10 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/interp/Player/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="0" selection-start="3244" selection-end="3244" vertical-scroll-proportion="-48.46154" vertical-offset="0" max-vertical-offset="1395">
+            <state line="96" column="0" selection-start="3214" selection-end="3214" vertical-scroll-proportion="0.7932619" vertical-offset="712" max-vertical-offset="1365">
               <folding />
             </state>
           </provider>
@@ -96,7 +96,7 @@
       <file leaf-file-name="SemanticsFunctions.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interp/Semantic/SemanticsFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="0" selection-start="7555" selection-end="7555" vertical-scroll-proportion="0.0" vertical-offset="2565" max-vertical-offset="6060">
+            <state line="171" column="0" selection-start="7555" selection-end="7555" vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="5970">
               <folding />
             </state>
           </provider>
@@ -105,7 +105,7 @@
       <file leaf-file-name="Interpreter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interp/Player/Interpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="93" selection-start="5452" selection-end="5452" vertical-scroll-proportion="-15.884615" vertical-offset="1537" max-vertical-offset="5970">
+            <state line="90" column="72" selection-start="2994" selection-end="2994" vertical-scroll-proportion="-46.73077" vertical-offset="0" max-vertical-offset="6000">
               <folding />
             </state>
           </provider>
@@ -225,8 +225,8 @@
         <option value="$PROJECT_DIR$/src/interp/Player/StageStack.java" />
         <option value="$PROJECT_DIR$/src/interp/Player/FunctionDispatcher.java" />
         <option value="$PROJECT_DIR$/src/interp/Player/Interpreter.java" />
-        <option value="$PROJECT_DIR$/src/interp/Player/Player.java" />
         <option value="$PROJECT_DIR$/src/interp/Player/SceneGraph.java" />
+        <option value="$PROJECT_DIR$/src/interp/Player/Player.java" />
       </list>
     </option>
   </component>
@@ -1000,13 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Semantic/SemanticsFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="0" selection-start="7555" selection-end="7555" vertical-scroll-proportion="0.0" vertical-offset="1992" max-vertical-offset="5970">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/GLSLTranslator/Translator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="129" column="75" selection-start="4978" selection-end="4978" vertical-scroll-proportion="0.0" vertical-offset="1342" max-vertical-offset="2850">
@@ -1057,16 +1050,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Player/Interpreter.java">
+    <entry file="file://$PROJECT_DIR$/src/interp/Semantic/SemanticsFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="93" selection-start="5452" selection-end="5452" vertical-scroll-proportion="-15.884615" vertical-offset="1537" max-vertical-offset="5970">
+        <state line="171" column="0" selection-start="7555" selection-end="7555" vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="5970">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Player/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/interp/Player/Interpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3244" selection-end="3244" vertical-scroll-proportion="-48.46154" vertical-offset="0" max-vertical-offset="1395">
+        <state line="90" column="72" selection-start="2994" selection-end="2994" vertical-scroll-proportion="-46.73077" vertical-offset="0" max-vertical-offset="6000">
           <folding />
         </state>
       </provider>
@@ -1082,10 +1075,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="9" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.7657658" vertical-offset="705" max-vertical-offset="2505">
+        <state line="32" column="35" selection-start="852" selection-end="852" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2655">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Player/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="0" selection-start="3214" selection-end="3214" vertical-scroll-proportion="0.7932619" vertical-offset="712" max-vertical-offset="1365">
+          <folding />
         </state>
       </provider>
     </entry>
