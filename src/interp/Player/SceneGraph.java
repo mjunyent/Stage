@@ -12,6 +12,7 @@ import java.util.List;
 public class SceneGraph {
     ArrayList<NodeInterface> nodes;
     ArrayList<Integer> referenceCount;
+    LinkedList<Integer> emptySpaces;
     ArrayList<Effect> effects;
     ArrayList<ArrayList<Integer>> graph;
     int nextId;
@@ -40,6 +41,7 @@ public class SceneGraph {
         referenceCount = new ArrayList<Integer>();
         graph = new ArrayList<ArrayList<Integer>>();
         effects = new ArrayList<Effect>();
+        emptySpaces = new LinkedList<Integer>();
         nextId = 0;
 
         FunctionGlobalVars.screen_node = new ScreenNode(screen);
@@ -51,24 +53,33 @@ public class SceneGraph {
         for(int i=0; i<effects.size(); i++) effects.set(i,null);
         for(int i=0; i<graph.size(); i++) if(graph.get(i) != null) graph.get(i).clear();
         for(int i=1; i<referenceCount.size(); i++) {
-            if(referenceCount.get(i) <= 0) {
+            if(referenceCount.get(i) != null && referenceCount.get(i) <= 0) {
                 nodes.set(i, null);
-                referenceCount.set(i, -99);
+                referenceCount.set(i, null);
                 effects.set(i, null);
                 graph.set(i, null);
+                emptySpaces.addLast(i);
             }
         }
     }
 
     public void addNode(NodeInterface node) {
         node.init();
-        node.setId(nextId);
-        nextId++;
-
-        nodes.add(node);
-        referenceCount.add(0);
-        graph.add(new ArrayList<Integer>());
-        effects.add(null);
+        if(emptySpaces.size() == 0) {
+            node.setId(nextId);
+            nextId++;
+            nodes.add(node);
+            referenceCount.add(0);
+            graph.add(new ArrayList<Integer>());
+            effects.add(null);
+        } else {
+            int id = emptySpaces.pollFirst();
+            node.setId(id);
+            nodes.set(id, node);
+            referenceCount.set(id, 0);
+            graph.set(id, new ArrayList<Integer>());
+            effects.set(id, null);
+        }
     }
 
     public void addRef(NodeInterface node) {
