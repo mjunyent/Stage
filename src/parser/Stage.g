@@ -79,15 +79,13 @@ block_instructions
 
 // The different types of instructions
 instruction
-        ://   (funcall ';')=>funcall      ';'!   // Call to a procedure (no result produced)
-       (member ';')=>member ';'! |
-       (timeFuncCall ';')=>timeFuncCall ';'! |
-        	(assign ';')=>assign   ';'!       // Assignment
+        :   (bypassFilter ';')=>bypassFilter ';'! 
+		|   (member ';')=>member ';'!
+        |   (timeFuncCall ';')=>timeFuncCall ';'! 
+        |	(assign ';')=>assign   ';'!       // Assignment
         |   (filtercall ';')=>filtercall ';'!
         |	(declare ';')=>declare ';'!
-//        |	(instance ';')=>instance ';'!
-        |	addFilter ';'
-        |	bypassFilter ';'
+        |	addFilter ';'!
         |	quitInst ';'!
         |	returnexp ';'!
         |	ite_stmt      // if-then-else

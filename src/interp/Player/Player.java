@@ -65,7 +65,7 @@ public class Player {
 
         compileShaders();
 
-        scene_graph = new SceneGraph(screen);
+        scene_graph = new SceneGraph(screen, debug);
         func_disp = new FunctionDispatcher(tree, function_list, this, scene_graph);
         interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
         lastTime = 0;
@@ -84,7 +84,7 @@ public class Player {
             Map.Entry<String, FilterSignature> pairs = (Map.Entry)it.next();
             FilterSignature fs = pairs.getValue();
             String filter_name = pairs.getKey();
-            fs.shader = screen.loadShader(folder + filter_name + ".glsl"); //TODO , "resources/pass.vert");
+            fs.shader = screen.loadShader(folder + filter_name + ".glsl");
         }
     }
 

@@ -137,6 +137,8 @@ public class SemanticsFunctions {
                 if(inst.getChild(1).getType() != StageLexer.INT) {
                     TypeInterface with = symbol_table.getType(inst.getChild(1).getText()).getInstance();
                     if(! (with instanceof NodeInterface))  throw new RuntimeException(inst.getChild(1).getText() + " can't be input of a filter.");
+                } else {
+                    inst.getChild(1).setIntValue();
                 }
                 break;
             case StageLexer.QUIT:

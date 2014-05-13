@@ -7,6 +7,7 @@ import processing.core.PImage;
 import processing.opengl.PShader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class SceneGraph {
     ArrayList<Effect> effects;
     ArrayList<ArrayList<Integer>> graph;
     int nextId;
+    boolean debug;
 
     class Effect {
         public FilterSignature fs;
@@ -37,12 +39,13 @@ public class SceneGraph {
         }
     }
 
-    public SceneGraph(PApplet screen) {
+    public SceneGraph(PApplet screen, boolean debug) {
         nodes = new ArrayList<NodeInterface>();
         referenceCount = new ArrayList<Integer>();
         graph = new ArrayList<ArrayList<Integer>>();
         effects = new ArrayList<Effect>();
         emptySpaces = new LinkedList<Integer>();
+        this.debug = debug;
         nextId = 0;
 
         FunctionGlobalVars.screen_node = new ScreenNode(screen);
@@ -96,6 +99,56 @@ public class SceneGraph {
     public void addEffect(NodeInterface node, FilterSignature filter, List<TypeInterface> args, List<NodeInterface> inputs) {
         effects.set(node.getId(), new Effect(filter, args));
 
+        graph.get(node.getId()).clear();
+        for(NodeInterface n : inputs) {
+            graph.get(node.getId()).add(n.getId());
+        }
+    }
+
+    public void bypassEffect(NodeInterface node, Integer which, NodeInterface nwhich) {
+        int id = node.getId();
+        Effect effect = effects.get(id);
+        ArrayList<Integer> dependencies = graph.get(id);
+
+        if(which == null && nwhich == null) {
+            effects.set(id, null);
+            graph.set(id, new ArrayList<Integer>());
+            return;
+        }
+
+        int which_id;
+        if(which == null) {
+            which_id = nwhich.getId();
+        } else {
+            if(which >= dependencies.size() || which < 0) {
+                if(debug) System.err.println("Bypassing with id out of range, empty will be used.");
+                effects.set(id, null);
+                graph.set(id, new ArrayList<Integer>());
+                return;
+            }
+            which_id = dependencies.get(which);
+        }
+
+        ArrayList<Integer> new_dep = new ArrayList<Integer>();
+        new_dep.add(which_id);
+        graph.set(id, new_dep);
+        effect.fs = null;
+        effect.args_values = null;
+    }
+
+    public void addEffectAfter(NodeInterface after_what, NodeInterface node, FilterSignature filter, List<TypeInterface> args, List<NodeInterface> inputs) {
+        //change all references pointin to after_what to point ot node.
+        for(int i=0; i<graph.size(); i++) {
+            if(graph.get(i) != null) {
+                for(int j=0; j<graph.get(i).size(); j++) {
+                    if(graph.get(i).get(j) == after_what.getId()) {
+                        graph.get(i).set(j,node.getId());
+                    }
+                }
+            }
+        }
+        //add effect as normal.
+        effects.set(node.getId(), new Effect(filter, args));
         graph.get(node.getId()).clear();
         for(NodeInterface n : inputs) {
             graph.get(node.getId()).add(n.getId());

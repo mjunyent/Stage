@@ -5,12 +5,10 @@ import interp.Semantic.FunctionGlobalVars;
 import interp.StageTree;
 import interp.Types.*;
 import parser.StageLexer;
-import processing.core.PApplet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-//TODO node reference counter for return and funcall.
 
 public class Interpreter {
     private HashMap<String, FunctionSignature> function_list;
@@ -84,7 +82,12 @@ public class Interpreter {
     private void runInst(StageTree inst) {
         switch (inst.getType()) {
             case StageLexer.BYPASSF:
-                //TODO edit scene graph.
+                NodeInterface what = (NodeInterface)evaluateExpr(inst.getChild(0),true);
+                Integer whata = null;
+                NodeInterface whatb = null;
+                if(inst.getChild(1).getType() == StageLexer.INT) whata = ((IntType)evaluateExpr(inst.getChild(1),true)).getValue();
+                else whatb = (NodeInterface)evaluateExpr(inst.getChild(1),true);
+                scene_graph.bypassEffect(what, whata, whatb);
                 break;
             case StageLexer.EMPTYFILT:
                 NodeInterface from = (NodeInterface)evaluateExpr(inst.getChild(0),true);
@@ -109,7 +112,24 @@ public class Interpreter {
                 scene_graph.addEffect(node, filt_sig, args_values, input_nodes);
                 break;
             case StageLexer.ADDFILT:
-                //TODO edit scene graph.
+                NodeInterface after_what = (NodeInterface)evaluateExpr(inst.getChild(0),true);
+
+                StageTree newfiltcall = inst.getChild(1);
+
+                NodeInterface newnode = (NodeInterface)evaluateExpr(newfiltcall.getChild(3),true);
+                String newfilter_name = newfiltcall.getChild(1).getText();
+                FilterSignature new_fs = filter_list.get(newfilter_name);
+
+                ArrayList<TypeInterface> new_args_values = new ArrayList<TypeInterface>();
+                for(int i=0; i<newfiltcall.getChild(2).getChildCount(); i++) {
+                    new_args_values.add( evaluateExpr(newfiltcall.getChild(2).getChild(i), false) );
+                }
+
+                ArrayList<NodeInterface> new_input_nodes = new ArrayList<NodeInterface>();
+                for(int i=0; i<newfiltcall.getChild(0).getChildCount(); i++) {
+                    new_input_nodes.add( (NodeInterface) evaluateExpr(newfiltcall.getChild(0).getChild(i), true) );
+                }
+                scene_graph.addEffectAfter(after_what, newnode, new_fs, new_args_values, new_input_nodes);
                 break;
             case StageLexer.QUIT:
                 quit = true;

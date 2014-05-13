@@ -56,7 +56,7 @@ public class StageStack {
         return current_scope.containsKey(name);
     }
 
-    public TypeInterface getVar(String name) { //TODO check this, order of visibility.
+    public TypeInterface getVar(String name) {
         for(int i=stack.size()-1; i>=0; i--) {
             HashMap<String, TypeInterface> scope = stack.get(i);
             if(scope.containsKey(name)) return scope.get(name);

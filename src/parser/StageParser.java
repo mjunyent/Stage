@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-12 21:39:37
+// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-13 16:15:40
 
 package parser;
 import interp.StageTree;
@@ -299,7 +299,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: func, filter
+            // elements: filter, func
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -475,7 +475,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: FUNCTION, params, function_block_instructions, ret, nam
+            // elements: function_block_instructions, params, ret, nam, FUNCTION
             // token labels: ret, nam
             // rule labels: retval
             // token list labels: 
@@ -802,7 +802,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: id, type
+            // elements: type, id
             // token labels: id, type
             // rule labels: retval
             // token list labels: 
@@ -1739,7 +1739,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "instruction"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:81:1: instruction : ( ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' | bypassFilter ';' | quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:81:1: instruction : ( ( bypassFilter ';' )=> bypassFilter ';' !| ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' !| quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt );
     public final StageParser.instruction_return instruction() throws RecognitionException {
         StageParser.instruction_return retval = new StageParser.instruction_return();
         retval.start = input.LT(1);
@@ -1756,19 +1756,19 @@ public TreeAdaptor getTreeAdaptor() {
         Token char_literal51=null;
         Token char_literal53=null;
         Token char_literal55=null;
-        StageParser.member_return member38 =null;
+        StageParser.bypassFilter_return bypassFilter38 =null;
 
-        StageParser.timeFuncCall_return timeFuncCall40 =null;
+        StageParser.member_return member40 =null;
 
-        StageParser.assign_return assign42 =null;
+        StageParser.timeFuncCall_return timeFuncCall42 =null;
 
-        StageParser.filtercall_return filtercall44 =null;
+        StageParser.assign_return assign44 =null;
 
-        StageParser.declare_return declare46 =null;
+        StageParser.filtercall_return filtercall46 =null;
 
-        StageParser.addFilter_return addFilter48 =null;
+        StageParser.declare_return declare48 =null;
 
-        StageParser.bypassFilter_return bypassFilter50 =null;
+        StageParser.addFilter_return addFilter50 =null;
 
         StageParser.quitInst_return quitInst52 =null;
 
@@ -1790,17 +1790,17 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree char_literal55_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:82:9: ( ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' | bypassFilter ';' | quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:82:9: ( ( bypassFilter ';' )=> bypassFilter ';' !| ( member ';' )=> member ';' !| ( timeFuncCall ';' )=> timeFuncCall ';' !| ( assign ';' )=> assign ';' !| ( filtercall ';' )=> filtercall ';' !| ( declare ';' )=> declare ';' !| addFilter ';' !| quitInst ';' !| returnexp ';' !| ite_stmt | while_stmt )
             int alt14=11;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==ID) ) {
-                int LA14_1 = input.LA(2);
+            if ( (LA14_0==BYPASSF) && (synpred1_Stage())) {
+                alt14=1;
+            }
+            else if ( (LA14_0==ID) ) {
+                int LA14_2 = input.LA(2);
 
-                if ( (synpred1_Stage()) ) {
-                    alt14=1;
-                }
-                else if ( (synpred2_Stage()) ) {
+                if ( (synpred2_Stage()) ) {
                     alt14=2;
                 }
                 else if ( (synpred3_Stage()) ) {
@@ -1812,22 +1812,22 @@ public TreeAdaptor getTreeAdaptor() {
                 else if ( (synpred5_Stage()) ) {
                     alt14=5;
                 }
+                else if ( (synpred6_Stage()) ) {
+                    alt14=6;
+                }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 1, input);
+                        new NoViableAltException("", 14, 2, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA14_0==66) && (synpred4_Stage())) {
-                alt14=4;
+            else if ( (LA14_0==66) && (synpred5_Stage())) {
+                alt14=5;
             }
             else if ( (LA14_0==ADDFILT) ) {
-                alt14=6;
-            }
-            else if ( (LA14_0==BYPASSF) ) {
                 alt14=7;
             }
             else if ( (LA14_0==QUIT) ) {
@@ -1852,177 +1852,165 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt14) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:8: ( member ';' )=> member ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:82:13: ( bypassFilter ';' )=> bypassFilter ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_member_in_instruction572);
-                    member38=member();
+                    pushFollow(FOLLOW_bypassFilter_in_instruction567);
+                    bypassFilter38=bypassFilter();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, member38.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, bypassFilter38.getTree());
 
-                    char_literal39=(Token)match(input,67,FOLLOW_67_in_instruction574); if (state.failed) return retval;
+                    char_literal39=(Token)match(input,67,FOLLOW_67_in_instruction569); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:8: ( timeFuncCall ';' )=> timeFuncCall ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:7: ( member ';' )=> member ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_timeFuncCall_in_instruction592);
-                    timeFuncCall40=timeFuncCall();
+                    pushFollow(FOLLOW_member_in_instruction585);
+                    member40=member();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeFuncCall40.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, member40.getTree());
 
-                    char_literal41=(Token)match(input,67,FOLLOW_67_in_instruction594); if (state.failed) return retval;
+                    char_literal41=(Token)match(input,67,FOLLOW_67_in_instruction587); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:10: ( assign ';' )=> assign ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:13: ( timeFuncCall ';' )=> timeFuncCall ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_assign_in_instruction614);
-                    assign42=assign();
+                    pushFollow(FOLLOW_timeFuncCall_in_instruction608);
+                    timeFuncCall42=timeFuncCall();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, assign42.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeFuncCall42.getTree());
 
-                    char_literal43=(Token)match(input,67,FOLLOW_67_in_instruction618); if (state.failed) return retval;
+                    char_literal43=(Token)match(input,67,FOLLOW_67_in_instruction610); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:11: ( assign ';' )=> assign ';' !
+                    {
+                    root_0 = (StageTree)adaptor.nil();
+
+
+                    pushFollow(FOLLOW_assign_in_instruction630);
+                    assign44=assign();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, assign44.getTree());
+
+                    char_literal45=(Token)match(input,67,FOLLOW_67_in_instruction634); if (state.failed) return retval;
+
+                    }
+                    break;
+                case 5 :
                     // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:13: ( filtercall ';' )=> filtercall ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_filtercall_in_instruction646);
-                    filtercall44=filtercall();
+                    pushFollow(FOLLOW_filtercall_in_instruction662);
+                    filtercall46=filtercall();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, filtercall44.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, filtercall46.getTree());
 
-                    char_literal45=(Token)match(input,67,FOLLOW_67_in_instruction648); if (state.failed) return retval;
+                    char_literal47=(Token)match(input,67,FOLLOW_67_in_instruction664); if (state.failed) return retval;
 
                     }
                     break;
-                case 5 :
+                case 6 :
                     // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:11: ( declare ';' )=> declare ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_declare_in_instruction667);
-                    declare46=declare();
+                    pushFollow(FOLLOW_declare_in_instruction683);
+                    declare48=declare();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, declare46.getTree());
-
-                    char_literal47=(Token)match(input,67,FOLLOW_67_in_instruction669); if (state.failed) return retval;
-
-                    }
-                    break;
-                case 6 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:89:11: addFilter ';'
-                    {
-                    root_0 = (StageTree)adaptor.nil();
-
-
-                    pushFollow(FOLLOW_addFilter_in_instruction683);
-                    addFilter48=addFilter();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, addFilter48.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, declare48.getTree());
 
                     char_literal49=(Token)match(input,67,FOLLOW_67_in_instruction685); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    char_literal49_tree = 
-                    (StageTree)adaptor.create(char_literal49)
-                    ;
-                    adaptor.addChild(root_0, char_literal49_tree);
-                    }
 
                     }
                     break;
                 case 7 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:90:11: bypassFilter ';'
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:88:11: addFilter ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_bypassFilter_in_instruction697);
-                    bypassFilter50=bypassFilter();
+                    pushFollow(FOLLOW_addFilter_in_instruction698);
+                    addFilter50=addFilter();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, bypassFilter50.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, addFilter50.getTree());
 
-                    char_literal51=(Token)match(input,67,FOLLOW_67_in_instruction699); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    char_literal51_tree = 
-                    (StageTree)adaptor.create(char_literal51)
-                    ;
-                    adaptor.addChild(root_0, char_literal51_tree);
-                    }
+                    char_literal51=(Token)match(input,67,FOLLOW_67_in_instruction700); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:91:11: quitInst ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:89:11: quitInst ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_quitInst_in_instruction711);
+                    pushFollow(FOLLOW_quitInst_in_instruction713);
                     quitInst52=quitInst();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, quitInst52.getTree());
 
-                    char_literal53=(Token)match(input,67,FOLLOW_67_in_instruction713); if (state.failed) return retval;
+                    char_literal53=(Token)match(input,67,FOLLOW_67_in_instruction715); if (state.failed) return retval;
 
                     }
                     break;
                 case 9 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:92:11: returnexp ';' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:90:11: returnexp ';' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_returnexp_in_instruction726);
+                    pushFollow(FOLLOW_returnexp_in_instruction728);
                     returnexp54=returnexp();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, returnexp54.getTree());
 
-                    char_literal55=(Token)match(input,67,FOLLOW_67_in_instruction728); if (state.failed) return retval;
+                    char_literal55=(Token)match(input,67,FOLLOW_67_in_instruction730); if (state.failed) return retval;
 
                     }
                     break;
                 case 10 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:93:11: ite_stmt
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:91:11: ite_stmt
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_ite_stmt_in_instruction741);
+                    pushFollow(FOLLOW_ite_stmt_in_instruction743);
                     ite_stmt56=ite_stmt();
 
                     state._fsp--;
@@ -2032,12 +2020,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 11 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:94:11: while_stmt
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:92:11: while_stmt
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_while_stmt_in_instruction759);
+                    pushFollow(FOLLOW_while_stmt_in_instruction761);
                     while_stmt57=while_stmt();
 
                     state._fsp--;
@@ -2079,7 +2067,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "returnexp"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:98:1: returnexp : RETURN ^ ( expr )? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:96:1: returnexp : RETURN ^ ( expr )? ;
     public final StageParser.returnexp_return returnexp() throws RecognitionException {
         StageParser.returnexp_return retval = new StageParser.returnexp_return();
         retval.start = input.LT(1);
@@ -2094,13 +2082,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree RETURN58_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:2: ( RETURN ^ ( expr )? )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:4: RETURN ^ ( expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:97:2: ( RETURN ^ ( expr )? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:97:4: RETURN ^ ( expr )?
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            RETURN58=(Token)match(input,RETURN,FOLLOW_RETURN_in_returnexp783); if (state.failed) return retval;
+            RETURN58=(Token)match(input,RETURN,FOLLOW_RETURN_in_returnexp785); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             RETURN58_tree = 
             (StageTree)adaptor.create(RETURN58)
@@ -2108,7 +2096,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(RETURN58_tree, root_0);
             }
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:12: ( expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:97:12: ( expr )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2117,9 +2105,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt15) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:12: expr
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:97:12: expr
                     {
-                    pushFollow(FOLLOW_expr_in_returnexp786);
+                    pushFollow(FOLLOW_expr_in_returnexp788);
                     expr59=expr();
 
                     state._fsp--;
@@ -2165,7 +2153,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "assign"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:1: assign : member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:1: assign : member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) ;
     public final StageParser.assign_return assign() throws RecognitionException {
         StageParser.assign_return retval = new StageParser.assign_return();
         retval.start = input.LT(1);
@@ -2184,21 +2172,21 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_member=new RewriteRuleSubtreeStream(adaptor,"rule member");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:8: ( member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:10: member eq= ASIGEQUAL expr
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:8: ( member eq= ASIGEQUAL expr -> ^( ASSIGN[$eq,\":=\"] member expr ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:10: member eq= ASIGEQUAL expr
             {
-            pushFollow(FOLLOW_member_in_assign796);
+            pushFollow(FOLLOW_member_in_assign798);
             member60=member();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_member.add(member60.getTree());
 
-            eq=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_assign800); if (state.failed) return retval; 
+            eq=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_assign802); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ASIGEQUAL.add(eq);
 
 
-            pushFollow(FOLLOW_expr_in_assign802);
+            pushFollow(FOLLOW_expr_in_assign804);
             expr61=expr();
 
             state._fsp--;
@@ -2218,9 +2206,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (StageTree)adaptor.nil();
-            // 101:35: -> ^( ASSIGN[$eq,\":=\"] member expr )
+            // 99:35: -> ^( ASSIGN[$eq,\":=\"] member expr )
             {
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:38: ^( ASSIGN[$eq,\":=\"] member expr )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:99:38: ^( ASSIGN[$eq,\":=\"] member expr )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -2273,7 +2261,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "filtercall"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:1: filtercall : ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:1: filtercall : ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) );
     public final StageParser.filtercall_return filtercall() throws RecognitionException {
         StageParser.filtercall_return retval = new StageParser.filtercall_return();
         retval.start = input.LT(1);
@@ -2311,7 +2299,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_inputlist=new RewriteRuleSubtreeStream(adaptor,"rule inputlist");
         RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:12: ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:12: ( ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID ) |from= ID '->' to= ID -> ^( EMPTYFILT $from $to) )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2373,9 +2361,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt18) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:14: ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:14: ( inputlist )? '->' ID '(' ( expr_list )? ')' '->' ID
                     {
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:14: ( inputlist )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:14: ( inputlist )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2384,9 +2372,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:14: inputlist
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:14: inputlist
                             {
-                            pushFollow(FOLLOW_inputlist_in_filtercall821);
+                            pushFollow(FOLLOW_inputlist_in_filtercall823);
                             inputlist62=inputlist();
 
                             state._fsp--;
@@ -2399,19 +2387,19 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    string_literal63=(Token)match(input,66,FOLLOW_66_in_filtercall824); if (state.failed) return retval; 
+                    string_literal63=(Token)match(input,66,FOLLOW_66_in_filtercall826); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_66.add(string_literal63);
 
 
-                    ID64=(Token)match(input,ID,FOLLOW_ID_in_filtercall826); if (state.failed) return retval; 
+                    ID64=(Token)match(input,ID,FOLLOW_ID_in_filtercall828); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(ID64);
 
 
-                    char_literal65=(Token)match(input,63,FOLLOW_63_in_filtercall828); if (state.failed) return retval; 
+                    char_literal65=(Token)match(input,63,FOLLOW_63_in_filtercall830); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_63.add(char_literal65);
 
 
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:37: ( expr_list )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:37: ( expr_list )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -2420,9 +2408,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt17) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:37: expr_list
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:37: expr_list
                             {
-                            pushFollow(FOLLOW_expr_list_in_filtercall830);
+                            pushFollow(FOLLOW_expr_list_in_filtercall832);
                             expr_list66=expr_list();
 
                             state._fsp--;
@@ -2435,20 +2423,20 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    char_literal67=(Token)match(input,64,FOLLOW_64_in_filtercall833); if (state.failed) return retval; 
+                    char_literal67=(Token)match(input,64,FOLLOW_64_in_filtercall835); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_64.add(char_literal67);
 
 
-                    string_literal68=(Token)match(input,66,FOLLOW_66_in_filtercall835); if (state.failed) return retval; 
+                    string_literal68=(Token)match(input,66,FOLLOW_66_in_filtercall837); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_66.add(string_literal68);
 
 
-                    ID69=(Token)match(input,ID,FOLLOW_ID_in_filtercall837); if (state.failed) return retval; 
+                    ID69=(Token)match(input,ID,FOLLOW_ID_in_filtercall839); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(ID69);
 
 
                     // AST REWRITE
-                    // elements: ID, ID, inputlist, expr_list
+                    // elements: ID, inputlist, ID, expr_list
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2460,23 +2448,23 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (StageTree)adaptor.nil();
-                    // 103:60: -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
+                    // 101:60: -> ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
                     {
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:63: ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:63: ^( FILTCALL ^( INPUTS ( inputlist )? ) ID ^( ARGLIST ( expr_list )? ) ID )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(FILTCALL, "FILTCALL")
                         , root_1);
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:74: ^( INPUTS ( inputlist )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:74: ^( INPUTS ( inputlist )? )
                         {
                         StageTree root_2 = (StageTree)adaptor.nil();
                         root_2 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(INPUTS, "INPUTS")
                         , root_2);
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:83: ( inputlist )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:83: ( inputlist )?
                         if ( stream_inputlist.hasNext() ) {
                             adaptor.addChild(root_2, stream_inputlist.nextTree());
 
@@ -2490,14 +2478,14 @@ public TreeAdaptor getTreeAdaptor() {
                         stream_ID.nextNode()
                         );
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:98: ^( ARGLIST ( expr_list )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:98: ^( ARGLIST ( expr_list )? )
                         {
                         StageTree root_2 = (StageTree)adaptor.nil();
                         root_2 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(ARGLIST, "ARGLIST")
                         , root_2);
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:103:108: ( expr_list )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:101:108: ( expr_list )?
                         if ( stream_expr_list.hasNext() ) {
                             adaptor.addChild(root_2, stream_expr_list.nextTree());
 
@@ -2523,17 +2511,17 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:104:8: from= ID '->' to= ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:102:8: from= ID '->' to= ID
                     {
-                    from=(Token)match(input,ID,FOLLOW_ID_in_filtercall872); if (state.failed) return retval; 
+                    from=(Token)match(input,ID,FOLLOW_ID_in_filtercall874); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(from);
 
 
-                    string_literal70=(Token)match(input,66,FOLLOW_66_in_filtercall874); if (state.failed) return retval; 
+                    string_literal70=(Token)match(input,66,FOLLOW_66_in_filtercall876); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_66.add(string_literal70);
 
 
-                    to=(Token)match(input,ID,FOLLOW_ID_in_filtercall878); if (state.failed) return retval; 
+                    to=(Token)match(input,ID,FOLLOW_ID_in_filtercall880); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(to);
 
 
@@ -2552,9 +2540,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (StageTree)adaptor.nil();
-                    // 104:27: -> ^( EMPTYFILT $from $to)
+                    // 102:27: -> ^( EMPTYFILT $from $to)
                     {
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:104:30: ^( EMPTYFILT $from $to)
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:102:30: ^( EMPTYFILT $from $to)
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
@@ -2609,7 +2597,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "addFilter"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:106:1: addFilter : ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:104:1: addFilter : ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) ;
     public final StageParser.addFilter_return addFilter() throws RecognitionException {
         StageParser.addFilter_return retval = new StageParser.addFilter_return();
         retval.start = input.LT(1);
@@ -2637,38 +2625,38 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_63=new RewriteRuleTokenStream(adaptor,"token 63");
         RewriteRuleSubtreeStream stream_filtercall=new RewriteRuleSubtreeStream(adaptor,"rule filtercall");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:2: ( ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:4: ADDFILT '(' filtercall ')' 'after' ID
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:105:2: ( ADDFILT '(' filtercall ')' 'after' ID -> ^( ADDFILT ID filtercall ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:105:4: ADDFILT '(' filtercall ')' 'after' ID
             {
-            ADDFILT71=(Token)match(input,ADDFILT,FOLLOW_ADDFILT_in_addFilter900); if (state.failed) return retval; 
+            ADDFILT71=(Token)match(input,ADDFILT,FOLLOW_ADDFILT_in_addFilter902); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ADDFILT.add(ADDFILT71);
 
 
-            char_literal72=(Token)match(input,63,FOLLOW_63_in_addFilter902); if (state.failed) return retval; 
+            char_literal72=(Token)match(input,63,FOLLOW_63_in_addFilter904); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_63.add(char_literal72);
 
 
-            pushFollow(FOLLOW_filtercall_in_addFilter904);
+            pushFollow(FOLLOW_filtercall_in_addFilter906);
             filtercall73=filtercall();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_filtercall.add(filtercall73.getTree());
 
-            char_literal74=(Token)match(input,64,FOLLOW_64_in_addFilter906); if (state.failed) return retval; 
+            char_literal74=(Token)match(input,64,FOLLOW_64_in_addFilter908); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_64.add(char_literal74);
 
 
-            string_literal75=(Token)match(input,70,FOLLOW_70_in_addFilter908); if (state.failed) return retval; 
+            string_literal75=(Token)match(input,70,FOLLOW_70_in_addFilter910); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_70.add(string_literal75);
 
 
-            ID76=(Token)match(input,ID,FOLLOW_ID_in_addFilter910); if (state.failed) return retval; 
+            ID76=(Token)match(input,ID,FOLLOW_ID_in_addFilter912); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID76);
 
 
             // AST REWRITE
-            // elements: ADDFILT, filtercall, ID
+            // elements: ID, ADDFILT, filtercall
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2680,9 +2668,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (StageTree)adaptor.nil();
-            // 107:42: -> ^( ADDFILT ID filtercall )
+            // 105:42: -> ^( ADDFILT ID filtercall )
             {
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:45: ^( ADDFILT ID filtercall )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:105:45: ^( ADDFILT ID filtercall )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -2737,7 +2725,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "bypassFilter"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:109:1: bypassFilter : BYPASSF ^ ID 'with' ! ( ID | INT ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:107:1: bypassFilter : BYPASSF ^ ID 'with' ! ( ID | INT ) ;
     public final StageParser.bypassFilter_return bypassFilter() throws RecognitionException {
         StageParser.bypassFilter_return retval = new StageParser.bypassFilter_return();
         retval.start = input.LT(1);
@@ -2756,13 +2744,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree set80_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:110:2: ( BYPASSF ^ ID 'with' ! ( ID | INT ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:110:4: BYPASSF ^ ID 'with' ! ( ID | INT )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:108:2: ( BYPASSF ^ ID 'with' ! ( ID | INT ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:108:4: BYPASSF ^ ID 'with' ! ( ID | INT )
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            BYPASSF77=(Token)match(input,BYPASSF,FOLLOW_BYPASSF_in_bypassFilter930); if (state.failed) return retval;
+            BYPASSF77=(Token)match(input,BYPASSF,FOLLOW_BYPASSF_in_bypassFilter932); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             BYPASSF77_tree = 
             (StageTree)adaptor.create(BYPASSF77)
@@ -2770,7 +2758,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(BYPASSF77_tree, root_0);
             }
 
-            ID78=(Token)match(input,ID,FOLLOW_ID_in_bypassFilter933); if (state.failed) return retval;
+            ID78=(Token)match(input,ID,FOLLOW_ID_in_bypassFilter935); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             ID78_tree = 
             (StageTree)adaptor.create(ID78)
@@ -2778,7 +2766,7 @@ public TreeAdaptor getTreeAdaptor() {
             adaptor.addChild(root_0, ID78_tree);
             }
 
-            string_literal79=(Token)match(input,71,FOLLOW_71_in_bypassFilter935); if (state.failed) return retval;
+            string_literal79=(Token)match(input,71,FOLLOW_71_in_bypassFilter937); if (state.failed) return retval;
 
             set80=(Token)input.LT(1);
 
@@ -2830,7 +2818,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "quitInst"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:112:1: quitInst : QUIT ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:110:1: quitInst : QUIT ;
     public final StageParser.quitInst_return quitInst() throws RecognitionException {
         StageParser.quitInst_return retval = new StageParser.quitInst_return();
         retval.start = input.LT(1);
@@ -2843,13 +2831,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree QUIT81_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:2: ( QUIT )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:4: QUIT
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:111:2: ( QUIT )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:111:4: QUIT
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            QUIT81=(Token)match(input,QUIT,FOLLOW_QUIT_in_quitInst954); if (state.failed) return retval;
+            QUIT81=(Token)match(input,QUIT,FOLLOW_QUIT_in_quitInst956); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             QUIT81_tree = 
             (StageTree)adaptor.create(QUIT81)
@@ -2890,7 +2878,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "declare"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:1: declare : (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:1: declare : (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) );
     public final StageParser.declare_return declare() throws RecognitionException {
         StageParser.declare_return retval = new StageParser.declare_return();
         retval.start = input.LT(1);
@@ -2924,7 +2912,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:9: (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:9: (type= ID name= ID ( ASIGEQUAL expr )? -> ^( DECLARE $type $name ( expr )? ) |type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )? -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2956,17 +2944,17 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:11: type= ID name= ID ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:11: type= ID name= ID ( ASIGEQUAL expr )?
                     {
-                    type=(Token)match(input,ID,FOLLOW_ID_in_declare964); if (state.failed) return retval; 
+                    type=(Token)match(input,ID,FOLLOW_ID_in_declare966); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(type);
 
 
-                    name=(Token)match(input,ID,FOLLOW_ID_in_declare968); if (state.failed) return retval; 
+                    name=(Token)match(input,ID,FOLLOW_ID_in_declare970); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(name);
 
 
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:27: ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:27: ( ASIGEQUAL expr )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -2975,13 +2963,13 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt19) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:28: ASIGEQUAL expr
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:28: ASIGEQUAL expr
                             {
-                            ASIGEQUAL82=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_declare971); if (state.failed) return retval; 
+                            ASIGEQUAL82=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_declare973); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_ASIGEQUAL.add(ASIGEQUAL82);
 
 
-                            pushFollow(FOLLOW_expr_in_declare973);
+                            pushFollow(FOLLOW_expr_in_declare975);
                             expr83=expr();
 
                             state._fsp--;
@@ -2995,7 +2983,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: expr, name, type
+                    // elements: name, type, expr
                     // token labels: name, type
                     // rule labels: retval
                     // token list labels: 
@@ -3009,9 +2997,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (StageTree)adaptor.nil();
-                    // 115:45: -> ^( DECLARE $type $name ( expr )? )
+                    // 113:45: -> ^( DECLARE $type $name ( expr )? )
                     {
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:48: ^( DECLARE $type $name ( expr )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:48: ^( DECLARE $type $name ( expr )? )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
@@ -3022,7 +3010,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                         adaptor.addChild(root_1, stream_name.nextNode());
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:115:70: ( expr )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:113:70: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -3041,29 +3029,29 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:5: type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:114:5: type= ID '[' INT ']' name= ID ( ASIGEQUAL expr )?
                     {
-                    type=(Token)match(input,ID,FOLLOW_ID_in_declare998); if (state.failed) return retval; 
+                    type=(Token)match(input,ID,FOLLOW_ID_in_declare1000); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(type);
 
 
-                    char_literal84=(Token)match(input,68,FOLLOW_68_in_declare1000); if (state.failed) return retval; 
+                    char_literal84=(Token)match(input,68,FOLLOW_68_in_declare1002); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_68.add(char_literal84);
 
 
-                    INT85=(Token)match(input,INT,FOLLOW_INT_in_declare1002); if (state.failed) return retval; 
+                    INT85=(Token)match(input,INT,FOLLOW_INT_in_declare1004); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT85);
 
 
-                    char_literal86=(Token)match(input,69,FOLLOW_69_in_declare1004); if (state.failed) return retval; 
+                    char_literal86=(Token)match(input,69,FOLLOW_69_in_declare1006); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_69.add(char_literal86);
 
 
-                    name=(Token)match(input,ID,FOLLOW_ID_in_declare1008); if (state.failed) return retval; 
+                    name=(Token)match(input,ID,FOLLOW_ID_in_declare1010); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ID.add(name);
 
 
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:33: ( ASIGEQUAL expr )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:114:33: ( ASIGEQUAL expr )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3072,13 +3060,13 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt20) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:34: ASIGEQUAL expr
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:114:34: ASIGEQUAL expr
                             {
-                            ASIGEQUAL87=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_declare1011); if (state.failed) return retval; 
+                            ASIGEQUAL87=(Token)match(input,ASIGEQUAL,FOLLOW_ASIGEQUAL_in_declare1013); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_ASIGEQUAL.add(ASIGEQUAL87);
 
 
-                            pushFollow(FOLLOW_expr_in_declare1013);
+                            pushFollow(FOLLOW_expr_in_declare1015);
                             expr88=expr();
 
                             state._fsp--;
@@ -3106,16 +3094,16 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (StageTree)adaptor.nil();
-                    // 116:51: -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
+                    // 114:51: -> ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
                     {
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:54: ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:114:54: ^( DECLARE ^( ARRAY $type INT ) $name ( expr )? )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
                         (StageTree)adaptor.create(DECLARE, "DECLARE")
                         , root_1);
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:64: ^( ARRAY $type INT )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:114:64: ^( ARRAY $type INT )
                         {
                         StageTree root_2 = (StageTree)adaptor.nil();
                         root_2 = (StageTree)adaptor.becomeRoot(
@@ -3133,7 +3121,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                         adaptor.addChild(root_1, stream_name.nextNode());
 
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:116:89: ( expr )?
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:114:89: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -3184,7 +3172,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "ite_stmt"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:1: ite_stmt : IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:117:1: ite_stmt : IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? ;
     public final StageParser.ite_stmt_return ite_stmt() throws RecognitionException {
         StageParser.ite_stmt_return retval = new StageParser.ite_stmt_return();
         retval.start = input.LT(1);
@@ -3217,13 +3205,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree CBR99_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:10: ( IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:12: IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:117:10: ( IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:117:12: IF ^ '(' ! expr ')' ! CBL ! block_instructions CBR ! ( ELSE ! CBL ! block_instructions CBR !)?
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            IF89=(Token)match(input,IF,FOLLOW_IF_in_ite_stmt1046); if (state.failed) return retval;
+            IF89=(Token)match(input,IF,FOLLOW_IF_in_ite_stmt1048); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IF89_tree = 
             (StageTree)adaptor.create(IF89)
@@ -3231,29 +3219,29 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(IF89_tree, root_0);
             }
 
-            char_literal90=(Token)match(input,63,FOLLOW_63_in_ite_stmt1049); if (state.failed) return retval;
+            char_literal90=(Token)match(input,63,FOLLOW_63_in_ite_stmt1051); if (state.failed) return retval;
 
-            pushFollow(FOLLOW_expr_in_ite_stmt1052);
+            pushFollow(FOLLOW_expr_in_ite_stmt1054);
             expr91=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr91.getTree());
 
-            char_literal92=(Token)match(input,64,FOLLOW_64_in_ite_stmt1054); if (state.failed) return retval;
+            char_literal92=(Token)match(input,64,FOLLOW_64_in_ite_stmt1056); if (state.failed) return retval;
 
-            CBL93=(Token)match(input,CBL,FOLLOW_CBL_in_ite_stmt1057); if (state.failed) return retval;
+            CBL93=(Token)match(input,CBL,FOLLOW_CBL_in_ite_stmt1059); if (state.failed) return retval;
 
-            pushFollow(FOLLOW_block_instructions_in_ite_stmt1060);
+            pushFollow(FOLLOW_block_instructions_in_ite_stmt1062);
             block_instructions94=block_instructions();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, block_instructions94.getTree());
 
-            CBR95=(Token)match(input,CBR,FOLLOW_CBR_in_ite_stmt1062); if (state.failed) return retval;
+            CBR95=(Token)match(input,CBR,FOLLOW_CBR_in_ite_stmt1064); if (state.failed) return retval;
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:60: ( ELSE ! CBL ! block_instructions CBR !)?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:117:60: ( ELSE ! CBL ! block_instructions CBR !)?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3262,20 +3250,20 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt22) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:119:61: ELSE ! CBL ! block_instructions CBR !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:117:61: ELSE ! CBL ! block_instructions CBR !
                     {
-                    ELSE96=(Token)match(input,ELSE,FOLLOW_ELSE_in_ite_stmt1066); if (state.failed) return retval;
+                    ELSE96=(Token)match(input,ELSE,FOLLOW_ELSE_in_ite_stmt1068); if (state.failed) return retval;
 
-                    CBL97=(Token)match(input,CBL,FOLLOW_CBL_in_ite_stmt1069); if (state.failed) return retval;
+                    CBL97=(Token)match(input,CBL,FOLLOW_CBL_in_ite_stmt1071); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_block_instructions_in_ite_stmt1072);
+                    pushFollow(FOLLOW_block_instructions_in_ite_stmt1074);
                     block_instructions98=block_instructions();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, block_instructions98.getTree());
 
-                    CBR99=(Token)match(input,CBR,FOLLOW_CBR_in_ite_stmt1074); if (state.failed) return retval;
+                    CBR99=(Token)match(input,CBR,FOLLOW_CBR_in_ite_stmt1076); if (state.failed) return retval;
 
                     }
                     break;
@@ -3316,7 +3304,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "while_stmt"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:123:1: while_stmt : WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:121:1: while_stmt : WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !;
     public final StageParser.while_stmt_return while_stmt() throws RecognitionException {
         StageParser.while_stmt_return retval = new StageParser.while_stmt_return();
         retval.start = input.LT(1);
@@ -3341,13 +3329,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree CBR106_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:123:12: ( WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !)
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:123:14: WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:121:12: ( WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !)
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:121:14: WHILE ^ '(' ! expr ')' ! CBL ! block_instructions CBR !
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            WHILE100=(Token)match(input,WHILE,FOLLOW_WHILE_in_while_stmt1099); if (state.failed) return retval;
+            WHILE100=(Token)match(input,WHILE,FOLLOW_WHILE_in_while_stmt1101); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             WHILE100_tree = 
             (StageTree)adaptor.create(WHILE100)
@@ -3355,27 +3343,27 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (StageTree)adaptor.becomeRoot(WHILE100_tree, root_0);
             }
 
-            char_literal101=(Token)match(input,63,FOLLOW_63_in_while_stmt1102); if (state.failed) return retval;
+            char_literal101=(Token)match(input,63,FOLLOW_63_in_while_stmt1104); if (state.failed) return retval;
 
-            pushFollow(FOLLOW_expr_in_while_stmt1105);
+            pushFollow(FOLLOW_expr_in_while_stmt1107);
             expr102=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr102.getTree());
 
-            char_literal103=(Token)match(input,64,FOLLOW_64_in_while_stmt1107); if (state.failed) return retval;
+            char_literal103=(Token)match(input,64,FOLLOW_64_in_while_stmt1109); if (state.failed) return retval;
 
-            CBL104=(Token)match(input,CBL,FOLLOW_CBL_in_while_stmt1110); if (state.failed) return retval;
+            CBL104=(Token)match(input,CBL,FOLLOW_CBL_in_while_stmt1112); if (state.failed) return retval;
 
-            pushFollow(FOLLOW_block_instructions_in_while_stmt1113);
+            pushFollow(FOLLOW_block_instructions_in_while_stmt1115);
             block_instructions105=block_instructions();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, block_instructions105.getTree());
 
-            CBR106=(Token)match(input,CBR,FOLLOW_CBR_in_while_stmt1115); if (state.failed) return retval;
+            CBR106=(Token)match(input,CBR,FOLLOW_CBR_in_while_stmt1117); if (state.failed) return retval;
 
             }
 
@@ -3410,7 +3398,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:1: expr : boolterm ( OR ^ boolterm )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:125:1: expr : boolterm ( OR ^ boolterm )* ;
     public final StageParser.expr_return expr() throws RecognitionException {
         StageParser.expr_return retval = new StageParser.expr_return();
         retval.start = input.LT(1);
@@ -3427,20 +3415,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree OR108_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:9: ( boolterm ( OR ^ boolterm )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:13: boolterm ( OR ^ boolterm )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:125:9: ( boolterm ( OR ^ boolterm )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:125:13: boolterm ( OR ^ boolterm )*
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_boolterm_in_expr1143);
+            pushFollow(FOLLOW_boolterm_in_expr1145);
             boolterm107=boolterm();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, boolterm107.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:22: ( OR ^ boolterm )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:125:22: ( OR ^ boolterm )*
             loop23:
             do {
                 int alt23=2;
@@ -3453,9 +3441,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt23) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:127:23: OR ^ boolterm
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:125:23: OR ^ boolterm
             	    {
-            	    OR108=(Token)match(input,OR,FOLLOW_OR_in_expr1146); if (state.failed) return retval;
+            	    OR108=(Token)match(input,OR,FOLLOW_OR_in_expr1148); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    OR108_tree = 
             	    (StageTree)adaptor.create(OR108)
@@ -3463,7 +3451,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    root_0 = (StageTree)adaptor.becomeRoot(OR108_tree, root_0);
             	    }
 
-            	    pushFollow(FOLLOW_boolterm_in_expr1149);
+            	    pushFollow(FOLLOW_boolterm_in_expr1151);
             	    boolterm109=boolterm();
 
             	    state._fsp--;
@@ -3512,7 +3500,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "boolterm"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:1: boolterm : boolfact ( AND ^ boolfact )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:128:1: boolterm : boolfact ( AND ^ boolfact )* ;
     public final StageParser.boolterm_return boolterm() throws RecognitionException {
         StageParser.boolterm_return retval = new StageParser.boolterm_return();
         retval.start = input.LT(1);
@@ -3529,20 +3517,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree AND111_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:9: ( boolfact ( AND ^ boolfact )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:13: boolfact ( AND ^ boolfact )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:128:9: ( boolfact ( AND ^ boolfact )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:128:13: boolfact ( AND ^ boolfact )*
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_boolfact_in_boolterm1169);
+            pushFollow(FOLLOW_boolfact_in_boolterm1171);
             boolfact110=boolfact();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, boolfact110.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:22: ( AND ^ boolfact )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:128:22: ( AND ^ boolfact )*
             loop24:
             do {
                 int alt24=2;
@@ -3555,9 +3543,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt24) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:130:23: AND ^ boolfact
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:128:23: AND ^ boolfact
             	    {
-            	    AND111=(Token)match(input,AND,FOLLOW_AND_in_boolterm1172); if (state.failed) return retval;
+            	    AND111=(Token)match(input,AND,FOLLOW_AND_in_boolterm1174); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    AND111_tree = 
             	    (StageTree)adaptor.create(AND111)
@@ -3565,7 +3553,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    root_0 = (StageTree)adaptor.becomeRoot(AND111_tree, root_0);
             	    }
 
-            	    pushFollow(FOLLOW_boolfact_in_boolterm1175);
+            	    pushFollow(FOLLOW_boolfact_in_boolterm1177);
             	    boolfact112=boolfact();
 
             	    state._fsp--;
@@ -3614,7 +3602,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "boolfact"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:1: boolfact : num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:1: boolfact : num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? ;
     public final StageParser.boolfact_return boolfact() throws RecognitionException {
         StageParser.boolfact_return retval = new StageParser.boolfact_return();
         retval.start = input.LT(1);
@@ -3641,20 +3629,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree GE119_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:9: ( num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:13: num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:9: ( num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )? )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:13: num_expr ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_num_expr_in_boolfact1195);
+            pushFollow(FOLLOW_num_expr_in_boolfact1197);
             num_expr113=num_expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, num_expr113.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:22: ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:22: ( ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3663,9 +3651,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt26) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^) num_expr
                     {
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^)
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:23: ( EQUAL ^| NOT_EQUAL ^| LT ^| LE ^| GT ^| GE ^)
                     int alt25=6;
                     switch ( input.LA(1) ) {
                     case EQUAL:
@@ -3709,9 +3697,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                     switch (alt25) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:24: EQUAL ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:24: EQUAL ^
                             {
-                            EQUAL114=(Token)match(input,EQUAL,FOLLOW_EQUAL_in_boolfact1199); if (state.failed) return retval;
+                            EQUAL114=(Token)match(input,EQUAL,FOLLOW_EQUAL_in_boolfact1201); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             EQUAL114_tree = 
                             (StageTree)adaptor.create(EQUAL114)
@@ -3722,9 +3710,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:33: NOT_EQUAL ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:33: NOT_EQUAL ^
                             {
-                            NOT_EQUAL115=(Token)match(input,NOT_EQUAL,FOLLOW_NOT_EQUAL_in_boolfact1204); if (state.failed) return retval;
+                            NOT_EQUAL115=(Token)match(input,NOT_EQUAL,FOLLOW_NOT_EQUAL_in_boolfact1206); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             NOT_EQUAL115_tree = 
                             (StageTree)adaptor.create(NOT_EQUAL115)
@@ -3735,9 +3723,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 3 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:46: LT ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:46: LT ^
                             {
-                            LT116=(Token)match(input,LT,FOLLOW_LT_in_boolfact1209); if (state.failed) return retval;
+                            LT116=(Token)match(input,LT,FOLLOW_LT_in_boolfact1211); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             LT116_tree = 
                             (StageTree)adaptor.create(LT116)
@@ -3748,9 +3736,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 4 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:52: LE ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:52: LE ^
                             {
-                            LE117=(Token)match(input,LE,FOLLOW_LE_in_boolfact1214); if (state.failed) return retval;
+                            LE117=(Token)match(input,LE,FOLLOW_LE_in_boolfact1216); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             LE117_tree = 
                             (StageTree)adaptor.create(LE117)
@@ -3761,9 +3749,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 5 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:58: GT ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:58: GT ^
                             {
-                            GT118=(Token)match(input,GT,FOLLOW_GT_in_boolfact1219); if (state.failed) return retval;
+                            GT118=(Token)match(input,GT,FOLLOW_GT_in_boolfact1221); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             GT118_tree = 
                             (StageTree)adaptor.create(GT118)
@@ -3774,9 +3762,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 6 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:133:64: GE ^
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:131:64: GE ^
                             {
-                            GE119=(Token)match(input,GE,FOLLOW_GE_in_boolfact1224); if (state.failed) return retval;
+                            GE119=(Token)match(input,GE,FOLLOW_GE_in_boolfact1226); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             GE119_tree = 
                             (StageTree)adaptor.create(GE119)
@@ -3790,7 +3778,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_num_expr_in_boolfact1228);
+                    pushFollow(FOLLOW_num_expr_in_boolfact1230);
                     num_expr120=num_expr();
 
                     state._fsp--;
@@ -3836,7 +3824,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "num_expr"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:1: num_expr : term ( ( PLUS ^| MINUS ^) term )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:1: num_expr : term ( ( PLUS ^| MINUS ^) term )* ;
     public final StageParser.num_expr_return num_expr() throws RecognitionException {
         StageParser.num_expr_return retval = new StageParser.num_expr_return();
         retval.start = input.LT(1);
@@ -3855,20 +3843,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MINUS123_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:9: ( term ( ( PLUS ^| MINUS ^) term )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:13: term ( ( PLUS ^| MINUS ^) term )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:9: ( term ( ( PLUS ^| MINUS ^) term )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:13: term ( ( PLUS ^| MINUS ^) term )*
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_term_in_num_expr1248);
+            pushFollow(FOLLOW_term_in_num_expr1250);
             term121=term();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, term121.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:18: ( ( PLUS ^| MINUS ^) term )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:18: ( ( PLUS ^| MINUS ^) term )*
             loop28:
             do {
                 int alt28=2;
@@ -3881,9 +3869,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt28) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:20: ( PLUS ^| MINUS ^) term
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:20: ( PLUS ^| MINUS ^) term
             	    {
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:20: ( PLUS ^| MINUS ^)
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:20: ( PLUS ^| MINUS ^)
             	    int alt27=2;
             	    int LA27_0 = input.LA(1);
 
@@ -3903,9 +3891,9 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
             	    switch (alt27) {
             	        case 1 :
-            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:21: PLUS ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:21: PLUS ^
             	            {
-            	            PLUS122=(Token)match(input,PLUS,FOLLOW_PLUS_in_num_expr1253); if (state.failed) return retval;
+            	            PLUS122=(Token)match(input,PLUS,FOLLOW_PLUS_in_num_expr1255); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PLUS122_tree = 
             	            (StageTree)adaptor.create(PLUS122)
@@ -3916,9 +3904,9 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:136:29: MINUS ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:134:29: MINUS ^
             	            {
-            	            MINUS123=(Token)match(input,MINUS,FOLLOW_MINUS_in_num_expr1258); if (state.failed) return retval;
+            	            MINUS123=(Token)match(input,MINUS,FOLLOW_MINUS_in_num_expr1260); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            MINUS123_tree = 
             	            (StageTree)adaptor.create(MINUS123)
@@ -3932,7 +3920,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_term_in_num_expr1262);
+            	    pushFollow(FOLLOW_term_in_num_expr1264);
             	    term124=term();
 
             	    state._fsp--;
@@ -3981,7 +3969,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "term"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:1: term : factor ( ( MUL ^| DIV ^| MOD ^) factor )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:1: term : factor ( ( MUL ^| DIV ^| MOD ^) factor )* ;
     public final StageParser.term_return term() throws RecognitionException {
         StageParser.term_return retval = new StageParser.term_return();
         retval.start = input.LT(1);
@@ -4002,20 +3990,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MOD128_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:9: ( factor ( ( MUL ^| DIV ^| MOD ^) factor )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:13: factor ( ( MUL ^| DIV ^| MOD ^) factor )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:9: ( factor ( ( MUL ^| DIV ^| MOD ^) factor )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:13: factor ( ( MUL ^| DIV ^| MOD ^) factor )*
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_factor_in_term1286);
+            pushFollow(FOLLOW_factor_in_term1288);
             factor125=factor();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, factor125.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:20: ( ( MUL ^| DIV ^| MOD ^) factor )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:20: ( ( MUL ^| DIV ^| MOD ^) factor )*
             loop30:
             do {
                 int alt30=2;
@@ -4028,9 +4016,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt30) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:22: ( MUL ^| DIV ^| MOD ^) factor
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:22: ( MUL ^| DIV ^| MOD ^) factor
             	    {
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:22: ( MUL ^| DIV ^| MOD ^)
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:22: ( MUL ^| DIV ^| MOD ^)
             	    int alt29=3;
             	    switch ( input.LA(1) ) {
             	    case MUL:
@@ -4059,9 +4047,9 @@ public TreeAdaptor getTreeAdaptor() {
 
             	    switch (alt29) {
             	        case 1 :
-            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:23: MUL ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:23: MUL ^
             	            {
-            	            MUL126=(Token)match(input,MUL,FOLLOW_MUL_in_term1291); if (state.failed) return retval;
+            	            MUL126=(Token)match(input,MUL,FOLLOW_MUL_in_term1293); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            MUL126_tree = 
             	            (StageTree)adaptor.create(MUL126)
@@ -4072,9 +4060,9 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:30: DIV ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:30: DIV ^
             	            {
-            	            DIV127=(Token)match(input,DIV,FOLLOW_DIV_in_term1296); if (state.failed) return retval;
+            	            DIV127=(Token)match(input,DIV,FOLLOW_DIV_in_term1298); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            DIV127_tree = 
             	            (StageTree)adaptor.create(DIV127)
@@ -4085,9 +4073,9 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 3 :
-            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:139:37: MOD ^
+            	            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:137:37: MOD ^
             	            {
-            	            MOD128=(Token)match(input,MOD,FOLLOW_MOD_in_term1301); if (state.failed) return retval;
+            	            MOD128=(Token)match(input,MOD,FOLLOW_MOD_in_term1303); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            MOD128_tree = 
             	            (StageTree)adaptor.create(MOD128)
@@ -4101,7 +4089,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_factor_in_term1305);
+            	    pushFollow(FOLLOW_factor_in_term1307);
             	    factor129=factor();
 
             	    state._fsp--;
@@ -4150,7 +4138,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "factor"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:1: factor : ( NOT ^| MINUS ^)? atom ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:140:1: factor : ( NOT ^| MINUS ^)? atom ;
     public final StageParser.factor_return factor() throws RecognitionException {
         StageParser.factor_return retval = new StageParser.factor_return();
         retval.start = input.LT(1);
@@ -4167,13 +4155,13 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MINUS131_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:9: ( ( NOT ^| MINUS ^)? atom )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:13: ( NOT ^| MINUS ^)? atom
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:140:9: ( ( NOT ^| MINUS ^)? atom )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:140:13: ( NOT ^| MINUS ^)? atom
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:13: ( NOT ^| MINUS ^)?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:140:13: ( NOT ^| MINUS ^)?
             int alt31=3;
             int LA31_0 = input.LA(1);
 
@@ -4185,9 +4173,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt31) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:14: NOT ^
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:140:14: NOT ^
                     {
-                    NOT130=(Token)match(input,NOT,FOLLOW_NOT_in_factor1328); if (state.failed) return retval;
+                    NOT130=(Token)match(input,NOT,FOLLOW_NOT_in_factor1330); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     NOT130_tree = 
                     (StageTree)adaptor.create(NOT130)
@@ -4198,9 +4186,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:142:21: MINUS ^
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:140:21: MINUS ^
                     {
-                    MINUS131=(Token)match(input,MINUS,FOLLOW_MINUS_in_factor1333); if (state.failed) return retval;
+                    MINUS131=(Token)match(input,MINUS,FOLLOW_MINUS_in_factor1335); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     MINUS131_tree = 
                     (StageTree)adaptor.create(MINUS131)
@@ -4214,7 +4202,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_atom_in_factor1338);
+            pushFollow(FOLLOW_atom_in_factor1340);
             atom132=atom();
 
             state._fsp--;
@@ -4254,7 +4242,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "atom"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:148:1: atom : ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !);
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:146:1: atom : ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !);
     public final StageParser.atom_return atom() throws RecognitionException {
         StageParser.atom_return retval = new StageParser.atom_return();
         retval.start = input.LT(1);
@@ -4285,11 +4273,11 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_TRUE=new RewriteRuleTokenStream(adaptor,"token TRUE");
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:148:9: ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !)
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:146:9: ( ( member )=> member | INT | FLOAT | CHAR | STRING | (b= TRUE |b= FALSE ) -> ^( BOOLEAN[$b,$b.text] ) | '(' ! expr ')' !)
             int alt33=7;
             int LA33_0 = input.LA(1);
 
-            if ( (LA33_0==ID) && (synpred6_Stage())) {
+            if ( (LA33_0==ID) && (synpred7_Stage())) {
                 alt33=1;
             }
             else if ( (LA33_0==INT) ) {
@@ -4320,12 +4308,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt33) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:4: ( member )=> member
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:149:4: ( member )=> member
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_member_in_atom1375);
+                    pushFollow(FOLLOW_member_in_atom1377);
                     member133=member();
 
                     state._fsp--;
@@ -4335,12 +4323,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:152:13: INT
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:150:13: INT
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    INT134=(Token)match(input,INT,FOLLOW_INT_in_atom1389); if (state.failed) return retval;
+                    INT134=(Token)match(input,INT,FOLLOW_INT_in_atom1391); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     INT134_tree = 
                     (StageTree)adaptor.create(INT134)
@@ -4351,12 +4339,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:153:11: FLOAT
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:11: FLOAT
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    FLOAT135=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_atom1401); if (state.failed) return retval;
+                    FLOAT135=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_atom1403); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     FLOAT135_tree = 
                     (StageTree)adaptor.create(FLOAT135)
@@ -4367,12 +4355,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:11: CHAR
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:152:11: CHAR
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    CHAR136=(Token)match(input,CHAR,FOLLOW_CHAR_in_atom1413); if (state.failed) return retval;
+                    CHAR136=(Token)match(input,CHAR,FOLLOW_CHAR_in_atom1415); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     CHAR136_tree = 
                     (StageTree)adaptor.create(CHAR136)
@@ -4383,12 +4371,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:155:11: STRING
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:153:11: STRING
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    STRING137=(Token)match(input,STRING,FOLLOW_STRING_in_atom1425); if (state.failed) return retval;
+                    STRING137=(Token)match(input,STRING,FOLLOW_STRING_in_atom1427); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     STRING137_tree = 
                     (StageTree)adaptor.create(STRING137)
@@ -4399,9 +4387,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 6 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:13: (b= TRUE |b= FALSE )
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:13: (b= TRUE |b= FALSE )
                     {
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:13: (b= TRUE |b= FALSE )
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:13: (b= TRUE |b= FALSE )
                     int alt32=2;
                     int LA32_0 = input.LA(1);
 
@@ -4421,18 +4409,18 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt32) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:14: b= TRUE
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:14: b= TRUE
                             {
-                            b=(Token)match(input,TRUE,FOLLOW_TRUE_in_atom1442); if (state.failed) return retval; 
+                            b=(Token)match(input,TRUE,FOLLOW_TRUE_in_atom1444); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_TRUE.add(b);
 
 
                             }
                             break;
                         case 2 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:23: b= FALSE
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:23: b= FALSE
                             {
-                            b=(Token)match(input,FALSE,FOLLOW_FALSE_in_atom1448); if (state.failed) return retval; 
+                            b=(Token)match(input,FALSE,FOLLOW_FALSE_in_atom1450); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_FALSE.add(b);
 
 
@@ -4455,9 +4443,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (StageTree)adaptor.nil();
-                    // 156:33: -> ^( BOOLEAN[$b,$b.text] )
+                    // 154:33: -> ^( BOOLEAN[$b,$b.text] )
                     {
-                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:156:36: ^( BOOLEAN[$b,$b.text] )
+                        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:154:36: ^( BOOLEAN[$b,$b.text] )
                         {
                         StageTree root_1 = (StageTree)adaptor.nil();
                         root_1 = (StageTree)adaptor.becomeRoot(
@@ -4476,21 +4464,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 7 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:157:13: '(' ! expr ')' !
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:155:13: '(' ! expr ')' !
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    char_literal138=(Token)match(input,63,FOLLOW_63_in_atom1471); if (state.failed) return retval;
+                    char_literal138=(Token)match(input,63,FOLLOW_63_in_atom1473); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expr_in_atom1474);
+                    pushFollow(FOLLOW_expr_in_atom1476);
                     expr139=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expr139.getTree());
 
-                    char_literal140=(Token)match(input,64,FOLLOW_64_in_atom1476); if (state.failed) return retval;
+                    char_literal140=(Token)match(input,64,FOLLOW_64_in_atom1478); if (state.failed) return retval;
 
                     }
                     break;
@@ -4527,7 +4515,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "member"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:1: member : var ( MEMBER ^ var )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:158:1: member : var ( MEMBER ^ var )* ;
     public final StageParser.member_return member() throws RecognitionException {
         StageParser.member_return retval = new StageParser.member_return();
         retval.start = input.LT(1);
@@ -4544,20 +4532,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree MEMBER142_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:8: ( var ( MEMBER ^ var )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:10: var ( MEMBER ^ var )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:158:8: ( var ( MEMBER ^ var )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:158:10: var ( MEMBER ^ var )*
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_var_in_member1502);
+            pushFollow(FOLLOW_var_in_member1504);
             var141=var();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, var141.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:14: ( MEMBER ^ var )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:158:14: ( MEMBER ^ var )*
             loop34:
             do {
                 int alt34=2;
@@ -4570,9 +4558,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt34) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:15: MEMBER ^ var
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:158:15: MEMBER ^ var
             	    {
-            	    MEMBER142=(Token)match(input,MEMBER,FOLLOW_MEMBER_in_member1505); if (state.failed) return retval;
+            	    MEMBER142=(Token)match(input,MEMBER,FOLLOW_MEMBER_in_member1507); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    MEMBER142_tree = 
             	    (StageTree)adaptor.create(MEMBER142)
@@ -4580,7 +4568,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    root_0 = (StageTree)adaptor.becomeRoot(MEMBER142_tree, root_0);
             	    }
 
-            	    pushFollow(FOLLOW_var_in_member1508);
+            	    pushFollow(FOLLOW_var_in_member1510);
             	    var143=var();
 
             	    state._fsp--;
@@ -4629,7 +4617,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "var"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:1: var : ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID );
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:1: var : ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID );
     public final StageParser.var_return var() throws RecognitionException {
         StageParser.var_return retval = new StageParser.var_return();
         retval.start = input.LT(1);
@@ -4646,17 +4634,17 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree ID146_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:6: ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:6: ( ( arrayVar )=> arrayVar | ( funcVar )=> funcVar | ID )
             int alt35=3;
             int LA35_0 = input.LA(1);
 
             if ( (LA35_0==ID) ) {
                 int LA35_1 = input.LA(2);
 
-                if ( (LA35_1==68) && (synpred7_Stage())) {
+                if ( (LA35_1==68) && (synpred8_Stage())) {
                     alt35=1;
                 }
-                else if ( (LA35_1==63) && (synpred8_Stage())) {
+                else if ( (LA35_1==63) && (synpred9_Stage())) {
                     alt35=2;
                 }
                 else if ( (LA35_1==EOF||LA35_1==AND||LA35_1==ASIGEQUAL||LA35_1==DIV||LA35_1==EQUAL||(LA35_1 >= GE && LA35_1 <= GT)||LA35_1==LE||(LA35_1 >= LT && LA35_1 <= MUL)||LA35_1==NOT_EQUAL||LA35_1==OR||LA35_1==PLUS||LA35_1==UNTIL||(LA35_1 >= 64 && LA35_1 <= 65)||LA35_1==67||LA35_1==69) ) {
@@ -4681,12 +4669,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt35) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:8: ( arrayVar )=> arrayVar
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:8: ( arrayVar )=> arrayVar
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_arrayVar_in_var1525);
+                    pushFollow(FOLLOW_arrayVar_in_var1527);
                     arrayVar144=arrayVar();
 
                     state._fsp--;
@@ -4696,12 +4684,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:163:5: ( funcVar )=> funcVar
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:161:5: ( funcVar )=> funcVar
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_funcVar_in_var1537);
+                    pushFollow(FOLLOW_funcVar_in_var1539);
                     funcVar145=funcVar();
 
                     state._fsp--;
@@ -4711,12 +4699,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:164:5: ID
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:5: ID
                     {
                     root_0 = (StageTree)adaptor.nil();
 
 
-                    ID146=(Token)match(input,ID,FOLLOW_ID_in_var1543); if (state.failed) return retval;
+                    ID146=(Token)match(input,ID,FOLLOW_ID_in_var1545); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     ID146_tree = 
                     (StageTree)adaptor.create(ID146)
@@ -4759,7 +4747,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "arrayVar"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:167:1: arrayVar : ID '[' expr ']' -> ^( ARRAY ID expr ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:165:1: arrayVar : ID '[' expr ']' -> ^( ARRAY ID expr ) ;
     public final StageParser.arrayVar_return arrayVar() throws RecognitionException {
         StageParser.arrayVar_return retval = new StageParser.arrayVar_return();
         retval.start = input.LT(1);
@@ -4781,30 +4769,30 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:2: ( ID '[' expr ']' -> ^( ARRAY ID expr ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:4: ID '[' expr ']'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:166:2: ( ID '[' expr ']' -> ^( ARRAY ID expr ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:166:4: ID '[' expr ']'
             {
-            ID147=(Token)match(input,ID,FOLLOW_ID_in_arrayVar1558); if (state.failed) return retval; 
+            ID147=(Token)match(input,ID,FOLLOW_ID_in_arrayVar1560); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID147);
 
 
-            char_literal148=(Token)match(input,68,FOLLOW_68_in_arrayVar1560); if (state.failed) return retval; 
+            char_literal148=(Token)match(input,68,FOLLOW_68_in_arrayVar1562); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_68.add(char_literal148);
 
 
-            pushFollow(FOLLOW_expr_in_arrayVar1562);
+            pushFollow(FOLLOW_expr_in_arrayVar1564);
             expr149=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expr.add(expr149.getTree());
 
-            char_literal150=(Token)match(input,69,FOLLOW_69_in_arrayVar1564); if (state.failed) return retval; 
+            char_literal150=(Token)match(input,69,FOLLOW_69_in_arrayVar1566); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_69.add(char_literal150);
 
 
             // AST REWRITE
-            // elements: ID, expr
+            // elements: expr, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4816,9 +4804,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (StageTree)adaptor.nil();
-            // 168:20: -> ^( ARRAY ID expr )
+            // 166:20: -> ^( ARRAY ID expr )
             {
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:23: ^( ARRAY ID expr )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:166:23: ^( ARRAY ID expr )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -4873,7 +4861,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "funcVar"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:169:1: funcVar : ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:167:1: funcVar : ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) ;
     public final StageParser.funcVar_return funcVar() throws RecognitionException {
         StageParser.funcVar_return retval = new StageParser.funcVar_return();
         retval.start = input.LT(1);
@@ -4895,18 +4883,18 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_63=new RewriteRuleTokenStream(adaptor,"token 63");
         RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:2: ( ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:4: ID '(' ( expr_list )? ')'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:2: ( ID '(' ( expr_list )? ')' -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:4: ID '(' ( expr_list )? ')'
             {
-            ID151=(Token)match(input,ID,FOLLOW_ID_in_funcVar1583); if (state.failed) return retval; 
+            ID151=(Token)match(input,ID,FOLLOW_ID_in_funcVar1585); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID151);
 
 
-            char_literal152=(Token)match(input,63,FOLLOW_63_in_funcVar1585); if (state.failed) return retval; 
+            char_literal152=(Token)match(input,63,FOLLOW_63_in_funcVar1587); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_63.add(char_literal152);
 
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:11: ( expr_list )?
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:11: ( expr_list )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -4915,9 +4903,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt36) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:11: expr_list
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:11: expr_list
                     {
-                    pushFollow(FOLLOW_expr_list_in_funcVar1587);
+                    pushFollow(FOLLOW_expr_list_in_funcVar1589);
                     expr_list153=expr_list();
 
                     state._fsp--;
@@ -4930,7 +4918,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal154=(Token)match(input,64,FOLLOW_64_in_funcVar1590); if (state.failed) return retval; 
+            char_literal154=(Token)match(input,64,FOLLOW_64_in_funcVar1592); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_64.add(char_literal154);
 
 
@@ -4947,9 +4935,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (StageTree)adaptor.nil();
-            // 170:26: -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
+            // 168:26: -> ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
             {
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:29: ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:29: ^( FUNCALL ID ^( ARGLIST ( expr_list )? ) )
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -4960,14 +4948,14 @@ public TreeAdaptor getTreeAdaptor() {
                 stream_ID.nextNode()
                 );
 
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:42: ^( ARGLIST ( expr_list )? )
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:42: ^( ARGLIST ( expr_list )? )
                 {
                 StageTree root_2 = (StageTree)adaptor.nil();
                 root_2 = (StageTree)adaptor.becomeRoot(
                 (StageTree)adaptor.create(ARGLIST, "ARGLIST")
                 , root_2);
 
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:170:52: ( expr_list )?
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:168:52: ( expr_list )?
                 if ( stream_expr_list.hasNext() ) {
                     adaptor.addChild(root_2, stream_expr_list.nextTree());
 
@@ -5019,7 +5007,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "timeFuncCall"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:179:1: timeFuncCall : funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:177:1: timeFuncCall : funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) ;
     public final StageParser.timeFuncCall_return timeFuncCall() throws RecognitionException {
         StageParser.timeFuncCall_return retval = new StageParser.timeFuncCall_return();
         retval.start = input.LT(1);
@@ -5043,32 +5031,32 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         RewriteRuleSubtreeStream stream_funcVar=new RewriteRuleSubtreeStream(adaptor,"rule funcVar");
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:180:2: ( funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:180:4: funcVar FROM fexpr= expr UNTIL uexpr= expr
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:178:2: ( funcVar FROM fexpr= expr UNTIL uexpr= expr -> ^( TIMECALL funcVar $fexpr $uexpr) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:178:4: funcVar FROM fexpr= expr UNTIL uexpr= expr
             {
-            pushFollow(FOLLOW_funcVar_in_timeFuncCall1622);
+            pushFollow(FOLLOW_funcVar_in_timeFuncCall1624);
             funcVar155=funcVar();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_funcVar.add(funcVar155.getTree());
 
-            FROM156=(Token)match(input,FROM,FOLLOW_FROM_in_timeFuncCall1624); if (state.failed) return retval; 
+            FROM156=(Token)match(input,FROM,FOLLOW_FROM_in_timeFuncCall1626); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_FROM.add(FROM156);
 
 
-            pushFollow(FOLLOW_expr_in_timeFuncCall1628);
+            pushFollow(FOLLOW_expr_in_timeFuncCall1630);
             fexpr=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expr.add(fexpr.getTree());
 
-            UNTIL157=(Token)match(input,UNTIL,FOLLOW_UNTIL_in_timeFuncCall1630); if (state.failed) return retval; 
+            UNTIL157=(Token)match(input,UNTIL,FOLLOW_UNTIL_in_timeFuncCall1632); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_UNTIL.add(UNTIL157);
 
 
-            pushFollow(FOLLOW_expr_in_timeFuncCall1634);
+            pushFollow(FOLLOW_expr_in_timeFuncCall1636);
             uexpr=expr();
 
             state._fsp--;
@@ -5076,7 +5064,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_expr.add(uexpr.getTree());
 
             // AST REWRITE
-            // elements: funcVar, uexpr, fexpr
+            // elements: uexpr, fexpr, funcVar
             // token labels: 
             // rule labels: retval, uexpr, fexpr
             // token list labels: 
@@ -5090,9 +5078,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_fexpr=new RewriteRuleSubtreeStream(adaptor,"rule fexpr",fexpr!=null?fexpr.tree:null);
 
             root_0 = (StageTree)adaptor.nil();
-            // 180:45: -> ^( TIMECALL funcVar $fexpr $uexpr)
+            // 178:45: -> ^( TIMECALL funcVar $fexpr $uexpr)
             {
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:180:48: ^( TIMECALL funcVar $fexpr $uexpr)
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:178:48: ^( TIMECALL funcVar $fexpr $uexpr)
                 {
                 StageTree root_1 = (StageTree)adaptor.nil();
                 root_1 = (StageTree)adaptor.becomeRoot(
@@ -5147,7 +5135,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr_list"
-    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:1: expr_list : expr ( ',' ! expr )* ;
+    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:189:1: expr_list : expr ( ',' ! expr )* ;
     public final StageParser.expr_list_return expr_list() throws RecognitionException {
         StageParser.expr_list_return retval = new StageParser.expr_list_return();
         retval.start = input.LT(1);
@@ -5164,20 +5152,20 @@ public TreeAdaptor getTreeAdaptor() {
         StageTree char_literal159_tree=null;
 
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:10: ( expr ( ',' ! expr )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:13: expr ( ',' ! expr )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:189:10: ( expr ( ',' ! expr )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:189:13: expr ( ',' ! expr )*
             {
             root_0 = (StageTree)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_expr_list1665);
+            pushFollow(FOLLOW_expr_in_expr_list1667);
             expr158=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr158.getTree());
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:18: ( ',' ! expr )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:189:18: ( ',' ! expr )*
             loop37:
             do {
                 int alt37=2;
@@ -5190,11 +5178,11 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt37) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:191:19: ',' ! expr
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:189:19: ',' ! expr
             	    {
-            	    char_literal159=(Token)match(input,65,FOLLOW_65_in_expr_list1668); if (state.failed) return retval;
+            	    char_literal159=(Token)match(input,65,FOLLOW_65_in_expr_list1670); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_expr_in_expr_list1671);
+            	    pushFollow(FOLLOW_expr_in_expr_list1673);
             	    expr160=expr();
 
             	    state._fsp--;
@@ -5237,16 +5225,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred1_Stage
     public final void synpred1_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:8: ( member ';' )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:9: member ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:82:13: ( bypassFilter ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:82:14: bypassFilter ';'
         {
-        pushFollow(FOLLOW_member_in_synpred1_Stage567);
-        member();
+        pushFollow(FOLLOW_bypassFilter_in_synpred1_Stage562);
+        bypassFilter();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,67,FOLLOW_67_in_synpred1_Stage569); if (state.failed) return ;
+        match(input,67,FOLLOW_67_in_synpred1_Stage564); if (state.failed) return ;
 
         }
 
@@ -5255,16 +5243,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred2_Stage
     public final void synpred2_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:8: ( timeFuncCall ';' )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:9: timeFuncCall ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:7: ( member ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:83:8: member ';'
         {
-        pushFollow(FOLLOW_timeFuncCall_in_synpred2_Stage587);
-        timeFuncCall();
+        pushFollow(FOLLOW_member_in_synpred2_Stage580);
+        member();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,67,FOLLOW_67_in_synpred2_Stage589); if (state.failed) return ;
+        match(input,67,FOLLOW_67_in_synpred2_Stage582); if (state.failed) return ;
 
         }
 
@@ -5273,16 +5261,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred3_Stage
     public final void synpred3_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:10: ( assign ';' )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:11: assign ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:13: ( timeFuncCall ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:84:14: timeFuncCall ';'
         {
-        pushFollow(FOLLOW_assign_in_synpred3_Stage609);
-        assign();
+        pushFollow(FOLLOW_timeFuncCall_in_synpred3_Stage603);
+        timeFuncCall();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,67,FOLLOW_67_in_synpred3_Stage611); if (state.failed) return ;
+        match(input,67,FOLLOW_67_in_synpred3_Stage605); if (state.failed) return ;
 
         }
 
@@ -5291,16 +5279,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred4_Stage
     public final void synpred4_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:13: ( filtercall ';' )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:14: filtercall ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:11: ( assign ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:85:12: assign ';'
         {
-        pushFollow(FOLLOW_filtercall_in_synpred4_Stage641);
-        filtercall();
+        pushFollow(FOLLOW_assign_in_synpred4_Stage625);
+        assign();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,67,FOLLOW_67_in_synpred4_Stage643); if (state.failed) return ;
+        match(input,67,FOLLOW_67_in_synpred4_Stage627); if (state.failed) return ;
 
         }
 
@@ -5309,16 +5297,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred5_Stage
     public final void synpred5_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:11: ( declare ';' )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:12: declare ';'
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:13: ( filtercall ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:86:14: filtercall ';'
         {
-        pushFollow(FOLLOW_declare_in_synpred5_Stage662);
-        declare();
+        pushFollow(FOLLOW_filtercall_in_synpred5_Stage657);
+        filtercall();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,67,FOLLOW_67_in_synpred5_Stage664); if (state.failed) return ;
+        match(input,67,FOLLOW_67_in_synpred5_Stage659); if (state.failed) return ;
 
         }
 
@@ -5327,14 +5315,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred6_Stage
     public final void synpred6_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:4: ( member )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:151:5: member
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:11: ( declare ';' )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:87:12: declare ';'
         {
-        pushFollow(FOLLOW_member_in_synpred6_Stage1372);
-        member();
+        pushFollow(FOLLOW_declare_in_synpred6_Stage678);
+        declare();
 
         state._fsp--;
         if (state.failed) return ;
+
+        match(input,67,FOLLOW_67_in_synpred6_Stage680); if (state.failed) return ;
 
         }
 
@@ -5343,11 +5333,11 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred7_Stage
     public final void synpred7_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:8: ( arrayVar )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:162:9: arrayVar
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:149:4: ( member )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:149:5: member
         {
-        pushFollow(FOLLOW_arrayVar_in_synpred7_Stage1520);
-        arrayVar();
+        pushFollow(FOLLOW_member_in_synpred7_Stage1374);
+        member();
 
         state._fsp--;
         if (state.failed) return ;
@@ -5359,11 +5349,11 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred8_Stage
     public final void synpred8_Stage_fragment() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:163:5: ( funcVar )
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:163:6: funcVar
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:8: ( arrayVar )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:160:9: arrayVar
         {
-        pushFollow(FOLLOW_funcVar_in_synpred8_Stage1532);
-        funcVar();
+        pushFollow(FOLLOW_arrayVar_in_synpred8_Stage1522);
+        arrayVar();
 
         state._fsp--;
         if (state.failed) return ;
@@ -5372,6 +5362,22 @@ public TreeAdaptor getTreeAdaptor() {
 
     }
     // $ANTLR end synpred8_Stage
+
+    // $ANTLR start synpred9_Stage
+    public final void synpred9_Stage_fragment() throws RecognitionException {
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:161:5: ( funcVar )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:161:6: funcVar
+        {
+        pushFollow(FOLLOW_funcVar_in_synpred9_Stage1534);
+        funcVar();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred9_Stage
 
     // Delegated rules
 
@@ -5473,6 +5479,20 @@ public TreeAdaptor getTreeAdaptor() {
         state.failed=false;
         return success;
     }
+    public final boolean synpred9_Stage() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred9_Stage_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred7_Stage() {
         state.backtracking++;
         int start = input.mark();
@@ -5532,152 +5552,154 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_65_in_inputlist486 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_ID_in_inputlist489 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
     public static final BitSet FOLLOW_instruction_in_block_instructions510 = new BitSet(new long[]{0x20C0000300000812L,0x0000000000000004L});
-    public static final BitSet FOLLOW_member_in_instruction572 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction574 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeFuncCall_in_instruction592 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assign_in_instruction614 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_filtercall_in_instruction646 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declare_in_instruction667 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_addFilter_in_instruction683 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_bypassFilter_in_instruction567 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_member_in_instruction585 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeFuncCall_in_instruction608 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assign_in_instruction630 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_filtercall_in_instruction662 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction664 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declare_in_instruction683 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_67_in_instruction685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_bypassFilter_in_instruction697 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction699 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_quitInst_in_instruction711 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction713 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_returnexp_in_instruction726 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_instruction728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ite_stmt_in_instruction741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_while_stmt_in_instruction759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RETURN_in_returnexp783 = new BitSet(new long[]{0x8A00900904404002L});
-    public static final BitSet FOLLOW_expr_in_returnexp786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_member_in_assign796 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ASIGEQUAL_in_assign800 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_assign802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_inputlist_in_filtercall821 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_filtercall824 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_filtercall826 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_filtercall828 = new BitSet(new long[]{0x8A00900904404000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_expr_list_in_filtercall830 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_filtercall833 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_filtercall835 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_filtercall837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_filtercall872 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_filtercall874 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_filtercall878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ADDFILT_in_addFilter900 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_addFilter902 = new BitSet(new long[]{0x0000000100000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_filtercall_in_addFilter904 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_addFilter906 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_70_in_addFilter908 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_addFilter910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BYPASSF_in_bypassFilter930 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_bypassFilter933 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_bypassFilter935 = new BitSet(new long[]{0x0000000900000000L});
-    public static final BitSet FOLLOW_set_in_bypassFilter938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_QUIT_in_quitInst954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_declare964 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_declare968 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_ASIGEQUAL_in_declare971 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_declare973 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_declare998 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_declare1000 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_INT_in_declare1002 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_declare1004 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_declare1008 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_ASIGEQUAL_in_declare1011 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_declare1013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IF_in_ite_stmt1046 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_ite_stmt1049 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_ite_stmt1052 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_ite_stmt1054 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_CBL_in_ite_stmt1057 = new BitSet(new long[]{0x20C0000300002810L,0x0000000000000004L});
-    public static final BitSet FOLLOW_block_instructions_in_ite_stmt1060 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_CBR_in_ite_stmt1062 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_ELSE_in_ite_stmt1066 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_CBL_in_ite_stmt1069 = new BitSet(new long[]{0x20C0000300002810L,0x0000000000000004L});
-    public static final BitSet FOLLOW_block_instructions_in_ite_stmt1072 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_CBR_in_ite_stmt1074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WHILE_in_while_stmt1099 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_while_stmt1102 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_while_stmt1105 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_while_stmt1107 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_CBL_in_while_stmt1110 = new BitSet(new long[]{0x20C0000300002810L,0x0000000000000004L});
-    public static final BitSet FOLLOW_block_instructions_in_while_stmt1113 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_CBR_in_while_stmt1115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_boolterm_in_expr1143 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_OR_in_expr1146 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_boolterm_in_expr1149 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_boolfact_in_boolterm1169 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_AND_in_boolterm1172 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_boolfact_in_boolterm1175 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_num_expr_in_boolfact1195 = new BitSet(new long[]{0x00010420C0100002L});
-    public static final BitSet FOLLOW_EQUAL_in_boolfact1199 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_NOT_EQUAL_in_boolfact1204 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_LT_in_boolfact1209 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_LE_in_boolfact1214 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_GT_in_boolfact1219 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_GE_in_boolfact1224 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_num_expr_in_boolfact1228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_term_in_num_expr1248 = new BitSet(new long[]{0x0020100000000002L});
-    public static final BitSet FOLLOW_PLUS_in_num_expr1253 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_MINUS_in_num_expr1258 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_term_in_num_expr1262 = new BitSet(new long[]{0x0020100000000002L});
-    public static final BitSet FOLLOW_factor_in_term1286 = new BitSet(new long[]{0x0000600000020002L});
-    public static final BitSet FOLLOW_MUL_in_term1291 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_DIV_in_term1296 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_MOD_in_term1301 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_factor_in_term1305 = new BitSet(new long[]{0x0000600000020002L});
-    public static final BitSet FOLLOW_NOT_in_factor1328 = new BitSet(new long[]{0x8A00000904404000L});
-    public static final BitSet FOLLOW_MINUS_in_factor1333 = new BitSet(new long[]{0x8A00000904404000L});
-    public static final BitSet FOLLOW_atom_in_factor1338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_member_in_atom1375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_atom1389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOAT_in_atom1401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_in_atom1413 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_atom1425 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TRUE_in_atom1442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FALSE_in_atom1448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_atom1471 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_atom1474 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_atom1476 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_var_in_member1502 = new BitSet(new long[]{0x0000080000000002L});
-    public static final BitSet FOLLOW_MEMBER_in_member1505 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_var_in_member1508 = new BitSet(new long[]{0x0000080000000002L});
-    public static final BitSet FOLLOW_arrayVar_in_var1525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcVar_in_var1537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_var1543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_arrayVar1558 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_arrayVar1560 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_arrayVar1562 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_arrayVar1564 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_funcVar1583 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_funcVar1585 = new BitSet(new long[]{0x8A00900904404000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_expr_list_in_funcVar1587 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_funcVar1590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcVar_in_timeFuncCall1622 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_FROM_in_timeFuncCall1624 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_timeFuncCall1628 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_UNTIL_in_timeFuncCall1630 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_timeFuncCall1634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_expr_list1665 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_expr_list1668 = new BitSet(new long[]{0x8A00900904404000L});
-    public static final BitSet FOLLOW_expr_in_expr_list1671 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_member_in_synpred1_Stage567 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_synpred1_Stage569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeFuncCall_in_synpred2_Stage587 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_synpred2_Stage589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assign_in_synpred3_Stage609 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_synpred3_Stage611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_filtercall_in_synpred4_Stage641 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_synpred4_Stage643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declare_in_synpred5_Stage662 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_synpred5_Stage664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_member_in_synpred6_Stage1372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arrayVar_in_synpred7_Stage1520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcVar_in_synpred8_Stage1532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_addFilter_in_instruction698 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_quitInst_in_instruction713 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction715 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_returnexp_in_instruction728 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_instruction730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ite_stmt_in_instruction743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_while_stmt_in_instruction761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RETURN_in_returnexp785 = new BitSet(new long[]{0x8A00900904404002L});
+    public static final BitSet FOLLOW_expr_in_returnexp788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_member_in_assign798 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_ASIGEQUAL_in_assign802 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_assign804 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_inputlist_in_filtercall823 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_66_in_filtercall826 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_filtercall828 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_63_in_filtercall830 = new BitSet(new long[]{0x8A00900904404000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_list_in_filtercall832 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_filtercall835 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_66_in_filtercall837 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_filtercall839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_filtercall874 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_66_in_filtercall876 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_filtercall880 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ADDFILT_in_addFilter902 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_63_in_addFilter904 = new BitSet(new long[]{0x0000000100000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_filtercall_in_addFilter906 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_addFilter908 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_addFilter910 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_addFilter912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BYPASSF_in_bypassFilter932 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_bypassFilter935 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_71_in_bypassFilter937 = new BitSet(new long[]{0x0000000900000000L});
+    public static final BitSet FOLLOW_set_in_bypassFilter940 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QUIT_in_quitInst956 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_declare966 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_declare970 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_ASIGEQUAL_in_declare973 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_declare975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_declare1000 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_declare1002 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_INT_in_declare1004 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_declare1006 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_declare1010 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_ASIGEQUAL_in_declare1013 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_declare1015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IF_in_ite_stmt1048 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_63_in_ite_stmt1051 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_ite_stmt1054 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_ite_stmt1056 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_CBL_in_ite_stmt1059 = new BitSet(new long[]{0x20C0000300002810L,0x0000000000000004L});
+    public static final BitSet FOLLOW_block_instructions_in_ite_stmt1062 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_CBR_in_ite_stmt1064 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_ELSE_in_ite_stmt1068 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_CBL_in_ite_stmt1071 = new BitSet(new long[]{0x20C0000300002810L,0x0000000000000004L});
+    public static final BitSet FOLLOW_block_instructions_in_ite_stmt1074 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_CBR_in_ite_stmt1076 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WHILE_in_while_stmt1101 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_63_in_while_stmt1104 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_while_stmt1107 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_while_stmt1109 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_CBL_in_while_stmt1112 = new BitSet(new long[]{0x20C0000300002810L,0x0000000000000004L});
+    public static final BitSet FOLLOW_block_instructions_in_while_stmt1115 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_CBR_in_while_stmt1117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_boolterm_in_expr1145 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_OR_in_expr1148 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_boolterm_in_expr1151 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_boolfact_in_boolterm1171 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_AND_in_boolterm1174 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_boolfact_in_boolterm1177 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_num_expr_in_boolfact1197 = new BitSet(new long[]{0x00010420C0100002L});
+    public static final BitSet FOLLOW_EQUAL_in_boolfact1201 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_NOT_EQUAL_in_boolfact1206 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_LT_in_boolfact1211 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_LE_in_boolfact1216 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_GT_in_boolfact1221 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_GE_in_boolfact1226 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_num_expr_in_boolfact1230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_term_in_num_expr1250 = new BitSet(new long[]{0x0020100000000002L});
+    public static final BitSet FOLLOW_PLUS_in_num_expr1255 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_MINUS_in_num_expr1260 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_term_in_num_expr1264 = new BitSet(new long[]{0x0020100000000002L});
+    public static final BitSet FOLLOW_factor_in_term1288 = new BitSet(new long[]{0x0000600000020002L});
+    public static final BitSet FOLLOW_MUL_in_term1293 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_DIV_in_term1298 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_MOD_in_term1303 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_factor_in_term1307 = new BitSet(new long[]{0x0000600000020002L});
+    public static final BitSet FOLLOW_NOT_in_factor1330 = new BitSet(new long[]{0x8A00000904404000L});
+    public static final BitSet FOLLOW_MINUS_in_factor1335 = new BitSet(new long[]{0x8A00000904404000L});
+    public static final BitSet FOLLOW_atom_in_factor1340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_member_in_atom1377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_atom1391 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOAT_in_atom1403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHAR_in_atom1415 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_atom1427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TRUE_in_atom1444 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FALSE_in_atom1450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_atom1473 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_atom1476 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_atom1478 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_var_in_member1504 = new BitSet(new long[]{0x0000080000000002L});
+    public static final BitSet FOLLOW_MEMBER_in_member1507 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_var_in_member1510 = new BitSet(new long[]{0x0000080000000002L});
+    public static final BitSet FOLLOW_arrayVar_in_var1527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcVar_in_var1539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_var1545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_arrayVar1560 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_arrayVar1562 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_arrayVar1564 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_arrayVar1566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_funcVar1585 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_63_in_funcVar1587 = new BitSet(new long[]{0x8A00900904404000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_list_in_funcVar1589 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_funcVar1592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcVar_in_timeFuncCall1624 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_FROM_in_timeFuncCall1626 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_timeFuncCall1630 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_UNTIL_in_timeFuncCall1632 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_timeFuncCall1636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_expr_list1667 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_expr_list1670 = new BitSet(new long[]{0x8A00900904404000L});
+    public static final BitSet FOLLOW_expr_in_expr_list1673 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_bypassFilter_in_synpred1_Stage562 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_synpred1_Stage564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_member_in_synpred2_Stage580 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_synpred2_Stage582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeFuncCall_in_synpred3_Stage603 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_synpred3_Stage605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assign_in_synpred4_Stage625 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_synpred4_Stage627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_filtercall_in_synpred5_Stage657 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_synpred5_Stage659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declare_in_synpred6_Stage678 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_synpred6_Stage680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_member_in_synpred7_Stage1374 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arrayVar_in_synpred8_Stage1522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcVar_in_synpred9_Stage1534 = new BitSet(new long[]{0x0000000000000002L});
 
 }

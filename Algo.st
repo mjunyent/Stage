@@ -49,8 +49,10 @@ FIRST:
 	printFC(p-10.0) from 14.0 until 18.0;
 
 	node A;
+	node B;
+	node C;
 	
-	drawRed(A) from 10.0 until 12.0;
+//	drawRed(A) from 10.0 until 12.0;
 	/*
 	video v1 = video("nomdelfitxer");
 	video v2 = video("nomdelfitxer");
@@ -62,10 +64,18 @@ FIRST:
 	v1.play();
 	v2.play.meinventoesto();
 	music.play();*/
+	int k = 0;
 
 LOOP:
+	-> pinta(1.0,0.0,0.0) -> A;
+	-> pinta(0.0,0.0,1.0) -> B;
+	A,B -> mix(0.5) -> output;
 
-	A -> output;
+	add (A,B -> mix(0.5) -> C) after A;
+	
+	println(k);
+	
+//	A -> output;
 //println("Now: " + now + " Time: " + time + " dt: " + dt);
 /*
 	-> pinta(1.0,0.0,0.0) -> A;
