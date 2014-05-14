@@ -23,12 +23,12 @@ filter testA(float k) {
 filter v1,v2 -> mix(float m) {
 	float n = 1.0-m;
 	vec2 k = vec2(0.5,0.5);
-	return v1[k]*m+v2[k]*n;
+	return v1[UV]*m+v2[UV]*n;
 //	return v1[UV]*vec4(m,m,m,m) + v2[UV]*(vec4(1.0,1.0,1.0,1.0)*vec4(m,m,m,m));
 }
 
 filter pinta(float r, float g, float b) {
-	return vec4(r,g,b,1.0);
+	return vec4(r,g,time/10.0,1.0);
 }
 
 function main() {
@@ -52,6 +52,13 @@ FIRST:
 	node B;
 	node C;
 	
+	vec4 alehop;
+	alehop = vec4(1.9,2.9,5.3,8.7);
+	println("(" + alehop.x + "," + alehop.y + "," + alehop.z + "," + alehop.w + ")");
+	
+	video v = video("transit.mov");
+	v.loop();
+	v.speed(2.0);
 //	drawRed(A) from 10.0 until 12.0;
 	/*
 	video v1 = video("nomdelfitxer");
@@ -67,14 +74,20 @@ FIRST:
 	int k = 0;
 
 LOOP:
-	-> pinta(1.0,0.0,0.0) -> A;
+	println("DT: " + dt);
+/*	-> pinta(1.0,0.0,0.0) -> A;
 	-> pinta(0.0,0.0,1.0) -> B;
+	
+	
 	A,B -> mix(0.5) -> output;
+	
+	C,C -> mix(0.5) -> A;
 
-	add (A,B -> mix(0.5) -> C) after A;
-	
-	println(k);
-	
+	add (A,B -> mix(0.5) -> C) after A;*/
+
+	-> pinta(1.0,0.0,0.0) -> A;
+	v,A -> mix(0.5) -> output;
+		
 //	A -> output;
 //println("Now: " + now + " Time: " + time + " dt: " + dt);
 /*

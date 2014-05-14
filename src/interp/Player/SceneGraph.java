@@ -3,11 +3,9 @@ package interp.Player;
 import interp.Semantic.FunctionGlobalVars;
 import interp.Types.*;
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.opengl.PShader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class SceneGraph {
     }
 
     public void printReferenceCount() {
-        System.out.println("PRINTATUPUTAMADRE");
+        System.out.println("Printing reference count");
         for(int i=0; i<referenceCount.size(); i++) {
             System.out.println(i + ": " + referenceCount.get(i));
         }
@@ -155,6 +153,37 @@ public class SceneGraph {
         }
     }
 
+    public boolean isCyclicUtil(int v, ArrayList<Boolean> visited, ArrayList<Boolean> recStack) {
+        if(!visited.get(v)) {
+            visited.set(v,true);
+            recStack.set(v,true);
+
+            if(graph.get(v) != null) {
+                for(Integer adj : graph.get(v)) {
+                    if(!visited.get(adj) && isCyclicUtil(adj, visited, recStack)) {
+                        return true;
+                    } else if(recStack.get(adj)) return true;
+                }
+            }
+        }
+        recStack.set(v,false);
+        return false;
+    }
+
+    public boolean isCyclic() {
+        ArrayList<Boolean> visited = new ArrayList<Boolean>(graph.size());
+        ArrayList<Boolean> recStack = new ArrayList<Boolean>(graph.size());
+        for(int i=0; i<graph.size(); i++) {
+            visited.add(i, false);
+            recStack.add(i, false);
+        }
+
+        for(int i=0; i<graph.size(); i++) {
+            if(isCyclicUtil(i,visited,recStack)) return true;
+        }
+        return false;
+    }
+
     public void process(int id) {
         NodeInterface node = nodes.get(id);
         Effect effect = effects.get(id);
@@ -162,6 +191,9 @@ public class SceneGraph {
 
         if(effect == null) return; //nothing to do
         if(effect.checked) return; //avoid loops
+
+        //effect checked.
+        effect.checked = true;
 
         //process dependencies
         for(Integer i : dependencies) {
@@ -181,6 +213,10 @@ public class SceneGraph {
         node.getRenderer().beginDraw();
         node.getRenderer().background(0);
         node.getRenderer().shader(effect.fs.shader);
+
+        //give system uniforms.
+        effect.fs.shader.set("time", FunctionGlobalVars.time.getValue());
+        effect.fs.shader.set("resolution", (float)FunctionGlobalVars.screen.width, (float)FunctionGlobalVars.screen.height);
 
         //give input images.
         for(int i=0; i<dependencies.size(); i++) {
@@ -217,8 +253,5 @@ public class SceneGraph {
 
         node.getRenderer().rect(0, 0, FunctionGlobalVars.resolution.getX(), FunctionGlobalVars.resolution.getY());
         node.getRenderer().endDraw();
-
-        //effect checked.
-        effect.checked = true;
     }
 }

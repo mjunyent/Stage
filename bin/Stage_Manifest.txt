@@ -1,2 +1,4 @@
 Main-Class: Stage.Stage
-Class-Path: /Users/marc/IdeaProjects/Stage/libs/antlr-3.4-complete.jar /Users/marc/IdeaProjects/Stage/libs/commons-cli-1.2.jar /Users/marc/IdeaProjects/Stage/libs/Processing/core.jar /Users/marc/IdeaProjects/Stage/libs/Processing/jogl-all.jar /Users/marc/IdeaProjects/Stage/libs/Processing/gluegen-rt.jar /Users/marc/IdeaProjects/Stage/libs/Processing/jogl-all-natives-macosx-universal.jar /Users/marc/IdeaProjects/Stage/libs/Processing/gluegen-rt-natives-macosx-universal.jar
+Class-Path: /Users/marc/IdeaProjects/Stage/libs/antlr-3.4-complete.jar /Users/marc/IdeaProjects/Stage/libs/commons-cli-1.2.jar 
+ /Users/marc/IdeaProjects/Stage/libs/Processing/core.jar /Users/marc/IdeaProjects/Stage/libs/Processing/jogl-all.jar /Users/marc/IdeaProjects/Stage/libs/Processing/gluegen-rt.jar /Users/marc/IdeaProjects/Stage/libs/Processing/jogl-all-natives-macosx-universal.jar /Users/marc/IdeaProjects/Stage/libs/Processing/gluegen-rt-natives-macosx-universal.jar 
+ /Users/marc/IdeaProjects/Stage/libs/Processing/video/video.jar /Users/marc/IdeaProjects/Stage/libs/Processing/video/gstreamer-java.jar /Users/marc/IdeaProjects/Stage/libs/Processing/video/jna.jar

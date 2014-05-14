@@ -147,7 +147,7 @@ public class SemanticsFunctions {
             case StageLexer.EMPTYFILT:
                 TypeInterface leftFilt  = symbol_table.getType(inst.getChild(0).getText()).getInstance();
                 TypeInterface rightFilt = symbol_table.getType(inst.getChild(1).getText()).getInstance();
-                if(! (leftFilt instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + " can't be input/output of a filter.");
+                if(! (leftFilt instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + "<" + leftFilt.getTypeName().getName() + "> can't be input/output of a filter.");
                 if(! (rightFilt instanceof NodeInterface)) throw new RuntimeException(inst.getChild(1).getText() + " can't be input/output of a filter.");
                 if(!((NodeInterface)rightFilt).writable()) throw new RuntimeException(inst.getChild(1).getText() + " can't be output of a filter.");
                 break;

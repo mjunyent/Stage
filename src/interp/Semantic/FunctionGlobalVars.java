@@ -1,5 +1,6 @@
 package interp.Semantic;
 
+import interp.Player.SceneGraph;
 import interp.Player.ScreenNode;
 import interp.Types.FloatType;
 import interp.Types.TypeInterface;
@@ -18,6 +19,7 @@ public class FunctionGlobalVars {
 
     public static ScreenNode screen_node;
     public static PApplet screen;
+    public static SceneGraph scene_graph;
     public static String renderer;
 
     private static final Map<String, Types> table;

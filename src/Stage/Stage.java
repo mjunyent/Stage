@@ -47,6 +47,7 @@ import interp.*;
 //Processing
 import processing.core.*;
 import processing.opengl.*;
+import processing.video.Movie;
 
 public class Stage extends PApplet {
 
@@ -258,6 +259,7 @@ public class Stage extends PApplet {
 
     PShader shader;
     Player player;
+    Movie movie;
 
     public void setup() {
         size(200,200,OPENGL);
@@ -266,6 +268,13 @@ public class Stage extends PApplet {
         shader.set("resolution", (float)width, (float)height);
 
         player = new Player(this, st, null, true);
+
+        movie = new Movie(this, "transit.mov");
+        movie.loop();
+    }
+
+    public void movieEvent(Movie m) {
+        m.read();
     }
 
     public void draw() {
@@ -278,6 +287,10 @@ public class Stage extends PApplet {
         frame.setTitle("frame: " + frameCount + " - fps: " + frameRate);
 
         player.loop((float)(millis()/1000.0));
+        //if (movie.available() == true) {
+        //  movie.read();
+        //}
+        //image(movie, 0, 0, width, height);
     }
 }
 

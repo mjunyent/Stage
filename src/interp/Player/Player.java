@@ -5,7 +5,6 @@ import interp.Semantic.*;
 import interp.StageTree;
 import interp.Types.FilterSignature;
 import interp.Types.FunctionSignature;
-import processing.core.PApplet;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,12 +12,8 @@ import java.util.Map;
 import java.io.File;
 
 //Processing
-import processing.core.*;
-import processing.opengl.*;
+import processing.core.PApplet;
 
-/**
- * Created by marc on 30/04/14.
- */
 public class Player {
     public static final int FIRST = 0;
     public static final int LOOP = 1;
@@ -66,6 +61,7 @@ public class Player {
         compileShaders();
 
         scene_graph = new SceneGraph(screen, debug);
+        FunctionGlobalVars.scene_graph = scene_graph;
         func_disp = new FunctionDispatcher(tree, function_list, this, scene_graph);
         interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
         lastTime = 0;
@@ -93,6 +89,7 @@ public class Player {
         FunctionGlobalVars.dt.setValue(time-lastTime);
         lastTime = time;
         func_disp.process(time);
+        if(debug && scene_graph.isCyclic()) System.out.println("Warning: Graph contains cycles!");
         scene_graph.process(0);
         scene_graph.clear();
     }

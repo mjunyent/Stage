@@ -29,6 +29,8 @@ public enum Types {
 
     NODE_T      ("node",     NodeType.class,    true,   false,  null),
 
+    VIDEO_T     ("video",    VideoType.class,   true,   false,  null),
+
     SCREEN_T    ("screen",   ScreenNode.class,  false,  false,  null);
 
     private String  name;

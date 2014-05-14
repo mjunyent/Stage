@@ -19,14 +19,16 @@ MANIFEST=	$(BIN)/$(TARGET)_Manifest.txt
 LIB_ANTLR =	$(LIBDIR)/antlr-3.4-complete.jar
 LIB_CLI =	$(LIBDIR)/commons-cli-1.2.jar
 LIB_PROCESSING_MAC = $(LIBDIR)/Processing/core.jar:$(LIBDIR)/Processing/jogl-all.jar:$(LIBDIR)/Processing/gluegen-rt.jar:$(LIBDIR)/Processing/jogl-all-natives-macosx-universal.jar:$(LIBDIR)/Processing/gluegen-rt-natives-macosx-universal.jar
+LIB_VIDEO_MAC = $(LIBDIR)/Processing/video/video.jar:$(LIBDIR)/Processing/video/gstreamer-java.jar:$(LIBDIR)/Processing/video/jna.jar
 #application.windows32=core.jar,jogl-all.jar,gluegen-rt.jar,jogl-all-natives-windows-i586.jar,gluegen-rt-natives-windows-i586.jar
 #application.windows64=core.jar,jogl-all.jar,gluegen-rt.jar,jogl-all-natives-windows-amd64.jar,gluegen-rt-natives-windows-amd64.jar
 #application.linux32=core.jar,jogl-all.jar,gluegen-rt.jar,jogl-all-natives-linux-i586.jar,gluegen-rt-natives-linux-i586.jar
 #application.linux64=core.jar,jogl-all.jar,gluegen-rt.jar,jogl-all-natives-linux-amd64.jar,gluegen-rt-natives-linux-amd64.jar
 
-CLASSPATH=	$(LIB_ANTLR):$(LIB_CLI):$(LIB_PROCESSING_MAC)
-JARPATH=	"$(LIB_ANTLR) $(LIB_CLI) $(LIBDIR)/Processing/core.jar $(LIBDIR)/Processing/jogl-all.jar $(LIBDIR)/Processing/gluegen-rt.jar $(LIBDIR)/Processing/jogl-all-natives-macosx-universal.jar $(LIBDIR)/Processing/gluegen-rt-natives-macosx-universal.jar"
-
+CLASSPATH=	$(LIB_ANTLR):$(LIB_CLI):$(LIB_PROCESSING_MAC):$(LIB_VIDEO_MAC)
+JARPATH=	"$(LIB_ANTLR)  $(LIB_CLI)"
+PROCESSING_MAC_MAIN= "$(LIBDIR)/Processing/core.jar $(LIBDIR)/Processing/jogl-all.jar  $(LIBDIR)/Processing/gluegen-rt.jar $(LIBDIR)/Processing/jogl-all-natives-macosx-universal.jar $(LIBDIR)/Processing/gluegen-rt-natives-macosx-universal.jar"
+PROCESSING_MAC_VIDEO= "$(LIBDIR)/Processing/video/video.jar $(LIBDIR)/Processing/video/gstreamer-java.jar $(LIBDIR)/Processing/video/jna.jar"
 
 # Distribution (tar) file
 DATE= 		$(shell date +"%d%b%y")
@@ -69,7 +71,9 @@ exec:
 	  mkdir $(BIN);\
 	fi
 	echo "Main-Class: Stage.Stage" > $(MANIFEST)
-	echo "Class-Path: $(JARPATH)" >> $(MANIFEST)
+	echo "Class-Path: $(JARPATH) " >> $(MANIFEST) #mind the gap.
+	echo " $(PROCESSING_MAC_MAIN) " >> $(MANIFEST)
+	echo " $(PROCESSING_MAC_VIDEO)" >> $(MANIFEST)
 	cd $(CLASSDIR); jar -cmf $(MANIFEST) $(JARFILE) *
 	printf "#!/bin/sh\n\n" > $(EXEC)
 	printf 'exec java -enableassertions -jar $(JARFILE) "$$@"' >> $(EXEC)

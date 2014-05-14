@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jna">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/processing/video/jna.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/Processing/video/jna.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
