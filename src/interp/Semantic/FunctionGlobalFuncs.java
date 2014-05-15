@@ -19,6 +19,7 @@ public class FunctionGlobalFuncs {
 
 
         table.add("video", new Types[] { Types.STRING_T }, Types.VIDEO_T, 20);
+        table.add("camera", new Types[] { Types.INT_T }, Types.CAM_T, 21);
     }
 
     public static FunctionList getTable() {
@@ -63,6 +64,11 @@ public class FunctionGlobalFuncs {
                 FunctionGlobalVars.scene_graph.addNode(retvideo);
                 FunctionGlobalVars.scene_graph.addRef(retvideo);
                 return retvideo;
+            case 21:
+                CameraType retcamera = new CameraType(((IntType)args.get(0)).getValue());
+                FunctionGlobalVars.scene_graph.addNode(retcamera);
+                FunctionGlobalVars.scene_graph.addRef(retcamera);
+                return retcamera;
             default:
                 return null;
         }

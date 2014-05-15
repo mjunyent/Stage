@@ -51,6 +51,7 @@ FIRST:
 	node A;
 	node B;
 	node C;
+	node D;
 	
 	vec4 alehop;
 	alehop = vec4(1.9,2.9,5.3,8.7);
@@ -59,6 +60,13 @@ FIRST:
 	video v = video("transit.mov");
 	v.loop();
 	v.speed(2.0);
+	
+	video flow = video("binaryflow.mp4");
+	flow.play();
+	
+	
+	camera cam = camera(0);
+	cam.start();
 //	drawRed(A) from 10.0 until 12.0;
 	/*
 	video v1 = video("nomdelfitxer");
@@ -85,8 +93,20 @@ LOOP:
 
 	add (A,B -> mix(0.5) -> C) after A;*/
 
-	-> pinta(1.0,0.0,0.0) -> A;
-	v,A -> mix(0.5) -> output;
+//	-> pinta(1.0,0.0,0.0) -> A;
+	//cam -> A;
+	
+/*	-> pinta(0.0, 0.0, 1.0) -> B;
+	v,cam -> mix(0.5) -> A;
+	A,B -> mix(0.5) -> output;*/
+
+	-> pinta(0.0,0.0,1.0) -> A;
+	-> pinta(0.0,1.0,0.0) -> B;
+	v,A -> mix(0.2) -> C;
+	cam,B -> mix(0.2) -> D;
+	C,D -> mix(0.5) -> output;
+	flow -> output;
+//	cam->output;
 		
 //	A -> output;
 //println("Now: " + now + " Time: " + time + " dt: " + dt);

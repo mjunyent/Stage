@@ -18,6 +18,9 @@
     <orderEntry type="library" name="jogl-all" level="project" />
     <orderEntry type="library" name="jogl-all-natives-macosx-universal" level="project" />
     <orderEntry type="library" name="gluegen-rt-natives-macosx-universal" level="project" />
+    <orderEntry type="library" name="minim" level="project" />
+    <orderEntry type="library" name="mp3spi1.9.4" level="project" />
+    <orderEntry type="library" name="jl1.0" level="project" />
   </component>
 </module>
 

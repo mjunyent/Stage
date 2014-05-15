@@ -47,6 +47,7 @@ import interp.*;
 //Processing
 import processing.core.*;
 import processing.opengl.*;
+import processing.video.Capture;
 import processing.video.Movie;
 
 public class Stage extends PApplet {
@@ -262,8 +263,9 @@ public class Stage extends PApplet {
     Movie movie;
 
     public void setup() {
-        size(200,200,OPENGL);
+        size(800,600,OPENGL);
         background(0);
+        noStroke();
         shader = loadShader("landscape.glsl");
         shader.set("resolution", (float)width, (float)height);
 
@@ -275,6 +277,10 @@ public class Stage extends PApplet {
 
     public void movieEvent(Movie m) {
         m.read();
+    }
+
+    public void captureEvent(Capture c) {
+        c.read();
     }
 
     public void draw() {

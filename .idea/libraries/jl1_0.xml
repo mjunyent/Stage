@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jl1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/Processing/audio/jl1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/Processing/audio/jsminim.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

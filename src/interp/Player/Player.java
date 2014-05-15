@@ -1,5 +1,6 @@
 package interp.Player;
 
+import ddf.minim.Minim;
 import interp.GLSLTranslator.Translator;
 import interp.Semantic.*;
 import interp.StageTree;
@@ -59,6 +60,9 @@ public class Player {
         }
 
         compileShaders();
+
+        FunctionGlobalVars.pal_card = screen.loadImage("resources/PM5544_with_non-PAL_signals.png");
+        FunctionGlobalVars.minim = new Minim(screen);
 
         scene_graph = new SceneGraph(screen, debug);
         FunctionGlobalVars.scene_graph = scene_graph;

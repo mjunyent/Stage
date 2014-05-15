@@ -1,5 +1,6 @@
 package interp.Semantic;
 
+import ddf.minim.Minim;
 import interp.Player.SceneGraph;
 import interp.Player.ScreenNode;
 import interp.Types.FloatType;
@@ -7,6 +8,7 @@ import interp.Types.TypeInterface;
 import interp.Types.Types;
 import interp.Types.Vec2Type;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,8 @@ public class FunctionGlobalVars {
     public static PApplet screen;
     public static SceneGraph scene_graph;
     public static String renderer;
+    public static Minim minim;
+    public static PImage pal_card;
 
     private static final Map<String, Types> table;
     static {
