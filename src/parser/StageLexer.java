@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-15 09:35:32
+// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-17 20:59:30
 
 package parser;
 
@@ -20,6 +20,7 @@ public class StageLexer extends Lexer {
     public static final int T__69=69;
     public static final int T__70=70;
     public static final int T__71=71;
+    public static final int T__72=72;
     public static final int ADDFILT=4;
     public static final int AND=5;
     public static final int ARGLIST=6;
@@ -249,10 +250,10 @@ public class StageLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:13:7: ( 'after' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:13:9: 'after'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:13:7: ( 'add' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:13:9: 'add'
             {
-            match("after"); 
+            match("add"); 
 
 
 
@@ -272,10 +273,10 @@ public class StageLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:14:7: ( 'with' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:14:9: 'with'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:14:7: ( 'after' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:14:9: 'after'
             {
-            match("with"); 
+            match("after"); 
 
 
 
@@ -290,13 +291,36 @@ public class StageLexer extends Lexer {
     }
     // $ANTLR end "T__71"
 
+    // $ANTLR start "T__72"
+    public final void mT__72() throws RecognitionException {
+        try {
+            int _type = T__72;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:15:7: ( 'with' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:15:9: 'with'
+            {
+            match("with"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__72"
+
     // $ANTLR start "FUNCTION"
     public final void mFUNCTION() throws RecognitionException {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:193:9: ( 'function' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:193:11: 'function'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:195:9: ( 'function' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:195:11: 'function'
             {
             match("function"); 
 
@@ -318,8 +342,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = FILTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:194:9: ( 'filter' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:194:11: 'filter'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:196:9: ( 'filter' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:196:11: 'filter'
             {
             match("filter"); 
 
@@ -341,8 +365,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = QUIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:196:6: ( 'quit' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:196:8: 'quit'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:198:6: ( 'quit' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:198:8: 'quit'
             {
             match("quit"); 
 
@@ -359,36 +383,13 @@ public class StageLexer extends Lexer {
     }
     // $ANTLR end "QUIT"
 
-    // $ANTLR start "ADDFILT"
-    public final void mADDFILT() throws RecognitionException {
-        try {
-            int _type = ADDFILT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:197:9: ( 'add' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:197:11: 'add'
-            {
-            match("add"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "ADDFILT"
-
     // $ANTLR start "BYPASSF"
     public final void mBYPASSF() throws RecognitionException {
         try {
             int _type = BYPASSF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:198:9: ( 'bypass' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:198:11: 'bypass'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:199:9: ( 'bypass' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:199:11: 'bypass'
             {
             match("bypass"); 
 
@@ -410,8 +411,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = CBL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:199:6: ( '{' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:199:8: '{'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:200:6: ( '{' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:200:8: '{'
             {
             match('{'); 
 
@@ -431,8 +432,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = CBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:200:6: ( '}' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:200:8: '}'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:201:6: ( '}' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:201:8: '}'
             {
             match('}'); 
 
@@ -452,8 +453,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:201:8: ( 'return' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:201:10: 'return'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:202:8: ( 'return' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:202:10: 'return'
             {
             match("return"); 
 
@@ -475,8 +476,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = FIRST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:202:7: ( 'FIRST:' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:202:9: 'FIRST:'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:203:7: ( 'FIRST:' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:203:9: 'FIRST:'
             {
             match("FIRST:"); 
 
@@ -498,8 +499,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = LOOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:203:6: ( 'LOOP:' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:203:8: 'LOOP:'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:204:6: ( 'LOOP:' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:204:8: 'LOOP:'
             {
             match("LOOP:"); 
 
@@ -521,8 +522,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = LAST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:204:6: ( 'LAST:' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:204:8: 'LAST:'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:205:6: ( 'LAST:' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:205:8: 'LAST:'
             {
             match("LAST:"); 
 
@@ -544,8 +545,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = FROM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:205:6: ( 'from' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:205:8: 'from'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:206:6: ( 'from' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:206:8: 'from'
             {
             match("from"); 
 
@@ -567,8 +568,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = UNTIL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:206:7: ( 'until' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:206:9: 'until'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:207:7: ( 'until' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:207:9: 'until'
             {
             match("until"); 
 
@@ -590,8 +591,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = ASIGEQUAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:207:11: ( '=' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:207:13: '='
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:208:11: ( '=' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:208:13: '='
             {
             match('='); 
 
@@ -611,8 +612,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = EQUAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:208:6: ( '==' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:208:8: '=='
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:209:6: ( '==' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:209:8: '=='
             {
             match("=="); 
 
@@ -634,8 +635,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = NOT_EQUAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:209:10: ( '!=' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:209:12: '!='
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:210:10: ( '!=' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:210:12: '!='
             {
             match("!="); 
 
@@ -657,8 +658,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:210:8: ( '<' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:210:10: '<'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:211:8: ( '<' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:211:10: '<'
             {
             match('<'); 
 
@@ -678,8 +679,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = LE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:211:8: ( '<=' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:211:10: '<='
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:212:8: ( '<=' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:212:10: '<='
             {
             match("<="); 
 
@@ -701,8 +702,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:212:8: ( '>' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:212:10: '>'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:213:8: ( '>' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:213:10: '>'
             {
             match('>'); 
 
@@ -722,8 +723,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = GE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:213:8: ( '>=' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:213:10: '>='
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:214:8: ( '>=' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:214:10: '>='
             {
             match(">="); 
 
@@ -745,8 +746,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:214:6: ( '+' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:214:8: '+'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:215:6: ( '+' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:215:8: '+'
             {
             match('+'); 
 
@@ -766,8 +767,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:215:7: ( '-' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:215:9: '-'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:216:7: ( '-' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:216:9: '-'
             {
             match('-'); 
 
@@ -787,8 +788,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = MUL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:216:9: ( '*' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:216:11: '*'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:217:9: ( '*' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:217:11: '*'
             {
             match('*'); 
 
@@ -808,8 +809,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = DIV;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:217:9: ( '/' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:217:11: '/'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:218:9: ( '/' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:218:11: '/'
             {
             match('/'); 
 
@@ -829,8 +830,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = MOD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:218:9: ( '%' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:218:11: '%'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:219:9: ( '%' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:219:11: '%'
             {
             match('%'); 
 
@@ -850,8 +851,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:219:9: ( 'not' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:219:11: 'not'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:220:9: ( 'not' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:220:11: 'not'
             {
             match("not"); 
 
@@ -873,8 +874,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:220:9: ( 'and' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:220:11: 'and'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:221:9: ( 'and' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:221:11: 'and'
             {
             match("and"); 
 
@@ -896,8 +897,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:221:8: ( 'or' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:221:10: 'or'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:222:8: ( 'or' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:222:10: 'or'
             {
             match("or"); 
 
@@ -919,8 +920,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:222:6: ( 'if' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:222:8: 'if'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:223:6: ( 'if' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:223:8: 'if'
             {
             match("if"); 
 
@@ -942,8 +943,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:223:6: ( 'else' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:223:8: 'else'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:224:6: ( 'else' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:224:8: 'else'
             {
             match("else"); 
 
@@ -965,8 +966,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:224:7: ( 'while' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:224:9: 'while'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:225:7: ( 'while' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:225:9: 'while'
             {
             match("while"); 
 
@@ -988,8 +989,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:225:9: ( 'true' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:225:11: 'true'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:226:9: ( 'true' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:226:11: 'true'
             {
             match("true"); 
 
@@ -1011,8 +1012,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:226:9: ( 'false' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:226:11: 'false'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:227:9: ( 'false' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:227:11: 'false'
             {
             match("false"); 
 
@@ -1034,8 +1035,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:227:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:227:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:228:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:228:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1047,7 +1048,7 @@ public class StageLexer extends Lexer {
             }
 
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:227:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:228:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop1:
             do {
                 int alt1=2;
@@ -1097,10 +1098,10 @@ public class StageLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:228:6: ( ( '0' .. '9' )+ )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:228:8: ( '0' .. '9' )+
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:6: ( ( '0' .. '9' )+ )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:8: ( '0' .. '9' )+
             {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:228:8: ( '0' .. '9' )+
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:8: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -1155,10 +1156,10 @@ public class StageLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:7: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:11: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:230:7: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:230:11: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
             {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:11: ( '0' .. '9' )+
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:230:11: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -1199,7 +1200,7 @@ public class StageLexer extends Lexer {
 
             match('.'); 
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:229:25: ( '0' .. '9' )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:230:25: ( '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -1249,8 +1250,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = MEMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:230:9: ( '.' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:230:11: '.'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:231:9: ( '.' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:231:11: '.'
             {
             match('.'); 
 
@@ -1270,7 +1271,7 @@ public class StageLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:233:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1300,13 +1301,13 @@ public class StageLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:233:11: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:11: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
 
 
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:233:16: (~ ( '\\n' | '\\r' ) )*
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:16: (~ ( '\\n' | '\\r' ) )*
                     loop5:
                     do {
                         int alt5=2;
@@ -1340,7 +1341,7 @@ public class StageLexer extends Lexer {
                     } while (true);
 
 
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:233:30: ( '\\r' )?
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:30: ( '\\r' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -1349,7 +1350,7 @@ public class StageLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:233:30: '\\r'
+                            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:30: '\\r'
                             {
                             match('\r'); 
 
@@ -1366,13 +1367,13 @@ public class StageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:8: '/*' ( options {greedy=false; } : . )* '*/'
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:235:8: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:13: ( options {greedy=false; } : . )*
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:235:13: ( options {greedy=false; } : . )*
                     loop7:
                     do {
                         int alt7=2;
@@ -1397,7 +1398,7 @@ public class StageLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:234:41: .
+                    	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:235:41: .
                     	    {
                     	    matchAny(); 
 
@@ -1434,12 +1435,12 @@ public class StageLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:241:9: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:241:12: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:242:9: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:242:12: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:241:16: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:242:16: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop9:
             do {
                 int alt9=3;
@@ -1455,7 +1456,7 @@ public class StageLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:241:18: ESC_SEQ
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:242:18: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
@@ -1463,7 +1464,7 @@ public class StageLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:241:28: ~ ( '\\\\' | '\"' )
+            	    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:242:28: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1502,12 +1503,12 @@ public class StageLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:244:6: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\"' ) ) '\\'' )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:244:8: '\\'' ( ESC_SEQ |~ ( '\\\\' | '\"' ) ) '\\''
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:245:6: ( '\\'' ( ESC_SEQ |~ ( '\\\\' | '\"' ) ) '\\'' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:245:8: '\\'' ( ESC_SEQ |~ ( '\\\\' | '\"' ) ) '\\''
             {
             match('\''); 
 
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:244:13: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:245:13: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1526,7 +1527,7 @@ public class StageLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:244:15: ESC_SEQ
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:245:15: ESC_SEQ
                     {
                     mESC_SEQ(); 
 
@@ -1534,7 +1535,7 @@ public class StageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:244:25: ~ ( '\\\\' | '\"' )
+                    // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:245:25: ~ ( '\\\\' | '\"' )
                     {
                     if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
                         input.consume();
@@ -1568,8 +1569,8 @@ public class StageLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:250:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:250:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:251:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:251:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
 
@@ -1598,8 +1599,8 @@ public class StageLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:253:6: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:253:8: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:254:6: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:254:8: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1625,7 +1626,7 @@ public class StageLexer extends Lexer {
     // $ANTLR end "WS"
 
     public void mTokens() throws RecognitionException {
-        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:8: ( T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | FUNCTION | FILTER | QUIT | ADDFILT | BYPASSF | CBL | CBR | RETURN | FIRST | LOOP | LAST | FROM | UNTIL | ASIGEQUAL | EQUAL | NOT_EQUAL | LT | LE | GT | GE | PLUS | MINUS | MUL | DIV | MOD | NOT | AND | OR | IF | ELSE | WHILE | TRUE | FALSE | ID | INT | FLOAT | MEMBER | COMMENT | STRING | CHAR | WS )
+        // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:8: ( T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | FUNCTION | FILTER | QUIT | BYPASSF | CBL | CBR | RETURN | FIRST | LOOP | LAST | FROM | UNTIL | ASIGEQUAL | EQUAL | NOT_EQUAL | LT | LE | GT | GE | PLUS | MINUS | MUL | DIV | MOD | NOT | AND | OR | IF | ELSE | WHILE | TRUE | FALSE | ID | INT | FLOAT | MEMBER | COMMENT | STRING | CHAR | WS )
         int alt11=50;
         alt11 = dfa11.predict(input);
         switch (alt11) {
@@ -1702,39 +1703,39 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 10 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:64: FUNCTION
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:64: T__72
+                {
+                mT__72(); 
+
+
+                }
+                break;
+            case 11 :
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:70: FUNCTION
                 {
                 mFUNCTION(); 
 
 
                 }
                 break;
-            case 11 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:73: FILTER
+            case 12 :
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:79: FILTER
                 {
                 mFILTER(); 
 
 
                 }
                 break;
-            case 12 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:80: QUIT
+            case 13 :
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:86: QUIT
                 {
                 mQUIT(); 
 
 
                 }
                 break;
-            case 13 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:85: ADDFILT
-                {
-                mADDFILT(); 
-
-
-                }
-                break;
             case 14 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:93: BYPASSF
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:91: BYPASSF
                 {
                 mBYPASSF(); 
 
@@ -1742,7 +1743,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 15 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:101: CBL
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:99: CBL
                 {
                 mCBL(); 
 
@@ -1750,7 +1751,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 16 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:105: CBR
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:103: CBR
                 {
                 mCBR(); 
 
@@ -1758,7 +1759,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 17 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:109: RETURN
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:107: RETURN
                 {
                 mRETURN(); 
 
@@ -1766,7 +1767,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 18 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:116: FIRST
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:114: FIRST
                 {
                 mFIRST(); 
 
@@ -1774,7 +1775,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 19 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:122: LOOP
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:120: LOOP
                 {
                 mLOOP(); 
 
@@ -1782,7 +1783,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 20 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:127: LAST
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:125: LAST
                 {
                 mLAST(); 
 
@@ -1790,7 +1791,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 21 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:132: FROM
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:130: FROM
                 {
                 mFROM(); 
 
@@ -1798,7 +1799,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 22 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:137: UNTIL
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:135: UNTIL
                 {
                 mUNTIL(); 
 
@@ -1806,7 +1807,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 23 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:143: ASIGEQUAL
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:141: ASIGEQUAL
                 {
                 mASIGEQUAL(); 
 
@@ -1814,7 +1815,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 24 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:153: EQUAL
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:151: EQUAL
                 {
                 mEQUAL(); 
 
@@ -1822,7 +1823,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 25 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:159: NOT_EQUAL
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:157: NOT_EQUAL
                 {
                 mNOT_EQUAL(); 
 
@@ -1830,7 +1831,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 26 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:169: LT
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:167: LT
                 {
                 mLT(); 
 
@@ -1838,7 +1839,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 27 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:172: LE
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:170: LE
                 {
                 mLE(); 
 
@@ -1846,7 +1847,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 28 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:175: GT
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:173: GT
                 {
                 mGT(); 
 
@@ -1854,7 +1855,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 29 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:178: GE
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:176: GE
                 {
                 mGE(); 
 
@@ -1862,7 +1863,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 30 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:181: PLUS
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:179: PLUS
                 {
                 mPLUS(); 
 
@@ -1870,7 +1871,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 31 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:186: MINUS
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:184: MINUS
                 {
                 mMINUS(); 
 
@@ -1878,7 +1879,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 32 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:192: MUL
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:190: MUL
                 {
                 mMUL(); 
 
@@ -1886,7 +1887,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 33 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:196: DIV
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:194: DIV
                 {
                 mDIV(); 
 
@@ -1894,7 +1895,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 34 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:200: MOD
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:198: MOD
                 {
                 mMOD(); 
 
@@ -1902,7 +1903,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 35 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:204: NOT
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:202: NOT
                 {
                 mNOT(); 
 
@@ -1910,7 +1911,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 36 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:208: AND
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:206: AND
                 {
                 mAND(); 
 
@@ -1918,7 +1919,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 37 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:212: OR
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:210: OR
                 {
                 mOR(); 
 
@@ -1926,7 +1927,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 38 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:215: IF
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:213: IF
                 {
                 mIF(); 
 
@@ -1934,7 +1935,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 39 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:218: ELSE
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:216: ELSE
                 {
                 mELSE(); 
 
@@ -1942,7 +1943,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 40 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:223: WHILE
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:221: WHILE
                 {
                 mWHILE(); 
 
@@ -1950,7 +1951,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 41 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:229: TRUE
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:227: TRUE
                 {
                 mTRUE(); 
 
@@ -1958,7 +1959,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 42 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:234: FALSE
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:232: FALSE
                 {
                 mFALSE(); 
 
@@ -1966,7 +1967,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 43 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:240: ID
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:238: ID
                 {
                 mID(); 
 
@@ -1974,7 +1975,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 44 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:243: INT
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:241: INT
                 {
                 mINT(); 
 
@@ -1982,7 +1983,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 45 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:247: FLOAT
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:245: FLOAT
                 {
                 mFLOAT(); 
 
@@ -1990,7 +1991,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 46 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:253: MEMBER
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:251: MEMBER
                 {
                 mMEMBER(); 
 
@@ -1998,7 +1999,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 47 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:260: COMMENT
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:258: COMMENT
                 {
                 mCOMMENT(); 
 
@@ -2006,7 +2007,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 48 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:268: STRING
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:266: STRING
                 {
                 mSTRING(); 
 
@@ -2014,7 +2015,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 49 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:275: CHAR
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:273: CHAR
                 {
                 mCHAR(); 
 
@@ -2022,7 +2023,7 @@ public class StageLexer extends Lexer {
                 }
                 break;
             case 50 :
-                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:280: WS
+                // /Users/marc/IdeaProjects/Stage/src/parser/Stage.g:1:278: WS
                 {
                 mWS(); 
 
@@ -2039,45 +2040,45 @@ public class StageLexer extends Lexer {
     static final String DFA11_eotS =
         "\4\uffff\1\47\3\uffff\5\40\2\uffff\4\40\1\71\1\uffff\1\73\1\75\2"+
         "\uffff\1\77\1\uffff\5\40\1\uffff\1\105\6\uffff\20\40\10\uffff\1"+
-        "\40\1\130\1\131\2\40\2\uffff\1\40\1\135\1\136\15\40\1\154\2\uffff"+
-        "\3\40\2\uffff\1\160\3\40\1\164\1\40\1\166\6\40\1\uffff\1\175\1\176"+
-        "\1\177\1\uffff\1\u0080\2\40\1\uffff\1\u0083\1\uffff\3\40\2\uffff"+
-        "\1\u0087\4\uffff\1\40\1\u0089\1\uffff\1\u008a\1\u008b\2\uffff\1"+
-        "\40\3\uffff\1\u008d\1\uffff";
+        "\40\1\130\1\131\2\40\2\uffff\1\134\1\40\1\136\15\40\1\154\2\uffff"+
+        "\2\40\1\uffff\1\40\1\uffff\1\160\3\40\1\164\1\40\1\166\6\40\1\uffff"+
+        "\1\175\1\176\1\177\1\uffff\1\u0080\2\40\1\uffff\1\u0083\1\uffff"+
+        "\3\40\2\uffff\1\u0087\4\uffff\1\40\1\u0089\1\uffff\1\u008a\1\u008b"+
+        "\2\uffff\1\40\3\uffff\1\u008d\1\uffff";
     static final String DFA11_eofS =
         "\u008e\uffff";
     static final String DFA11_minS =
         "\1\11\3\uffff\1\76\3\uffff\1\144\1\150\1\141\1\165\1\171\2\uffff"+
         "\1\145\1\111\1\101\1\156\1\75\1\uffff\2\75\2\uffff\1\52\1\uffff"+
-        "\1\157\1\162\1\146\1\154\1\162\1\uffff\1\56\6\uffff\1\164\2\144"+
-        "\1\164\1\151\1\156\1\154\1\157\1\154\1\151\1\160\1\164\1\122\1\117"+
-        "\1\123\1\164\10\uffff\1\164\2\60\1\163\1\165\2\uffff\1\145\2\60"+
-        "\1\150\1\154\1\143\1\164\1\155\1\163\1\164\1\141\1\165\1\123\1\120"+
-        "\1\124\1\151\1\60\2\uffff\2\145\1\162\2\uffff\1\60\1\145\1\164\1"+
-        "\145\1\60\1\145\1\60\1\163\1\162\1\124\2\72\1\154\1\uffff\3\60\1"+
-        "\uffff\1\60\1\151\1\162\1\uffff\1\60\1\uffff\1\163\1\156\1\72\2"+
-        "\uffff\1\60\4\uffff\1\157\1\60\1\uffff\2\60\2\uffff\1\156\3\uffff"+
-        "\1\60\1\uffff";
+        "\1\157\1\162\1\146\1\154\1\162\1\uffff\1\56\6\uffff\1\144\1\164"+
+        "\1\144\1\164\1\151\1\156\1\154\1\157\1\154\1\151\1\160\1\164\1\122"+
+        "\1\117\1\123\1\164\10\uffff\1\164\2\60\1\163\1\165\2\uffff\1\60"+
+        "\1\145\1\60\1\150\1\154\1\143\1\164\1\155\1\163\1\164\1\141\1\165"+
+        "\1\123\1\120\1\124\1\151\1\60\2\uffff\2\145\1\uffff\1\162\1\uffff"+
+        "\1\60\1\145\1\164\1\145\1\60\1\145\1\60\1\163\1\162\1\124\2\72\1"+
+        "\154\1\uffff\3\60\1\uffff\1\60\1\151\1\162\1\uffff\1\60\1\uffff"+
+        "\1\163\1\156\1\72\2\uffff\1\60\4\uffff\1\157\1\60\1\uffff\2\60\2"+
+        "\uffff\1\156\3\uffff\1\60\1\uffff";
     static final String DFA11_maxS =
         "\1\175\3\uffff\1\76\3\uffff\1\156\1\151\2\165\1\171\2\uffff\1\145"+
         "\1\111\1\117\1\156\1\75\1\uffff\2\75\2\uffff\1\57\1\uffff\1\157"+
-        "\1\162\1\146\1\154\1\162\1\uffff\1\71\6\uffff\1\164\2\144\1\164"+
-        "\1\151\1\156\1\154\1\157\1\154\1\151\1\160\1\164\1\122\1\117\1\123"+
-        "\1\164\10\uffff\1\164\2\172\1\163\1\165\2\uffff\1\145\2\172\1\150"+
-        "\1\154\1\143\1\164\1\155\1\163\1\164\1\141\1\165\1\123\1\120\1\124"+
-        "\1\151\1\172\2\uffff\2\145\1\162\2\uffff\1\172\1\145\1\164\1\145"+
-        "\1\172\1\145\1\172\1\163\1\162\1\124\2\72\1\154\1\uffff\3\172\1"+
-        "\uffff\1\172\1\151\1\162\1\uffff\1\172\1\uffff\1\163\1\156\1\72"+
-        "\2\uffff\1\172\4\uffff\1\157\1\172\1\uffff\2\172\2\uffff\1\156\3"+
-        "\uffff\1\172\1\uffff";
+        "\1\162\1\146\1\154\1\162\1\uffff\1\71\6\uffff\1\144\1\164\1\144"+
+        "\1\164\1\151\1\156\1\154\1\157\1\154\1\151\1\160\1\164\1\122\1\117"+
+        "\1\123\1\164\10\uffff\1\164\2\172\1\163\1\165\2\uffff\1\172\1\145"+
+        "\1\172\1\150\1\154\1\143\1\164\1\155\1\163\1\164\1\141\1\165\1\123"+
+        "\1\120\1\124\1\151\1\172\2\uffff\2\145\1\uffff\1\162\1\uffff\1\172"+
+        "\1\145\1\164\1\145\1\172\1\145\1\172\1\163\1\162\1\124\2\72\1\154"+
+        "\1\uffff\3\172\1\uffff\1\172\1\151\1\162\1\uffff\1\172\1\uffff\1"+
+        "\163\1\156\1\72\2\uffff\1\172\4\uffff\1\157\1\172\1\uffff\2\172"+
+        "\2\uffff\1\156\3\uffff\1\172\1\uffff";
     static final String DFA11_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\uffff\1\5\1\6\1\7\5\uffff\1\17\1\20\5\uffff"+
         "\1\31\2\uffff\1\36\1\40\1\uffff\1\42\5\uffff\1\53\1\uffff\1\56\1"+
         "\60\1\61\1\62\1\4\1\37\20\uffff\1\30\1\27\1\33\1\32\1\35\1\34\1"+
-        "\57\1\41\5\uffff\1\54\1\55\21\uffff\1\45\1\46\3\uffff\1\15\1\44"+
-        "\15\uffff\1\43\3\uffff\1\11\3\uffff\1\25\1\uffff\1\14\3\uffff\1"+
-        "\23\1\24\1\uffff\1\47\1\51\1\10\1\50\2\uffff\1\52\2\uffff\1\22\1"+
-        "\26\1\uffff\1\13\1\16\1\21\1\uffff\1\12";
+        "\57\1\41\5\uffff\1\54\1\55\21\uffff\1\45\1\46\2\uffff\1\10\1\uffff"+
+        "\1\44\15\uffff\1\43\3\uffff\1\12\3\uffff\1\25\1\uffff\1\15\3\uffff"+
+        "\1\23\1\24\1\uffff\1\47\1\51\1\11\1\50\2\uffff\1\52\2\uffff\1\22"+
+        "\1\26\1\uffff\1\14\1\16\1\21\1\uffff\1\13";
     static final String DFA11_specialS =
         "\u008e\uffff}>";
     static final String[] DFA11_transitionS = {
@@ -2094,7 +2095,7 @@ public class StageLexer extends Lexer {
             "",
             "",
             "",
-            "\1\51\1\uffff\1\50\7\uffff\1\52",
+            "\1\50\1\uffff\1\51\7\uffff\1\52",
             "\1\54\1\53",
             "\1\60\7\uffff\1\56\10\uffff\1\57\2\uffff\1\55",
             "\1\61",
@@ -2157,8 +2158,8 @@ public class StageLexer extends Lexer {
             "\1\133",
             "",
             "",
-            "\1\134",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\135",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\137",
             "\1\140",
@@ -2178,8 +2179,8 @@ public class StageLexer extends Lexer {
             "",
             "\1\155",
             "\1\156",
-            "\1\157",
             "",
+            "\1\157",
             "",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\161",
@@ -2260,7 +2261,7 @@ public class StageLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | FUNCTION | FILTER | QUIT | ADDFILT | BYPASSF | CBL | CBR | RETURN | FIRST | LOOP | LAST | FROM | UNTIL | ASIGEQUAL | EQUAL | NOT_EQUAL | LT | LE | GT | GE | PLUS | MINUS | MUL | DIV | MOD | NOT | AND | OR | IF | ELSE | WHILE | TRUE | FALSE | ID | INT | FLOAT | MEMBER | COMMENT | STRING | CHAR | WS );";
+            return "1:1: Tokens : ( T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | FUNCTION | FILTER | QUIT | BYPASSF | CBL | CBR | RETURN | FIRST | LOOP | LAST | FROM | UNTIL | ASIGEQUAL | EQUAL | NOT_EQUAL | LT | LE | GT | GE | PLUS | MINUS | MUL | DIV | MOD | NOT | AND | OR | IF | ELSE | WHILE | TRUE | FALSE | ID | INT | FLOAT | MEMBER | COMMENT | STRING | CHAR | WS );";
         }
     }
  

@@ -19,6 +19,7 @@ public class SemanticsFunctions {
     private HashMap<String, FilterSignature> filter_list;
     private StageTree functions_root = null;
     private boolean debug = true;
+    private StageTree current_node = null;
 
     //temp vars.
     private FunctionSignature current_func;
@@ -37,6 +38,11 @@ public class SemanticsFunctions {
         fillFunctionsMap();
     }
 
+    public int getLineNumber() {
+        if(current_node == null) return -1;
+        return current_node.getLine();
+    }
+
     public HashMap<String, FunctionSignature> getFunctionList() { return function_list; }
 
     public StageTree getFunctionsRoot() {
@@ -50,6 +56,7 @@ public class SemanticsFunctions {
         FunctionList builtinFuncs = FunctionGlobalFuncs.getTable();
 
         for(int i=0; i<functions_root.getChildCount(); i++) {
+            current_node = functions_root.getChild(i);
             String fname = functions_root.getChild(i).getChild(0).getText();
             if(builtinFuncs.exists(fname)) throw new RuntimeException("Function name " + fname + " reserved for builtin functions.");
             if (function_list.containsKey(fname)) throw new RuntimeException("Multiple definitions of function " + fname);
@@ -130,6 +137,7 @@ public class SemanticsFunctions {
     }
 
     private void checkInstruction(StageTree inst, FunctionSymbolTable symbol_table) {
+        current_node = inst;
         switch (inst.getType()) {
             case StageLexer.BYPASSF:
                 TypeInterface toskip = symbol_table.getType(inst.getChild(0).getText()).getInstance();
@@ -258,6 +266,7 @@ public class SemanticsFunctions {
     }
 
     private Types getExpressionType(StageTree exp, FunctionSymbolTable symbol_table) {
+        current_node = exp;
         if(exp.getType() == StageLexer.INT) {
             exp.setIntValue();
             return Types.INT_T;
@@ -331,6 +340,7 @@ public class SemanticsFunctions {
     }
 
     private Types getFunCallReturn(StageTree tree, FunctionSymbolTable symbol_table) {
+        current_node = tree;
         String fname = tree.getChild(0).getText();
         ArrayList<Types> args = new ArrayList<Types>();
         for(int i=0; i<tree.getChild(1).getChildCount(); i++) {
@@ -357,6 +367,7 @@ public class SemanticsFunctions {
     }
 
     private Types getMemberType(StageTree tree, FunctionSymbolTable symbol_table) {
+        current_node = tree;
         Types leftType = getExpressionType(tree.getChild(0), symbol_table);
         TypeInterface leftTypeInstance = leftType.getInstance();
 

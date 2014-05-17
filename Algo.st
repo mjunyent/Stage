@@ -34,6 +34,31 @@ filter pinta(float r, float g, float b) {
 function main() {
 FIRST:
 	int[5] cosa;
+	
+	cosa[0] = 40;
+	cosa[1] = 41;
+	cosa[2] = 42;
+	cosa[3] = 50;
+	cosa[4] = 62;
+	
+	audio song = audio("Talos' Corpse.mp3");
+	song.play();
+	
+	println("TE MIDE: " + cosa.size);
+	int i=0;
+	while(i<cosa.size) {
+		println("Ahi va " + i + ": " + cosa[i]);
+		i = i+1;
+	}
+	
+	cosa.push(97);	
+	println("TE MIDE: " + cosa.size);
+	i=0;
+	while(i<cosa.size) {
+		println("Ahi va " + i + ": " + cosa[i]);
+		i = i+1;
+	}
+	
 	int variable = 0;
 	float p = 0.0;
 //	vec4 n = vec4(0.0,0.0,0.0,0.0);
@@ -51,22 +76,22 @@ FIRST:
 	node A;
 	node B;
 	node C;
-	node D;
+	node D = node(10, 10);
 	
 	vec4 alehop;
 	alehop = vec4(1.9,2.9,5.3,8.7);
 	println("(" + alehop.x + "," + alehop.y + "," + alehop.z + "," + alehop.w + ")");
 	
-	video v = video("transit.mov");
-	v.loop();
-	v.speed(2.0);
+	//video v = video("transit.mov");
+	//v.loop();
+	//v.speed(2.0);
 	
 	video flow = video("binaryflow.mp4");
 	flow.play();
+	flow.jump(185.0);
 	
-	
-	camera cam = camera(0);
-	cam.start();
+	//camera cam = camera(0);
+	//cam.start();
 //	drawRed(A) from 10.0 until 12.0;
 	/*
 	video v1 = video("nomdelfitxer");
@@ -80,9 +105,32 @@ FIRST:
 	v2.play.meinventoesto();
 	music.play();*/
 	int k = 0;
+	
+//	song.setLoopPoints(9.2, 9.4);
+//	song.loop();
 
 LOOP:
-	println("DT: " + dt);
+
+if(song.isPlaying()) {
+	println("VAMOS POR: " + song.position());
+}
+println("    TE MIDE: " + song.FFT().size);
+int m =0;
+float[4] ne = song.FFT();
+float val = 0.0;
+while(m < ne.size) {
+	val = val + ne[m];
+	m = m+1;
+}
+println("VALES: " + val);
+
+-> pinta(1.0,1.0,1.0) -> A;
+//flow -> D;
+A,flow -> mix(val/1200.0) -> D;
+	D -> output;
+//flow -> output;
+
+	//println("DT: " + dt);
 /*	-> pinta(1.0,0.0,0.0) -> A;
 	-> pinta(0.0,0.0,1.0) -> B;
 	
@@ -100,12 +148,15 @@ LOOP:
 	v,cam -> mix(0.5) -> A;
 	A,B -> mix(0.5) -> output;*/
 
-	-> pinta(0.0,0.0,1.0) -> A;
-	-> pinta(0.0,1.0,0.0) -> B;
-	v,A -> mix(0.2) -> C;
-	cam,B -> mix(0.2) -> D;
-	C,D -> mix(0.5) -> output;
-	flow -> output;
+	//-> pinta(0.0,0.0,1.0) -> A;
+	//-> pinta(0.0,1.0,0.0) -> B;
+	//v,A -> mix(0.2) -> C;
+	//cam,B -> mix(0.2) -> D;
+	//C,D -> mix(0.5) -> output;
+	
+	if(flow.time() > 199.0) {
+		flow.jump(186.0);
+	}
 //	cam->output;
 		
 //	A -> output;

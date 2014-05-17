@@ -42,23 +42,47 @@ public class Player {
         FunctionGlobalVars.screen = screen;
         FunctionGlobalVars.renderer = screen.OPENGL;
 
-        if(debug) System.err.println("Checking filter semantics: ");
-        SemanticsFilters sem = new SemanticsFilters(tree, debug);
-        sem.checkFilters();
+        if(debug) System.err.println("Checking filter semantics...");
+        SemanticsFilters sem = null;
+        try {
+            sem = new SemanticsFilters(tree, debug);
+            sem.checkFilters();
+        } catch (RuntimeException e) {
+            int linenumber = -1;
+            if(sem != null) linenumber = sem.getLineNumber();
+            System.err.print("Filter semantic error");
+            if (linenumber < 0) System.err.print (": ");
+            else System.err.print (", line " + linenumber + ": ");
+            System.err.println (e.getMessage() + ".");
+            System.exit(0);
+        }
 
-        if(debug) System.err.println("Checking function semantics: ");
-        SemanticsFunctions semf = new SemanticsFunctions(tree, sem, debug);
-        semf.checkFunctions();
+
+        if(debug) System.err.println("Checking function semantics...");
+        SemanticsFunctions semf = null;
+        try {
+            semf = new SemanticsFunctions(tree, sem, debug);
+            semf.checkFunctions();
+        } catch (RuntimeException e) {
+            int linenumber = -1;
+            if(sem != null) linenumber = sem.getLineNumber();
+            System.err.print("Function semantic error");
+            if (linenumber < 0) System.err.print (": ");
+            else System.err.print (", line " + linenumber + ": ");
+            System.err.println (e.getMessage() + ".");
+            System.exit(0);
+        }
 
         filter_list = sem.getFilterList();
         function_list = semf.getFunctionList();
 
-        if(debug) System.err.println("Writing filter files: ");
+        if(debug) System.err.println("Writing filter files...");
         for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
             Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
             tr.writeFile(folder);
         }
 
+        if(debug) System.err.println("Compiling shaders...");
         compileShaders();
 
         FunctionGlobalVars.pal_card = screen.loadImage("resources/PM5544_with_non-PAL_signals.png");

@@ -6,6 +6,8 @@ import processing.core.PImage;
 public abstract class NodeInterface {
     int id;
     int references;
+    public int width;
+    public int height;
 
     public NodeInterface() {
         id = -1;

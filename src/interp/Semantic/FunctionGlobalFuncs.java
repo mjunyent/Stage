@@ -10,6 +10,8 @@ public class FunctionGlobalFuncs {
 
         table.add("vec4", new Types[]{ Types.FLOAT_T, Types.FLOAT_T, Types.FLOAT_T, Types.FLOAT_T }, Types.VEC4_T, 0);
         table.add("vec2", new Types[]{ Types.FLOAT_T, Types.FLOAT_T }, Types.VEC2_T, 1);
+        table.add("int", new Types[]{ Types.FLOAT_T }, Types.INT_T, 2);
+        table.add("float", new Types[]{ Types.INT_T }, Types.FLOAT_T, 3);
 
         table.add("println", new Types[] { Types.INT_T }, Types.VOID_T, 10);
         table.add("println", new Types[] { Types.FLOAT_T }, Types.VOID_T, 11);
@@ -20,6 +22,9 @@ public class FunctionGlobalFuncs {
 
         table.add("video", new Types[] { Types.STRING_T }, Types.VIDEO_T, 20);
         table.add("camera", new Types[] { Types.INT_T }, Types.CAM_T, 21);
+        table.add("node", new Types[] { Types.INT_T, Types.INT_T}, Types.NODE_T, 22);
+
+        table.add("audio", new Types[] { Types.STRING_T }, Types.AUDIO_T, 30);
     }
 
     public static FunctionList getTable() {
@@ -42,6 +47,10 @@ public class FunctionGlobalFuncs {
                 return new Vec2Type(((FloatType)args.get(0)).getValue(),
                                     ((FloatType)args.get(1)).getValue());
 
+            case 2:
+                return new IntType((int)((FloatType)args.get(0)).getValue());
+            case 3:
+                return new FloatType((float)((IntType)args.get(0)).getValue());
 
             case 10:
                 System.out.println("Int value: " + ((IntType)args.get(0)).getValue());
@@ -69,6 +78,13 @@ public class FunctionGlobalFuncs {
                 FunctionGlobalVars.scene_graph.addNode(retcamera);
                 FunctionGlobalVars.scene_graph.addRef(retcamera);
                 return retcamera;
+            case 22:
+                NodeType retnode = new NodeType(((IntType)args.get(0)).getValue(), ((IntType)args.get(1)).getValue());
+                FunctionGlobalVars.scene_graph.addNode(retnode);
+                FunctionGlobalVars.scene_graph.addRef(retnode);
+                return retnode;
+            case 30:
+                return new AudioType(((StringType)args.get(0)).getValue());
             default:
                 return null;
         }

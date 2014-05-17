@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ArrayType implements TypeInterface {
     Types general_type, array_type;
-    ArrayList<TypeInterface> array;
+    public ArrayList<TypeInterface> array;
 
     public ArrayType() {
         general_type = array_type = Types.VOID_T;
@@ -36,8 +36,9 @@ public class ArrayType implements TypeInterface {
         if(args.size() == 1 && args.get(0) == Types.INT_T && name.equals("[")) {
             return array_type;
         }
-
-        //TODO
+        if(args.size() == 1 && args.get(0) == array_type && name.equals("push")) {
+            return Types.VOID_T;
+        }
         return null;
     }
 
@@ -46,21 +47,26 @@ public class ArrayType implements TypeInterface {
             int pos = ((IntType)args.get(0)).getValue();
             return getValue(pos);
         }
-
-        //TODO
+        if(name.equals("push")) {
+            array.add(args.get(0));
+            return new VoidType();
+        }
         return null;
     }
 
     public Types getAttributeType(String name) {
-        //TODO
+        if(name.equals("size")) return Types.INT_T;
         return null;
     }
+
     public TypeInterface getAttribute(String name) {
-        //TODO
+        if(name.equals("size")) return new IntType(array.size());
         return null;
     }
 
     public void set(TypeInterface obj) {
-        //TODO
+        general_type = ((ArrayType)obj).general_type;
+        array_type = ((ArrayType)obj).array_type;
+        array = (ArrayList<TypeInterface>)((ArrayType)obj).array.clone();
     }
 }

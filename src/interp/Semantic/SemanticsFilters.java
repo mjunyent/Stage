@@ -10,6 +10,7 @@ public class SemanticsFilters {
     private HashMap<String, StageTree> filters = null;
     private HashMap<String, FilterSignature> filter_list;
     StageTree filters_root = null;
+    private StageTree currentNode = null;
 
     boolean debug = true;
 
@@ -27,6 +28,11 @@ public class SemanticsFilters {
         fillFiltersMap();
     }
 
+    public int getLineNumber() {
+        if(currentNode == null) return -1;
+        return currentNode.getLine();
+    }
+
     public StageTree getFiltersRoot() {
         return filters_root;
     }
@@ -36,6 +42,7 @@ public class SemanticsFilters {
 
         for(int i=0; i<filters_root.getChildCount(); i++) {
             StageTree node = filters_root.getChild(i);
+            currentNode = node;
 
             String fname = node.getChild(1).getText();
             if (filters.containsKey(fname)) throw new RuntimeException("Multiple definitions of filter " + fname);
@@ -84,6 +91,7 @@ public class SemanticsFilters {
     //TODO check arrays in headers of filters.
     private void checkFilter(StageTree tree) {
         FilterSymbolTable symbol_table = new FilterSymbolTable(debug);
+        currentNode = tree;
 
         symbol_table.pushScope();
         //add inputs to the scope.
@@ -109,6 +117,7 @@ public class SemanticsFilters {
     }
 
     private void checkFilterInstruction(StageTree inst, FilterSymbolTable symbol_table) {
+        currentNode = inst;
         switch (inst.getType()) {
             case StageLexer.FILTCALL:
             case StageLexer.EMPTYFILT:
@@ -194,6 +203,7 @@ public class SemanticsFilters {
     }
 
     private Types getExpressionType(StageTree exp, FilterSymbolTable symbol_table) {
+        currentNode = exp;
         if(exp.getType() == StageLexer.INT) {
             return Types.INT_T;
         }
@@ -246,6 +256,7 @@ public class SemanticsFilters {
     }
 
     private Types getMemberType(StageTree tree, FilterSymbolTable symbol_table) {
+        currentNode = tree;
         Types leftType = getExpressionType(tree.getChild(0), symbol_table);
         TypeInterface leftTypeInstance = leftType.getInstance();
 
@@ -275,6 +286,7 @@ public class SemanticsFilters {
     }
 
     private Types getFunCallReturnType(StageTree tree, FilterSymbolTable symbol_table) {
+        currentNode = tree;
         FunctionList funcs = FilterGlobalFuncs.getTable();
 
         ArrayList<Types> args = new ArrayList<Types>();

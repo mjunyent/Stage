@@ -20,6 +20,8 @@ tokens {
     EMPTYFILT;
     DECLARE;
     TIMECALL;
+    ADDFILT; // : 'add';
+
     //INSTANCE;
     ARGLIST;    // List of arguments passed in a function call
     LIST_INSTR; // Block of instructions
@@ -85,7 +87,7 @@ instruction
         |	(assign ';')=>assign   ';'!       // Assignment
         |   (filtercall ';')=>filtercall ';'!
         |	(declare ';')=>declare ';'!
-        |	addFilter ';'!
+        |	(addFilter ';') => addFilter ';'!
         |	quitInst ';'!
         |	returnexp ';'!
         |	ite_stmt      // if-then-else
@@ -102,7 +104,7 @@ filtercall : inputlist? '->' ID '(' expr_list? ')' '->' ID -> ^(FILTCALL ^(INPUT
 		   | from=ID '->' to=ID -> ^(EMPTYFILT $from $to);
 
 addFilter 
-	: ADDFILT '(' filtercall ')' 'after' ID -> ^(ADDFILT ID filtercall);
+	: 'add' '(' filtercall ')' 'after' ID -> ^(ADDFILT ID filtercall);
 
 bypassFilter 
 	:	BYPASSF^ ID 'with'! (ID | INT);	
@@ -157,8 +159,8 @@ atom    :	//(static_funcall)=>static_funcall
         
 member	: var (MEMBER^ var)*;
 
-var		:	(arrayVar) => arrayVar
-		|	(funcVar) => funcVar
+var		:	(funcVar) => funcVar
+		|	(arrayVar) => arrayVar
 		|	ID
 		;
 		
@@ -194,7 +196,6 @@ FUNCTION: 'function' ;
 FILTER  : 'filter';
 //NEW		: 'new';
 QUIT	: 'quit';
-ADDFILT : 'add';
 BYPASSF : 'bypass';
 CBL		: '{';
 CBR		: '}';

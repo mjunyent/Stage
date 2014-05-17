@@ -197,7 +197,7 @@ public class Interpreter {
             case StageLexer.ARRAY:
             case StageLexer.ID:
             case StageLexer.FUNCALL:
-                evaluateExpr(inst, false);
+                evaluateExpr(inst, true);
                 break;
             case StageLexer.TIMECALL:
                 StageStack fun_stack = new StageStack(scene_graph);
@@ -274,7 +274,7 @@ public class Interpreter {
                     return ret;
                 }
             case StageLexer.MEMBER:
-                TypeInterface m_leftT = evaluateExpr(exp.getChild(0), getByReference);
+                TypeInterface m_leftT = evaluateExpr(exp.getChild(0), true); //getByReference); TODO sure?
 
                 StageTree node = exp.getChild(1);
                 switch (node.getType()) {

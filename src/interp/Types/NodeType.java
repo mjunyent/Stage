@@ -11,14 +11,23 @@ public class NodeType extends NodeInterface implements TypeInterface {
 
     public NodeType() {
         id = -1;
+        this.width  = FunctionGlobalVars.screen.width;
+        this.height = FunctionGlobalVars.screen.height;
+    }
+
+    public NodeType(int width, int height) {
+        id = -1;
+        this.width = width;
+        this.height = height;
     }
 
     public void init() {
         image = FunctionGlobalVars.screen.createGraphics(
-                                                         FunctionGlobalVars.screen.width,
-                                                         FunctionGlobalVars.screen.height,
+                                                         width,
+                                                         height,
                                                          FunctionGlobalVars.renderer
                                                         );
+        image.noStroke();
     }
 
     public boolean writable() { return true; }

@@ -216,7 +216,7 @@ public class SceneGraph {
 
         //give system uniforms.
         effect.fs.shader.set("time", FunctionGlobalVars.time.getValue());
-        effect.fs.shader.set("resolution", (float)FunctionGlobalVars.screen.width, (float)FunctionGlobalVars.screen.height);
+        effect.fs.shader.set("resolution", (float)node.getRenderer().width, (float)node.getRenderer().height);
 
         //give input images.
         for(int i=0; i<dependencies.size(); i++) {
@@ -251,7 +251,7 @@ public class SceneGraph {
 
         }
 
-        node.getRenderer().rect(0, 0, FunctionGlobalVars.resolution.getX(), FunctionGlobalVars.resolution.getY());
+        node.getRenderer().rect(0, 0, node.getRenderer().width, node.getRenderer().height);
         node.getRenderer().endDraw();
     }
 }
