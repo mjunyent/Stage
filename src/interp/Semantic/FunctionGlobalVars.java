@@ -19,12 +19,12 @@ public class FunctionGlobalVars {
     public static Vec2Type resolution = new Vec2Type(0.0f,0.0f);
     public static FloatType Infinity = new FloatType(Float.MAX_VALUE);
 
-    public static ScreenNode screen_node;
-    public static PApplet screen;
-    public static SceneGraph scene_graph;
-    public static String renderer;
-    public static Minim minim;
-    public static PImage pal_card;
+    public static ScreenNode screen_node = null;
+    public static PApplet screen = null;
+    public static SceneGraph scene_graph = null;
+    public static String renderer = null;
+    public static Minim minim = null;
+    public static PImage pal_card = null;
 
     private static final Map<String, Types> table;
     static {

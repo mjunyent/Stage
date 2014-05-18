@@ -70,8 +70,8 @@ FIRST:
 	m.x = m.x*2.0;
 	println(m.x);
 	
-	printFC(p) from 10.0 until 10000.0;
-	printFC(p-10.0) from 14.0 until 18.0;
+//	printFC(p) from 10.0 until 10000.0;
+//	printFC(p-10.0) from 14.0 until 18.0;
 
 	node A;
 	node B;
@@ -111,10 +111,13 @@ FIRST:
 
 LOOP:
 
-if(song.isPlaying()) {
-	println("VAMOS POR: " + song.position());
-}
-println("    TE MIDE: " + song.FFT().size);
+	println("VAMOS POR: " + now);
+	
+	if(now > 5.0) {
+		quit;
+	}
+	
+	println("    TE MIDE: " + song.FFT().size);
 int m =0;
 float[4] ne = song.FFT();
 float val = 0.0;

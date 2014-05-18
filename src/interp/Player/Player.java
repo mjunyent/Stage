@@ -32,6 +32,9 @@ public class Player {
     private boolean debug;
     private String folder;
 
+    private SemanticsFilters sem = null;
+    private SemanticsFunctions semf = null;
+
     public Player(PApplet screen, StageTree tree, String folder, boolean debug) {
         this.tree = tree;
         this.debug = debug;
@@ -42,6 +45,42 @@ public class Player {
         FunctionGlobalVars.screen = screen;
         FunctionGlobalVars.renderer = screen.OPENGL;
 
+        lastTime = 0;
+    }
+
+    //LOAD STEPS, SEPARATED HERE FOR LOADING SCREEN. MUST BE EXECUTED IN ORDER.
+    public void setFilters() {
+        sem = checkFilters(tree, debug);
+    }
+    public void setFunctions() {
+        semf = checkFunctions(tree, debug, sem);
+    }
+    public void setFiles() {
+        filter_list = sem.getFilterList();
+        function_list = semf.getFunctionList();
+
+        if(debug) System.err.println("Writing filter files...");
+        for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
+            Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
+            tr.writeFile(folder);
+        }
+    }
+    public void setShaders() {
+        if(debug) System.err.println("Compiling shaders...");
+        compileShaders();
+    }
+    public void setGlobals() {
+        FunctionGlobalVars.pal_card = screen.loadImage("resources/PM5544_with_non-PAL_signals.png");
+        FunctionGlobalVars.minim = new Minim(screen);
+
+        scene_graph = new SceneGraph(screen, debug);
+        FunctionGlobalVars.scene_graph = scene_graph;
+        func_disp = new FunctionDispatcher(tree, function_list, this, scene_graph);
+        interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
+    }
+
+    //OTHER THINGS.
+    public static SemanticsFilters checkFilters(StageTree tree, boolean debug) {
         if(debug) System.err.println("Checking filter semantics...");
         SemanticsFilters sem = null;
         try {
@@ -56,8 +95,10 @@ public class Player {
             System.err.println (e.getMessage() + ".");
             System.exit(0);
         }
+        return sem;
+    }
 
-
+    public static SemanticsFunctions checkFunctions(StageTree tree, boolean debug, SemanticsFilters sem) {
         if(debug) System.err.println("Checking function semantics...");
         SemanticsFunctions semf = null;
         try {
@@ -65,7 +106,7 @@ public class Player {
             semf.checkFunctions();
         } catch (RuntimeException e) {
             int linenumber = -1;
-            if(sem != null) linenumber = sem.getLineNumber();
+            if(semf != null) linenumber = semf.getLineNumber();
             System.err.print("Function semantic error");
             if (linenumber < 0) System.err.print (": ");
             else System.err.print (", line " + linenumber + ": ");
@@ -73,26 +114,7 @@ public class Player {
             System.exit(0);
         }
 
-        filter_list = sem.getFilterList();
-        function_list = semf.getFunctionList();
-
-        if(debug) System.err.println("Writing filter files...");
-        for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
-            Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
-            tr.writeFile(folder);
-        }
-
-        if(debug) System.err.println("Compiling shaders...");
-        compileShaders();
-
-        FunctionGlobalVars.pal_card = screen.loadImage("resources/PM5544_with_non-PAL_signals.png");
-        FunctionGlobalVars.minim = new Minim(screen);
-
-        scene_graph = new SceneGraph(screen, debug);
-        FunctionGlobalVars.scene_graph = scene_graph;
-        func_disp = new FunctionDispatcher(tree, function_list, this, scene_graph);
-        interpreter = new Interpreter(function_list, filter_list, scene_graph, func_disp);
-        lastTime = 0;
+        return semf;
     }
 
     public Interpreter getInterpreter() { return interpreter; }
@@ -112,6 +134,12 @@ public class Player {
         }
     }
 
+    public void setMainFirst() {
+        FunctionGlobalVars.time.setValue(0);
+        FunctionGlobalVars.dt.setValue(0);
+        func_disp.executeMainFIRST();
+    }
+
     public void loop(float time) {
         FunctionGlobalVars.time.setValue(time);
         FunctionGlobalVars.dt.setValue(time-lastTime);
@@ -120,5 +148,7 @@ public class Player {
         if(debug && scene_graph.isCyclic()) System.out.println("Warning: Graph contains cycles!");
         scene_graph.process(0);
         scene_graph.clear();
+
+        if(func_disp.quit()) System.exit(0);
     }
 }

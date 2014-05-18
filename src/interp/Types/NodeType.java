@@ -11,8 +11,6 @@ public class NodeType extends NodeInterface implements TypeInterface {
 
     public NodeType() {
         id = -1;
-        this.width  = FunctionGlobalVars.screen.width;
-        this.height = FunctionGlobalVars.screen.height;
     }
 
     public NodeType(int width, int height) {
@@ -22,6 +20,8 @@ public class NodeType extends NodeInterface implements TypeInterface {
     }
 
     public void init() {
+        this.width  = FunctionGlobalVars.screen.width;
+        this.height = FunctionGlobalVars.screen.height;
         image = FunctionGlobalVars.screen.createGraphics(
                                                          width,
                                                          height,

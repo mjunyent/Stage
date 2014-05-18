@@ -28,11 +28,8 @@
 package Stage;
 
 // Imports for ANTLR
-import interp.GLSLTranslator.Translator;
 import interp.Player.Player;
 import interp.Semantic.SemanticsFilters;
-import interp.Semantic.SemanticsFunctions;
-import interp.Types.IntType;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
 
@@ -46,51 +43,27 @@ import interp.*;
 
 //Processing
 import processing.core.*;
-import processing.opengl.*;
 import processing.video.Capture;
 import processing.video.Movie;
 
 public class Stage extends PApplet {
-
-    /** The file name of the program. */
     private static String infile = null;
-    /** Name of the file representing the AST. */
     private static String astfile = null;
-    /** Flag indicating that the AST must be written in dot format. */
     private static boolean dotformat = false;
-    /** Name of the file storing the trace of the program. */
-    private static String tracefile = null;
-    /** Flag to indicate whether the program must be executed after parsing. */
+    private static int resX = 0;
+    private static int resY = 0;
+    private static boolean fullscreen = false;
+    private static boolean debug = false;
+
     private static boolean execute = true;
 
-
     private static StageTree st;
-    /** Main program that invokes the parser and the interpreter. */
+    private static Player player;
 
-//    public static void main(String[] args) throws Exception {
-    public static void main(String[] args) {
+    /** Name of the file storing the trace of the program. */
+    //private static String tracefile = null;
 
-        IntType a = new IntType(5);
-        IntType b = a;
-        a = new IntType(3);
-        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
-
-        a = b;
-        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
-
-        b = new IntType(8);
-        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
-
-        a = b;
-        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
-        b.setValue(1);
-        System.out.println("NOW: " + a.getValue() + "-" + b.getValue());
-
-
-        // Parser for command line options
-        if (!readOptions (args)) System.exit(1);
-
-        // Parsing of the input file
+    private static void createAST() {
         CharStream input = null;
         try {
             input = new ANTLRFileStream(infile);
@@ -99,94 +72,56 @@ public class Stage extends PApplet {
             System.exit(1);
         }
 
-        // Creates the lexer
         StageLexer lex = new StageLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lex);
 
-        // Creates and runs the parser. As a result, an AST is created
         StageParser parser = new StageParser(tokens);
         StageTreeAdaptor adaptor = new StageTreeAdaptor();
         parser.setTreeAdaptor(adaptor);
         StageParser.prog_return result = null;
         try {
             result = parser.prog();
-        } catch (Exception e) {} // Just catch the exception (nothing to do)
-        
-        // Check for parsing errors
+        } catch (Exception e) {}
+
         int nerrors = parser.getNumberOfSyntaxErrors();
         if (nerrors > 0) {
             System.err.println (nerrors + " errors detected. " +
-                                "The program has not been executed.");
+                    "The program has not been executed.");
             System.exit(1);
         }
 
-        // Get the AST
-        StageTree t = (StageTree)result.getTree();
+        st = (StageTree)result.getTree();
+    }
 
-        st = t;
-
-        // Generate a file for the AST (option -ast file)
+    public static void writeAST() {
         if (astfile != null) {
             File ast = new File(astfile);
             BufferedWriter output = null;
             try { output = new BufferedWriter(new FileWriter(ast)); } catch (IOException e) { e.printStackTrace(); }
             if (dotformat) {
                 DOTTreeGenerator gen = new DOTTreeGenerator();
-                try { output.write(gen.toDOT(t).toString()); } catch (IOException e) { e.printStackTrace(); }
+                try { output.write(gen.toDOT(st).toString()); } catch (IOException e) { e.printStackTrace(); }
             } else {
-                try { output.write(t.toStringTree()); } catch (IOException e) { e.printStackTrace(); }
+                try { output.write(st.toStringTree()); } catch (IOException e) { e.printStackTrace(); }
             }
             try { output.close(); } catch (IOException e) { e.printStackTrace(); }
         }
-
-        System.out.println("CHECKING THINGS! UEUEUEUE");
-
-/*
-        SemanticsFilters sem = new SemanticsFilters(t, true);
-        sem.checkFilters();
-
-        SemanticsFunctions semf = new SemanticsFunctions(t, sem, true);
-        semf.checkFunctions();
-
-        for(int i=0; i<sem.getFiltersRoot().getChildCount(); i++) {
-            Translator tr = new Translator(sem.getFiltersRoot().getChild(i));
-            tr.writeFile("");
-        }*/
-
-//        PApplet.main(new String[] { "--present", "Stage.Stage" }); //--full-screen http://processing.org/reference/javadoc/core/processing/core/PApplet.html
-        PApplet.main(new String[] { "Stage.Stage" });
-
-        /*
-        // Start interpretation (only if execution required)
-        if (execute) {
-            // Creates and prepares the interpreter
-            Interp I = null;
-            int linenumber = -1;
-            try {
-                I = new Interp(t, tracefile); // prepares the interpreter
-                I	.Run();                  // Executes the code
-            } catch (RuntimeException e) {
-                if (I != null) linenumber = I.lineNumber();
-                System.err.print ("Runtime error");
-                if (linenumber < 0) System.err.print (": ");
-                else System.err.print (" (" + infile + ", line " + linenumber + "): ");
-                System.err.println (e.getMessage() + ".");
-                System.err.format (I.getStackTrace());
-            } catch (StackOverflowError e) {
-                if (I != null) linenumber = I.lineNumber();
-                System.err.print("Stack overflow error");
-                if (linenumber < 0) System.err.print (".");
-                else System.err.println (" (" + infile + ", line " + linenumber + ").");
-                System.err.format (I.getStackTrace(5));
-            }
-        }*/
     }
 
-    /**
-     * Function to parse the command line. It defines some of
-     * the attributes of the class. It returns true if the parsing
-     * hass been successful, and false otherwise.
-     */
+    public static void main(String[] args) {
+        if (!readOptions(args)) System.exit(1);
+
+        if(execute) {
+            if(fullscreen) PApplet.main(new String[] { "--present", "Stage.Stage" });
+            else PApplet.main(new String[] { "Stage.Stage" });
+        } else {
+            createAST();
+            writeAST();
+            SemanticsFilters sem = Player.checkFilters(st, debug);
+            Player.checkFunctions(st, debug, sem);
+        }
+    }
+
     private static boolean readOptions(String[] args) {
         // Define the options
         Option help = new Option("help", "print this message");
@@ -202,13 +137,23 @@ public class Stage extends PApplet {
                         .hasArg()
                         .withDescription ("write a trace of function calls during the execution of the program")
                         .create ("trace");
-                                       
+        Option resolution = OptionBuilder
+                             .withArgName("x, y")
+                             .hasArgs(2)
+                             .withDescription("window resolution, use 0 for screen resolution")
+                             .create("res");
+        Option fs = new Option("fs", "Open in fullscreen");
+        Option deb = new Option("debug", "Show more warning messages");
+
         Options options = new Options();
         options.addOption(help);
         options.addOption(dot);
         options.addOption(ast);
         options.addOption(trace);
         options.addOption(noexec);
+        options.addOption(resolution);
+        options.addOption(fs);
+        options.addOption(deb);
         CommandLineParser clp = new GnuParser();
         CommandLine line = null;
 
@@ -227,23 +172,25 @@ public class Stage extends PApplet {
         }
 
         // Option -help
-        if (line.hasOption ("help")) {
+        if (line.hasOption("help")) {
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp (cmdline, options);
             return false;
         }
-        
-        // Option -dot
-        if (line.hasOption ("dot")) dotformat = true;
 
-        // Option -ast dotfile
-        if (line.hasOption ("ast")) astfile = line.getOptionValue ("ast");
-        
+        if (line.hasOption("dot")) dotformat = true;
+        if (line.hasOption("ast")) astfile = line.getOptionValue ("ast");
+        if (line.hasOption("noexec")) execute = false;
+        if (line.hasOption("res")) {
+            resX = Integer.parseInt(line.getOptionValues("res")[0]);
+            resY = Integer.parseInt(line.getOptionValues("res")[1]);
+        }
+        if (line.hasOption("fs")) fullscreen = true;
+        if (line.hasOption("deb")) debug = true;
+
         // Option -trace dotfile
-        if (line.hasOption ("trace")) tracefile = line.getOptionValue ("trace");
-        
-        // Option -noexec
-        if (line.hasOption ("noexec")) execute = false;
+//        if (line.hasOption ("trace")) tracefile = line.getOptionValue ("trace");
+
 
         // Remaining arguments (the input file)
         String[] files = line.getArgs();
@@ -258,21 +205,16 @@ public class Stage extends PApplet {
         return true;
     }
 
-    PShader shader;
-    Player player;
-    Movie movie;
+    int loadstages = 0;
+    int playTime = 0;
 
     public void setup() {
-        size(800,600,OPENGL);
+        if(resX <= 0 || resY <= 0) size(displayWidth, displayHeight, OPENGL);
+        else size(resX, resY, OPENGL);
+
         background(0);
         noStroke();
-        shader = loadShader("landscape.glsl");
-        shader.set("resolution", (float)width, (float)height);
-
-        player = new Player(this, st, null, true);
-
-        movie = new Movie(this, "transit.mov");
-        movie.loop();
+        frame.setTitle("Stage");
     }
 
     public void movieEvent(Movie m) {
@@ -286,17 +228,62 @@ public class Stage extends PApplet {
     public void draw() {
         background(0);
 
-//        shader.set("time", (float)(millis()/1000.0));
-//        shader(shader);
-//        rect(0, 0, width, height);
+        if(loadstages < 7) {
+            float per = 0.0f;
+            switch (loadstages) {
+                case 0:
+                    createAST();
+                    writeAST();
+                    player = new Player(this, st, null, debug);
+                    per = 0.12f;
+                    break;
+                case 1:
+                    player.setFilters();
+                    per = 0.24f;
+                    break;
+                case 2:
+                    player.setFunctions();
+                    per = 0.36f;
+                    break;
+                case 3:
+                    player.setFiles();
+                    per = 0.48f;
+                    break;
+                case 4:
+                    player.setShaders();
+                    per = 0.60f;
+                    break;
+                case 5:
+                    player.setGlobals();
+                    per = 0.75f;
+                    break;
+                case 6:
+                    player.setMainFirst();
+                    per = 1.0f;
+                    break;
+            }
+            loadstages++;
+            drawLoadingBar(per);
+            playTime = millis();
+        } else {
+            player.loop((float)((millis()-playTime)/1000.0));
+        }
+    }
 
-        frame.setTitle("frame: " + frameCount + " - fps: " + frameRate);
+    public void drawLoadingBar(float chant) {
+        stroke(255);
+        fill(0);
+        strokeWeight(2);
+        rectMode(CENTER);
+        rect(width/2, height/2, width*0.9f, 30);
 
-        player.loop((float)(millis()/1000.0));
-        //if (movie.available() == true) {
-        //  movie.read();
-        //}
-        //image(movie, 0, 0, width, height);
+        noStroke();
+        rectMode(CORNER);
+        fill(255);
+        rect(width*0.05f+4, height/2-11, max(width*0.9f*chant-8,0) , 22);
+
+
+        fill(0);
     }
 }
 

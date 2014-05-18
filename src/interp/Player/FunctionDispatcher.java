@@ -43,6 +43,12 @@ public class FunctionDispatcher {
         callList.add(new FuncTime("main", 0, Float.POSITIVE_INFINITY, sc));
     }
 
+    public void executeMainFIRST() {
+        FuncTime ft = callList.get(0);
+        executeFunc(ft, player.FIRST);
+        ft.init = true;
+    }
+
     public void process(float time) {
         for(int i=0; i<callList.size(); i++) {
             FuncTime ft = callList.get(i);
@@ -67,6 +73,10 @@ public class FunctionDispatcher {
 
 //            callList.set(i, ft);
         }
+    }
+
+    public boolean quit() {
+        return callList.isEmpty();
     }
 
     public void addFunc(String fname, float start, float end) {
