@@ -1,7 +1,7 @@
 package interp.Player;
 
+import interp.Semantic.FunctionGlobalVars;
 import interp.StageTree;
-import interp.Types.FilterSignature;
 import interp.Types.FunctionSignature;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -14,17 +14,20 @@ public class FunctionDispatcher {
         public boolean init;
         public boolean fin;
         public StageStack stack;
+        public Trace trace;
 
         public FuncTime(String name, float s, float e, SceneGraph sc) {
             fname = name; startTime = s; endTime = e;
             init = false; fin = false;
             stack = new StageStack(sc);
+            trace = new Trace(name, "Interpreter", 0, 0, 0, Float.POSITIVE_INFINITY);
         }
 
-        public FuncTime(String name, float s, float e, StageStack st) {
+        public FuncTime(String name, float s, float e, StageStack st, Trace t) {
             fname = name; startTime = s; endTime = e;
             init = false; fin = false;
             stack = st;
+            trace = t;
         }
     }
     private HashMap<String, FunctionSignature> function_list;
@@ -32,6 +35,7 @@ public class FunctionDispatcher {
     private StageTree tree;
     private Player player;
     private SceneGraph sc;
+    public Trace current_trace;
 
     public FunctionDispatcher(StageTree t, HashMap<String, FunctionSignature> fl, Player p, SceneGraph sc) {
         tree = t;
@@ -83,8 +87,8 @@ public class FunctionDispatcher {
         callList.addLast(new FuncTime(fname,start,end,sc));
     }
 
-    public void addFunc(String fname, float start, float end, StageStack st) {
-        callList.addLast(new FuncTime(fname,start,end,st));
+    public void addFunc(String fname, float start, float end, StageStack st, String callfrom, int callline) {
+        callList.addLast(new FuncTime(fname,start,end,st, new Trace(fname, callfrom, callline, FunctionGlobalVars.time.getValue(), start, end)));
     }
 
     private void executeFunc(FuncTime ft, int what) {
@@ -93,7 +97,12 @@ public class FunctionDispatcher {
 
         Interpreter interp = player.getInterpreter();
 
-        interp.run(fs, what, ft.stack);
+        try {
+            interp.run(fs, what, ft.stack, ft.trace);
+        } catch (Exception e) {
+            throw new RuntimeException("Runtime execution error: " + System.lineSeparator() + e.getMessage() + System.lineSeparator() + ft.trace.printTrace(interp.getLine()));
+        }
+
         if(interp.quit()) ft.endTime = -1; //next iteration func last will be called.
         if(interp.ret()) { ft.endTime = -1; ft.fin = true; } //next iteration func will be removed.
     }

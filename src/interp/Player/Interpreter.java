@@ -21,6 +21,9 @@ public class Interpreter {
     private boolean ret;
     private TypeInterface ret_val;
     private StageStack current_stack;
+    private Trace current_trace;
+    private StageTree current_node; //TODO
+    private String current_funname;
 
     public Interpreter(HashMap<String, FunctionSignature> function_list,
                        HashMap<String, FilterSignature> filter_list,
@@ -40,32 +43,39 @@ public class Interpreter {
         return ret;
     }
 
-    public void run(FunctionSignature func, int mode, StageStack stack) {
+    public int getLine() {
+        if(current_node == null) return -1;
+        return current_node.getLine();
+    }
+
+    public void run(FunctionSignature func, int mode, StageStack stack, Trace trace) {
         current_stack = stack;
+        current_trace = trace;
+        current_funname = func.name;
         quit = false;
         ret = false;
 
         switch (mode) {
             case Player.FIRST:
                 if(func.first == null) return;
+                current_node = func.first;
                 current_stack.pushScope();
+                trace.setMode(Player.FIRST);
                 runFuncs(func.first);
-//                System.out.println("FIRST");
-//                current_stack.printAllScopes();
                 break;
             case Player.LOOP:
                 if(func.loop == null) return;
+                current_node = func.loop;
                 current_stack.pushScope();
+                trace.setMode(Player.LOOP);
                 runFuncs(func.loop);
-//                System.out.println("LOOP");
-//                current_stack.printAllScopes();
                 current_stack.popScope();
-//                System.out.println("LOOP AFTER");
-//                current_stack.printAllScopes();
                 break;
             case Player.LAST:
                 if(func.last == null) return;
+                current_node = func.last;
                 current_stack.pushScope();
+                trace.setMode(Player.LAST);
                 runFuncs(func.last);
                 break;
             default:
@@ -80,6 +90,7 @@ public class Interpreter {
     }
 
     private void runInst(StageTree inst) {
+        current_node = inst;
         switch (inst.getType()) {
             case StageLexer.BYPASSF:
                 NodeInterface what = (NodeInterface)evaluateExpr(inst.getChild(0),true);
@@ -214,7 +225,7 @@ public class Interpreter {
                     fun_stack.add(fs.args_names.get(i), tps);
                     if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                 }
-                func_disp.addFunc(funname, stTime.getValue(), edTime.getValue(), fun_stack);
+                func_disp.addFunc(funname, stTime.getValue(), edTime.getValue(), fun_stack, current_funname, getLine());
                 break;
             case StageLexer.RETURN:
                 if(inst.getChildCount() == 0) {
@@ -240,6 +251,7 @@ public class Interpreter {
      * Operators always passed by copy.
      */
     private TypeInterface evaluateExpr(StageTree exp, boolean getByReference) {
+        current_node = exp;
         switch (exp.getType()) {
             case StageLexer.INT:
             case StageLexer.FLOAT:
@@ -354,8 +366,12 @@ public class Interpreter {
     private TypeInterface getFuncReturn(String name, ArrayList<TypeInterface> args) {
         FunctionSignature fs = function_list.get(name);
         StageStack old_stack = current_stack;
+        String old_funname = current_funname;
 
+        current_trace.push(name, getLine());
         current_stack = new StageStack(scene_graph);
+        current_funname = name;
+
         TypeInterface ret = fs.ret.getInstance();
 
         for(int i=0; i<args.size(); i++) {
@@ -373,6 +389,8 @@ public class Interpreter {
             current_stack = old_stack;
             quit = false;
             this.ret = false;
+            current_trace.pop();
+            current_funname = old_funname;
             return ret_val;
         }
         //Check if quit was invoked
@@ -385,6 +403,8 @@ public class Interpreter {
                     current_stack = old_stack;
                     quit = false;
                     this.ret = false;
+                    current_trace.pop();
+                    current_funname = old_funname;
                     return ret_val;
                 }
             } //anyways, flush, unstack and return
@@ -392,6 +412,8 @@ public class Interpreter {
             current_stack = old_stack;
             quit = false;
             this.ret = false;
+            current_trace.pop();
+            current_funname = old_funname;
             return ret;
         }
         //Call loop if not null
@@ -406,6 +428,8 @@ public class Interpreter {
             current_stack = old_stack;
             quit = false;
             this.ret = false;
+            current_trace.pop();
+            current_funname = old_funname;
             return ret_val;
         }
         //Call last if not null
@@ -418,6 +442,8 @@ public class Interpreter {
             current_stack = old_stack;
             quit = false;
             this.ret = false;
+            current_trace.pop();
+            current_funname = old_funname;
             return ret_val;
         }
 
@@ -425,6 +451,8 @@ public class Interpreter {
         current_stack = old_stack;
         quit = false;
         this.ret = false;
+        current_trace.pop();
+        current_funname = old_funname;
         return ret;
     }
 }

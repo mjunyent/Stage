@@ -72,6 +72,7 @@ FIRST:
 	
 //	printFC(p) from 10.0 until 10000.0;
 //	printFC(p-10.0) from 14.0 until 18.0;
+	makeItCry() from 2.0 until 100.0;
 
 	node A;
 	node B;
@@ -112,11 +113,7 @@ FIRST:
 LOOP:
 
 	println("VAMOS POR: " + now);
-	
-	if(now > 5.0) {
-		quit;
-	}
-	
+		
 	println("    TE MIDE: " + song.FFT().size);
 int m =0;
 float[4] ne = song.FFT();
@@ -194,6 +191,14 @@ LAST:
 	println(9.0);
 }
 
+function void makeItCry() {
+LOOP:
+	if(now > 5.0) {
+		cube(5.0);
+		//quit;
+	}
+}
+
 function void drawRed(node X) {
 FIRST:
 	println("RED");
@@ -224,6 +229,8 @@ LAST:
 function float square(float num) {
 FIRST:
 num = num*num;
+int[5] a;
+a[7] = 4;
 LOOP:
 //return a*a-1.0;
 LAST:
