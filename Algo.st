@@ -194,7 +194,7 @@ LAST:
 function void makeItCry() {
 LOOP:
 	if(now > 5.0) {
-		cube(5.0);
+		//cube(5.0);
 		//quit;
 	}
 }

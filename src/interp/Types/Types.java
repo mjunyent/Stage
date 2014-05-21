@@ -59,13 +59,6 @@ public enum Types {
         allowedInFunctions = inFunc;
         allowedInFilters = inFilt;
         this.arrayOf = arrayOf;
-
-/*        if(c != null) {
-            try {
-                inst = (TypeInterface) cl.newInstance();
-                if(arrayOf != null) ((ArrayType) inst).setType(this); //TODO GIVE TYPE AND TYPE OF ARRAY.
-            } catch (InstantiationException e) { e.printStackTrace(); } catch (IllegalAccessException e) { e.printStackTrace(); }
-        }*/
     }
 
     //Getters

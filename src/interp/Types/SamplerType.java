@@ -24,6 +24,5 @@ public class SamplerType implements TypeInterface {
     public TypeInterface getAttribute(String name) { return null; }
 
     public void set(TypeInterface obj) {
-        //TODO
     }
 }

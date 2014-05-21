@@ -22,7 +22,7 @@ public class Interpreter {
     private TypeInterface ret_val;
     private StageStack current_stack;
     private Trace current_trace;
-    private StageTree current_node; //TODO
+    private StageTree current_node;
     private String current_funname;
 
     public Interpreter(HashMap<String, FunctionSignature> function_list,
