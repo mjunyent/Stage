@@ -43,7 +43,7 @@ public class Type_Int implements TypeFunctionInterface,TypeFilterInterface {
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("+")) {
             return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("-")) {
+        } else if(name.equals("-") && args.size() == 1) {
             return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("*")) {
             return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );

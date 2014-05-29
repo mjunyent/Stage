@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-29 20:57:41
+// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-29 21:56:22
 
 package parser;
 import interp.StageTree;
@@ -476,7 +476,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ret, function_block_instructions, params, nam, FUNCTION
+            // elements: function_block_instructions, nam, params, ret, FUNCTION
             // token labels: ret, nam
             // rule labels: retval
             // token list labels: 
@@ -2195,7 +2195,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_expr.add(expr61.getTree());
 
             // AST REWRITE
-            // elements: member, expr
+            // elements: expr, member
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2437,7 +2437,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: expr_list, inputlist, ID, ID
+                    // elements: ID, expr_list, inputlist, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2527,7 +2527,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: from, to
+                    // elements: to, from
                     // token labels: to, from
                     // rule labels: retval
                     // token list labels: 
@@ -2657,7 +2657,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ID, filtercall
+            // elements: filtercall, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2984,7 +2984,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: type, expr, name
+                    // elements: expr, name, type
                     // token labels: name, type
                     // rule labels: retval
                     // token list labels: 
@@ -3081,7 +3081,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: expr, name, type, INT
+                    // elements: expr, name, INT, type
                     // token labels: name, type
                     // rule labels: retval
                     // token list labels: 
@@ -4793,7 +4793,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: expr, ID
+            // elements: ID, expr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5065,7 +5065,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_expr.add(uexpr.getTree());
 
             // AST REWRITE
-            // elements: fexpr, funcVar, uexpr
+            // elements: funcVar, uexpr, fexpr
             // token labels: 
             // rule labels: retval, uexpr, fexpr
             // token list labels: 

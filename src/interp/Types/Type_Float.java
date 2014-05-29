@@ -46,7 +46,7 @@ public class Type_Float implements TypeFunctionInterface,TypeFilterInterface {
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("+")) {
             return new Type_Float( value + ((Type_Float)args.get(0)).getValue() );
-        } else if(name.equals("-")) {
+        } else if(name.equals("-") && args.size() == 1) {
             return new Type_Float( value - ((Type_Float)args.get(0)).getValue() );
         } else if(name.equals("*")) {
             return new Type_Float( value * ((Type_Float)args.get(0)).getValue() );
@@ -67,7 +67,6 @@ public class Type_Float implements TypeFunctionInterface,TypeFilterInterface {
         } else if(name.equals(">=")) {
             return new Type_Bool(  value >= ((Type_Float)args.get(0)).getValue() );
         }
-
         else if(name.equals("-")) {
             return new Type_Float( -value );
         }

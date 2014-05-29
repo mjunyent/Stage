@@ -314,7 +314,6 @@ public class SemanticsFunctions {
         //One child operands.
         if(exp.getChildCount() == 1) { //we expect not or -  (- is an alias of not)
             String opName = exp.getText();
-            if(exp.getType() == StageLexer.MINUS) opName = "not"; //TODO think if it's necessary.
             Types leftType = getExpressionType(exp.getChild(0), symbol_table);
 
             Types retType = getMemberFunCallReturn(opName, leftType, new ArrayList<Types>());
