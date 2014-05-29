@@ -31,12 +31,18 @@ public class Translator {
         header.add("#define PROCESSING_COLOR_SHADER");
         header.add("");
 
+        header.add("struct SampleTexture {");
+        header.add("    sampler2D texture;");
+        header.add("    vec2 resolution;");
+        header.add("};");
+        header.add("");
+
         header.add("uniform float time;");
         header.add("uniform vec2 resolution;");
 
         ArrayList<String> sampler_uniforms = new ArrayList<String>();
         for(int i=0; i<filter.getChild(0).getChildCount(); i++) {
-            sampler_uniforms.add("uniform sampler2D " + filter.getChild(0).getChild(i).getText() + ";");
+            sampler_uniforms.add("uniform SampleTexture " + filter.getChild(0).getChild(i).getText() + ";");
         }
 
         ArrayList<String> param_uniforms = new ArrayList<String>();

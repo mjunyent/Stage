@@ -5,6 +5,11 @@
 
 #define PROCESSING_COLOR_SHADER
 
+struct SampleTexture {
+    sampler2D texture;
+    vec2 resolution;
+};
+
 uniform float time;
 uniform vec2 resolution;
 uniform float k;

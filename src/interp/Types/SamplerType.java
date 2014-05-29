@@ -17,6 +17,8 @@ public class SamplerType implements TypeFilterInterface {
     }
 
     public Types getAttributeType(String name) {
+        if(name.equals("resolution")) return Types.VEC2_T;
+
         //Todo, add sizes and relevant things. Also modify Translator.java to make them work
         return null;
     }
@@ -27,7 +29,7 @@ public class SamplerType implements TypeFilterInterface {
 
     public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
         if(name.equals("[") && args_types.size() == 1 && args_types.get(0)==Types.VEC2_T) {
-            return "texture2D(" + left + ", " + args.get(0) + ")";
+            return "texture2D(" + left + ".texture , " + args.get(0) + ")";
         }
 
         return null;

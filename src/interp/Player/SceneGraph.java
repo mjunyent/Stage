@@ -222,7 +222,8 @@ public class SceneGraph {
         for(int i=0; i<dependencies.size(); i++) {
             NodeInterface input = nodes.get(dependencies.get(i));
             if(input.getImage() == null) continue;
-            effect.fs.shader.set(effect.fs.inputs.get(i), input.getImage());
+            effect.fs.shader.set(effect.fs.inputs.get(i)+".texture", input.getImage());
+            effect.fs.shader.set(effect.fs.inputs.get(i)+".resolution", input.getImage().width, input.getImage().height);
         }
 
         //give input data.
