@@ -25,28 +25,28 @@ public class StageTree extends CommonTree {
 
     public void setIntValue() {
         type = Types.INT_T;
-        value = new IntType(Integer.parseInt(getText()));
+        value = new Type_Int(Integer.parseInt(getText()));
     }
 
     public void setFloatValue() {
         type = Types.FLOAT_T;
-        value = new FloatType(Float.parseFloat(getText()));
+        value = new Type_Float(Float.parseFloat(getText()));
     }
 
     public void setBooleanValue() {
         type = Types.BOOL_T;
-        value = new BoolType(getText().equals("true"));
+        value = new Type_Bool(getText().equals("true"));
     }
 
     public void setStringValue() {
         type = Types.STRING_T;
         String s = getText();
-        value = new StringType(s.substring(1,s.length()-1));
+        value = new Type_String(s.substring(1,s.length()-1));
     }
 
     public void setCharValue() {
         type = Types.CHAR_T;
-        value = new CharType(getText().charAt(1));
+        value = new Type_Char(getText().charAt(1));
     }
 
     public void setFuncId(int i) {

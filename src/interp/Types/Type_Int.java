@@ -4,72 +4,69 @@ import processing.opengl.PShader;
 
 import java.util.List;
 
+public class Type_Int implements TypeFunctionInterface,TypeFilterInterface {
+    private int value;
 
-public class FloatType implements TypeFunctionInterface,TypeFilterInterface {
-    private float value;
+    public Type_Int() { value = 0; }
 
-    public FloatType() { value = 0; }
-
-    public FloatType(float value) {
+    public Type_Int(int value) {
         this.value = value;
     }
 
-    public void setValue(float value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
-    public float getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public Types getTypeName() { return Types.FLOAT_T; }
+    public Types getTypeName() { return Types.INT_T; }
 
     public Types getMethodArgs(String name, List<Types> args) {
-        if(args.size() == 1 &&
-          (args.get(0) == Types.FLOAT_T || args.get(0) == Types.VEC4_T)) {
+        if(args.size() == 1 && args.get(0) == Types.INT_T) {
             if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-")) {
-                return args.get(0);
+                return Types.INT_T;
             } else if(name.equals("==") || name.equals("!=") ||
-                    name.equals(">") || name.equals("<") ||
-                    name.equals(">=") || name.equals("<=")) {
+                      name.equals(">") || name.equals("<") ||
+                      name.equals(">=") || name.equals("<=")) {
                 return Types.BOOL_T;
             }
         } else if(args.size() == 0) {
-            if(name.equals("not")) {
-                return Types.FLOAT_T;
+            if(name.equals("-")) {
+                return Types.INT_T;
             }
         }
         return null;
     }
 
-
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("+")) {
-            return new FloatType( value + ((FloatType)args.get(0)).getValue() );
+            return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("-")) {
-            return new FloatType( value - ((FloatType)args.get(0)).getValue() );
+            return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("*")) {
-            return new FloatType( value * ((FloatType)args.get(0)).getValue() );
+            return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("/")) {
-            return new FloatType( value / ((FloatType)args.get(0)).getValue() );
+            return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
         }
 
         else if(name.equals("==")) {
-            return new BoolType( value == ((FloatType)args.get(0)).getValue() );
+            return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("!=")) {
-            return new BoolType( value != ((FloatType)args.get(0)).getValue() );
+            return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("<")) {
-            return new BoolType(  value < ((FloatType)args.get(0)).getValue() );
+            return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals(">")) {
-            return new BoolType(  value > ((FloatType)args.get(0)).getValue() );
+            return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("<=")) {
-            return new BoolType(  value <= ((FloatType)args.get(0)).getValue() );
+            return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals(">=")) {
-            return new BoolType(  value >= ((FloatType)args.get(0)).getValue() );
+            return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
         }
 
-        else if(name.equals("not")) {
-            return new FloatType( -value );
+        else if(name.equals("-")) {
+            return new Type_Int( -value );
         }
 
         return null;
@@ -79,7 +76,7 @@ public class FloatType implements TypeFunctionInterface,TypeFilterInterface {
     public TypeFunctionInterface getAttribute(String name) { return null; }
 
     public void set(TypeInterface obj) {
-        value = ((FloatType)obj).getValue();
+        value = ((Type_Int)obj).getValue();
     }
 
     public void passToShader(PShader shad, String name) {
@@ -87,8 +84,9 @@ public class FloatType implements TypeFunctionInterface,TypeFilterInterface {
     }
 
     public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
-        if(args.size() == 1 && (args_types.get(0) == Types.FLOAT_T || args_types.get(0) == Types.VEC4_T)) {
-            if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-") || name.equals("==") || name.equals("!=") ||
+        if(args.size() == 1 && args_types.get(0) == Types.INT_T) {
+            if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-")
+                 || name.equals("==") || name.equals("!=") ||
                     name.equals(">") || name.equals("<") ||
                     name.equals(">=") || name.equals("<=")) {
                 return "(" + left + ")" + name + "(" + args.get(0) + ")";

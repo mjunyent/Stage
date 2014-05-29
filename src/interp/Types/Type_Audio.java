@@ -6,7 +6,7 @@ import interp.Semantic.FunctionGlobalVars;
 
 import java.util.List;
 
-public class AudioType implements TypeFunctionInterface {
+public class Type_Audio implements TypeFunctionInterface {
     AudioPlayer player;
     FFT fft;
 
@@ -40,11 +40,11 @@ public class AudioType implements TypeFunctionInterface {
 
     }
 
-    public AudioType() {
+    public Type_Audio() {
         player = null;
     }
 
-    public AudioType(String file) {
+    public Type_Audio(String file) {
         player = FunctionGlobalVars.minim.loadFile(file, 1024);
         fft = new FFT( player.bufferSize(), player.sampleRate() );
     }
@@ -63,49 +63,49 @@ public class AudioType implements TypeFunctionInterface {
         switch (fs.id) {
             case 0:
                 player.play();
-                return new VoidType();
+                return new Type_Void();
             case 1:
-                return new BoolType(player.isPlaying());
+                return new Type_Bool(player.isPlaying());
             case 2:
                 player.loop();
-                return new VoidType();
+                return new Type_Void();
             case 3:
-                return new BoolType(player.isLooping());
+                return new Type_Bool(player.isLooping());
             case 4:
-                return new FloatType(((float)player.length())/ 1000.0f);
+                return new Type_Float(((float)player.length())/ 1000.0f);
             case 5:
-                return new FloatType(((float)player.position()) / 1000.0f);
+                return new Type_Float(((float)player.position()) / 1000.0f);
             case 6:
-                player.cue((int)(((FloatType)args.get(0)).getValue()*1000));
-                return new VoidType();
+                player.cue((int)(((Type_Float)args.get(0)).getValue()*1000));
+                return new Type_Void();
             case 7:
                 player.pause();
-                return new VoidType();
+                return new Type_Void();
             case 8:
                 player.pause();
                 player.rewind();
-                return new VoidType();
+                return new Type_Void();
             case 9:
-                player.setLoopPoints((int)(((FloatType)args.get(0)).getValue()*1000), (int)(((FloatType)args.get(1)).getValue()*1000));
-                return new VoidType();
+                player.setLoopPoints((int)(((Type_Float)args.get(0)).getValue()*1000), (int)(((Type_Float)args.get(1)).getValue()*1000));
+                return new Type_Void();
             case 10:
                 player.mute();
-                return new VoidType();
+                return new Type_Void();
             case 11:
                 player.unmute();
-                return new VoidType();
+                return new Type_Void();
             case 12:
-                return new BoolType(player.isMuted());
+                return new Type_Bool(player.isMuted());
 
             case 13:
                 fft.forward(player.mix);
-                ArrayType t = new ArrayType();
+                Type_Array t = new Type_Array();
                 t.setType(Types.A_FLOAT_T);
 
                 System.out.println(fft.specSize());
 
                 for(int i = 0; i < fft.specSize(); i++)
-                    t.array.add(new FloatType(fft.getBand(i)));
+                    t.array.add(new Type_Float(fft.getBand(i)));
 
                 return t;
             default:
@@ -122,6 +122,6 @@ public class AudioType implements TypeFunctionInterface {
     }
 
     public void set(TypeInterface obj) {
-        player = ((AudioType)obj).player;
+        player = ((Type_Audio)obj).player;
     }
 }

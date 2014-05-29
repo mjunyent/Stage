@@ -89,6 +89,12 @@ FIRST:
 
 LOOP:
 
+float nose = 5.0;
+nose = -nose;
+bool monn = false;
+if(not monn) {
+println(nose);
+}
 	println("VAMOS POR: " + now);
 		
 	println("    TE MIDE: " + song.FFT().size);

@@ -4,8 +4,8 @@ import processing.opengl.PShader;
 
 import java.util.List;
 
-public class SamplerType implements TypeFilterInterface {
-    public SamplerType() {
+public class Type_Sampler implements TypeFilterInterface {
+    public Type_Sampler() {
     }
 
     public Types getTypeName() { return Types.SAMPLER_T; }

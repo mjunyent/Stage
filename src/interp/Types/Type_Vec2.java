@@ -4,17 +4,17 @@ import processing.opengl.PShader;
 
 import java.util.List;
 
-public class Vec2Type implements TypeFunctionInterface, TypeFilterInterface {
-    private FloatType valX, valY;
+public class Type_Vec2 implements TypeFunctionInterface, TypeFilterInterface {
+    private Type_Float valX, valY;
 
-    public Vec2Type() {
-        valX = new FloatType();
-        valY = new FloatType();
+    public Type_Vec2() {
+        valX = new Type_Float();
+        valY = new Type_Float();
     }
 
-    public Vec2Type(float x, float y) {
-        valX = new FloatType(x);
-        valY = new FloatType(y);
+    public Type_Vec2(float x, float y) {
+        valX = new Type_Float(x);
+        valY = new Type_Float(y);
     }
 
     public void setValue(float x, float y) {
@@ -36,7 +36,7 @@ public class Vec2Type implements TypeFunctionInterface, TypeFilterInterface {
             }
         }
         else if(args.size()==0) {
-            if(name.equals("not")) {
+            if(name.equals("-")) {
                 return Types.VEC2_T;
             }
         }
@@ -48,31 +48,31 @@ public class Vec2Type implements TypeFunctionInterface, TypeFilterInterface {
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         //TODO
 /*        if(name.equals("+")) {
-            return new IntType( value + ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("-")) {
-            return new IntType( value - ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("*")) {
-            return new IntType( value * ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("/")) {
-            return new IntType( value / ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
         }
 
         else if(name.equals("==")) {
-            return new BoolType( value == ((IntType)args.get(0)).getValue() );
+            return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("!=")) {
-            return new BoolType( value != ((IntType)args.get(0)).getValue() );
+            return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("<")) {
-            return new BoolType(  value < ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals(">")) {
-            return new BoolType(  value > ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("<=")) {
-            return new BoolType(  value <= ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals(">=")) {
-            return new BoolType(  value >= ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
         }
 
-        else if(name.equals("not")) {
-            return new IntType( -value );
+        else if(name.equals("-")) {
+            return new Type_Int( -value );
         }
 */
         return null;
@@ -88,8 +88,8 @@ public class Vec2Type implements TypeFunctionInterface, TypeFilterInterface {
         return null; }
 
     public void set(TypeInterface obj) {
-        valX = ((Vec2Type)obj).valX;
-        valY = ((Vec2Type)obj).valY;
+        valX = ((Type_Vec2)obj).valX;
+        valY = ((Type_Vec2)obj).valY;
     }
 
 

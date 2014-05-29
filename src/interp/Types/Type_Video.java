@@ -7,12 +7,12 @@ import processing.video.Movie;
 
 import java.util.List;
 
-public class VideoType extends NodeInterface implements TypeFunctionInterface {
+public class Type_Video extends NodeInterface implements TypeFunctionInterface {
     public Movie video;
 
-    public VideoType() { video = null; }
+    public Type_Video() { video = null; }
 
-    public VideoType(String path) { video = new Movie(FunctionGlobalVars.screen, path); }
+    public Type_Video(String path) { video = new Movie(FunctionGlobalVars.screen, path); }
 
     public void init() { }
     public PImage getImage() { return video; }
@@ -53,14 +53,14 @@ public class VideoType extends NodeInterface implements TypeFunctionInterface {
                 video.loop();
                 break;
             case 2:
-                video.speed(((FloatType) args.get(0)).getValue());
+                video.speed(((Type_Float) args.get(0)).getValue());
                 break;
             case 3:
-                return new FloatType(video.duration());
+                return new Type_Float(video.duration());
             case 4:
-                return new FloatType(video.time());
+                return new Type_Float(video.time());
             case 5:
-                video.jump(((FloatType) args.get(0)).getValue());
+                video.jump(((Type_Float) args.get(0)).getValue());
                 break;
             case 6:
                 video.noLoop();
@@ -75,7 +75,7 @@ public class VideoType extends NodeInterface implements TypeFunctionInterface {
                 return null;
         }
 
-        return new VoidType();
+        return new Type_Void();
 
     }
 
@@ -90,7 +90,7 @@ public class VideoType extends NodeInterface implements TypeFunctionInterface {
     }
 
     public void set(TypeInterface obj) {
-        this.id = ((VideoType)obj).id;
-        this.video = ((VideoType)obj).video;
+        this.id = ((Type_Video)obj).id;
+        this.video = ((Type_Video)obj).video;
     }
 }

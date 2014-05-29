@@ -2,12 +2,12 @@ package interp.Types;
 
 import java.util.List;
 
-public class CharType implements TypeFunctionInterface {
+public class Type_Char implements TypeFunctionInterface {
     private char value;
 
-    public CharType() { value = ' '; }
+    public Type_Char() { value = ' '; }
 
-    public CharType(char value) {
+    public Type_Char(char value) {
         this.value = value;
     }
 
@@ -34,24 +34,24 @@ public class CharType implements TypeFunctionInterface {
 
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("==")) {
-            return new BoolType( value == ((CharType)args.get(0)).getValue() );
+            return new Type_Bool( value == ((Type_Char)args.get(0)).getValue() );
         } else if(name.equals("!=")) {
-            return new BoolType( value != ((CharType)args.get(0)).getValue() );
+            return new Type_Bool( value != ((Type_Char)args.get(0)).getValue() );
         } else if(name.equals(">=")) {
-            return new BoolType( value >= ((CharType)args.get(0)).getValue() );
+            return new Type_Bool( value >= ((Type_Char)args.get(0)).getValue() );
         } else if(name.equals("<=")) {
-            return new BoolType( value <= ((CharType)args.get(0)).getValue() );
+            return new Type_Bool( value <= ((Type_Char)args.get(0)).getValue() );
         } else if(name.equals(">")) {
-            return new BoolType( value > ((CharType)args.get(0)).getValue() );
+            return new Type_Bool( value > ((Type_Char)args.get(0)).getValue() );
         } else if(name.equals("<")) {
-            return new BoolType( value < ((CharType)args.get(0)).getValue() );
+            return new Type_Bool( value < ((Type_Char)args.get(0)).getValue() );
         }
 
         return null;
     }
 
     public void set(TypeInterface obj) {
-        value = ((CharType)obj).getValue();
+        value = ((Type_Char)obj).getValue();
     }
 
     public Types getAttributeType(String name) { return null; }

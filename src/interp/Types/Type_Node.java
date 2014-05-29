@@ -6,14 +6,14 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class NodeType extends NodeInterface implements TypeFunctionInterface {
+public class Type_Node extends NodeInterface implements TypeFunctionInterface {
     private PGraphics image;
 
-    public NodeType() {
+    public Type_Node() {
         id = -1;
     }
 
-    public NodeType(int width, int height) {
+    public Type_Node(int width, int height) {
         id = -1;
         this.width = width;
         this.height = height;
@@ -46,7 +46,7 @@ public class NodeType extends NodeInterface implements TypeFunctionInterface {
     public TypeFunctionInterface getAttribute(String name) { return null; }
 
     public void set(TypeInterface obj) {
-        this.id = ((NodeType)obj).id;
-        this.image = ((NodeType)obj).image;
+        this.id = ((Type_Node)obj).id;
+        this.image = ((Type_Node)obj).image;
     }
 }

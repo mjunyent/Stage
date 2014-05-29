@@ -39,52 +39,52 @@ public class FunctionGlobalFuncs {
         FunctionSignature fs = table.getFunctionByInterface(name, args);
         switch (fs.id) {
             case 0:
-                return new Vec4Type(((FloatType)args.get(0)).getValue(),
-                                    ((FloatType)args.get(1)).getValue(),
-                                    ((FloatType)args.get(2)).getValue(),
-                                    ((FloatType)args.get(3)).getValue());
+                return new Type_Vec4(((Type_Float)args.get(0)).getValue(),
+                                    ((Type_Float)args.get(1)).getValue(),
+                                    ((Type_Float)args.get(2)).getValue(),
+                                    ((Type_Float)args.get(3)).getValue());
             case 1:
-                return new Vec2Type(((FloatType)args.get(0)).getValue(),
-                                    ((FloatType)args.get(1)).getValue());
+                return new Type_Vec2(((Type_Float)args.get(0)).getValue(),
+                                    ((Type_Float)args.get(1)).getValue());
 
             case 2:
-                return new IntType((int)((FloatType)args.get(0)).getValue());
+                return new Type_Int((int)((Type_Float)args.get(0)).getValue());
             case 3:
-                return new FloatType((float)((IntType)args.get(0)).getValue());
+                return new Type_Float((float)((Type_Int)args.get(0)).getValue());
 
             case 10:
-                System.out.println("Int value: " + ((IntType)args.get(0)).getValue());
-                return new VoidType();
+                System.out.println("Int value: " + ((Type_Int)args.get(0)).getValue());
+                return new Type_Void();
             case 11:
-                System.out.println("Float value: " + ((FloatType)args.get(0)).getValue());
-                return new VoidType();
+                System.out.println("Float value: " + ((Type_Float)args.get(0)).getValue());
+                return new Type_Void();
             case 12:
-                System.out.println("Bool value: " + ((BoolType)args.get(0)).getValue());
-                return new VoidType();
+                System.out.println("Bool value: " + ((Type_Bool)args.get(0)).getValue());
+                return new Type_Void();
             case 13:
-                System.out.println("Char value: " + ((CharType)args.get(0)).getValue());
-                return new VoidType();
+                System.out.println("Char value: " + ((Type_Char)args.get(0)).getValue());
+                return new Type_Void();
             case 14:
-                System.out.println(((StringType)args.get(0)).getValue());
-                return new VoidType();
+                System.out.println(((Type_String)args.get(0)).getValue());
+                return new Type_Void();
 
             case 20:
-                VideoType retvideo = new VideoType(((StringType)args.get(0)).getValue());
+                Type_Video retvideo = new Type_Video(((Type_String)args.get(0)).getValue());
                 FunctionGlobalVars.scene_graph.addNode(retvideo);
                 FunctionGlobalVars.scene_graph.addRef(retvideo);
                 return retvideo;
             case 21:
-                CameraType retcamera = new CameraType(((IntType)args.get(0)).getValue());
+                Type_Camera retcamera = new Type_Camera(((Type_Int)args.get(0)).getValue());
                 FunctionGlobalVars.scene_graph.addNode(retcamera);
                 FunctionGlobalVars.scene_graph.addRef(retcamera);
                 return retcamera;
             case 22:
-                NodeType retnode = new NodeType(((IntType)args.get(0)).getValue(), ((IntType)args.get(1)).getValue());
+                Type_Node retnode = new Type_Node(((Type_Int)args.get(0)).getValue(), ((Type_Int)args.get(1)).getValue());
                 FunctionGlobalVars.scene_graph.addNode(retnode);
                 FunctionGlobalVars.scene_graph.addRef(retnode);
                 return retnode;
             case 30:
-                return new AudioType(((StringType)args.get(0)).getValue());
+                return new Type_Audio(((Type_String)args.get(0)).getValue());
             default:
                 return null;
         }

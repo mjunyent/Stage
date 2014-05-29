@@ -11,10 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FunctionGlobalVars {
-    public static FloatType time = new FloatType(-1.0f);
-    public static FloatType dt = new FloatType(1.0f);
-    public static Vec2Type resolution = new Vec2Type(0.0f,0.0f);
-    public static FloatType Infinity = new FloatType(Float.MAX_VALUE);
+    public static Type_Float time = new Type_Float(-1.0f);
+    public static Type_Float dt = new Type_Float(1.0f);
+    public static Type_Vec2 resolution = new Type_Vec2(0.0f,0.0f);
+    public static Type_Float Infinity = new Type_Float(Float.MAX_VALUE);
 
     public static ScreenNode screen_node = null;
     public static PApplet screen = null;

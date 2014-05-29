@@ -7,35 +7,35 @@ import java.util.HashMap;
 
 public enum Types {
     //ENUM       NAME        Class              Func    Filt    ArrayOf
-    VOID_T      ("void",     VoidType.class,    null),
+    VOID_T      ("void",     Type_Void.class,    null),
 
-    INT_T       ("int",      IntType.class,     null),
-    A_INT_T     ("0_int",    ArrayType.class,   Types.INT_T),
+    INT_T       ("int",      Type_Int.class,     null),
+    A_INT_T     ("0_int",    Type_Array.class,   Types.INT_T),
 
-    FLOAT_T     ("float",    FloatType.class,   null),
-    A_FLOAT_T   ("0_float",  ArrayType.class,   Types.FLOAT_T),
+    FLOAT_T     ("float",    Type_Float.class,   null),
+    A_FLOAT_T   ("0_float",  Type_Array.class,   Types.FLOAT_T),
 
-    BOOL_T      ("bool",     BoolType.class,    null),
-    A_BOOL_T    ("0_bool",   ArrayType.class,   Types.BOOL_T),
+    BOOL_T      ("bool",     Type_Bool.class,    null),
+    A_BOOL_T    ("0_bool",   Type_Array.class,   Types.BOOL_T),
 
-    CHAR_T      ("char",     CharType.class,    null),
-    STRING_T    ("string",   StringType.class,  null),
+    CHAR_T      ("char",     Type_Char.class,    null),
+    STRING_T    ("string",   Type_String.class,  null),
 
-    SAMPLER_T   ("_sampler", SamplerType.class, null),
+    SAMPLER_T   ("_sampler", Type_Sampler.class, null),
 
-    ARRAY_T     ("_array",   ArrayType.class,   null),
+    ARRAY_T     ("_array",   Type_Array.class,   null),
 
-    VEC4_T      ("vec4",     Vec4Type.class,    null),
-    VEC2_T      ("vec2",     Vec2Type.class,    null),
+    VEC4_T      ("vec4",     Type_Vec4.class,    null),
+    VEC2_T      ("vec2",     Type_Vec2.class,    null),
 
-    NODE_T      ("node",     NodeType.class,    null),
+    NODE_T      ("node",     Type_Node.class,    null),
 
-    VIDEO_T     ("video",    VideoType.class,   null),
-    CAM_T       ("camera",   CameraType.class,  null),
+    VIDEO_T     ("video",    Type_Video.class,   null),
+    CAM_T       ("camera",   Type_Camera.class,  null),
 
     SCREEN_T    ("screen",   ScreenNode.class,  null),
 
-    AUDIO_T     ("audio",    AudioType.class,   null);
+    AUDIO_T     ("audio",    Type_Audio.class,   null);
 
     private String  name;
     private Class   cl;
@@ -85,7 +85,7 @@ public enum Types {
     public TypeInterface getTypeInterfaceInstance() {
         try {
             TypeInterface tp = (TypeInterface) cl.newInstance();
-            if(arrayOf != null) ((ArrayType) tp).setType(this);
+            if(arrayOf != null) ((Type_Array) tp).setType(this);
             return tp;
         } catch (InstantiationException e) { e.printStackTrace(); } catch (IllegalAccessException e) { e.printStackTrace(); }
         return null;

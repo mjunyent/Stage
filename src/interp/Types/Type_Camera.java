@@ -7,12 +7,12 @@ import processing.video.Capture;
 
 import java.util.List;
 
-public class CameraType extends NodeInterface implements TypeFunctionInterface {
+public class Type_Camera extends NodeInterface implements TypeFunctionInterface {
     public Capture cam;
 
-    public CameraType() { cam = null; }
+    public Type_Camera() { cam = null; }
 
-    public CameraType(int id) {
+    public Type_Camera(int id) {
         String[] cameras = Capture.list();
         if(id >= 0 && id < cameras.length) {
             cam = new Capture(FunctionGlobalVars.screen, cameras[id]);
@@ -55,11 +55,11 @@ public class CameraType extends NodeInterface implements TypeFunctionInterface {
                 if(cam != null) cam.stop();
                 break;
             case 2:
-                if(cam != null) return new BoolType(true); else return new BoolType(false);
+                if(cam != null) return new Type_Bool(true); else return new Type_Bool(false);
             default:
                 return null;
         }
-        return new VoidType();
+        return new Type_Void();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class CameraType extends NodeInterface implements TypeFunctionInterface {
     }
 
     public void set(TypeInterface obj) {
-        this.id = ((CameraType)obj).id;
-        this.cam = ((CameraType)obj).cam;
+        this.id = ((Type_Camera)obj).id;
+        this.cam = ((Type_Camera)obj).cam;
     }
 }

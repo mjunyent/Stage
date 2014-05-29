@@ -4,7 +4,7 @@ import processing.opengl.PShader;
 
 import java.util.List;
 
-public class VoidType implements TypeFunctionInterface,TypeFilterInterface {
+public class Type_Void implements TypeFunctionInterface,TypeFilterInterface {
     public Types getTypeName() {
         return Types.VOID_T;
     }

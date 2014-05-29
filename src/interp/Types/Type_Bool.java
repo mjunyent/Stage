@@ -4,12 +4,12 @@ import processing.opengl.PShader;
 
 import java.util.List;
 
-public class BoolType implements TypeFunctionInterface,TypeFilterInterface {
+public class Type_Bool implements TypeFunctionInterface,TypeFilterInterface {
     private boolean value;
 
-    public BoolType() { value = false; }
+    public Type_Bool() { value = false; }
 
-    public BoolType(boolean value) {
+    public Type_Bool(boolean value) {
         this.value = value;
     }
 
@@ -36,22 +36,22 @@ public class BoolType implements TypeFunctionInterface,TypeFilterInterface {
 
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("==")) {
-            return new BoolType( value == ((BoolType)args.get(0)).getValue() );
+            return new Type_Bool( value == ((Type_Bool)args.get(0)).getValue() );
         } else if(name.equals("!=")) {
-            return new BoolType( value != ((BoolType)args.get(0)).getValue() );
+            return new Type_Bool( value != ((Type_Bool)args.get(0)).getValue() );
         } else if(name.equals("or")) {
-            return new BoolType( value || ((BoolType)args.get(0)).getValue() );
+            return new Type_Bool( value || ((Type_Bool)args.get(0)).getValue() );
         } else if(name.equals("and")) {
-            return new BoolType( value && ((BoolType)args.get(0)).getValue() );
+            return new Type_Bool( value && ((Type_Bool)args.get(0)).getValue() );
         } else if(name.equals("not")) {
-            return new BoolType( !value );
+            return new Type_Bool( !value );
         }
 
         return null;
     }
 
     public void set(TypeInterface obj) {
-        value = ((BoolType)obj).getValue();
+        value = ((Type_Bool)obj).getValue();
     }
 
     public Types getAttributeType(String name) { return null; }

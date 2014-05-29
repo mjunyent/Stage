@@ -96,7 +96,7 @@ public class Interpreter {
                 NodeInterface what = (NodeInterface)evaluateExpr(inst.getChild(0),true);
                 Integer whata = null;
                 NodeInterface whatb = null;
-                if(inst.getChild(1).getType() == StageLexer.INT) whata = ((IntType)evaluateExpr(inst.getChild(1),true)).getValue();
+                if(inst.getChild(1).getType() == StageLexer.INT) whata = ((Type_Int)evaluateExpr(inst.getChild(1),true)).getValue();
                 else whatb = (NodeInterface)evaluateExpr(inst.getChild(1),true);
                 scene_graph.bypassEffect(what, whata, whatb);
                 break;
@@ -152,8 +152,8 @@ public class Interpreter {
                     TypeFunctionInterface var;
                     var = varType.getTypeFunctionInterfaceInstance();
                     if(inst.getChild(0).getType() == StageLexer.ARRAY) {
-                        IntType size = (IntType)inst.getChild(0).getChild(1).getValue();
-                        ((ArrayType) var).setSize(size);
+                        Type_Int size = (Type_Int)inst.getChild(0).getChild(1).getValue();
+                        ((Type_Array) var).setSize(size);
                     }
 
                     if(var instanceof NodeInterface) {
@@ -175,7 +175,7 @@ public class Interpreter {
                 leftT.set(rightT);
                 break;
             case StageLexer.WHILE:
-                BoolType w_condition = (BoolType) evaluateExpr(inst.getChild(0), false);
+                Type_Bool w_condition = (Type_Bool) evaluateExpr(inst.getChild(0), false);
 
                 while (w_condition.getValue()) {
                     current_stack.pushScope();
@@ -183,11 +183,11 @@ public class Interpreter {
                         runInst(inst.getChild(1).getChild(i));
                     }
                     current_stack.popScope();
-                    w_condition = (BoolType) evaluateExpr(inst.getChild(0), false);
+                    w_condition = (Type_Bool) evaluateExpr(inst.getChild(0), false);
                 }
                 break;
             case StageLexer.IF:
-                BoolType i_condition = (BoolType) evaluateExpr(inst.getChild(0), false);
+                Type_Bool i_condition = (Type_Bool) evaluateExpr(inst.getChild(0), false);
 
                 if(i_condition.getValue()) {
                     current_stack.pushScope();
@@ -212,8 +212,8 @@ public class Interpreter {
                 break;
             case StageLexer.TIMECALL:
                 StageStack fun_stack = new StageStack(scene_graph);
-                FloatType stTime = (FloatType)evaluateExpr(inst.getChild(1), false);
-                FloatType edTime = (FloatType)evaluateExpr(inst.getChild(2), false);
+                Type_Float stTime = (Type_Float)evaluateExpr(inst.getChild(1), false);
+                Type_Float edTime = (Type_Float)evaluateExpr(inst.getChild(2), false);
 
                 StageTree funcall = inst.getChild(0);
                 String funname = funcall.getChild(0).getText();
@@ -277,7 +277,7 @@ public class Interpreter {
                 }
             case StageLexer.ARRAY:
                 TypeFunctionInterface leftT = current_stack.getVar(exp.getChild(0).getText());
-                TypeFunctionInterface pos = (IntType) evaluateExpr(exp.getChild(1), false);
+                TypeFunctionInterface pos = (Type_Int) evaluateExpr(exp.getChild(1), false);
 
                 if(getByReference) return leftT.callMethod("[", Arrays.asList(pos));
                 else {
@@ -347,9 +347,8 @@ public class Interpreter {
         }
 
         //One child operands.
-        if(exp.getChildCount() == 1) { //we expect not or -  (- is an alias of not)
+        if(exp.getChildCount() == 1) { //we expect not or -
             String opName = exp.getText();
-            if(exp.getType() == StageLexer.MINUS) opName = "not"; //TODO think if it's necessary.
             TypeFunctionInterface leftType = evaluateExpr(exp.getChild(0), false);
             return leftType.callMethod(opName, new ArrayList<TypeFunctionInterface>());
         }

@@ -4,21 +4,21 @@ import processing.opengl.PShader;
 
 import java.util.List;
 
-public class Vec4Type implements TypeFunctionInterface,TypeFilterInterface {
-    private FloatType valX, valY, valZ, valW;
+public class Type_Vec4 implements TypeFunctionInterface,TypeFilterInterface {
+    private Type_Float valX, valY, valZ, valW;
 
-    public Vec4Type() {
-        valX = new FloatType();
-        valY = new FloatType();
-        valZ = new FloatType();
-        valW = new FloatType();
+    public Type_Vec4() {
+        valX = new Type_Float();
+        valY = new Type_Float();
+        valZ = new Type_Float();
+        valW = new Type_Float();
     }
 
-    public Vec4Type(float x, float y, float z, float w) {
-        valX = new FloatType(x);
-        valY = new FloatType(y);
-        valZ = new FloatType(z);
-        valW = new FloatType(w);
+    public Type_Vec4(float x, float y, float z, float w) {
+        valX = new Type_Float(x);
+        valY = new Type_Float(y);
+        valZ = new Type_Float(z);
+        valW = new Type_Float(w);
     }
 
     public void setValue(float x, float y, float z, float w) {
@@ -44,7 +44,7 @@ public class Vec4Type implements TypeFunctionInterface,TypeFilterInterface {
                 return Types.BOOL_T;
             }
         } else if(args.size() == 0) {
-            if(name.equals("not")) {
+            if(name.equals("-")) {
                 return Types.VEC4_T;
             }
         }
@@ -56,31 +56,31 @@ public class Vec4Type implements TypeFunctionInterface,TypeFilterInterface {
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         //TODO
 /*        if(name.equals("+")) {
-            return new IntType( value + ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("-")) {
-            return new IntType( value - ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("*")) {
-            return new IntType( value * ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("/")) {
-            return new IntType( value / ((IntType)args.get(0)).getValue() );
+            return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
         }
 
         else if(name.equals("==")) {
-            return new BoolType( value == ((IntType)args.get(0)).getValue() );
+            return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("!=")) {
-            return new BoolType( value != ((IntType)args.get(0)).getValue() );
+            return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("<")) {
-            return new BoolType(  value < ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals(">")) {
-            return new BoolType(  value > ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals("<=")) {
-            return new BoolType(  value <= ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
         } else if(name.equals(">=")) {
-            return new BoolType(  value >= ((IntType)args.get(0)).getValue() );
+            return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
         }
 
-        else if(name.equals("not")) {
-            return new IntType( -value );
+        else if(name.equals("-")) {
+            return new Type_Int( -value );
         }
 */
         return null;
@@ -99,10 +99,10 @@ public class Vec4Type implements TypeFunctionInterface,TypeFilterInterface {
     }
 
     public void set(TypeInterface obj) {
-        valX = ((Vec4Type)obj).valX;
-        valY = ((Vec4Type)obj).valY;
-        valZ = ((Vec4Type)obj).valZ;
-        valW = ((Vec4Type)obj).valW;
+        valX = ((Type_Vec4)obj).valX;
+        valY = ((Type_Vec4)obj).valY;
+        valZ = ((Type_Vec4)obj).valZ;
+        valW = ((Type_Vec4)obj).valW;
     }
 
 

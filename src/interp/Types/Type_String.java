@@ -2,7 +2,7 @@ package interp.Types;
 
 import java.util.List;
 
-public class StringType implements TypeFunctionInterface {
+public class Type_String implements TypeFunctionInterface {
     static private FunctionList fl;
     static {
         fl = new FunctionList();
@@ -21,11 +21,11 @@ public class StringType implements TypeFunctionInterface {
 
     public Types getTypeName() { return Types.STRING_T; }
 
-    public StringType() {
+    public Type_String() {
         value = new String();
     }
 
-    public StringType(String v) {
+    public Type_String(String v) {
         value = v; //strings are immutable.
     }
 
@@ -44,23 +44,23 @@ public class StringType implements TypeFunctionInterface {
         FunctionSignature fs = fl.getFunctionByInterface(name, args);
         switch (fs.id) {
             case 0:
-                return new BoolType(value.equals(((StringType)args.get(0)).getValue()));
+                return new Type_Bool(value.equals(((Type_String)args.get(0)).getValue()));
             case 1:
-                return new BoolType(!value.equals(((StringType)args.get(0)).getValue()));
+                return new Type_Bool(!value.equals(((Type_String)args.get(0)).getValue()));
             case 10:
-                return new StringType(value + ((StringType)args.get(0)).getValue());
+                return new Type_String(value + ((Type_String)args.get(0)).getValue());
             case 11:
-                return new StringType(value + ((BoolType)args.get(0)).getValue());
+                return new Type_String(value + ((Type_Bool)args.get(0)).getValue());
             case 12:
-                return new StringType(value + ((IntType)args.get(0)).getValue());
+                return new Type_String(value + ((Type_Int)args.get(0)).getValue());
             case 13:
-                return new StringType(value + ((FloatType)args.get(0)).getValue());
+                return new Type_String(value + ((Type_Float)args.get(0)).getValue());
             case 14:
-                return new StringType(value + ((CharType)args.get(0)).getValue());
+                return new Type_String(value + ((Type_Char)args.get(0)).getValue());
             case 15:
-                return new StringType(value + "(" + ((Vec2Type)args.get(0)).getX() + ", " + ((Vec2Type)args.get(0)).getY() + ")");
+                return new Type_String(value + "(" + ((Type_Vec2)args.get(0)).getX() + ", " + ((Type_Vec2)args.get(0)).getY() + ")");
             case 16:
-                return new StringType(value + "(" + ((Vec4Type)args.get(0)).getX() + ", " + ((Vec4Type)args.get(0)).getY() + ", " + ((Vec4Type)args.get(0)).getZ() + ", " + ((Vec4Type)args.get(0)).getW() + ")");
+                return new Type_String(value + "(" + ((Type_Vec4)args.get(0)).getX() + ", " + ((Type_Vec4)args.get(0)).getY() + ", " + ((Type_Vec4)args.get(0)).getZ() + ", " + ((Type_Vec4)args.get(0)).getW() + ")");
             default:
                 return null;
         }
@@ -72,11 +72,11 @@ public class StringType implements TypeFunctionInterface {
     }
 
     public TypeFunctionInterface getAttribute(String name) {
-        if(name.equals("size")) return new IntType(value.length());
+        if(name.equals("size")) return new Type_Int(value.length());
         return null;
     }
 
     public void set(TypeInterface obj) {
-        value = ((StringType)obj).getValue();
+        value = ((Type_String)obj).getValue();
     }
 }
