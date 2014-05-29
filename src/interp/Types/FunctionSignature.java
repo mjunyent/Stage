@@ -16,7 +16,6 @@ public class FunctionSignature {
     public StageTree root = null;
     public StageTree first = null, loop = null, last = null;
     public int id = -1;
-//    public List<TypeInterface> arg_types; saved in stack.
 
     public FunctionSignature() { }
 

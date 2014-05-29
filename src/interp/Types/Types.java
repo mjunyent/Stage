@@ -2,46 +2,44 @@ package interp.Types;
 
 import interp.Player.ScreenNode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public enum Types {
     //ENUM       NAME        Class              Func    Filt    ArrayOf
-    VOID_T      ("void",     VoidType.class,    true,   true,   null),
+    VOID_T      ("void",     VoidType.class,    null),
 
-    INT_T       ("int",      IntType.class,     true,   true,   null),
-    A_INT_T     ("0_int",    ArrayType.class,   true,   false,  Types.INT_T),
+    INT_T       ("int",      IntType.class,     null),
+    A_INT_T     ("0_int",    ArrayType.class,   Types.INT_T),
 
-    FLOAT_T     ("float",    FloatType.class,   true,   true,   null),
-    A_FLOAT_T   ("0_float",  ArrayType.class,   true,   false,  Types.FLOAT_T),
+    FLOAT_T     ("float",    FloatType.class,   null),
+    A_FLOAT_T   ("0_float",  ArrayType.class,   Types.FLOAT_T),
 
-    BOOL_T      ("bool",     BoolType.class,    true,   true,   null),
-    A_BOOL_T    ("0_bool",   ArrayType.class,   true,   false,  Types.BOOL_T),
+    BOOL_T      ("bool",     BoolType.class,    null),
+    A_BOOL_T    ("0_bool",   ArrayType.class,   Types.BOOL_T),
 
-    CHAR_T      ("char",     CharType.class,    true,   false,  null),
-    STRING_T    ("string",   StringType.class,  true,   false,  null),
+    CHAR_T      ("char",     CharType.class,    null),
+    STRING_T    ("string",   StringType.class,  null),
 
-    SAMPLER_T   ("_sampler", SamplerType.class, false,  true,   null),
+    SAMPLER_T   ("_sampler", SamplerType.class, null),
 
-    ARRAY_T     ("_array",   ArrayType.class,   true,   false,  null),
+    ARRAY_T     ("_array",   ArrayType.class,   null),
 
-    VEC4_T      ("vec4",     Vec4Type.class,    true,   true,   null),
-    VEC2_T      ("vec2",     Vec2Type.class,    true,   true,   null),
+    VEC4_T      ("vec4",     Vec4Type.class,    null),
+    VEC2_T      ("vec2",     Vec2Type.class,    null),
 
-    NODE_T      ("node",     NodeType.class,    true,   false,  null),
+    NODE_T      ("node",     NodeType.class,    null),
 
-    VIDEO_T     ("video",    VideoType.class,   true,   false,  null),
-    CAM_T       ("camera",   CameraType.class,  true,   false,  null),
+    VIDEO_T     ("video",    VideoType.class,   null),
+    CAM_T       ("camera",   CameraType.class,  null),
 
-    SCREEN_T    ("screen",   ScreenNode.class,  false,  false,  null),
+    SCREEN_T    ("screen",   ScreenNode.class,  null),
 
-    AUDIO_T     ("audio",    AudioType.class,   true,   false,  null);
+    AUDIO_T     ("audio",    AudioType.class,   null);
 
     private String  name;
     private Class   cl;
-    private boolean allowedInFunctions;
-    private boolean allowedInFilters;
     private Types  arrayOf;
-//    private TypeInterface inst = null;
 
     //Hashmap to fasten queries of types. Only for functions.
     private static HashMap<String, Types> table_functions;
@@ -53,11 +51,9 @@ public enum Types {
     }
 
 
-    Types(String n, Class c, boolean inFunc, boolean inFilt, Types arrayOf) {
+    Types(String n, Class c, Types arrayOf) {
         name = n;
         cl = c;
-        allowedInFunctions = inFunc;
-        allowedInFilters = inFilt;
         this.arrayOf = arrayOf;
     }
 
@@ -65,8 +61,8 @@ public enum Types {
     public String getName() { return name; }
     public Class getTypeClass() { return cl; }
     public Types getArrayOf() { return arrayOf; }
-    public boolean isAllowedInFunctions() { return allowedInFunctions; }
-    public boolean isAllowedInFilters() { return allowedInFilters; }
+    public boolean isAllowedInFunctions() { return Arrays.asList(cl.getInterfaces()).contains(TypeFunctionInterface.class); }
+    public boolean isAllowedInFilters() { return Arrays.asList(cl.getInterfaces()).contains(TypeFilterInterface.class); }
     public boolean isArray() { return arrayOf!=null; }
 
     public static Types getByNameFilters(String name) {
@@ -86,14 +82,7 @@ public enum Types {
         throw new RuntimeException("Type array of " + name + " not found for functions.");
     }
 
-    public static Types getArrayByElementName(String name) {
-        for(Types t : Types.values()) {
-            if(t.isArray() && t.getArrayOf().getName().equals(name)) return t;
-        }
-        return null;
-    }
-
-    public TypeInterface getInstance() {
+    public TypeInterface getTypeInterfaceInstance() {
         try {
             TypeInterface tp = (TypeInterface) cl.newInstance();
             if(arrayOf != null) ((ArrayType) tp).setType(this);
@@ -102,4 +91,11 @@ public enum Types {
         return null;
     }
 
+    public TypeFunctionInterface getTypeFunctionInterfaceInstance() {
+        return (TypeFunctionInterface) getTypeInterfaceInstance();
+    }
+
+    public TypeFilterInterface getTypeFilterInterfaceInstance() {
+        return (TypeFilterInterface) getTypeInterfaceInstance();
+    }
 }

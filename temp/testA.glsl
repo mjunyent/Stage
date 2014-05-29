@@ -14,10 +14,10 @@ void main() {
     int p = 5;
     float n = 5.0;
     float m = (n)*(5.0);
-    vec4 hop = vec4(0.0, 0.0, 0.0, 0.0);
+    vec4 hop = vec4(0.0,0.0,0.0,0.0);
     hop.x = hop.y;
     hop.z = 5.0;
-    vec4(0.0, 0.0, 0.0, 0.0);
+    vec4(0.0,0.0,0.0,0.0);
     while(!(t)) {
         float p = hop.w;
         m = (p)*(m);
@@ -25,5 +25,5 @@ void main() {
     if(((m)!=(n))||((m)<(5.0))) {
         m = (m)*(m);
     }
-    gl_FragColor = vec4(k, k, (m)-(n), n);
+    gl_FragColor = vec4(k,k,(m)-(n),n);
 }

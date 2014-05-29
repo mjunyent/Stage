@@ -1,11 +1,16 @@
 package interp.GLSLTranslator;
 
+import interp.Semantic.FilterGlobalFuncs;
 import interp.StageTree;
+import interp.Types.TypeFilterInterface;
+import interp.Types.TypeInterface;
+import interp.Types.Types;
 import parser.StageLexer;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Translator {
     StageTree filter = null;
@@ -28,7 +33,6 @@ public class Translator {
 
         header.add("uniform float time;");
         header.add("uniform vec2 resolution;");
-
 
         ArrayList<String> sampler_uniforms = new ArrayList<String>();
         for(int i=0; i<filter.getChild(0).getChildCount(); i++) {
@@ -142,38 +146,43 @@ public class Translator {
         if(exp.getType() == StageLexer.FLOAT) return exp.getText();
         if(exp.getType() == StageLexer.BOOLEAN) return exp.getText();
         if(exp.getType() == StageLexer.FUNCALL) {
-            String fun_call = exp.getChild(0).getText() + "(";
+            ArrayList<String> args = new ArrayList<String>();
 
             for(int i=0; i<exp.getChild(1).getChildCount(); i++) {
-                if(i != 0) fun_call += ", ";
-                fun_call += getExpressionCode(exp.getChild(1).getChild(i));
+                args.add(getExpressionCode(exp.getChild(1).getChild(i)));
             }
-            return fun_call + ")";
+
+            return FilterGlobalFuncs.getFuncText(exp.getFuncId(), args);
         }
         if(exp.getType() == StageLexer.MEMBER) {
             return getMemberCode(exp);
         }
         if(exp.getType() == StageLexer.ID) return exp.getText();
-        if(exp.getType() == StageLexer.ARRAY) { //Only array expected in a filter is a Sampler.
-            String name = exp.getChild(0).getText();
+        if(exp.getType() == StageLexer.ARRAY) {
+            TypeFilterInterface ray = exp.getChild(0).getVarType().getTypeFilterInterfaceInstance();
+
             String expr = getExpressionCode(exp.getChild(1));
-            return "texture2D(" + name + ", " + expr + ")";
+            Types exprType = exp.getChild(1).getVarType();
+            return ray.callMethod(exp.getChild(0).getText(), "[", Arrays.asList(exprType), Arrays.asList(expr));
         }
 
         //One child operands.
         if(exp.getChildCount() == 1) { //we expect not or -  (- is an alias of not)
             String opName = exp.getText();
-            if(opName.equals("not")) opName = "!";
-            return opName + "(" + getExpressionCode(exp.getChild(0)) + ")";
+
+            TypeFilterInterface operand = exp.getChild(0).getVarType().getTypeFilterInterfaceInstance();
+            return operand.callMethod(exp.getChild(0).getText(), opName, new ArrayList<Types>(), new ArrayList<String>());
         }
 
         //Two child operands.
         if(exp.getChildCount() == 2) { //we expect or, and, ==, !=, >, <, >=, <=, +, -, *, /, %
             String opName = exp.getText();
-            if(opName.equals("or")) opName = "||";
-            if(opName.equals("and")) opName = "&&";
 
-            return "(" + getExpressionCode(exp.getChild(0)) + ")" + opName + "(" + getExpressionCode(exp.getChild(1)) + ")";
+            TypeFilterInterface leftOp = exp.getChild(0).getVarType().getTypeFilterInterfaceInstance();
+            String leftExp = getExpressionCode(exp.getChild(0));
+            String righExp = getExpressionCode(exp.getChild(1));
+
+            return leftOp.callMethod(leftExp, opName, Arrays.asList(exp.getChild(1).getVarType()), Arrays.asList(righExp));
         }
 
         return "";
@@ -182,8 +191,21 @@ public class Translator {
 
     private String getMemberCode(StageTree exp) {
         String leftCode = getExpressionCode(exp.getChild(0));
-        String rightCode = getExpressionCode(exp.getChild(1));
-        return leftCode + "." + rightCode;
+        TypeFilterInterface left = exp.getChild(0).getVarType().getTypeFilterInterfaceInstance();
+        StageTree right = exp.getChild(1);
+        switch (right.getType()) {
+            case StageLexer.ID:
+                return left.getAttribute(leftCode, right.getText());
+            case StageLexer.ARRAY:
+                TypeFilterInterface ray = right.getChild(0).getVarType().getTypeFilterInterfaceInstance();
+                String expr = getExpressionCode(exp.getChild(1));
+                Types exprType = exp.getChild(1).getVarType();
+
+                String leftT = left.getAttribute(leftCode, right.getChild(0).getText());
+                return ray.callMethod(leftT, "[", Arrays.asList(exprType), Arrays.asList(expr));
+        }
+
+        return "";
     }
 
 }

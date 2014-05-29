@@ -1,7 +1,7 @@
 package interp.Player;
 
 import interp.Types.NodeInterface;
-import interp.Types.TypeInterface;
+import interp.Types.TypeFunctionInterface;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -9,15 +9,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class StageStack {
-    private LinkedList<HashMap<String,TypeInterface>> stack;
-    private HashMap<String,TypeInterface> current_scope = null;
+    private LinkedList<HashMap<String,TypeFunctionInterface>> stack;
+    private HashMap<String,TypeFunctionInterface> current_scope = null;
     private LinkedList<NodeInterface> nodes = null;
     private SceneGraph scene_graph;
 
     public StageStack(SceneGraph scene_graph) {
-        stack = new LinkedList<HashMap<String, TypeInterface>>();
+        stack = new LinkedList<HashMap<String, TypeFunctionInterface>>();
         nodes = new LinkedList<NodeInterface>();
-        current_scope = new HashMap<String, TypeInterface>();
+        current_scope = new HashMap<String, TypeFunctionInterface>();
         stack.addLast(current_scope);
         nodes.addLast(null);
 
@@ -35,18 +35,18 @@ public class StageStack {
     public void printAllScopes() {
         for(int i=0; i<stack.size(); i++) {
             System.out.println("Scope level: " + i);
-            HashMap<String,TypeInterface> scope = stack.get(i);
+            HashMap<String,TypeFunctionInterface> scope = stack.get(i);
 
             Iterator it = scope.entrySet().iterator();
             while(it.hasNext()) {
-                Map.Entry<String, TypeInterface> hue = (Map.Entry)it.next();
+                Map.Entry<String, TypeFunctionInterface> hue = (Map.Entry)it.next();
                 System.out.println("    var: " + hue.getKey() + "<" + hue.getValue().getTypeName().getName() + ">");
             }
         }
     }
 
     public boolean exists(String name) {
-        for(HashMap<String,TypeInterface> scope : stack) {
+        for(HashMap<String,TypeFunctionInterface> scope : stack) {
             if(scope.containsKey(name)) return true;
         }
         return false;
@@ -56,16 +56,16 @@ public class StageStack {
         return current_scope.containsKey(name);
     }
 
-    public TypeInterface getVar(String name) {
+    public TypeFunctionInterface getVar(String name) {
         for(int i=stack.size()-1; i>=0; i--) {
-            HashMap<String, TypeInterface> scope = stack.get(i);
+            HashMap<String, TypeFunctionInterface> scope = stack.get(i);
             if(scope.containsKey(name)) return scope.get(name);
         }
 
         throw new RuntimeException ("Stack: Variable " + name + " not defined");
     }
 
-    public void add(String name, TypeInterface var) {
+    public void add(String name, TypeFunctionInterface var) {
         if(existsInCurrentScope(name)) {
             throw new RuntimeException ("Stack: Variable " + name + " already defined in this scope");
         }
@@ -75,7 +75,7 @@ public class StageStack {
     }
 
     public void pushScope() {
-        current_scope = new HashMap<String, TypeInterface>();
+        current_scope = new HashMap<String, TypeFunctionInterface>();
         stack.addLast(current_scope);
         nodes.addLast(null);
     }

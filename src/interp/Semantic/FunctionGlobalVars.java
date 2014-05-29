@@ -3,10 +3,7 @@ package interp.Semantic;
 import ddf.minim.Minim;
 import interp.Player.SceneGraph;
 import interp.Player.ScreenNode;
-import interp.Types.FloatType;
-import interp.Types.TypeInterface;
-import interp.Types.Types;
-import interp.Types.Vec2Type;
+import interp.Types.*;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -42,7 +39,7 @@ public class FunctionGlobalVars {
         return table;
     }
 
-    public static TypeInterface getVar(String name) {
+    public static TypeFunctionInterface getVar(String name) {
         if(name.equals("time") || name.equals("now")) return time;
         if(name.equals("resolution")) return resolution;
         if(name.equals("dt")) return dt;

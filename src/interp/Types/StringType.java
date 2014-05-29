@@ -2,7 +2,7 @@ package interp.Types;
 
 import java.util.List;
 
-public class StringType implements TypeInterface {
+public class StringType implements TypeFunctionInterface {
     static private FunctionList fl;
     static {
         fl = new FunctionList();
@@ -38,7 +38,7 @@ public class StringType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(!fl.existsByInterface(name,args)) return null;
 
         FunctionSignature fs = fl.getFunctionByInterface(name, args);
@@ -71,7 +71,7 @@ public class StringType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         if(name.equals("size")) return new IntType(value.length());
         return null;
     }

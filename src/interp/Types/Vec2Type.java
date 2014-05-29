@@ -1,8 +1,10 @@
 package interp.Types;
 
+import processing.opengl.PShader;
+
 import java.util.List;
 
-public class Vec2Type implements TypeInterface {
+public class Vec2Type implements TypeFunctionInterface, TypeFilterInterface {
     private FloatType valX, valY;
 
     public Vec2Type() {
@@ -26,9 +28,9 @@ public class Vec2Type implements TypeInterface {
     public Types getTypeName() { return Types.VEC2_T; }
 
     public Types getMethodArgs(String name, List<Types> args) {
-        if(args.size() == 1 && args.get(0)==Types.VEC2_T) {
+        if(args.size() == 1 && (args.get(0) == Types.VEC2_T || args.get(0) == Types.FLOAT_T)) {
             if(name.equals("+") || name.equals("-") || name.equals("*")  || name.equals("/") || name.equals("-")) {
-                return Types.VEC2_T;
+                return args.get(0);
             } else if(name.equals("==") || name.equals("!=")) {
                 return Types.BOOL_T;
             }
@@ -43,7 +45,7 @@ public class Vec2Type implements TypeInterface {
     }
 
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         //TODO
 /*        if(name.equals("+")) {
             return new IntType( value + ((IntType)args.get(0)).getValue() );
@@ -81,12 +83,33 @@ public class Vec2Type implements TypeInterface {
         return null;
     }
 
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         //TODO
         return null; }
 
     public void set(TypeInterface obj) {
         valX = ((Vec2Type)obj).valX;
         valY = ((Vec2Type)obj).valY;
+    }
+
+
+    public void passToShader(PShader shad, String name) {
+        shad.set(name, valX.getValue(), valY.getValue());
+    }
+
+    public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
+        if(args.size() == 1 && (args_types.get(0) == Types.VEC2_T || args_types.get(0) == Types.FLOAT_T)) {
+            if(name.equals("+") || name.equals("-") || name.equals("*")  || name.equals("/") || name.equals("-") || name.equals("==") || name.equals("!=")) {
+                return "(" + left + ")" + name + "(" + args.get(0) + ")";
+            }
+        }
+        else if(args.size()==0) {
+            return "-(" + left + ")";
+        }
+        return "";
+    }
+
+    public String getAttribute(String left, String name) {
+        return left + "." + name;
     }
 }

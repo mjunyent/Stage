@@ -6,7 +6,7 @@ import interp.Semantic.FunctionGlobalVars;
 
 import java.util.List;
 
-public class AudioType implements TypeInterface {
+public class AudioType implements TypeFunctionInterface {
     AudioPlayer player;
     FFT fft;
 
@@ -56,7 +56,7 @@ public class AudioType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(!fl.existsByInterface(name,args)) return null;
 
         FunctionSignature fs = fl.getFunctionByInterface(name, args);
@@ -117,7 +117,7 @@ public class AudioType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         return null;
     }
 

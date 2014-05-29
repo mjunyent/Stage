@@ -140,10 +140,10 @@ public class SemanticsFunctions {
         current_node = inst;
         switch (inst.getType()) {
             case StageLexer.BYPASSF:
-                TypeInterface toskip = symbol_table.getType(inst.getChild(0).getText()).getInstance();
+                TypeInterface toskip = symbol_table.getType(inst.getChild(0).getText()).getTypeInterfaceInstance();
                 if(! (toskip instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + " can't be input of a filter.");
                 if(inst.getChild(1).getType() != StageLexer.INT) {
-                    TypeInterface with = symbol_table.getType(inst.getChild(1).getText()).getInstance();
+                    TypeInterface with = symbol_table.getType(inst.getChild(1).getText()).getTypeInterfaceInstance();
                     if(! (with instanceof NodeInterface))  throw new RuntimeException(inst.getChild(1).getText() + " can't be input of a filter.");
                 } else {
                     inst.getChild(1).setIntValue();
@@ -153,8 +153,8 @@ public class SemanticsFunctions {
                 //Nothing to check.
                 break;
             case StageLexer.EMPTYFILT:
-                TypeInterface leftFilt  = symbol_table.getType(inst.getChild(0).getText()).getInstance();
-                TypeInterface rightFilt = symbol_table.getType(inst.getChild(1).getText()).getInstance();
+                TypeInterface leftFilt  = symbol_table.getType(inst.getChild(0).getText()).getTypeInterfaceInstance();
+                TypeInterface rightFilt = symbol_table.getType(inst.getChild(1).getText()).getTypeInterfaceInstance();
                 if(! (leftFilt instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + "<" + leftFilt.getTypeName().getName() + "> can't be input/output of a filter.");
                 if(! (rightFilt instanceof NodeInterface)) throw new RuntimeException(inst.getChild(1).getText() + " can't be input/output of a filter.");
                 if(!((NodeInterface)rightFilt).writable()) throw new RuntimeException(inst.getChild(1).getText() + " can't be output of a filter.");
@@ -164,11 +164,11 @@ public class SemanticsFunctions {
 
                 int numInputs = inst.getChild(0).getChildCount();
                 for(int i=0; i<numInputs; i++) {
-                    TypeInterface input = symbol_table.getType(inst.getChild(0).getChild(i).getText()).getInstance();
+                    TypeInterface input = symbol_table.getType(inst.getChild(0).getChild(i).getText()).getTypeInterfaceInstance();
                     if(! (input instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getChild(i).getText() + " can't be input of a filter.");
                 }
 
-                TypeInterface output = symbol_table.getType(inst.getChild(3).getText()).getInstance();
+                TypeInterface output = symbol_table.getType(inst.getChild(3).getText()).getTypeInterfaceInstance();
                 if(! (output instanceof NodeInterface)) throw new RuntimeException(inst.getChild(3).getText() + " can't be output of a filter.");
                 if(!((NodeInterface)output).writable()) throw new RuntimeException(inst.getChild(3).getText() + " can't be output of a filter.");
 
@@ -185,7 +185,7 @@ public class SemanticsFunctions {
                 if(!f.args.equals(args)) throw new RuntimeException("Filter call to " + filter_name + " parameter types don't match.");
                 break;
             case StageLexer.ADDFILT:
-                TypeInterface toadd = symbol_table.getType(inst.getChild(0).getText()).getInstance();
+                TypeInterface toadd = symbol_table.getType(inst.getChild(0).getText()).getTypeInterfaceInstance();
                 if(! (toadd instanceof NodeInterface))  throw new RuntimeException(inst.getChild(0).getText() + " can't be input of a filter.");
                 checkInstruction(inst.getChild(1), symbol_table);
                 break;
@@ -295,7 +295,7 @@ public class SemanticsFunctions {
         if(exp.getType() == StageLexer.ARRAY) {
             Types leftType = symbol_table.getType(exp.getChild(0).getText());
             Types pos = getExpressionType(exp.getChild(1), symbol_table);
-            Types array_access_ret = leftType.getInstance().getMethodArgs("[", Arrays.asList(pos) );
+            Types array_access_ret = leftType.getTypeInterfaceInstance().getMethodArgs("[", Arrays.asList(pos) );
             if(array_access_ret == null) throw new RuntimeException("Type: " + pos.getName() + " has no array access for this kind of index");
                 exp.setVarType(array_access_ret);
                 exp.getChild(0).setVarType(leftType);
@@ -359,7 +359,7 @@ public class SemanticsFunctions {
     }
 
     private Types getMemberFunCallReturn(String name, Types base, List<Types> args) {
-        TypeInterface myType = base.getInstance();
+        TypeInterface myType = base.getTypeInterfaceInstance();
         Types method_return = myType.getMethodArgs(name, args);
 
         if(method_return == null) throw new RuntimeException("Method " + name + " arguments don't match");
@@ -369,7 +369,7 @@ public class SemanticsFunctions {
     private Types getMemberType(StageTree tree, FunctionSymbolTable symbol_table) {
         current_node = tree;
         Types leftType = getExpressionType(tree.getChild(0), symbol_table);
-        TypeInterface leftTypeInstance = leftType.getInstance();
+        TypeInterface leftTypeInstance = leftType.getTypeInterfaceInstance();
 
         Types ret;
         StageTree node = tree.getChild(1);
@@ -398,7 +398,7 @@ public class SemanticsFunctions {
                 Types member_arr = leftTypeInstance.getAttributeType(name);
                 if(member_arr == null) throw new RuntimeException("Member " + name + " not found in type " + leftTypeInstance.getTypeName());
                 //Check tipes of array and values it returns
-                ret = member_arr.getInstance().getMethodArgs("[", Arrays.asList(pos));
+                ret = member_arr.getTypeInterfaceInstance().getMethodArgs("[", Arrays.asList(pos));
                 if(ret == null) throw new RuntimeException("Member " + name + " of type " + member_arr.getName() + " has no array access for this kind of index");
                 node.setVarType(ret);
                 node.getChild(0).setVarType(member_arr);

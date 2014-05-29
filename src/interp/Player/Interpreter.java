@@ -19,7 +19,7 @@ public class Interpreter {
     //temp vars.
     private boolean quit;
     private boolean ret;
-    private TypeInterface ret_val;
+    private TypeFunctionInterface ret_val;
     private StageStack current_stack;
     private Trace current_trace;
     private StageTree current_node;
@@ -111,7 +111,7 @@ public class Interpreter {
                 String filter_name = inst.getChild(1).getText();
                 FilterSignature filt_sig = filter_list.get(filter_name);
 
-                ArrayList<TypeInterface> args_values = new ArrayList<TypeInterface>();
+                ArrayList<TypeFunctionInterface> args_values = new ArrayList<TypeFunctionInterface>();
                 for(int i=0; i<inst.getChild(2).getChildCount(); i++) {
                     args_values.add( evaluateExpr(inst.getChild(2).getChild(i), false) );
                 }
@@ -131,7 +131,7 @@ public class Interpreter {
                 String newfilter_name = newfiltcall.getChild(1).getText();
                 FilterSignature new_fs = filter_list.get(newfilter_name);
 
-                ArrayList<TypeInterface> new_args_values = new ArrayList<TypeInterface>();
+                ArrayList<TypeFunctionInterface> new_args_values = new ArrayList<TypeFunctionInterface>();
                 for(int i=0; i<newfiltcall.getChild(2).getChildCount(); i++) {
                     new_args_values.add( evaluateExpr(newfiltcall.getChild(2).getChild(i), false) );
                 }
@@ -149,8 +149,8 @@ public class Interpreter {
                 String varName = inst.getChild(1).getText();
                 if(inst.getChildCount() == 2) {
                     Types varType = inst.getChild(0).getVarType();
-                    TypeInterface var;
-                    var = varType.getInstance();
+                    TypeFunctionInterface var;
+                    var = varType.getTypeFunctionInterfaceInstance();
                     if(inst.getChild(0).getType() == StageLexer.ARRAY) {
                         IntType size = (IntType)inst.getChild(0).getChild(1).getValue();
                         ((ArrayType) var).setSize(size);
@@ -162,14 +162,14 @@ public class Interpreter {
                     }
                     current_stack.add(varName, var);
                 } else {
-                    TypeInterface t = evaluateExpr(inst.getChild(2), false);
+                    TypeFunctionInterface t = evaluateExpr(inst.getChild(2), false);
                     if(t instanceof NodeInterface) scene_graph.addRef((NodeInterface) t);
                     current_stack.add(varName, t);
                 }
                 break;
             case StageLexer.ASSIGN:
-                TypeInterface leftT = evaluateExpr(inst.getChild(0), true); //pass left whatever by reference.
-                TypeInterface rightT = evaluateExpr(inst.getChild(1), false); //make a copy of right whatever.
+                TypeFunctionInterface leftT = evaluateExpr(inst.getChild(0), true); //pass left whatever by reference.
+                TypeFunctionInterface rightT = evaluateExpr(inst.getChild(1), false); //make a copy of right whatever.
                 if(rightT instanceof NodeInterface) scene_graph.addRef((NodeInterface) rightT);
                 if(leftT  instanceof NodeInterface) scene_graph.delRef((NodeInterface) leftT );
                 leftT.set(rightT);
@@ -221,7 +221,7 @@ public class Interpreter {
                 FunctionSignature fs = function_list.get(funname);
 
                 for(int i=0; i<argst.getChildCount(); i++) {
-                    TypeInterface tps = evaluateExpr(argst.getChild(i), true);
+                    TypeFunctionInterface tps = evaluateExpr(argst.getChild(i), true);
                     fun_stack.add(fs.args_names.get(i), tps);
                     if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                 }
@@ -232,7 +232,7 @@ public class Interpreter {
                     ret = true;
                     ret_val = null;
                 } else {
-                    TypeInterface rtp = evaluateExpr(inst.getChild(0), false);
+                    TypeFunctionInterface rtp = evaluateExpr(inst.getChild(0), false);
                     ret = true;
                     ret_val = rtp;
                 }
@@ -250,7 +250,7 @@ public class Interpreter {
      *  Id passed by copy if specified.
      * Operators always passed by copy.
      */
-    private TypeInterface evaluateExpr(StageTree exp, boolean getByReference) {
+    private TypeFunctionInterface evaluateExpr(StageTree exp, boolean getByReference) {
         current_node = exp;
         switch (exp.getType()) {
             case StageLexer.INT:
@@ -258,14 +258,14 @@ public class Interpreter {
             case StageLexer.CHAR:
             case StageLexer.STRING:
             case StageLexer.BOOLEAN:
-                TypeInterface t = exp.getVarType().getInstance(); //we make a copy.
+                TypeFunctionInterface t = exp.getVarType().getTypeFunctionInterfaceInstance(); //we make a copy.
                 t.set(exp.getValue());
                 return t;
             case StageLexer.FUNCALL:
                 String func_name = exp.getChild(0).getText();
-                ArrayList<TypeInterface> fargs = new ArrayList<TypeInterface>();
+                ArrayList<TypeFunctionInterface> fargs = new ArrayList<TypeFunctionInterface>();
                 for(int i=0; i<exp.getChild(1).getChildCount(); i++) {
-                    TypeInterface tps = evaluateExpr(exp.getChild(1).getChild(i), false);
+                    TypeFunctionInterface tps = evaluateExpr(exp.getChild(1).getChild(i), false);
                     fargs.add(tps);
                     if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                 }
@@ -276,50 +276,50 @@ public class Interpreter {
                     return getFuncReturn(func_name, fargs);
                 }
             case StageLexer.ARRAY:
-                TypeInterface leftT = current_stack.getVar(exp.getChild(0).getText());
-                TypeInterface pos = (IntType) evaluateExpr(exp.getChild(1), false);
+                TypeFunctionInterface leftT = current_stack.getVar(exp.getChild(0).getText());
+                TypeFunctionInterface pos = (IntType) evaluateExpr(exp.getChild(1), false);
 
                 if(getByReference) return leftT.callMethod("[", Arrays.asList(pos));
                 else {
-                    TypeInterface ret = exp.getVarType().getInstance();
+                    TypeFunctionInterface ret = exp.getVarType().getTypeFunctionInterfaceInstance();
                     ret.set(leftT.callMethod("[", Arrays.asList(pos)));
                     return ret;
                 }
             case StageLexer.MEMBER:
-                TypeInterface m_leftT = evaluateExpr(exp.getChild(0), true); //getByReference); TODO sure?
+                TypeFunctionInterface m_leftT = evaluateExpr(exp.getChild(0), true); //getByReference); TODO sure?
 
                 StageTree node = exp.getChild(1);
                 switch (node.getType()) {
                     case StageLexer.ID:
-                        TypeInterface m = m_leftT.getAttribute(node.getText());
+                        TypeFunctionInterface m = m_leftT.getAttribute(node.getText());
                         if(getByReference) return m;
                         else {
-                            TypeInterface r = m.getTypeName().getInstance();
+                            TypeFunctionInterface r = m.getTypeName().getTypeFunctionInterfaceInstance();
                             r.set(m);
                             return r;
                         }
                     case StageLexer.FUNCALL:
                         String fname = node.getChild(0).getText();
-                        ArrayList<TypeInterface> args = new ArrayList<TypeInterface>();
+                        ArrayList<TypeFunctionInterface> args = new ArrayList<TypeFunctionInterface>();
                         for(int i=0; i<node.getChild(1).getChildCount(); i++) {
-                            TypeInterface tps = evaluateExpr(node.getChild(1).getChild(i), false);
+                            TypeFunctionInterface tps = evaluateExpr(node.getChild(1).getChild(i), false);
                             args.add(tps);
                             if(tps instanceof NodeInterface) scene_graph.addRef((NodeInterface) tps);
                         }
-                        TypeInterface fm = m_leftT.callMethod(fname, args);
+                        TypeFunctionInterface fm = m_leftT.callMethod(fname, args);
                         if(getByReference) return fm;
                         else {
-                            TypeInterface r = fm.getTypeName().getInstance();
+                            TypeFunctionInterface r = fm.getTypeName().getTypeFunctionInterfaceInstance();
                             r.set(fm);
                             return r;
                         }
                     case StageLexer.ARRAY:
                         String name = node.getChild(0).getText();
-                        TypeInterface m_pos = evaluateExpr(node.getChild(1), false);
-                        TypeInterface am = m_leftT.getAttribute(name).callMethod("[", Arrays.asList(m_pos));
+                        TypeFunctionInterface m_pos = evaluateExpr(node.getChild(1), false);
+                        TypeFunctionInterface am = m_leftT.getAttribute(name).callMethod("[", Arrays.asList(m_pos));
                         if(getByReference) return am;
                         else {
-                            TypeInterface r = am.getTypeName().getInstance();
+                            TypeFunctionInterface r = am.getTypeName().getTypeFunctionInterfaceInstance();
                             r.set(am);
                             return r;
                         }
@@ -328,18 +328,18 @@ public class Interpreter {
                 }
             case StageLexer.ID:
                 if(current_stack.exists(exp.getText())) {
-                    TypeInterface tid = current_stack.getVar(exp.getText());
+                    TypeFunctionInterface tid = current_stack.getVar(exp.getText());
                     if(getByReference) return tid;
                     else {
-                        TypeInterface r = tid.getTypeName().getInstance();
+                        TypeFunctionInterface r = tid.getTypeName().getTypeFunctionInterfaceInstance();
                         r.set(tid);
                         return r;
                     }
                 } else {
-                    TypeInterface tid = FunctionGlobalVars.getVar(exp.getText());
+                    TypeFunctionInterface tid = FunctionGlobalVars.getVar(exp.getText());
                     if(getByReference) return tid;
                     else {
-                        TypeInterface r = tid.getTypeName().getInstance();
+                        TypeFunctionInterface r = tid.getTypeName().getTypeFunctionInterfaceInstance();
                         r.set(tid);
                         return r;
                     }
@@ -350,20 +350,20 @@ public class Interpreter {
         if(exp.getChildCount() == 1) { //we expect not or -  (- is an alias of not)
             String opName = exp.getText();
             if(exp.getType() == StageLexer.MINUS) opName = "not"; //TODO think if it's necessary.
-            TypeInterface leftType = evaluateExpr(exp.getChild(0), false);
-            return leftType.callMethod(opName, new ArrayList<TypeInterface>());
+            TypeFunctionInterface leftType = evaluateExpr(exp.getChild(0), false);
+            return leftType.callMethod(opName, new ArrayList<TypeFunctionInterface>());
         }
 
         //Two child operands.
         if(exp.getChildCount() == 2) { //we expect or, and, ==, !=, >, <, >=, <=, +, -, *, /, %
-            TypeInterface leftType = evaluateExpr(exp.getChild(0), false);
-            TypeInterface rightType = evaluateExpr(exp.getChild(1), false);
+            TypeFunctionInterface leftType = evaluateExpr(exp.getChild(0), false);
+            TypeFunctionInterface rightType = evaluateExpr(exp.getChild(1), false);
             return leftType.callMethod(exp.getText(), Arrays.asList(rightType));
         }
         throw new RuntimeException("Interpreter: Expression not recognized. This is impossible!");
     }
 
-    private TypeInterface getFuncReturn(String name, ArrayList<TypeInterface> args) {
+    private TypeFunctionInterface getFuncReturn(String name, ArrayList<TypeFunctionInterface> args) {
         FunctionSignature fs = function_list.get(name);
         StageStack old_stack = current_stack;
         String old_funname = current_funname;
@@ -372,7 +372,7 @@ public class Interpreter {
         current_stack = new StageStack(scene_graph);
         current_funname = name;
 
-        TypeInterface ret = fs.ret.getInstance();
+        TypeFunctionInterface ret = fs.ret.getTypeFunctionInterfaceInstance();
 
         for(int i=0; i<args.size(); i++) {
             current_stack.add(fs.args_names.get(i), args.get(i));

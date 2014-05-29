@@ -73,16 +73,16 @@ public class FunctionList {
         return table.get(new smallSignature(name,args));
     }
 
-    public FunctionSignature getFunctionByInterface(String name, List<TypeInterface> args) {
+    public FunctionSignature getFunctionByInterface(String name, List<TypeFunctionInterface> args) {
         ArrayList<Types> at = new ArrayList<Types>();
-        for(TypeInterface a : args) at.add(a.getTypeName());
+        for(TypeFunctionInterface a : args) at.add(a.getTypeName());
 
         return table.get(new smallSignature(name, at));
     }
 
-    public boolean existsByInterface(String name, List<TypeInterface> args) {
+    public boolean existsByInterface(String name, List<TypeFunctionInterface> args) {
         ArrayList<Types> at = new ArrayList<Types>();
-        for(TypeInterface a : args) at.add(a.getTypeName());
+        for(TypeFunctionInterface a : args) at.add(a.getTypeName());
 
         return table.containsKey(new smallSignature(name, at));
     }

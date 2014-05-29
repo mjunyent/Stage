@@ -226,7 +226,10 @@ public class SemanticsFilters {
             String name = exp.getChild(0).getText();
             Types pos = getExpressionType(exp.getChild(1), symbol_table);
             Types leftType = symbol_table.getType(name);
-            Types array_access_ret = leftType.getInstance().getMethodArgs("[", Arrays.asList(pos) );
+            exp.getChild(0).setVarType(leftType);
+            exp.getChild(1).setVarType(pos);
+
+            Types array_access_ret = leftType.getTypeInterfaceInstance().getMethodArgs("[", Arrays.asList(pos) );
             if(array_access_ret == null) throw new RuntimeException("Type: " + pos.getName() + " has no array access for this kind of index");
             return array_access_ret;
         }
@@ -240,15 +243,17 @@ public class SemanticsFilters {
         //One child operands.
         if(exp.getChildCount() == 1) { //we expect not or -  (- is an alias of not)
             String opName = exp.getText();
-            if(exp.getType() == StageLexer.MINUS) opName = "not";
             Types leftType = getExpressionType(exp.getChild(0), symbol_table);
+            exp.getChild(0).setVarType(leftType);
             return getMemberFunctionReturn(opName, leftType, new ArrayList<Types>());
         }
 
         //Two child operands.
         if(exp.getChildCount() == 2) { //we expect or, and, ==, !=, >, <, >=, <=, +, -, *, /, %
             Types leftType = getExpressionType(exp.getChild(0), symbol_table);
+            exp.getChild(0).setVarType(leftType);
             Types rightType[] = { getExpressionType(exp.getChild(1), symbol_table) };
+            exp.getChild(1).setVarType(rightType[0]);
             return getMemberFunctionReturn(exp.getText(), leftType, Arrays.asList(rightType));
         }
 
@@ -258,7 +263,8 @@ public class SemanticsFilters {
     private Types getMemberType(StageTree tree, FilterSymbolTable symbol_table) {
         currentNode = tree;
         Types leftType = getExpressionType(tree.getChild(0), symbol_table);
-        TypeInterface leftTypeInstance = leftType.getInstance();
+        TypeInterface leftTypeInstance = leftType.getTypeInterfaceInstance();
+        tree.getChild(0).setVarType(leftType);
 
         switch (tree.getChild(1).getType()) {
             case StageLexer.ID:
@@ -276,8 +282,11 @@ public class SemanticsFilters {
                 Types member_arr = leftTypeInstance.getAttributeType(name);
                 if(member_arr == null) throw new RuntimeException("Member " + name + " not found in type " + leftTypeInstance.getTypeName());
 
+                tree.getChild(1).getChild(0).setVarType(member_arr);
+                tree.getChild(1).getChild(0).setVarType(pos);
+
                 //Check tipes of array and values it returns
-                Types array_access_ret = member_arr.getInstance().getMethodArgs("[", Arrays.asList(pos));
+                Types array_access_ret = member_arr.getTypeInterfaceInstance().getMethodArgs("[", Arrays.asList(pos));
                 if(array_access_ret == null) throw new RuntimeException("Type: " + member_arr + " in " + name + " has no array access for this kind of index");
                 return array_access_ret;
             default:
@@ -300,11 +309,13 @@ public class SemanticsFilters {
             throw new RuntimeException("Function " + name + " doesn't exist or has wrong parameters. Calling with " + args);
         }
 
+        tree.setFuncId(funcs.getFunction(name,args).id);
+
         return funcs.getFunction(name,args).ret;
     }
 
     private Types getMemberFunctionReturn(String name, Types base, List<Types> args) {
-        TypeInterface myType = base.getInstance();
+        TypeInterface myType = base.getTypeInterfaceInstance();
         Types method_return = myType.getMethodArgs(name, args);
 
         if(method_return == null) throw new RuntimeException("Method " + name + " arguments don't match");

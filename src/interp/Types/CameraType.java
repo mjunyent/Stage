@@ -7,7 +7,7 @@ import processing.video.Capture;
 
 import java.util.List;
 
-public class CameraType extends NodeInterface implements TypeInterface {
+public class CameraType extends NodeInterface implements TypeFunctionInterface {
     public Capture cam;
 
     public CameraType() { cam = null; }
@@ -43,7 +43,7 @@ public class CameraType extends NodeInterface implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(!fl.existsByInterface(name,args)) return null;
 
         FunctionSignature fs = fl.getFunctionByInterface(name, args);
@@ -68,7 +68,7 @@ public class CameraType extends NodeInterface implements TypeInterface {
     }
 
     @Override
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         return null;
     }
 

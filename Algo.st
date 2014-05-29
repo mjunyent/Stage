@@ -33,31 +33,8 @@ filter pinta(float r, float g, float b) {
 
 function main() {
 FIRST:
-	int[5] cosa;
-	
-	cosa[0] = 40;
-	cosa[1] = 41;
-	cosa[2] = 42;
-	cosa[3] = 50;
-	cosa[4] = 62;
-	
 	audio song = audio("Talos' Corpse.mp3");
 	song.play();
-	
-	println("TE MIDE: " + cosa.size);
-	int i=0;
-	while(i<cosa.size) {
-		println("Ahi va " + i + ": " + cosa[i]);
-		i = i+1;
-	}
-	
-	cosa.push(97);	
-	println("TE MIDE: " + cosa.size);
-	i=0;
-	while(i<cosa.size) {
-		println("Ahi va " + i + ": " + cosa[i]);
-		i = i+1;
-	}
 	
 	int variable = 0;
 	float p = 0.0;

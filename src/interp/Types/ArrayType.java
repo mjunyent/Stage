@@ -3,13 +3,13 @@ package interp.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayType implements TypeInterface {
+public class ArrayType implements TypeFunctionInterface {
     Types general_type, array_type;
-    public ArrayList<TypeInterface> array;
+    public ArrayList<TypeFunctionInterface> array;
 
     public ArrayType() {
         general_type = array_type = Types.VOID_T;
-        array = new ArrayList<TypeInterface>();
+        array = new ArrayList<TypeFunctionInterface>();
     }
 
     public void setType(Types t) {
@@ -18,13 +18,13 @@ public class ArrayType implements TypeInterface {
     }
 
     public void setSize(IntType s) {
-        array = new ArrayList<TypeInterface>();
+        array = new ArrayList<TypeFunctionInterface>();
         for(int i=0; i<s.getValue(); i++) {
-            array.add(array_type.getInstance());
+            array.add(array_type.getTypeFunctionInterfaceInstance());
         }
     }
 
-    public TypeInterface getValue(int pos) {
+    public TypeFunctionInterface getValue(int pos) {
         if(pos < 0 || pos > array.size()) throw new RuntimeException("Array out of bounds!");
         return array.get(pos);
     }
@@ -42,7 +42,7 @@ public class ArrayType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("[")) {
             int pos = ((IntType)args.get(0)).getValue();
             return getValue(pos);
@@ -59,7 +59,7 @@ public class ArrayType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         if(name.equals("size")) return new IntType(array.size());
         return null;
     }
@@ -67,6 +67,6 @@ public class ArrayType implements TypeInterface {
     public void set(TypeInterface obj) {
         general_type = ((ArrayType)obj).general_type;
         array_type = ((ArrayType)obj).array_type;
-        array = (ArrayList<TypeInterface>)((ArrayType)obj).array.clone();
+        array = (ArrayList<TypeFunctionInterface>)((ArrayType)obj).array.clone();
     }
 }

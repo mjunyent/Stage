@@ -2,7 +2,7 @@ package interp.Types;
 
 import java.util.List;
 
-public class CharType implements TypeInterface {
+public class CharType implements TypeFunctionInterface {
     private char value;
 
     public CharType() { value = ' '; }
@@ -32,7 +32,7 @@ public class CharType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("==")) {
             return new BoolType( value == ((CharType)args.get(0)).getValue() );
         } else if(name.equals("!=")) {
@@ -55,6 +55,6 @@ public class CharType implements TypeInterface {
     }
 
     public Types getAttributeType(String name) { return null; }
-    public TypeInterface getAttribute(String name) { return null; }
+    public TypeFunctionInterface getAttribute(String name) { return null; }
 
 }

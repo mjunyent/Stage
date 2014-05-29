@@ -1,11 +1,10 @@
 package interp.Types;
 
+import processing.opengl.PShader;
+
 import java.util.List;
 
-/**
- * Created by marc on 03/05/14.
- */
-public class VoidType implements TypeInterface {
+public class VoidType implements TypeFunctionInterface,TypeFilterInterface {
     public Types getTypeName() {
         return Types.VOID_T;
     }
@@ -14,7 +13,7 @@ public class VoidType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         return null;
     }
 
@@ -22,10 +21,22 @@ public class VoidType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         return null;
     }
 
     public void set(TypeInterface obj) {
+    }
+
+    public void passToShader(PShader shad, String name) {
+
+    }
+
+    public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
+        return "";
+    }
+
+    public String getAttribute(String left, String name) {
+        return left + "." + name;
     }
 }

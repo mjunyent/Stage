@@ -8,6 +8,7 @@ import org.antlr.runtime.Token;
 public class StageTree extends CommonTree {
     private TypeInterface value = null;
     private Types type = null;
+    private int FuncId = -1;
 
     public StageTree(Token t) {
         super(t);
@@ -47,4 +48,9 @@ public class StageTree extends CommonTree {
         type = Types.CHAR_T;
         value = new CharType(getText().charAt(1));
     }
+
+    public void setFuncId(int i) {
+        FuncId = i;
+    }
+    public int getFuncId() { return FuncId; }
 }

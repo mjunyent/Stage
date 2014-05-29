@@ -33,7 +33,7 @@ public class FunctionGlobalFuncs {
 
 //TODO add tostring and copy.
 
-    public static TypeInterface callFunc(String name, List<TypeInterface> args) {
+    public static TypeFunctionInterface callFunc(String name, List<TypeFunctionInterface> args) {
         if(!table.existsByInterface(name,args)) return null;
 
         FunctionSignature fs = table.getFunctionByInterface(name, args);

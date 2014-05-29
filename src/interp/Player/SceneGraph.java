@@ -21,9 +21,9 @@ public class SceneGraph {
     class Effect {
         public FilterSignature fs;
         public boolean checked;
-        public List<TypeInterface> args_values;
+        public List<TypeFunctionInterface> args_values;
 
-        Effect(FilterSignature fs, List<TypeInterface> args_values) {
+        Effect(FilterSignature fs, List<TypeFunctionInterface> args_values) {
             this.fs = fs;
             this.args_values = args_values;
             checked = false;
@@ -94,7 +94,7 @@ public class SceneGraph {
         referenceCount.set(id, referenceCount.get(id)-1);
     }
 
-    public void addEffect(NodeInterface node, FilterSignature filter, List<TypeInterface> args, List<NodeInterface> inputs) {
+    public void addEffect(NodeInterface node, FilterSignature filter, List<TypeFunctionInterface> args, List<NodeInterface> inputs) {
         effects.set(node.getId(), new Effect(filter, args));
 
         graph.get(node.getId()).clear();
@@ -134,7 +134,7 @@ public class SceneGraph {
         effect.args_values = null;
     }
 
-    public void addEffectAfter(NodeInterface after_what, NodeInterface node, FilterSignature filter, List<TypeInterface> args, List<NodeInterface> inputs) {
+    public void addEffectAfter(NodeInterface after_what, NodeInterface node, FilterSignature filter, List<TypeFunctionInterface> args, List<NodeInterface> inputs) {
         //change all references pointin to after_what to point ot node.
         for(int i=0; i<graph.size(); i++) {
             if(graph.get(i) != null) {
@@ -227,28 +227,8 @@ public class SceneGraph {
 
         //give input data.
         for(int i=0; i<effect.args_values.size(); i++) {
-            String argname = effect.fs.args_names.get(i);
-            TypeInterface ti = effect.args_values.get(i);
-            PShader shader = effect.fs.shader;
-
-            switch (ti.getTypeName()) {
-                case INT_T:
-                    shader.set(argname, ((IntType)ti).getValue());
-                    break;
-                case FLOAT_T:
-                    shader.set(argname, ((FloatType)ti).getValue());
-                    break;
-                case BOOL_T:
-                    shader.set(argname, ((BoolType)ti).getValue());
-                    break;
-                case VEC2_T:
-                    shader.set(argname, ((Vec2Type)ti).getX(), ((Vec2Type)ti).getY());
-                    break;
-                case VEC4_T:
-                    shader.set(argname, ((Vec4Type)ti).getX(), ((Vec4Type)ti).getY(), ((Vec4Type)ti).getZ(), ((Vec4Type)ti).getW());
-                    break;
-            }
-
+            TypeFilterInterface ti = (TypeFilterInterface)effect.args_values.get(i);
+            ti.passToShader(effect.fs.shader, effect.fs.args_names.get(i));
         }
 
         node.getRenderer().rect(0, 0, node.getRenderer().width, node.getRenderer().height);

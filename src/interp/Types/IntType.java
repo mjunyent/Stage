@@ -1,8 +1,10 @@
 package interp.Types;
 
+import processing.opengl.PShader;
+
 import java.util.List;
 
-public class IntType implements TypeInterface {
+public class IntType implements TypeFunctionInterface,TypeFilterInterface {
     private int value;
 
     public IntType() { value = 0; }
@@ -38,7 +40,7 @@ public class IntType implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(name.equals("+")) {
             return new IntType( value + ((IntType)args.get(0)).getValue() );
         } else if(name.equals("-")) {
@@ -71,9 +73,31 @@ public class IntType implements TypeInterface {
     }
 
     public Types getAttributeType(String name) { return null; }
-    public TypeInterface getAttribute(String name) { return null; }
+    public TypeFunctionInterface getAttribute(String name) { return null; }
 
     public void set(TypeInterface obj) {
         value = ((IntType)obj).getValue();
+    }
+
+    public void passToShader(PShader shad, String name) {
+        shad.set(name, value);
+    }
+
+    public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
+        if(args.size() == 1 && args_types.get(0) == Types.INT_T) {
+            if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-")
+                 || name.equals("==") || name.equals("!=") ||
+                    name.equals(">") || name.equals("<") ||
+                    name.equals(">=") || name.equals("<=")) {
+                return "(" + left + ")" + name + "(" + args.get(0) + ")";
+            }
+        } else if(args.size() == 0) {
+            return "-(" + left + ")";
+        }
+        return "";
+    }
+
+    public String getAttribute(String left, String name) {
+        return left + "." + name;
     }
 }

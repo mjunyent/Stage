@@ -1,9 +1,10 @@
 package interp.Types;
 
-import java.util.Arrays;
+import processing.opengl.PShader;
+
 import java.util.List;
 
-public class Vec4Type implements TypeInterface {
+public class Vec4Type implements TypeFunctionInterface,TypeFilterInterface {
     private FloatType valX, valY, valZ, valW;
 
     public Vec4Type() {
@@ -52,7 +53,7 @@ public class Vec4Type implements TypeInterface {
     }
 
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         //TODO
 /*        if(name.equals("+")) {
             return new IntType( value + ((IntType)args.get(0)).getValue() );
@@ -89,7 +90,7 @@ public class Vec4Type implements TypeInterface {
         if(name.equals("x") || name.equals("y") || name.equals("z") || name.equals("w")) return Types.FLOAT_T;
         return null;
     }
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         if(name.equals("x")) return valX;
         if(name.equals("y")) return valY;
         if(name.equals("z")) return valZ;
@@ -104,4 +105,24 @@ public class Vec4Type implements TypeInterface {
         valW = ((Vec4Type)obj).valW;
     }
 
+
+    public void passToShader(PShader shad, String name) {
+        shad.set(name, valX.getValue(), valY.getValue(), valZ.getValue(), valW.getValue());
+    }
+
+    public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
+        if(args.size() == 1 && (args_types.get(0) == Types.VEC4_T || args_types.get(0) == Types.FLOAT_T)) {
+            if(name.equals("+") || name.equals("-") || name.equals("*")  || name.equals("/") || name.equals("-") || name.equals("==") || name.equals("!=")) {
+                return "(" + left + ")" + name + "(" + args.get(0) + ")";
+            }
+        }
+        else if(args.size()==0) {
+            return "-(" + left + ")";
+        }
+        return "";
+    }
+
+    public String getAttribute(String left, String name) {
+        return left + "." + name;
+    }
 }

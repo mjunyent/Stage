@@ -7,7 +7,7 @@ import processing.video.Movie;
 
 import java.util.List;
 
-public class VideoType extends NodeInterface implements TypeInterface {
+public class VideoType extends NodeInterface implements TypeFunctionInterface {
     public Movie video;
 
     public VideoType() { video = null; }
@@ -41,7 +41,7 @@ public class VideoType extends NodeInterface implements TypeInterface {
         return null;
     }
 
-    public TypeInterface callMethod(String name, List<TypeInterface> args) {
+    public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
         if(!fl.existsByInterface(name,args)) return null;
 
         FunctionSignature fs = fl.getFunctionByInterface(name, args);
@@ -85,7 +85,7 @@ public class VideoType extends NodeInterface implements TypeInterface {
     }
 
     @Override
-    public TypeInterface getAttribute(String name) {
+    public TypeFunctionInterface getAttribute(String name) {
         return null;
     }
 

@@ -1,8 +1,10 @@
 package interp.Types;
 
+import processing.opengl.PShader;
+
 import java.util.List;
 
-public class SamplerType implements TypeInterface {
+public class SamplerType implements TypeFilterInterface {
     public SamplerType() {
     }
 
@@ -19,10 +21,19 @@ public class SamplerType implements TypeInterface {
         return null;
     }
 
-    //Sampler type is only executed in Shader, it does not need call and get.
-    public TypeInterface callMethod(String name, List<TypeInterface> args) { return null; }
-    public TypeInterface getAttribute(String name) { return null; }
 
-    public void set(TypeInterface obj) {
+    public void passToShader(PShader shad, String name) { //sample is a proxy type for all kinds of textures. passToShader not necessary.
+    }
+
+    public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
+        if(name.equals("[") && args_types.size() == 1 && args_types.get(0)==Types.VEC2_T) {
+            return "texture2D(" + left + ", " + args.get(0) + ")";
+        }
+
+        return null;
+    }
+
+    public String getAttribute(String left, String name) {
+        return left + "." + name;
     }
 }
