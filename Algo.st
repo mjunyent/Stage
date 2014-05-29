@@ -221,7 +221,7 @@ return num;
 //	return num*num;
 }
 
-function float printFC(float num) {
+function void printFC(float num) {
 FIRST:
 	println("FIRST!");
 LOOP:
@@ -230,6 +230,14 @@ LAST:
 	println("LAST!");
 }
 
+function float testingRet() {
+	FIRST:
+	if(true) {
+		return 5.0;
+	} else {
+		return 5.0;
+	}
+}
 
 
 

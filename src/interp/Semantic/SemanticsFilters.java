@@ -78,7 +78,6 @@ public class SemanticsFilters {
                 fs.inputs.add(node.getChild(0).getChild(j).getText());
             }
             for(int j=0; j<node.getChild(2).getChildCount(); j++) {
-                //TODO chekckckck rays maybe already chkd.
                 String var_type = node.getChild(2).getChild(j).getChild(0).getText();
                 String var_name = node.getChild(2).getChild(j).getChild(1).getText();
                 fs.args.add( Types.getByNameFilters(var_type) );
@@ -88,7 +87,6 @@ public class SemanticsFilters {
         }
     }
 
-    //TODO check arrays in headers of filters.
     private void checkFilter(StageTree tree) {
         FilterSymbolTable symbol_table = new FilterSymbolTable(debug);
         currentNode = tree;
@@ -102,6 +100,7 @@ public class SemanticsFilters {
         //add params to the scope.
         StageTree params = tree.getChild(2);
         for(int i=0; i<params.getChildCount(); i++) {
+            //params cannot be arrays.
             String var_type = params.getChild(i).getChild(0).getText();
             String var_name = params.getChild(i).getChild(1).getText();
             symbol_table.add(var_name, Types.getByNameFilters(var_type));
@@ -140,7 +139,7 @@ public class SemanticsFilters {
                 symbol_table.add(varName, varType);
                 break;
             case StageLexer.ASSIGN:
-                //TODO: check assignability (not all vars are writable).
+                //Todo in the future: check assignability (not all vars are writable) and give errors, also do it in functions.
                 Types leftType = getExpressionType(inst.getChild(0), symbol_table);
                 Types rightType = getExpressionType(inst.getChild(1), symbol_table);
                 if(leftType != rightType) throw new RuntimeException("Types don't match");

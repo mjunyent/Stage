@@ -31,8 +31,6 @@ public class FunctionGlobalFuncs {
         return table;
     }
 
-//TODO add tostring and copy.
-
     public static TypeFunctionInterface callFunc(String name, List<TypeFunctionInterface> args) {
         if(!table.existsByInterface(name,args)) return null;
 

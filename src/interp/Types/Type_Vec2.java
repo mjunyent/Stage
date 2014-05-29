@@ -84,8 +84,10 @@ public class Type_Vec2 implements TypeFunctionInterface, TypeFilterInterface {
     }
 
     public TypeFunctionInterface getAttribute(String name) {
-        //TODO
-        return null; }
+        if(name.equals("x")) return valX;
+        if(name.equals("y")) return valY;
+        return null;
+    }
 
     public void set(TypeInterface obj) {
         valX = ((Type_Vec2)obj).valX;

@@ -20,6 +20,7 @@ public class SemanticsFunctions {
     private StageTree functions_root = null;
     private boolean debug = true;
     private StageTree current_node = null;
+    private boolean doesReturn = false;
 
     //temp vars.
     private FunctionSignature current_func;
@@ -49,7 +50,6 @@ public class SemanticsFunctions {
         return functions_root;
     }
 
-    //TODO, check if argument is an ARRAY.
     private void fillFunctionsMap() {
         if(functions_root == null) return;
 
@@ -86,7 +86,7 @@ public class SemanticsFunctions {
 
             for(int j=0; j<params.getChildCount(); j++) {
                 StageTree node = params.getChild(j);
-                //TODO add array compatibility if(node.getType() != StageLexer.ARRAY)
+                //Todo in the future, add array compatibility (edit grammar too).
                 func_sig.args.add(Types.getByNameFunctions(node.getChild(0).getText()));
                 func_sig.args_names.add(node.getChild(1).getText());
             }
@@ -104,6 +104,7 @@ public class SemanticsFunctions {
 
     private void checkFunction(FunctionSignature func) {
         current_func = func;
+        doesReturn = false;
         FunctionSymbolTable symbol_table = new FunctionSymbolTable(debug);
 
         symbol_table.pushScope();
@@ -133,7 +134,7 @@ public class SemanticsFunctions {
             }
         }
 
-        //TODO check return.
+        if(func.ret != Types.VOID_T && !doesReturn) throw new RuntimeException("Function " + func.name + " doesn't always return");
     }
 
     private void checkInstruction(StageTree inst, FunctionSymbolTable symbol_table) {
@@ -209,12 +210,12 @@ public class SemanticsFunctions {
                 symbol_table.add(varName, varType);
                 break;
             case StageLexer.ASSIGN:
-                //TODO: check assignability.
                 Types leftType = getExpressionType(inst.getChild(0), symbol_table);
                 Types rightType = getExpressionType(inst.getChild(1), symbol_table);
                 if(leftType != rightType) throw new RuntimeException("Types don't match");
                 break;
             case StageLexer.WHILE:
+                boolean preRet = doesReturn;
                 Types w_condition = getExpressionType(inst.getChild(0), symbol_table);
                 if(Types.BOOL_T != w_condition) throw new RuntimeException("Condition expression must be boolean");
 
@@ -223,17 +224,24 @@ public class SemanticsFunctions {
                     checkInstruction(inst.getChild(1).getChild(i), symbol_table);
                 }
                 symbol_table.popScope();
+
+                doesReturn = preRet; //ignore returns inside while.
                 break;
             case StageLexer.IF:
+                boolean bkret = doesReturn;
+                boolean retIf = false;
                 Types i_condition = getExpressionType(inst.getChild(0), symbol_table);
                 if(Types.BOOL_T != i_condition) throw new RuntimeException("Condition expression must be boolean");
 
+                doesReturn = false;
                 symbol_table.pushScope();
                 for(int i=0; i<inst.getChild(1).getChildCount(); i++) {
                     checkInstruction(inst.getChild(1).getChild(i), symbol_table);
                 }
                 symbol_table.popScope();
+                retIf = doesReturn;
 
+                doesReturn = false;
                 //if there is else...
                 if(inst.getChildCount() > 2) {
                     symbol_table.pushScope();
@@ -242,6 +250,7 @@ public class SemanticsFunctions {
                     }
                     symbol_table.popScope();
                 }
+                if(!retIf || !doesReturn) doesReturn = bkret; //if both if else return, if only one returns, ignored.
                 break;
             case StageLexer.MEMBER:
             case StageLexer.ARRAY:
@@ -256,6 +265,7 @@ public class SemanticsFunctions {
                     throw new RuntimeException("Time values must be float.");
                 break;
             case StageLexer.RETURN:
+                doesReturn = true;
                 if(inst.getChildCount() == 0 && current_func.ret != Types.VOID_T) throw new RuntimeException("Function must return a " + current_func.ret.getName() + ".");
                 if(inst.getChildCount() != 0 && getExpressionType(inst.getChild(0), symbol_table) != current_func.ret)
                     throw new RuntimeException("Function must return a " + current_func.ret.getName() + ".");
