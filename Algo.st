@@ -28,11 +28,12 @@ filter v1,v2 -> mix(float m) {
 }
 
 filter pinta(float r, float g, float b) {
-	return vec4(r,g,time/10.0,1.0);
+	return vec4(r,g,b,1.0);
 }
 
 function main() {
 FIRST:
+	midiBus ELBUSDELAMAGIA = midiBus("sientelamagia", "SLIDER/KNOB", "");
 	audio song = audio("Talos' Corpse.mp3");
 	song.play();
 	
@@ -84,6 +85,8 @@ FIRST:
 	music.play();*/
 	int k = 0;
 	
+	float color = 0.0;
+	
 //	song.setLoopPoints(9.2, 9.4);
 //	song.loop();
 
@@ -95,14 +98,14 @@ bool monn = false;
 if(not monn) {
 println(nose);
 }
-	println("VAMOS POR: " + now);
+/*	println("VAMOS POR: " + now);
 	println("first: " + 5.0*vec4(1.0,2.0,3.0,4.0));
 	println("last: " + vec4(1.0,2.0,3.0,4.0)*5.0);
 	
 	println("WIDTH: " + output.width);
 	println("HEIGHT: " + output.height);
 		
-	println("    TE MIDE: " + song.FFT().size);
+	println("    TE MIDE: " + song.FFT().size);*/
 int m =0;
 float[4] ne = song.FFT();
 float val = 0.0;
@@ -110,13 +113,27 @@ while(m < ne.size) {
 	val = val + ne[m];
 	m = m+1;
 }
-println("VALES: " + val);
+//println("VALES: " + val);
 
+midiMsg[1] msgs = ELBUSDELAMAGIA.messages();
+m=0;
+
+while(m<msgs.size) {
+	color = msgs[m].value;
+	m = m+1;
+}
+
+println("CONO " + color);
+-> pinta(color,color,color) -> output;
+
+/*
 -> pinta(1.0,1.0,1.0) -> A;
 //flow -> D;
 A,flow -> mix(val/1200.0) -> D;
 	D -> output;
 //flow -> output;
+*/
+
 
 	//println("DT: " + dt);
 /*	-> pinta(1.0,0.0,0.0) -> A;

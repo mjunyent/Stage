@@ -141,6 +141,7 @@ public class Player {
     }
 
     public void loop(float time) {
+        FunctionGlobalVars.queued_messages.clear();
         FunctionGlobalVars.time.setValue(time);
         FunctionGlobalVars.dt.setValue(time-lastTime);
         lastTime = time;

@@ -7,6 +7,7 @@ import interp.Types.*;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public class FunctionGlobalVars {
     public static String renderer = null;
     public static Minim minim = null;
     public static PImage pal_card = null;
+
+    public static ArrayList<Type_MidiMessage> queued_messages = new ArrayList<Type_MidiMessage>();
 
     private static final Map<String, Types> table;
     static {

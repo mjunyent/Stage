@@ -2,7 +2,9 @@ package Stage;
 
 // Imports for ANTLR
 import interp.Player.Player;
+import interp.Semantic.FunctionGlobalVars;
 import interp.Semantic.SemanticsFilters;
+import interp.Types.Type_MidiMessage;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
 
@@ -196,6 +198,18 @@ public class Stage extends PApplet {
 
     public void captureEvent(Capture c) {
         c.read();
+    }
+
+    public void noteOn(int channel, int pitch, int velocity, long timestamp, String bus_name) {
+        FunctionGlobalVars.queued_messages.add(new Type_MidiMessage(bus_name,"ON",channel,pitch, ((float)velocity)/128.0f));
+    }
+
+    public void noteOff(int channel, int pitch, int velocity, long timestamp, String bus_name) {
+        FunctionGlobalVars.queued_messages.add(new Type_MidiMessage(bus_name,"OFF",channel,pitch, ((float)velocity)/128.0f));
+    }
+
+    public void controllerChange(int channel, int number, int value, long timestamp, String bus_name) {
+        FunctionGlobalVars.queued_messages.add(new Type_MidiMessage(bus_name,"CC",channel,number, ((float)value)/128.0f));
     }
 
     public void draw() {

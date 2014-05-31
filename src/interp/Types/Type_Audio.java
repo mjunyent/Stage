@@ -102,8 +102,6 @@ public class Type_Audio implements TypeFunctionInterface {
                 Type_Array t = new Type_Array();
                 t.setType(Types.A_FLOAT_T);
 
-                System.out.println(fft.specSize());
-
                 for(int i = 0; i < fft.specSize(); i++)
                     t.array.add(new Type_Float(fft.getBand(i)));
 

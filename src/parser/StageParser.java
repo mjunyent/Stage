@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-31 12:44:10
+// $ANTLR 3.4 /Users/marc/IdeaProjects/Stage/src/parser/Stage.g 2014-05-31 21:02:27
 
 package parser;
 import interp.StageTree;

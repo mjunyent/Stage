@@ -33,7 +33,12 @@ public enum Types {
 
     SCREEN_T    ("screen",   Type_Screen.class,  null),
 
-    AUDIO_T     ("audio",    Type_Audio.class,   null);
+    AUDIO_T     ("audio",    Type_Audio.class,   null),
+
+    MIDI_BUS_T  ("midiBus",  Type_MidiBus.class, null),
+
+    MIDI_MSG_T  ("midiMsg",  Type_MidiMessage.class, null),
+    A_MIDI_MSG_T("0_midiMsg",Type_Array.class,   Types.MIDI_MSG_T);
 
     private String  name;
     private Class   cl;

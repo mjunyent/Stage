@@ -25,6 +25,8 @@ public class FunctionGlobalFuncs {
         table.add("node", new Types[] { Types.INT_T, Types.INT_T}, Types.NODE_T, 22);
 
         table.add("audio", new Types[] { Types.STRING_T }, Types.AUDIO_T, 30);
+        table.add("midiBus", new Types[] { Types.STRING_T, Types.STRING_T, Types.STRING_T}, Types.MIDI_BUS_T, 31);
+        table.add("midiMsg", new Types[] { Types.STRING_T, Types.INT_T, Types.INT_T, Types.FLOAT_T}, Types.MIDI_MSG_T, 32);
     }
 
     public static FunctionList getTable() {
@@ -83,6 +85,24 @@ public class FunctionGlobalFuncs {
                 return retnode;
             case 30:
                 return new Type_Audio(((Type_String)args.get(0)).getValue());
+
+            case 31:
+                String in = ((Type_String)args.get(1)).getValue();
+                String out = ((Type_String)args.get(2)).getValue();
+                if(in.equals("")) in = null;
+                if(out.equals("")) out = null;
+                return new Type_MidiBus(
+                        ((Type_String)args.get(0)).getValue(),
+                        in,
+                        out
+                );
+
+            case 32:
+                return new Type_MidiMessage("",
+                        ((Type_String)args.get(0)).getValue(),
+                        ((Type_Int)args.get(1)).getValue(),
+                        ((Type_Int)args.get(2)).getValue(),
+                        ((Type_Float)args.get(3)).getValue());
             default:
                 return null;
         }

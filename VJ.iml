@@ -21,6 +21,7 @@
     <orderEntry type="library" name="minim" level="project" />
     <orderEntry type="library" name="mp3spi1.9.4" level="project" />
     <orderEntry type="library" name="jl1.0" level="project" />
+    <orderEntry type="library" name="themidibus" level="project" />
   </component>
 </module>
 
