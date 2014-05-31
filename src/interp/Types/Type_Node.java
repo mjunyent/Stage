@@ -41,12 +41,25 @@ public class Type_Node extends NodeInterface implements TypeFunctionInterface {
     public Types getTypeName() { return Types.NODE_T; }
 
     public Types getMethodArgs(String name, List<Types> args) { return null; }
+
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) { return null; }
-    public Types getAttributeType(String name) { return null; }
-    public TypeFunctionInterface getAttribute(String name) { return null; }
+
+    public Types getAttributeType(String name) {
+        if(name.equals("width")) return Types.FLOAT_T;
+        if(name.equals("height")) return Types.FLOAT_T;
+        return null;
+    }
+
+    public TypeFunctionInterface getAttribute(String name) {
+        if(name.equals("width")) return new Type_Float(width);
+        if(name.equals("height")) return new Type_Float(height);
+        return null;
+    }
 
     public void set(TypeInterface obj) {
         this.id = ((Type_Node)obj).id;
         this.image = ((Type_Node)obj).image;
+        this.width = ((Type_Node)obj).width;
+        this.height = ((Type_Node)obj).height;
     }
 }

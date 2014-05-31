@@ -62,13 +62,15 @@ public class Type_Camera extends NodeInterface implements TypeFunctionInterface 
         return new Type_Void();
     }
 
-    @Override
     public Types getAttributeType(String name) {
+        if(name.equals("width")) return Types.FLOAT_T;
+        if(name.equals("height")) return Types.FLOAT_T;
         return null;
     }
 
-    @Override
     public TypeFunctionInterface getAttribute(String name) {
+        if(name.equals("width")) return new Type_Float(cam==null? -1 : cam.width);
+        if(name.equals("height")) return new Type_Float(cam==null? -1 : cam.height);
         return null;
     }
 

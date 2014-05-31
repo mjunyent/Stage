@@ -7,6 +7,24 @@ import java.util.List;
 public class Type_Int implements TypeFunctionInterface,TypeFilterInterface {
     private int value;
 
+    static private FunctionList fl;
+    static {
+        fl = new FunctionList();
+        fl.add("+", new Types[] {Types.INT_T}, Types.INT_T, 0);
+        fl.add("-", new Types[] {Types.INT_T}, Types.INT_T, 1);
+        fl.add("*", new Types[] {Types.INT_T}, Types.INT_T, 2);
+        fl.add("/", new Types[] {Types.INT_T}, Types.INT_T, 3);
+
+        fl.add("-", new Types[] {}, Types.INT_T, 4);
+
+        fl.add("==", new Types[] {Types.INT_T}, Types.BOOL_T, 10);
+        fl.add("!=", new Types[] {Types.INT_T}, Types.BOOL_T, 11);
+        fl.add(">=", new Types[] {Types.INT_T}, Types.BOOL_T, 12);
+        fl.add("<=", new Types[] {Types.INT_T}, Types.BOOL_T, 13);
+        fl.add("<", new Types[] {Types.INT_T}, Types.BOOL_T, 14);
+        fl.add(">", new Types[] {Types.INT_T}, Types.BOOL_T, 15);
+    }
+
     public Type_Int() { value = 0; }
 
     public Type_Int(int value) {
@@ -24,51 +42,39 @@ public class Type_Int implements TypeFunctionInterface,TypeFilterInterface {
     public Types getTypeName() { return Types.INT_T; }
 
     public Types getMethodArgs(String name, List<Types> args) {
-        if(args.size() == 1 && args.get(0) == Types.INT_T) {
-            if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-")) {
-                return Types.INT_T;
-            } else if(name.equals("==") || name.equals("!=") ||
-                      name.equals(">") || name.equals("<") ||
-                      name.equals(">=") || name.equals("<=")) {
-                return Types.BOOL_T;
-            }
-        } else if(args.size() == 0) {
-            if(name.equals("-")) {
-                return Types.INT_T;
-            }
-        }
+        if(fl.exists(name, args)) return fl.getFunction(name,args).ret;
         return null;
     }
 
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
-        if(name.equals("+")) {
-            return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("-") && args.size() == 1) {
-            return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("*")) {
-            return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("/")) {
-            return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
-        }
+        if(!fl.existsByInterface(name,args)) return null;
 
-        else if(name.equals("==")) {
-            return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("!=")) {
-            return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("<")) {
-            return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals(">")) {
-            return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("<=")) {
-            return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals(">=")) {
-            return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
-        }
+        FunctionSignature fs = fl.getFunctionByInterface(name, args);
+        switch (fs.id) {
+            case 0:
+                return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
+            case 1:
+                return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
+            case 2:
+                return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
+            case 3:
+                return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
+            case 4:
+                return new Type_Int( -value );
 
-        else if(name.equals("-")) {
-            return new Type_Int( -value );
+            case 10:
+                return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
+            case 11:
+                return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
+            case 12:
+                return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
+            case 13:
+                return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
+            case 14:
+                return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
+            case 15:
+                return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
         }
-
         return null;
     }
 
@@ -84,7 +90,7 @@ public class Type_Int implements TypeFunctionInterface,TypeFilterInterface {
     }
 
     public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
-        if(args.size() == 1 && args_types.get(0) == Types.INT_T) {
+        if(args.size() == 1) {
             if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-")
                  || name.equals("==") || name.equals("!=") ||
                     name.equals(">") || name.equals("<") ||

@@ -15,7 +15,7 @@ public class Type_Video extends NodeInterface implements TypeFunctionInterface {
     public Type_Video(String path) { video = new Movie(FunctionGlobalVars.screen, path); }
 
     public void init() { }
-    public PImage getImage() { return video; }
+    public PImage getImage() { if(video != null && video.width > 0) return video; else return FunctionGlobalVars.pal_card; }
     public boolean writable() { return false; }
     public PGraphics getRenderer() { return null; }
 
@@ -79,13 +79,15 @@ public class Type_Video extends NodeInterface implements TypeFunctionInterface {
 
     }
 
-    @Override
     public Types getAttributeType(String name) {
+        if(name.equals("width")) return Types.FLOAT_T;
+        if(name.equals("height")) return Types.FLOAT_T;
         return null;
     }
 
-    @Override
     public TypeFunctionInterface getAttribute(String name) {
+        if(name.equals("width")) return new Type_Float(video==null? -1 : video.width);
+        if(name.equals("height")) return new Type_Float(video==null? -1 : video.height);
         return null;
     }
 

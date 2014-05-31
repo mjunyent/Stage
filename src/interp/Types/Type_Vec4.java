@@ -7,6 +7,25 @@ import java.util.List;
 public class Type_Vec4 implements TypeFunctionInterface,TypeFilterInterface {
     private Type_Float valX, valY, valZ, valW;
 
+    static private FunctionList fl;
+    static {
+        fl = new FunctionList();
+        fl.add("+", new Types[] {Types.VEC4_T}, Types.VEC4_T, 0);
+        fl.add("-", new Types[] {Types.VEC4_T}, Types.VEC4_T, 1);
+        fl.add("*", new Types[] {Types.VEC4_T}, Types.VEC4_T, 2);
+        fl.add("/", new Types[] {Types.VEC4_T}, Types.VEC4_T, 3);
+
+        fl.add("-", new Types[] {}, Types.VEC4_T, 4);
+
+        fl.add("==", new Types[] {Types.VEC4_T}, Types.BOOL_T, 10);
+        fl.add("!=", new Types[] {Types.VEC4_T}, Types.BOOL_T, 11);
+
+        fl.add("+", new Types[] {Types.FLOAT_T}, Types.VEC4_T, 20);
+        fl.add("-", new Types[] {Types.FLOAT_T}, Types.VEC4_T, 21);
+        fl.add("*", new Types[] {Types.FLOAT_T}, Types.VEC4_T, 22);
+        fl.add("/", new Types[] {Types.FLOAT_T}, Types.VEC4_T, 23);
+    }
+
     public Type_Vec4() {
         valX = new Type_Float();
         valY = new Type_Float();
@@ -36,53 +55,92 @@ public class Type_Vec4 implements TypeFunctionInterface,TypeFilterInterface {
     public Types getTypeName() { return Types.VEC4_T; }
 
     public Types getMethodArgs(String name, List<Types> args) {
-        if(args.size() == 1 &&
-           (args.get(0) == Types.VEC4_T || args.get(0) == Types.FLOAT_T) ) {
-            if(name.equals("+") || name.equals("-") || name.equals("*") || name.equals("/") || name.equals("-")) {
-                return Types.VEC4_T;
-            } else if(name.equals("==") || name.equals("!=")) {
-                return Types.BOOL_T;
-            }
-        } else if(args.size() == 0) {
-            if(name.equals("-")) {
-                return Types.VEC4_T;
-            }
-        }
-
+        if(fl.exists(name, args)) return fl.getFunction(name,args).ret;
         return null;
     }
 
 
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
-        //TODO
-/*        if(name.equals("+")) {
-            return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("-")) {
-            return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("*")) {
-            return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("/")) {
-            return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
+        if(!fl.existsByInterface(name,args)) return null;
+
+        FunctionSignature fs = fl.getFunctionByInterface(name, args);
+        switch (fs.id) {
+            case 0:
+                return new Type_Vec4(
+                        valX.getValue() + ((Type_Vec4)args.get(0)).getX(),
+                        valY.getValue() + ((Type_Vec4)args.get(0)).getY(),
+                        valZ.getValue() + ((Type_Vec4)args.get(0)).getZ(),
+                        valW.getValue() + ((Type_Vec4)args.get(0)).getW()
+                        );
+            case 1:
+                return new Type_Vec4(
+                        valX.getValue() - ((Type_Vec4)args.get(0)).getX(),
+                        valY.getValue() - ((Type_Vec4)args.get(0)).getY(),
+                        valZ.getValue() - ((Type_Vec4)args.get(0)).getZ(),
+                        valW.getValue() - ((Type_Vec4)args.get(0)).getW()
+                );
+            case 2:
+                return new Type_Vec4(
+                        valX.getValue() * ((Type_Vec4)args.get(0)).getX(),
+                        valY.getValue() * ((Type_Vec4)args.get(0)).getY(),
+                        valZ.getValue() * ((Type_Vec4)args.get(0)).getZ(),
+                        valW.getValue() * ((Type_Vec4)args.get(0)).getW()
+                );
+            case 3:
+                return new Type_Vec4(
+                        valX.getValue() / ((Type_Vec4)args.get(0)).getX(),
+                        valY.getValue() / ((Type_Vec4)args.get(0)).getY(),
+                        valZ.getValue() / ((Type_Vec4)args.get(0)).getZ(),
+                        valW.getValue() / ((Type_Vec4)args.get(0)).getW()
+                );
+            case 4:
+                return new Type_Vec4( -valX.getValue(), -valY.getValue(), -valZ.getValue(), -valW.getValue() );
+
+            case 10:
+                return new Type_Bool(
+                        valX.getValue() == ((Type_Vec4)args.get(0)).getX() &&
+                        valY.getValue() == ((Type_Vec4)args.get(0)).getY() &&
+                        valZ.getValue() == ((Type_Vec4)args.get(0)).getZ() &&
+                        valW.getValue() == ((Type_Vec4)args.get(0)).getW()
+                );
+            case 11:
+                return new Type_Bool(
+                        valX.getValue() != ((Type_Vec4)args.get(0)).getX() ||
+                        valY.getValue() != ((Type_Vec4)args.get(0)).getY() ||
+                        valZ.getValue() != ((Type_Vec4)args.get(0)).getZ() ||
+                        valW.getValue() != ((Type_Vec4)args.get(0)).getW()
+                );
+
+            case 20:
+                return new Type_Vec4(
+                        valX.getValue() + ((Type_Float)args.get(0)).getValue(),
+                        valY.getValue() + ((Type_Float)args.get(0)).getValue(),
+                        valZ.getValue() + ((Type_Float)args.get(0)).getValue(),
+                        valW.getValue() + ((Type_Float)args.get(0)).getValue()
+                );
+            case 21:
+                return new Type_Vec4(
+                        valX.getValue() - ((Type_Float)args.get(0)).getValue(),
+                        valY.getValue() - ((Type_Float)args.get(0)).getValue(),
+                        valZ.getValue() - ((Type_Float)args.get(0)).getValue(),
+                        valW.getValue() - ((Type_Float)args.get(0)).getValue()
+                );
+            case 22:
+                return new Type_Vec4(
+                        valX.getValue() * ((Type_Float)args.get(0)).getValue(),
+                        valY.getValue() * ((Type_Float)args.get(0)).getValue(),
+                        valZ.getValue() * ((Type_Float)args.get(0)).getValue(),
+                        valW.getValue() * ((Type_Float)args.get(0)).getValue()
+                );
+            case 23:
+                return new Type_Vec4(
+                        valX.getValue() / ((Type_Float)args.get(0)).getValue(),
+                        valY.getValue() / ((Type_Float)args.get(0)).getValue(),
+                        valZ.getValue() / ((Type_Float)args.get(0)).getValue(),
+                        valW.getValue() / ((Type_Float)args.get(0)).getValue()
+                );
         }
 
-        else if(name.equals("==")) {
-            return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("!=")) {
-            return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("<")) {
-            return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals(">")) {
-            return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("<=")) {
-            return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals(">=")) {
-            return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
-        }
-
-        else if(name.equals("-")) {
-            return new Type_Int( -value );
-        }
-*/
         return null;
     }
 
@@ -111,7 +169,7 @@ public class Type_Vec4 implements TypeFunctionInterface,TypeFilterInterface {
     }
 
     public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
-        if(args.size() == 1 && (args_types.get(0) == Types.VEC4_T || args_types.get(0) == Types.FLOAT_T)) {
+        if(args.size() == 1) {
             if(name.equals("+") || name.equals("-") || name.equals("*")  || name.equals("/") || name.equals("-") || name.equals("==") || name.equals("!=")) {
                 return "(" + left + ")" + name + "(" + args.get(0) + ")";
             }

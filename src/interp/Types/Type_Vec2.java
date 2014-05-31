@@ -7,6 +7,25 @@ import java.util.List;
 public class Type_Vec2 implements TypeFunctionInterface, TypeFilterInterface {
     private Type_Float valX, valY;
 
+    static private FunctionList fl;
+    static {
+        fl = new FunctionList();
+        fl.add("+", new Types[] {Types.VEC2_T}, Types.VEC2_T, 0);
+        fl.add("-", new Types[] {Types.VEC2_T}, Types.VEC2_T, 1);
+        fl.add("*", new Types[] {Types.VEC2_T}, Types.VEC2_T, 2);
+        fl.add("/", new Types[] {Types.VEC2_T}, Types.VEC2_T, 3);
+
+        fl.add("-", new Types[] {}, Types.VEC2_T, 4);
+
+        fl.add("==", new Types[] {Types.VEC2_T}, Types.BOOL_T, 10);
+        fl.add("!=", new Types[] {Types.VEC2_T}, Types.BOOL_T, 11);
+
+        fl.add("+", new Types[] {Types.FLOAT_T}, Types.VEC2_T, 20);
+        fl.add("-", new Types[] {Types.FLOAT_T}, Types.VEC2_T, 21);
+        fl.add("*", new Types[] {Types.FLOAT_T}, Types.VEC2_T, 22);
+        fl.add("/", new Types[] {Types.FLOAT_T}, Types.VEC2_T, 23);
+    }
+
     public Type_Vec2() {
         valX = new Type_Float();
         valY = new Type_Float();
@@ -28,53 +47,52 @@ public class Type_Vec2 implements TypeFunctionInterface, TypeFilterInterface {
     public Types getTypeName() { return Types.VEC2_T; }
 
     public Types getMethodArgs(String name, List<Types> args) {
-        if(args.size() == 1 && (args.get(0) == Types.VEC2_T || args.get(0) == Types.FLOAT_T)) {
-            if(name.equals("+") || name.equals("-") || name.equals("*")  || name.equals("/") || name.equals("-")) {
-                return args.get(0);
-            } else if(name.equals("==") || name.equals("!=")) {
-                return Types.BOOL_T;
-            }
-        }
-        else if(args.size()==0) {
-            if(name.equals("-")) {
-                return Types.VEC2_T;
-            }
-        }
-
+        if(fl.exists(name, args)) return fl.getFunction(name,args).ret;
         return null;
     }
 
 
     public TypeFunctionInterface callMethod(String name, List<TypeFunctionInterface> args) {
-        //TODO
-/*        if(name.equals("+")) {
-            return new Type_Int( value + ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("-")) {
-            return new Type_Int( value - ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("*")) {
-            return new Type_Int( value * ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("/")) {
-            return new Type_Int( value / ((Type_Int)args.get(0)).getValue() );
+        if(!fl.existsByInterface(name,args)) return null;
+
+        FunctionSignature fs = fl.getFunctionByInterface(name, args);
+        switch (fs.id) {
+            case 0:
+                return new Type_Vec2(valX.getValue() + ((Type_Vec2)args.get(0)).getX(),
+                                     valY.getValue() + ((Type_Vec2)args.get(0)).getY());
+            case 1:
+                return new Type_Vec2(valX.getValue() - ((Type_Vec2)args.get(0)).getX(),
+                                     valY.getValue() - ((Type_Vec2)args.get(0)).getY());
+            case 2:
+                return new Type_Vec2(valX.getValue() * ((Type_Vec2)args.get(0)).getX(),
+                                     valY.getValue() * ((Type_Vec2)args.get(0)).getY());
+            case 3:
+                return new Type_Vec2(valX.getValue() / ((Type_Vec2)args.get(0)).getX(),
+                                     valY.getValue() / ((Type_Vec2)args.get(0)).getY());
+            case 4:
+                return new Type_Vec2( -valX.getValue(), -valY.getValue() );
+
+            case 10:
+                return new Type_Bool(valX.getValue() == ((Type_Vec2)args.get(0)).getX() &&
+                                     valY.getValue() == ((Type_Vec2)args.get(0)).getY());
+            case 11:
+                return new Type_Bool(valX.getValue() != ((Type_Vec2)args.get(0)).getX() ||
+                                     valY.getValue() != ((Type_Vec2)args.get(0)).getY());
+
+            case 20:
+                return new Type_Vec2(valX.getValue() + ((Type_Float)args.get(0)).getValue(),
+                                     valY.getValue() + ((Type_Float)args.get(0)).getValue());
+            case 21:
+                return new Type_Vec2(valX.getValue() - ((Type_Float)args.get(0)).getValue(),
+                                     valY.getValue() - ((Type_Float)args.get(0)).getValue());
+            case 22:
+                return new Type_Vec2(valX.getValue() * ((Type_Float)args.get(0)).getValue(),
+                                     valY.getValue() * ((Type_Float)args.get(0)).getValue());
+            case 23:
+                return new Type_Vec2(valX.getValue() / ((Type_Float)args.get(0)).getValue(),
+                                     valY.getValue() / ((Type_Float)args.get(0)).getValue());
         }
 
-        else if(name.equals("==")) {
-            return new Type_Bool( value == ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("!=")) {
-            return new Type_Bool( value != ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("<")) {
-            return new Type_Bool(  value < ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals(">")) {
-            return new Type_Bool(  value > ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals("<=")) {
-            return new Type_Bool(  value <= ((Type_Int)args.get(0)).getValue() );
-        } else if(name.equals(">=")) {
-            return new Type_Bool(  value >= ((Type_Int)args.get(0)).getValue() );
-        }
-
-        else if(name.equals("-")) {
-            return new Type_Int( -value );
-        }
-*/
         return null;
     }
 
@@ -100,7 +118,7 @@ public class Type_Vec2 implements TypeFunctionInterface, TypeFilterInterface {
     }
 
     public String callMethod(String left, String name, List<Types> args_types, List<String> args) {
-        if(args.size() == 1 && (args_types.get(0) == Types.VEC2_T || args_types.get(0) == Types.FLOAT_T)) {
+        if(args.size() == 1) {
             if(name.equals("+") || name.equals("-") || name.equals("*")  || name.equals("/") || name.equals("-") || name.equals("==") || name.equals("!=")) {
                 return "(" + left + ")" + name + "(" + args.get(0) + ")";
             }

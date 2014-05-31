@@ -286,7 +286,7 @@ public class Interpreter {
                     return ret;
                 }
             case StageLexer.MEMBER:
-                TypeFunctionInterface m_leftT = evaluateExpr(exp.getChild(0), true); //getByReference); TODO sure?
+                TypeFunctionInterface m_leftT = evaluateExpr(exp.getChild(0), true);
 
                 StageTree node = exp.getChild(1);
                 switch (node.getType()) {
