@@ -3,7 +3,6 @@ package interp.Player;
 import interp.Semantic.FunctionGlobalVars;
 import interp.Types.*;
 import processing.core.PApplet;
-import processing.opengl.PShader;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -46,7 +45,7 @@ public class SceneGraph {
         this.debug = debug;
         nextId = 0;
 
-        FunctionGlobalVars.screen_node = new ScreenNode(screen);
+        FunctionGlobalVars.screen_node = new Type_Screen(screen);
 
         addNode(FunctionGlobalVars.screen_node);
     }

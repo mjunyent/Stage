@@ -67,7 +67,7 @@
       <file leaf-file-name="Type_Video.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Video.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="0" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
+            <state line="88" column="0" selection-start="2880" selection-end="2880" vertical-scroll-proportion="0.0" vertical-offset="796" max-vertical-offset="1485">
               <folding />
             </state>
           </provider>
@@ -102,19 +102,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FunctionGlobalFuncs.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interp/Semantic/FunctionGlobalFuncs.java">
+      <file leaf-file-name="Type_Screen.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Screen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1395">
-              <folding />
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Type_String.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_String.java">
+      <file leaf-file-name="Type_Node.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="0" selection-start="2739" selection-end="2739" vertical-scroll-proportion="1.4150944" vertical-offset="0" max-vertical-offset="1290">
+            <state line="56" column="0" selection-start="1610" selection-end="1759" vertical-scroll-proportion="0.0" vertical-offset="243" max-vertical-offset="945">
               <folding />
             </state>
           </provider>
@@ -130,8 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/interp/Semantic/FilterSymbolTable.java" />
-        <option value="$PROJECT_DIR$/src/interp/Semantic/Semantics.java" />
         <option value="$PROJECT_DIR$/src/interp/StageTreeAdaptor.java" />
         <option value="$PROJECT_DIR$/src/interp/Player/Intepreter.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/FilterSignature.java" />
@@ -181,6 +181,8 @@
         <option value="$PROJECT_DIR$/src/interp/Types/Type_Int.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/Type_Vec2.java" />
         <option value="$PROJECT_DIR$/src/interp/Types/Type_Vec4.java" />
+        <option value="$PROJECT_DIR$/src/interp/Types/ScreenNode.java" />
+        <option value="$PROJECT_DIR$/src/interp/Types/Type_Screen.java" />
       </list>
     </option>
   </component>
@@ -366,6 +368,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Semantic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VJ" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VJ" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GLSLTranslator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -829,8 +875,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="5" selection-start="1220" selection-end="1220" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="855">
           <folding>
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1332#1333#0" expanded="true" />
+            <element signature="e#1315#1316#0" expanded="false" />
+            <element signature="e#1332#1333#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -845,11 +891,6 @@
         <state line="35" column="17" selection-start="839" selection-end="839" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="720">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="34" selection-start="7078" selection-end="7078" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3555" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Types/TypeInterface.java">
@@ -901,13 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Player/ScreenNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="2" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0862069" vertical-offset="0" max-vertical-offset="522">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Array.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="55" selection-start="931" selection-end="931" vertical-scroll-proportion="0.8908046" vertical-offset="0" max-vertical-offset="1170">
@@ -947,13 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.0" vertical-offset="423" max-vertical-offset="945">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Sampler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="98" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
@@ -964,20 +991,6 @@
     <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Camera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="65" column="0" selection-start="2100" selection-end="2100" vertical-scroll-proportion="0.0" vertical-offset="708" max-vertical-offset="1230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Video.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="0" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Float.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="2023" selection-end="2023" vertical-scroll-proportion="0.0" vertical-offset="721" max-vertical-offset="2325">
           <folding />
         </state>
       </provider>
@@ -1005,17 +1018,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interp/Semantic/FunctionGlobalFuncs.java">
+    <entry file="file://$PROJECT_DIR$/src/interp/Player/SceneGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1395">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3555">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="2739" selection-end="2739" vertical-scroll-proportion="1.4150944" vertical-offset="0" max-vertical-offset="1290">
+        <state line="67" column="0" selection-start="2739" selection-end="2739" vertical-scroll-proportion="1.463964" vertical-offset="0" max-vertical-offset="1290">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Semantic/FunctionGlobalFuncs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.640648" vertical-offset="0" max-vertical-offset="1395">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Float.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="0" selection-start="2023" selection-end="2023" vertical-scroll-proportion="0.0" vertical-offset="721" max-vertical-offset="2325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="1610" selection-end="1759" vertical-scroll-proportion="0.0" vertical-offset="243" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Video.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="0" selection-start="2880" selection-end="2880" vertical-scroll-proportion="0.0" vertical-offset="796" max-vertical-offset="1485">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interp/Types/Type_Screen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

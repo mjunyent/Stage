@@ -1,7 +1,5 @@
 package interp.Types;
 
-import interp.Player.ScreenNode;
-
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -33,7 +31,7 @@ public enum Types {
     VIDEO_T     ("video",    Type_Video.class,   null),
     CAM_T       ("camera",   Type_Camera.class,  null),
 
-    SCREEN_T    ("screen",   ScreenNode.class,  null),
+    SCREEN_T    ("screen",   Type_Screen.class,  null),
 
     AUDIO_T     ("audio",    Type_Audio.class,   null);
 

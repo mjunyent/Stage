@@ -2,7 +2,7 @@ package interp.Semantic;
 
 import ddf.minim.Minim;
 import interp.Player.SceneGraph;
-import interp.Player.ScreenNode;
+import interp.Types.Type_Screen;
 import interp.Types.*;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -16,7 +16,7 @@ public class FunctionGlobalVars {
     public static Type_Vec2 resolution = new Type_Vec2(0.0f,0.0f);
     public static Type_Float Infinity = new Type_Float(Float.MAX_VALUE);
 
-    public static ScreenNode screen_node = null;
+    public static Type_Screen screen_node = null;
     public static PApplet screen = null;
     public static SceneGraph scene_graph = null;
     public static String renderer = null;

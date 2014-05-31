@@ -98,6 +98,9 @@ println(nose);
 	println("VAMOS POR: " + now);
 	println("first: " + 5.0*vec4(1.0,2.0,3.0,4.0));
 	println("last: " + vec4(1.0,2.0,3.0,4.0)*5.0);
+	
+	println("WIDTH: " + output.width);
+	println("HEIGHT: " + output.height);
 		
 	println("    TE MIDE: " + song.FFT().size);
 int m =0;
