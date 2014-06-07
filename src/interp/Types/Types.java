@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public enum Types {
-    //ENUM       NAME        Class              Func    Filt    ArrayOf
+    //ENUM       NAME        Class              ArrayOf
     VOID_T      ("void",     Type_Void.class,    null),
 
     INT_T       ("int",      Type_Int.class,     null),

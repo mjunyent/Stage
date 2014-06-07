@@ -11,6 +11,8 @@ public class Type_Node extends NodeInterface implements TypeFunctionInterface {
 
     public Type_Node() {
         id = -1;
+        this.width = -1;
+        this.height = -1;
     }
 
     public Type_Node(int width, int height) {
@@ -20,8 +22,8 @@ public class Type_Node extends NodeInterface implements TypeFunctionInterface {
     }
 
     public void init() {
-        this.width  = FunctionGlobalVars.screen.width;
-        this.height = FunctionGlobalVars.screen.height;
+        if(this.width < 0) this.width  = FunctionGlobalVars.screen.width;
+        if(this.height < 0) this.height = FunctionGlobalVars.screen.height;
         image = FunctionGlobalVars.screen.createGraphics(
                                                          width,
                                                          height,

@@ -141,7 +141,6 @@ public class Player {
     }
 
     public void loop(float time) {
-        FunctionGlobalVars.queued_messages.clear();
         FunctionGlobalVars.time.setValue(time);
         FunctionGlobalVars.dt.setValue(time-lastTime);
         lastTime = time;
@@ -152,6 +151,7 @@ public class Player {
             System.err.println(System.lineSeparator() + e.getMessage());
             System.exit(0);
         }
+        FunctionGlobalVars.queued_messages.clear();
         if(debug && scene_graph.isCyclic()) System.out.println("Warning: Graph contains cycles!");
         scene_graph.process(0);
         scene_graph.clear();

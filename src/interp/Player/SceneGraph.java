@@ -36,6 +36,12 @@ public class SceneGraph {
         }
     }
 
+    public void printGraph() {
+        for(ArrayList<Integer> ai : graph) {
+            System.out.println(ai);
+        }
+    }
+
     public SceneGraph(PApplet screen, boolean debug) {
         nodes = new ArrayList<NodeInterface>();
         referenceCount = new ArrayList<Integer>();

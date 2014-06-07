@@ -121,5 +121,6 @@ public class Type_Audio implements TypeFunctionInterface {
 
     public void set(TypeInterface obj) {
         player = ((Type_Audio)obj).player;
+        fft = ((Type_Audio)obj).fft;
     }
 }

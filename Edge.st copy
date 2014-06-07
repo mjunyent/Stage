@@ -1,0 +1,36 @@
+filter v1,v2 -> mix(float m) {
+	float n = 1.0-m;
+	vec2 k = vec2(0.5,0.5);
+	return v1[UV]*m+v2[UV]*n;
+}
+
+filter v -> sobelX(float x, float y) {
+	vec4 pinta = v[UV-vec2(x,y)] + 2.0*v[UV-vec2(0.0,y)] + v[UV-vec2(-x,y)] - v[UV-vec2(x,-y)] - 2.0*v[UV-vec2(0.0,-y)] - v[UV-vec2(-x,-y)];
+	float size = pinta.x*pinta.x + pinta.y*pinta.y + pinta.z*pinta.z;
+	return vec4(size, size, size, 1.0);
+//	return -v[UV-vec2(-x,-y)] - 2.0*v[UV-vec2(0.0,-y)] - v[UV-vec2(x,-y)] + v[UV-vec2(-x,y)] + 2.0*v[UV-vec2(0.0,y)] + v[UV-vec2(x,y)];
+}
+
+filter v -> sobelY(float x, float y) {
+	vec4 pinta = v[UV-vec2(x,y)] + 2.0*v[UV-vec2(x,0.0)] + v[UV-vec2(x,-y)] - v[UV-vec2(-x,-y)] - 2.0*v[UV-vec2(-x,0.0)] - v[UV-vec2(-x,y)];
+	float size = pinta.x*pinta.x + pinta.y*pinta.y + pinta.z*pinta.z;
+	return vec4(size, size, size, 1.0);
+}
+
+filter pinta(float r, float g, float b) {
+	return vec4(r,g,b,1.0);
+}
+
+function main() {
+FIRST:
+	camera cam = camera(0);
+	cam.start();
+	node A, B, ACUM;
+
+LOOP:
+	cam -> sobelX(1.0/cam.width, 1.0/cam.height) -> A;
+	A -> sobelY(1.0/cam.width, 1.0/cam.height) -> B;
+	B,ACUM -> mix(0.5) -> 
+}
+
+

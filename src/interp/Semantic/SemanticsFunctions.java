@@ -7,14 +7,6 @@ import parser.StageLexer;
 import java.util.*;
 
 public class SemanticsFunctions {
-    /*public class FunctionSignature {
-        public List<Types> args;
-        public List<String> args_names;
-        public Types ret;
-        public StageTree root;
-        public StageTree first, loop, last;
-    }*/
-
     private HashMap<String, FunctionSignature> function_list;
     private HashMap<String, FilterSignature> filter_list;
     private StageTree functions_root = null;
