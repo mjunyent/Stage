@@ -35,6 +35,8 @@ public enum Types {
 
     AUDIO_T     ("audio",    Type_Audio.class,   null),
 
+    AINPUT_T    ("audioInput", Type_AudioInput.class, null),
+
     MIDI_BUS_T  ("midiBus",  Type_MidiBus.class, null),
 
     MIDI_MSG_T  ("midiMsg",  Type_MidiMessage.class, null),
